@@ -6,7 +6,7 @@ public class ProgramaForm {
     private String nome;
     private LocalDate inicio;
     private LocalDate termino;
-    private Long id;
+    private Long coordenador;
     private String turma;
 
     public String getNome() {
@@ -30,11 +30,11 @@ public class ProgramaForm {
         this.termino = termino;
     }
 
-    public Long getId() {
-        return id;
+    public Long getCoordenador() {
+        return coordenador;
     }
-    public void setId(Long id) {
-        this.id = id;
+    public void setCoordenador(Long coordenador) {
+        this.coordenador = coordenador;
     }
 
     public String getTurma() {
