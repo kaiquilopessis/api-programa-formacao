@@ -2,7 +2,7 @@ package br.com.sis.rh.apiprogramaformacao.core.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.Avaliacoes;
+import br.com.sis.rh.apiprogramaformacao.api.model.Avaliacoes;
 
 public interface AvaliacoesRepository extends JpaRepository<Avaliacoes, Long> {
 

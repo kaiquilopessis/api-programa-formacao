@@ -4,11 +4,10 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import br.com.sis.rh.apiprogramaformacao.api.model.Formacao;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 
-public interface ParticipanteRepository  extends JpaRepository <Participante, String> {
+public interface FormacaoRepository  extends JpaRepository <Formacao, Long> {
 	
-	List<Participante> findByStatus(Boolean status);
-	
-	Participante findByCpf(String cpf);
+	List<Formacao> findByStatus(Boolean status);
 }
