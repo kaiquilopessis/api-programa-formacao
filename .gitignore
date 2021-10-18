@@ -3,7 +3,7 @@
 # Learn more about .gitignore:
 #     https://www.atlassian.com/git/tutorials/saving-changes/gitignore
 
-application.properties
+*.properties
 
 # Node artifact files
 node_modules/
