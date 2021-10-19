@@ -1,4 +1,7 @@
-package br.com.sis.rh.apiprogramaformacao.model;
+package br.com.sis.rh.apiprogramaformacao.api.model;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
@@ -7,20 +10,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="TB_REMUNERACAO_PROGRAMA")
+@Getter
+@Setter
 public class RemuneracaoPrograma {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	@OneToMany
-	@JoinColumn(name = "codigo_participante_fk", referencedColumnName = "cpf_participante", nullable = false)
-	private Participante participacao;
+	private Long id;
 	private String cargo;
 	@Column(name = "bolsa_aux")
 	private BigDecimal bolsa;

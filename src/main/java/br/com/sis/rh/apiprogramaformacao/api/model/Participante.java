@@ -1,32 +1,30 @@
-package br.com.sis.rh.apiprogramaformacao.model;
+package br.com.sis.rh.apiprogramaformacao.api.model;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "TB_PARTICIPANTE")
+@Getter
+@Setter
 public class Participante {
 
 	@Id
 	@Column(name = "cpf_participante", length = 12)
 	private String cpfParticipante;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "codigo_programa_fk", referencedColumnName = "id", nullable = false)
 	private Programa programa;
 	@OneToOne
 	@JoinColumn(name = "codigo_candidato_fk", referencedColumnName = "id", nullable = false)
 	private Candidato cadidato;
-	@Column(name = "nome_participante", length = 50)
-	private String nome;
-	@Column(name = "nmCargo", length = 30)
-	private String cargo;
+	@ManyToOne
+	@JoinColumn(name = "codigo_remun_programa_fk", referencedColumnName = "id", nullable = false)
+	private RemuneracaoPrograma remuneracaoPrograma;
 	@Column(name = "nmFaculdade", length = 50)
 	private String faculdade;
 	@Column(name = "nmCurso", length = 50)
@@ -35,5 +33,6 @@ public class Participante {
 	private LocalDate dataFinal;
 	@Column(name = "status")
 	private long status;
-	//Falta o TCE e Foto_participante
+	@Column(name = "TCE")
+	private String tce;
 }

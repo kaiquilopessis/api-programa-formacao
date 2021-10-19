@@ -1,4 +1,7 @@
-package br.com.sis.rh.apiprogramaformacao.model;
+package br.com.sis.rh.apiprogramaformacao.api.model;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
@@ -13,14 +16,16 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "TB_PROGRAMA")
+@Getter
+@Setter
 public class Programa {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	@OneToOne
 	@JoinColumn(name = "cpf_instrutor", referencedColumnName = "cpf_instrutor", nullable = false)
-	private String cpfInstrutor;
+	private Instrutor instrutor;
 	@Column(name = "nome", nullable = false, length = 50)
 	private String nome;
 	@Column(name = "data_inicio", nullable = false)

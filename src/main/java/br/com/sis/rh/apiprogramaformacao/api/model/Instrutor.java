@@ -1,12 +1,14 @@
-package br.com.sis.rh.apiprogramaformacao.model;
+package br.com.sis.rh.apiprogramaformacao.api.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "TB_INSTRUTOR")
+@Getter
+@Setter
 public class Instrutor {
 
 	@Id
@@ -20,6 +22,7 @@ public class Instrutor {
 	private String email;
 	@Column(name = "status")
 	private long status;
-	@Column(name = "cod_remun_programa")
-	private long codRemuneracaoPrograma;
+	@ManyToOne
+	@JoinColumn(name = "cod_remun_programa", referencedColumnName = "id", nullable = false)
+	private RemuneracaoPrograma remuneracaoPrograma;
 }

@@ -1,4 +1,7 @@
-package br.com.sis.rh.apiprogramaformacao.model;
+package br.com.sis.rh.apiprogramaformacao.api.model;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
@@ -7,8 +10,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+//Modelo para acessar o sistema
 @Entity
 @Table(name = "TB_USUARIO_ACESSO")
+@Getter
+@Setter
 public class Usuario {
 
 	@Id
