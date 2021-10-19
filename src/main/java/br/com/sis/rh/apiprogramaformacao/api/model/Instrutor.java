@@ -9,17 +9,12 @@ public class Instrutor {
 	@Id
 	@Column(name = "cpf_instrutor")
 	private String cpfInstrutor;
-	@Column(name = "nome", length = 50, nullable = false)
-	private String nome;
-	@Column(name = "telefone", length = 255, nullable = false)
+	@Column( length = 255, nullable = false)
 	private String telefone;
-	@Column(name = "email_corp", length = 100, nullable = false)
-	private String email;
-	@Column(name = "status")
-	private long status;
+	private int status;
 
 	@ManyToOne
-	@JoinColumn(name = "cod_remun_programa", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "codigo_remun_programa_fk", referencedColumnName = "id", nullable = false)
 	private RemuneracaoPrograma remuneracao;
 
 	public String getCpfInstrutor() {
@@ -29,13 +24,6 @@ public class Instrutor {
 		this.cpfInstrutor = cpfInstrutor;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
 	public String getTelefone() {
 		return telefone;
 	}
@@ -43,17 +31,10 @@ public class Instrutor {
 		this.telefone = telefone;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public long getStatus() {
+	public int getStatus() {
 		return status;
 	}
-	public void setStatus(long status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 
