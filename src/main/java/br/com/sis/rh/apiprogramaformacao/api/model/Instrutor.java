@@ -1,41 +1,66 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "TB_INSTRUTOR")
 public class Instrutor {
-    @Id
-    @Column(name = "cpf_instrutor")
-    private String cpf;
 
-    @Column(name = "telefone")
-    private String contato;
+	@Id
+	@Column(name = "cpf_instrutor")
+	private String cpfInstrutor;
+	@Column(name = "nome", length = 50, nullable = false)
+	private String nome;
+	@Column(name = "telefone", length = 255, nullable = false)
+	private String telefone;
+	@Column(name = "email_corp", length = 100, nullable = false)
+	private String email;
+	@Column(name = "status")
+	private long status;
 
-    // 0 = Inativo | 1 = Ativo
-    private int status;
+	@ManyToOne
+	@JoinColumn(name = "cod_remun_programa", referencedColumnName = "id", nullable = false)
+	private RemuneracaoPrograma remuneracao;
 
-    public String getCpf() {
-        return cpf;
-    }
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
+	public String getCpfInstrutor() {
+		return cpfInstrutor;
+	}
+	public void setCpfInstrutor(String cpfInstrutor) {
+		this.cpfInstrutor = cpfInstrutor;
+	}
 
-    public String getContato() {
-        return contato;
-    }
-    public void setContato(String contato) {
-        this.contato = contato;
-    }
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public int getStatus() {
-        return status;
-    }
-    public void setStatus(int status) {
-        this.status = status;
-    }
+	public String getTelefone() {
+		return telefone;
+	}
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public long getStatus() {
+		return status;
+	}
+	public void setStatus(long status) {
+		this.status = status;
+	}
+
+	public RemuneracaoPrograma getRemuneracao() {
+		return remuneracao;
+	}
+	public void setRemuneracao(RemuneracaoPrograma remuneracao) {
+		this.remuneracao = remuneracao;
+	}
 }
