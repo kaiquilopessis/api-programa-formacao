@@ -34,7 +34,7 @@ public class AluraController {
 	
 	@GetMapping("/{cpf}")
 	public List<AluraDto> listaRegistros (@PathVariable String cpf){
-		List<Alura> alura = aluraRepository.findAllByParticipante(cpf);
+		List<Alura> alura = aluraRepository.findAllByParticipanteCpf(cpf);
 		return AluraDto.converter(alura);
 	}
 	
