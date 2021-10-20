@@ -82,3 +82,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Ignore application.properties ###
+ *.properties
