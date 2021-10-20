@@ -32,7 +32,7 @@ public class Participante {
 	@Column(name = "data_fim_graduacao")
 	private LocalDate dataFinal;
 	@Column(name = "status")
-	private long status;
+	private Status status;
 	@Column(name = "TCE")
 	private String tce;
 }

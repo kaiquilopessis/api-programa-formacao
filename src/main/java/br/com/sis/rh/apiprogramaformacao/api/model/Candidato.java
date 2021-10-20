@@ -7,12 +7,7 @@ import java.io.File;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "TB_CANDIDATO")
@@ -37,8 +32,9 @@ public class Candidato {
 	private Long status;
 	@Column(name = "observacao", length = 8000)
 	private String observacao;
+	@Lob
 	@Column(name = "DISC")
-	private File disc;
+	private byte[] disc;
 	@Column(name = "curriculo")
 	private File curriculo;
 	@Column(name = "curso")
