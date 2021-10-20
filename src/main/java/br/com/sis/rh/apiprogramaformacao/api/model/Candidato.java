@@ -1,5 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
+import br.com.sis.rh.apiprogramaformacao.core.enums.Status;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,15 +29,16 @@ public class Candidato {
 	private BigDecimal testeLogico;
 	@Column(name = "nota_disc", length = 15, nullable = false)
 	private String notaDisc;
-	@Column(name = "status", nullable = false)
-	private Long status;
+	@Column(name = "status", nullable = false, length = 50)
+	@Enumerated(EnumType.STRING)
+	private Status status;
 	@Column(name = "observacao", length = 8000)
 	private String observacao;
-	@Lob
-	@Column(name = "DISC")
-	private byte[] disc;
-	@Column(name = "curriculo")
-	private File curriculo;
+//	@Lob
+//	@Column(name = "DISC")
+//	private byte[] disc;
+//	@Column(name = "curriculo")
+//	private File curriculo;
 	@Column(name = "curso")
 	private String curso;
 	@Column(name = "fonte_recrutamento")

@@ -1,5 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
+import br.com.sis.rh.apiprogramaformacao.core.enums.Status;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,7 +24,7 @@ public class Usuario {
 	@Column(name = "email", length = 100)
 	private String email;
 	@Column(name = "status", nullable = false)
-	private long status;
+	private Status status;
 	@Column(name = "senha_criptografada", length = 20, nullable = false)
 	private String senha;
 	@Column(name = "data_inclusao")

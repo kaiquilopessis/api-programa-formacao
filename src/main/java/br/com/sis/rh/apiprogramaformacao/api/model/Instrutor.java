@@ -14,15 +14,15 @@ public class Instrutor {
 	@Id
 	@Column(name = "cpf_instrutor")
 	private String cpfInstrutor;
-	@Column(name = "nome", length = 50, nullable = false)
-	private String nome;
+//	@Column(name = "nome", length = 50, nullable = false)
+//	private String nome;
 	@Column(name = "telefone", length = 255, nullable = false)
 	private String telefone;
-	@Column(name = "email_corp", length = 100, nullable = false)
-	private String email;
+//	@Column(name = "email_corp", length = 100, nullable = false)
+//	private String email;
 	@Column(name = "status")
 	private long status;
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "cod_remun_programa", referencedColumnName = "id", nullable = false)
 	private RemuneracaoPrograma remuneracaoPrograma;
 }

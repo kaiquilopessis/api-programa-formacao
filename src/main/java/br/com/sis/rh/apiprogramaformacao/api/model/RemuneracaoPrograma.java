@@ -21,10 +21,12 @@ public class RemuneracaoPrograma {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(name = "cargo", length = 30)
 	private String cargo;
 	@Column(name = "bolsa_aux")
 	private BigDecimal bolsa;
-	private BigDecimal beneficios;
+	@Column(name = "beneficios")
+	private BigDecimal beneficio;
 	private BigDecimal convenio;
 	@Column(name = "hr_extra")
 	private BigDecimal horaExtra;
