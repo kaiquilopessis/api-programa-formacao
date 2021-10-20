@@ -12,17 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.vo.ParticipanteBuscaNomeDto;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
+import br.com.sis.rh.apiprogramaformacao.core.service.GerencialService;
 
 @RestController
 @RequestMapping("/gerencial")
 public class GerencialController {
 	
 	@Autowired
-	private ParticipanteRepository participanteRepository;
+	private GerencialService gerencialService;
 	
 	@GetMapping("/{cpf}")
 	public ResponseEntity<ParticipanteBuscaNomeDto> mostraNome(@PathVariable String cpf){
-		Optional<Participante> participante = participanteRepository.findById(cpf);
+		Optional<Participante> participante = gerencialService.buscaPorId(cpf);
 		if(participante.isPresent()) {
 			return ResponseEntity.ok(new ParticipanteBuscaNomeDto(participante.get()));
 		}

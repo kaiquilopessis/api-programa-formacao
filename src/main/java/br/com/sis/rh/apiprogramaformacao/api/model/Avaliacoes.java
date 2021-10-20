@@ -19,7 +19,6 @@ public class Avaliacoes {
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name = "CODIGO_PARTICIPANTE")
 	private Participante participante;
 
 	@Column(name = "NOTA_TECNICA")

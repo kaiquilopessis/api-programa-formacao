@@ -15,31 +15,26 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.FormacaoBuscaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.ParticipanteBuscaDto;
 import br.com.sis.rh.apiprogramaformacao.core.repository.FormacaoRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
+import br.com.sis.rh.apiprogramaformacao.core.service.BuscaService;
 
 @RestController
 @RequestMapping("/busca")
-@CrossOrigin
 public class BuscaController {
 	
-	
 	@Autowired
-	ParticipanteRepository participanteRepository;
-	
-	@Autowired
-	FormacaoRepository formacaoRepository;
-	
+	private BuscaService buscaService;
 	
 	//lista participantes na tabela - busca participantes
 	@GetMapping("participantes/{statusPart}")
 	public List<ParticipanteBuscaDto> listarPart(@PathVariable Boolean statusPart) {
-		List<Participante> participantes = participanteRepository.findByStatus(statusPart);
+		List<Participante> participantes = buscaService.buscaPorStatus(statusPart);
 		return ParticipanteBuscaDto.converter(participantes);
 	}
 	
 	//lista formação no select - busca participantes
 	@GetMapping("participantes/programa/{statusProg}")
-	public List<FormacaoBuscaDto> listar(@PathVariable Boolean statusProg){
-		List<Formacao> formacoes = formacaoRepository.findByStatus(statusProg);
+	public List<FormacaoBuscaDto> listarForm(@PathVariable Boolean statusProg){
+		List<Formacao> formacoes = buscaService.buscaPorStatusForm(statusProg);
 		return FormacaoBuscaDto.converter(formacoes);
 	}
 	

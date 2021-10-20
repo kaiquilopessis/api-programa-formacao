@@ -21,40 +21,42 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.AluraDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.AluraForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.AluraRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
+import br.com.sis.rh.apiprogramaformacao.core.service.AluraService;
 
 @RestController
 @RequestMapping("/alura")
 public class AluraController {
 	
-	@Autowired
-	private AluraRepository aluraRepository;
+	//TODO precisamos passar para o service os ifs de tratamento
 	
 	@Autowired
-	private ParticipanteRepository participanteRepository;
+	private AluraService aluraService;
 	
 	@GetMapping("/{cpf}")
 	public List<AluraDto> listaRegistros (@PathVariable String cpf){
-		List<Alura> alura = aluraRepository.findAllByParticipanteCpf(cpf);
+		List<Alura> alura = aluraService.buscaParticipanteCpf(cpf);
 		return AluraDto.converter(alura);
 	}
 	
 	@PostMapping("/novo/{cpf}")
 	public ResponseEntity<AluraDto> cadastrar (@PathVariable String cpf ,@RequestBody AluraForm aluraForm, UriComponentsBuilder uriComponentsBuilder){
-		Optional<Participante> participante = participanteRepository.findById(cpf);
+		Optional<Participante> participante = aluraService.buscaParticipanteId(cpf);
 		if(participante.isPresent()) {
 			Alura alura = aluraForm.converter(participante.get());
-			aluraRepository.save(alura);
+			aluraService.salvar(alura);
 			URI uri = uriComponentsBuilder.path("/alura/novo/{id}").buildAndExpand(alura.getCodigoAlura()).toUri();
 			return ResponseEntity.created(uri).body(new AluraDto(alura));
 		}
 		return ResponseEntity.notFound().build();
 	}
 	
+	
+	
 	@DeleteMapping("/deletar/{id}")
 	public ResponseEntity<AluraDto> deletar (@PathVariable Long id){
-		Optional<Alura> alura = aluraRepository.findById(id);
+		Optional<Alura> alura = aluraService.buscaAluraId(id);
 		if(alura.isPresent()) {
-			aluraRepository.deleteById(id);
+			aluraService.deletarPorId(id);
 			return ResponseEntity.ok().build();
 		}
 		return ResponseEntity.notFound().build();
