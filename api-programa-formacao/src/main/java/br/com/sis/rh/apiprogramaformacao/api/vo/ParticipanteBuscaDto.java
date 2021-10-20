@@ -1,7 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo;
 
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;

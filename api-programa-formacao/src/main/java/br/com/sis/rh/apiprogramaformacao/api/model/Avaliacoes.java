@@ -6,54 +6,52 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TB_NOTAS_AVALIACOES")
+@Table(name = "TB_NOTAS_AVALIACOES")
 public class Avaliacoes {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID")
+	@Column(name = "ID")
 	private Long id;
 	
+	@ManyToOne
 	@JoinColumn(name = "CODIGO_PARTICIPANTE")
-	private Long codigoParticipante;
-	
-	@Column(name="NOTA_TECNICA")
+	private Participante participante;
+
+	@Column(name = "NOTA_TECNICA")
 	private Float notaTecnica;
-	
-	@Column(name="NOTA_COMPORTAMENTAL")
+
+	@Column(name = "NOTA_COMPORTAMENTAL")
 	private Float notaComportamental;
-	
-	@Column(name="NOTA_PATRICAS_AGEIS")
+
+	@Column(name = "NOTA_PATRICAS_AGEIS")
 	private Float notaPraticasAgeis;
-	
-	@Column(name="NOTA_LIDERANCA")
+
+	@Column(name = "NOTA_LIDERANCA")
 	private Float notaLideranca;
-	
-	@Column(name="NOTA_NEGOCIOS")
+
+	@Column(name = "NOTA_NEGOCIOS")
 	private Float notaNegocios;
 
+	public Avaliacoes(Participante participante, Float notaTecnica, Float notaComportamental, Float notaPraticasAgeis,
+			Float notaLideranca, Float notaNegocios) {
 
-	
-	
-
-	public Avaliacoes(Long id, Long codigoParticipante, Float notaTecnica, Float notaComportamental,
-			Float notaPraticasAgeis, Float notaLideranca, Float notaNegocios) {
-		this.id = id;
-		this.codigoParticipante = codigoParticipante;
+		this.participante = participante;
 		this.notaTecnica = notaTecnica;
 		this.notaComportamental = notaComportamental;
 		this.notaPraticasAgeis = notaPraticasAgeis;
 		this.notaLideranca = notaLideranca;
 		this.notaNegocios = notaNegocios;
 	}
-	
+
 	public Avaliacoes() {
-		
+
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -62,12 +60,14 @@ public class Avaliacoes {
 		this.id = id;
 	}
 
-	public Long getCodigoParticipante() {
-		return codigoParticipante;
+	
+
+	public Participante getParticipante() {
+		return participante;
 	}
 
-	public void setCodigoParticipante(Long codigoParticipante) {
-		this.codigoParticipante = codigoParticipante;
+	public void setParticipante(Participante participante) {
+		this.participante = participante;
 	}
 
 	public Float getNotaTecnica() {
@@ -109,5 +109,5 @@ public class Avaliacoes {
 	public void setNotaNegocios(Float notaNegocios) {
 		this.notaNegocios = notaNegocios;
 	}
-	
+
 }

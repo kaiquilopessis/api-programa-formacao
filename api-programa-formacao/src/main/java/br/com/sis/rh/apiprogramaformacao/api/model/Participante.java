@@ -17,7 +17,7 @@ public class Participante {
 	@Column(name = "NOME_PARTICIPANTE")
 	private String nome;
 
-	@Column(name = "status")
+	@Column(name = "STATUS")
 	private Boolean status;
 	
 	@ManyToOne

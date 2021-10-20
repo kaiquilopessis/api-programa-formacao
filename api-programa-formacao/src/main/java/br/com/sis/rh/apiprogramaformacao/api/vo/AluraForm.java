@@ -1,12 +1,7 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Formatter;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Alura;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;

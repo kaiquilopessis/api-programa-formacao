@@ -2,7 +2,6 @@ package br.com.sis.rh.apiprogramaformacao.api.vo;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Formatter;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.FeedBack;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;

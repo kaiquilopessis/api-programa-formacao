@@ -1,7 +1,5 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo;
 
-import java.util.Optional;
-
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 
 public class ParticipanteBuscaNomeDto {
