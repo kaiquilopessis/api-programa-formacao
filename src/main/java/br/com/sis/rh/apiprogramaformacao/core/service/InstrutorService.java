@@ -28,4 +28,8 @@ public class InstrutorService {
 
         return listInstrutor;
     }
+
+    public void salva(Instrutor instrutor){
+        repository.save(instrutor);
+    }
 }

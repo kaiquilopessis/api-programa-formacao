@@ -13,6 +13,14 @@ public class Instrutor {
 	private String telefone;
 	private int status;
 
+	public Instrutor(String cpfInstrutor, String telefone, int status) {
+		this.cpfInstrutor = cpfInstrutor;
+		this.telefone = telefone;
+		this.status = status;
+	}
+
+	public Instrutor(){}
+
 	@ManyToOne
 	@JoinColumn(name = "codigo_remun_programa_fk", referencedColumnName = "id", nullable = false)
 	private RemuneracaoPrograma remuneracao;
