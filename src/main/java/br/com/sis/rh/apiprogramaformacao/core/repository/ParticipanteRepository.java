@@ -6,19 +6,21 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivo;
+import br.com.sis.rh.apiprogramaformacao.core.enums.Status_Ativo;
+import br.com.sis.rh.apiprogramaformacao.core.enums.Status_Efetivo;
 
 public interface ParticipanteRepository extends JpaRepository<Participante, Long> {
-
-	List<Participante> findByEfetivo(StatusEfetivo efetivado);
 	
-	List<Participante> findByAtivo(StatusAtivo ativo);
+	@Query(value = "SELECT p FROM Participante p WHERE status_efetivado = ?1")
+	List<Participante> findByStatusEfetivo(Status_Efetivo status_efetivado);
 	
-	@Query("SELECT COUNT(ativo) FROM Participante WHERE ativo = 'ATIVO'")
+	@Query(value = "SELECT p FROM Participante p WHERE status_ativo = ?1")
+	List<Participante> findByStatusAtivo(Status_Ativo status_ativo);
+	
+	@Query(value = "SELECT COUNT(p) FROM Participante p WHERE status_ativo = 'ATIVO'")
 	Integer totalParticipantesAtivos();
 	
-	@Query("SELECT COUNT(efetivo) FROM Participante WHERE efetivo = 'EFETIVADO'")
+	@Query(value = "SELECT COUNT(p) FROM Participante p WHERE status_efetivado = 'EFETIVADO'")
 	Integer totalEfetivados();
 	
 }

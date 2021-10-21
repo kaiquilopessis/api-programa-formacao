@@ -6,13 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Formacoes;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import br.com.sis.rh.apiprogramaformacao.api.vo.FormacoesDto;
+import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 import br.com.sis.rh.apiprogramaformacao.api.vo.ParticipanteDto;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivo;
+import br.com.sis.rh.apiprogramaformacao.api.vo.ProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusFormacao;
+import br.com.sis.rh.apiprogramaformacao.core.enums.Status_Ativo;
+import br.com.sis.rh.apiprogramaformacao.core.enums.Status_Efetivo;
 import br.com.sis.rh.apiprogramaformacao.core.repository.FormacoesRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 
@@ -37,17 +37,18 @@ public class FiltroRelatorio {
 	}
 	
 	public List<ParticipanteDto> listaTotalParticipantesAtivos() {
-		List<Participante> participantesAtivos = participanteRepository.findByAtivo(StatusAtivo.ATIVO);
+		List<Participante> participantesAtivos = participanteRepository.findByStatusAtivo(Status_Ativo.ATIVO);
 		return ParticipanteDto.converter(participantesAtivos);
-	}
+	} 
 
 	public List<ParticipanteDto> listaTotalParticipantesEfetivados() {
-		List<Participante> participantesEfetivados = participanteRepository.findByEfetivo(StatusEfetivo.EFETIVADO);
+		List<Participante> participantesEfetivados = participanteRepository.findByStatusEfetivo(Status_Efetivo.EFETIVADO);
 		return ParticipanteDto.converter(participantesEfetivados);
 	}
 
-	public List<FormacoesDto> listaTotalFormacoesEmAndamento() {
-		List<Formacoes> formacoes = formacoesRepository.findByStatusFormacao(StatusFormacao.EM_ANDAMENTO);
-		return FormacoesDto.converter(formacoes);
+	public List<ProgramaDto> listaTotalFormacoesEmAndamento() {
+		List<Programa> programa = formacoesRepository.findByStatusFormacao(StatusFormacao.EM_ANDAMENTO);
+		return ProgramaDto.converter(programa);
 	}
+
 }

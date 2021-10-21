@@ -3,46 +3,35 @@ package br.com.sis.rh.apiprogramaformacao.api.model;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivo;
+import br.com.sis.rh.apiprogramaformacao.core.enums.Status_Ativo;
+import br.com.sis.rh.apiprogramaformacao.core.enums.Status_Efetivo;
 import lombok.Getter;
 
 @Entity
-@Table(name = "Participante")
+@Table(name = "TB_PARTICIPANTE")
 @Getter
 public class Participante {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String nomeParticipante;
-	private String programaFormacao;
-
-	@OneToOne
-	private Formacoes formacoes;
+	private String cpf_participante;
 
 	@Enumerated(EnumType.STRING)
-	private StatusEfetivo efetivo;
+	private Status_Efetivo status_efetivado;
 
 	@Enumerated(EnumType.STRING)
-	private StatusAtivo ativo;
+	private Status_Ativo status_ativo;
 
 	public Participante() {
 	}
 
-	public Participante(Long id, String nomeParticipante, String programaFormacao, StatusEfetivo efetivo,
-			StatusAtivo ativo, int tamanhoLista) {
-		this.id = id;
-		this.nomeParticipante = nomeParticipante;
-		this.programaFormacao = programaFormacao;
-		this.efetivo = efetivo;
-		this.ativo = ativo;
+	public Participante(String cpf_participante,
+			Status_Efetivo status_efetivado, Status_Ativo status_ativo) {
+		this.cpf_participante = cpf_participante;
+		this.status_efetivado = status_efetivado;
+		this.status_ativo = status_ativo;
 	}
 
 }
