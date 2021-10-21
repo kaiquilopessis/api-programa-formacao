@@ -18,7 +18,7 @@ public class CandidatoDto {
     private String fonteRecrutamento;
     private LocalDate dataAgendamento;
     private String curso;
-    private Long status;
+    private String status;
     private BigDecimal provaPratica;
     //private File curriculo;
     //private File arquivoDisc;
@@ -32,7 +32,7 @@ public class CandidatoDto {
         this.contato = candidato.getTelefone();
         this.dataAgendamento = candidato.getDataAgendamento();
         this.curso = candidato.getCurso();
-        this.status = candidato.getStatus();
+        this.status = String.valueOf(candidato.getStatusCandidatoParticipante());
         this.provaPratica = candidato.getTesteLogico();
         this.observacoes = candidato.getObservacao();
         this.disc = candidato.getNotaDisc();

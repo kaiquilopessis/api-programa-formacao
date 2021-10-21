@@ -1,6 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
-import br.com.sis.rh.apiprogramaformacao.core.enums.Status;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCandidatoParticipante;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,7 +34,7 @@ public class Participante {
 	private LocalDate dataFinal;
 	@Column(name = "status")
 	@Enumerated(EnumType.STRING)
-	private Status status;
+	private StatusCandidatoParticipante statusCandidatoParticipante;
 //	@Column(name = "TCE")
 //	private File tce;
 }

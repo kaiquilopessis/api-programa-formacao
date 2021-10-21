@@ -1,6 +1,7 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
-import br.com.sis.rh.apiprogramaformacao.core.enums.Status;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCandidatoParticipante;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusProgramaUsuario;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,7 +31,7 @@ public class Programa {
 	private String nomeTurma;
 	@Column(name = "status", nullable = false)
 	@Enumerated(EnumType.STRING)
-	private Status status;
+	private StatusProgramaUsuario status;
 	@Column(name = "qtd_aprendiz")
 	private Integer qtdAprendiz;
 	@Column(name = "qtd_estagiario")
