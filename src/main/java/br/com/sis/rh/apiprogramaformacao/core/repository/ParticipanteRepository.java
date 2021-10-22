@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface ParticipanteRepository extends JpaRepository<Participante, String> {
 
     List<Participante> findById(Long id);
+
+    Optional<Participante> findByCpf(String cpf);
 }
