@@ -1,67 +1,39 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
-import br.com.sis.rh.apiprogramaformacao.core.enums.Status;
-import lombok.AllArgsConstructor;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCandidatoParticipante;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import java.io.File;
 import java.time.LocalDate;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+import javax.persistence.*;
+
 @Entity
 @Table(name = "TB_PARTICIPANTE")
+@Getter
+@Setter
 public class Participante {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-
-	@Column(name = "cpf_participante", nullable = false, length = 12)
+	@Column(name = "cpf_participante", length = 12)
 	private String cpfParticipante;
-
 	@ManyToOne
 	@JoinColumn(name = "codigo_programa_fk", referencedColumnName = "id", nullable = false)
-	private Programa codigoPrograma;
-
-	@ManyToOne
+	private Programa programa;
+	@OneToOne
 	@JoinColumn(name = "codigo_candidato_fk", referencedColumnName = "id", nullable = false)
-	private Candidato codigoCandidato;
-
-	@ManyToOne
-	@JoinColumn(name = "codigo_remun_programa_fk", referencedColumnName = "id", nullable = false)
-	private Programa codigoRemunPrograma;
-
-	/*
-	@ManyToOne
-	private Participante nomeParticipante;
-	 */
-
-	@Column(length = 50, name = "nmFaculdade")
-	private String nmFaculdade;
-
-	/*
-	@Column(length = 50, name = "nmCurso")
-	private String nmCurso;
-	 */
-
+	private Candidato cadidato;
+	@Column(name = "nmFaculdade", length = 50)
+	private String faculdade;
+	@Column(name = "nmCurso", length = 50)
+	private String curso;
 	@Column(name = "data_fim_graduacao")
-	private LocalDate dataFimGraduacao;
-
+	private LocalDate dataFinal;
+//	@Column(name = "status_ativo")
+//	@Enumerated(EnumType.STRING)
+//	@Column(name = "status_efetivado")
+//	@Enumerated(EnumType.STRING)
 	@Column(name = "TCE")
-	private String tce;
-
-	@Enumerated(EnumType.STRING)
-	@Column(nullable = false)
-	private Status status;
-
-	/*
-	@Column(nullable = false, name = "foto_participante")
-	private String fotoParticipante;
-	 */
-
+	private File tce;
 }
