@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	
+	// Método para liberar acesso para a URL /relatorios e /relatorios/*
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()

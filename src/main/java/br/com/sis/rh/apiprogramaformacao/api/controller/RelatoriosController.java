@@ -29,7 +29,7 @@ public class RelatoriosController {
 	public List<ParticipanteDto> listaTotalParticipantesAtivos() {
 		return filtroRelatorio.listaTotalParticipantesAtivos();
 	}
-//
+
 	@GetMapping("/participantesEfetivados")
 	public List<ParticipanteDto> listaEfetivados() {
 		return filtroRelatorio.listaTotalParticipantesEfetivados();

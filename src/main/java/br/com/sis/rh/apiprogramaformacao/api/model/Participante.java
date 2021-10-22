@@ -6,8 +6,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import br.com.sis.rh.apiprogramaformacao.core.enums.Status_Ativo;
-import br.com.sis.rh.apiprogramaformacao.core.enums.Status_Efetivo;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivo;
 import lombok.Getter;
 
 @Entity
@@ -19,16 +19,16 @@ public class Participante {
 	private String cpf_participante;
 
 	@Enumerated(EnumType.STRING)
-	private Status_Efetivo status_efetivado;
+	private StatusEfetivo status_efetivado;
 
 	@Enumerated(EnumType.STRING)
-	private Status_Ativo status_ativo;
+	private StatusAtivo status_ativo;
 
 	public Participante() {
 	}
 
 	public Participante(String cpf_participante,
-			Status_Efetivo status_efetivado, Status_Ativo status_ativo) {
+			StatusEfetivo status_efetivado, StatusAtivo status_ativo) {
 		this.cpf_participante = cpf_participante;
 		this.status_efetivado = status_efetivado;
 		this.status_ativo = status_ativo;

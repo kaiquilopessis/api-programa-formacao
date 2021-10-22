@@ -7,8 +7,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import br.com.sis.rh.apiprogramaformacao.core.enums.Status_Ativo;
-import br.com.sis.rh.apiprogramaformacao.core.enums.Status_Efetivo;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivo;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,19 +16,15 @@ import lombok.Setter;
 public class ParticipanteDto {
 
 	private String cpf_participante;
-//	private String nomeParticipante;
-//	private String programaFormacao;
 
 	@Enumerated(EnumType.STRING)
-	private Status_Efetivo status_efetivo;
+	private StatusEfetivo status_efetivo;
 
 	@Enumerated(EnumType.STRING)
-	private Status_Ativo status_ativo;
+	private StatusAtivo status_ativo;
 
 	public ParticipanteDto(Participante participante) {
 		this.cpf_participante = participante.getCpf_participante();
-//		this.nomeParticipante = participante.getNomeParticipante();
-//		this.programaFormacao = participante.getProgramaFormacao();
 		this.status_efetivo = participante.getStatus_efetivado();
 		this.status_ativo = participante.getStatus_ativo();
 	}
