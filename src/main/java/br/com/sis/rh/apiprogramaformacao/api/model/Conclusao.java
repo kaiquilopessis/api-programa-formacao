@@ -66,6 +66,11 @@ public class Conclusao {
 		this.observacao = observacao;
 	}
 
+	public Conclusao(ResultadoConclusao resultado2, LocalDate dataAlteracao2, BigDecimal salario, String cargoEfetivado,
+			String comprovante, String campoObservacao) {
+		this.statusProgresso = StatusConclusao.FINAL;
+	}
+
 	public ResultadoConclusao getResultado() {
 		return resultado;
 	}

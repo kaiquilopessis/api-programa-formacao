@@ -44,7 +44,7 @@ public class AluraService {
 		return ResponseEntity.notFound().build();
 	}
 
-	@DeleteMapping("/deletar/{id}")
+	
 	public ResponseEntity<AluraDto> deletar(Long id) {
 		Optional<Alura> alura = aluraRepository.findById(id);
 		if (alura.isPresent()) {

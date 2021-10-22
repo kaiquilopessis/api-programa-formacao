@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Formacao;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import br.com.sis.rh.apiprogramaformacao.api.vo.FormacaoBuscaDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.ParticipanteBuscaDto;
 import br.com.sis.rh.apiprogramaformacao.core.repository.FormacaoRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 
@@ -20,14 +22,14 @@ public class BuscaService {
 	private FormacaoRepository formacaoRepository;
 	
 	
-	public List<Participante> buscaPorStatus(Boolean status) {
+	public List<ParticipanteBuscaDto> buscaPorStatus(Boolean status) {
 		List<Participante> participantes = participanteRepository.findByStatus(status);
-		return participantes;
+		return ParticipanteBuscaDto.converter(participantes);
 	}
 	
-	public List<Formacao> buscaPorStatusForm(Boolean status){
+	public List<FormacaoBuscaDto> buscaPorStatusForm(Boolean status){
 		List<Formacao> formacoes = formacaoRepository.findByStatus(status);
-		return formacoes;
+		return FormacaoBuscaDto.converter(formacoes);
 	}
 
 }

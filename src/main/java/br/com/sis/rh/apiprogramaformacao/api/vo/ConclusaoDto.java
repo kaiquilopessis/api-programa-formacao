@@ -30,7 +30,12 @@ public class ConclusaoDto {
 		this.cargo = conclusao.getCargo();
 		this.observacao = conclusao.getObservacao();
 	}
-
+	
+	public ConclusaoDto(ConclusaoFinalForm) {
+		
+	}
+	
+	
 	public Long getId() {
 		return id;
 	}
