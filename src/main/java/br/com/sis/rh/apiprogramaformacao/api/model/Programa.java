@@ -30,7 +30,7 @@ public class Programa {
 	@Column(name = "nome_turma", nullable = false, length = 50)
 	private String nomeTurma;
 	@Column(name = "status", nullable = false)
-	private long status;
+	private String status;
 	@Column(name = "qtd_aprendiz")
 	private long qtdAprendiz;
 	@Column(name = "qtd_estagiario")
@@ -80,10 +80,10 @@ public class Programa {
 		this.nomeTurma = nomeTurma;
 	}
 
-	public long getStatus() {
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(long status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 

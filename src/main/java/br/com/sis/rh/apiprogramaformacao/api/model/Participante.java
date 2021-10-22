@@ -16,18 +16,17 @@ public class Participante {
 	private Programa programa;
 	@OneToOne
 	@JoinColumn(name = "codigo_candidato_fk", referencedColumnName = "id", nullable = false)
-	private Candidato cadidato;
-	@ManyToOne
-	@JoinColumn(name = "codigo_remun_programa_fk", referencedColumnName = "id", nullable = false)
-	private RemuneracaoPrograma remuneracaoPrograma;
+	private Candidato candidato;
 	@Column(name = "nmFaculdade", length = 50)
 	private String faculdade;
 	@Column(name = "nmCurso", length = 50)
 	private String curso;
 	@Column(name = "data_fim_graduacao")
 	private LocalDate dataFinal;
-	@Column(name = "status")
-	private long status;
+	@Column(name = "status_ativo")
+	private String status;
+	@Column(name = "status_efetivado")
+	private String statusEfetivado;
 	@Column(name = "TCE")
 	private String tce;
 
@@ -45,18 +44,11 @@ public class Participante {
 		this.programa = programa;
 	}
 
-	public Candidato getCadidato() {
-		return cadidato;
+	public Candidato getCandidato() {
+		return candidato;
 	}
-	public void setCadidato(Candidato cadidato) {
-		this.cadidato = cadidato;
-	}
-
-	public RemuneracaoPrograma getRemuneracaoPrograma() {
-		return remuneracaoPrograma;
-	}
-	public void setRemuneracaoPrograma(RemuneracaoPrograma remuneracaoPrograma) {
-		this.remuneracaoPrograma = remuneracaoPrograma;
+	public void setCandidato(Candidato candidato) {
+		this.candidato = candidato;
 	}
 
 	public String getFaculdade() {
@@ -80,11 +72,18 @@ public class Participante {
 		this.dataFinal = dataFinal;
 	}
 
-	public long getStatus() {
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(long status) {
+	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getStatusEfetivado() {
+		return statusEfetivado;
+	}
+	public void setStatusEfetivado(String statusEfetivado) {
+		this.statusEfetivado = statusEfetivado;
 	}
 
 	public String getTce() {
