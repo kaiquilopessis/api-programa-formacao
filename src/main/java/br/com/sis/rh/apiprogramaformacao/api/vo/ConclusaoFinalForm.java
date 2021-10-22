@@ -5,16 +5,16 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
-import br.com.sis.rh.apiprogramaformacao.api.model.FeedBack;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoConclusao;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusConclusao;
 
 public class ConclusaoFinalForm {
 	private ResultadoConclusao resultado;
-	private LocalDate dataAlteracao;
+	private String dataAlteracao;
 	private BigDecimal salario;
 	private String cargoEfetivado;
-	private String comprovante;
+	private byte[] comprovante;
 	private String campoObservacao;
 	
 	
@@ -24,10 +24,10 @@ public class ConclusaoFinalForm {
 	public void setResultado(ResultadoConclusao resultado) {
 		this.resultado = resultado;
 	}
-	public LocalDate getDataAlteracao() {
+	public String getDataAlteracao() {
 		return dataAlteracao;
 	}
-	public void setDataAlteracao(LocalDate dataAlteracao) {
+	public void setDataAlteracao(String dataAlteracao) {
 		this.dataAlteracao = dataAlteracao;
 	}
 	public BigDecimal getSalario() {
@@ -42,10 +42,10 @@ public class ConclusaoFinalForm {
 	public void setCargoEfetivado(String cargoEfetivado) {
 		this.cargoEfetivado = cargoEfetivado;
 	}
-	public String getComprovante() {
+	public byte[] getComprovante() {
 		return comprovante;
 	}
-	public void setComprovante(String comprovante) {
+	public void setComprovante(byte[] comprovante) {
 		this.comprovante = comprovante;
 	}
 	public String getCampoObservacao() {
@@ -54,12 +54,12 @@ public class ConclusaoFinalForm {
 	public void setCampoObservacao(String campoObservacao) {
 		this.campoObservacao = campoObservacao;
 	}
-	
-	
+		
 	public Conclusao converter (Participante participante) {
-		LocalDate data = LocalDate.parse(this.data, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		return new Conclusao(resultado, dataAlteracao, salario, cargoEfetivado, comprovante, campoObservacao);
-	
+		LocalDate data = LocalDate.parse(this.dataAlteracao, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		return new Conclusao(participante, data, cargoEfetivado, comprovante, resultado, 
+				StatusConclusao.FINAL, campoObservacao);
+	}
 	
 	
 }

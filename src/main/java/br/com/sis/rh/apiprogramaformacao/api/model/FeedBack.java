@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -16,15 +17,17 @@ public class FeedBack {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
 	private Long id;
 
-	@Column(name = "DAT_FEEDBACK")
+	@Column(name = "DT_FEEDBACK")
 	private LocalDate data;
 
 	@Column(name = "ANOTACOES")
 	private String anotacoes;
 
 	@ManyToOne
+	@JoinColumn(name = "CODIGO_PARTICIPANTE_FK")
 	private Participante participante;
 
 	public FeedBack(LocalDate data, String anotacoes, Participante participante) {

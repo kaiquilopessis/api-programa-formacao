@@ -1,11 +1,11 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
+import br.com.sis.rh.apiprogramaformacao.api.model.RemuneracaoPrograma;
 import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoConclusao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusConclusao;
 
@@ -17,8 +17,8 @@ public class ConclusaoDto {
 	private StatusConclusao status;
 	//TODO mudar para blob (vetor de bytes)
 	private byte[] comprovante;
-	// TODO cargo
-	private RemuneracaoPrograma cargo;
+	private RemuneracaoPrograma cargoPrograma;
+	private String cargoEfetivado;
 	private String observacao;
 	
 	public ConclusaoDto(Conclusao conclusao) {
@@ -27,11 +27,12 @@ public class ConclusaoDto {
 		this.dataRegistro = conclusao.getDataAlteracao();
 		this.status = conclusao.getStatusProgresso();
 		this.comprovante = conclusao.getComprovanteRematricula();
-		this.cargo = conclusao.getCargo();
+		this.cargoPrograma = conclusao.getCargoPrograma();
+		this.cargoEfetivado = conclusao.getCargoEfetivado();
 		this.observacao = conclusao.getObservacao();
 	}
 	
-	public ConclusaoDto(ConclusaoFinalForm) {
+	public ConclusaoDto(ConclusaoFinalForm conclusao) {
 		
 	}
 	
@@ -76,12 +77,20 @@ public class ConclusaoDto {
 		this.comprovante = comprovante;
 	}
 	
-	public RemuneracaoPrograma getCargo() {
-		return cargo;
+	public RemuneracaoPrograma getCargoPrograma() {
+		return cargoPrograma;
 	}
 
-	public void setCargo(RemuneracaoPrograma cargo) {
-		this.cargo = cargo;
+	public void setCargoPrograma(RemuneracaoPrograma cargoPrograma) {
+		this.cargoPrograma = cargoPrograma;
+	}
+
+	public String getCargoEfetivado() {
+		return cargoEfetivado;
+	}
+
+	public void setCargoEfetivado(String cargoEfetivado) {
+		this.cargoEfetivado = cargoEfetivado;
 	}
 
 	public String getObservacao() {

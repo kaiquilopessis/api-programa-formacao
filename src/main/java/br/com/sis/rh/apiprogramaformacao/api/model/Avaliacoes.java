@@ -19,6 +19,7 @@ public class Avaliacoes {
 	private Long id;
 	
 	@ManyToOne
+	@JoinColumn(name = "CODIGO_PARTICIPANTE_FK")
 	private Participante participante;
 
 	@Column(name = "NOTA_TECNICA")
@@ -33,7 +34,7 @@ public class Avaliacoes {
 	@Column(name = "NOTA_LIDERANCA")
 	private Float notaLideranca;
 
-	@Column(name = "NOTA_NEGOCIOS")
+	@Column(name = "NOTA_NEGOCIO")
 	private Float notaNegocios;
 
 	public Avaliacoes(Participante participante, Float notaTecnica, Float notaComportamental, Float notaPraticasAgeis,

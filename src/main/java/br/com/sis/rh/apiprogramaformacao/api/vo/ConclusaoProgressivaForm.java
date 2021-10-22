@@ -1,17 +1,23 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
+import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
+import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import br.com.sis.rh.apiprogramaformacao.api.model.RemuneracaoPrograma;
 import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoConclusao;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusConclusao;
+import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoProgramaRepository;
 
 public class ConclusaoProgressivaForm {
+	
 	private ResultadoConclusao resultado;
-	private LocalDate dataAlteracao;
+	private String dataAlteracao;
 	// TODO Falar com Guilherme mudar para cargo
-	private BigDecimal salario;
+	private String cargo;
 	// TODO Mudar para receber arquivo
-	private String Comprovante;
+	private byte[] comprovante;
 
 	public ResultadoConclusao getResultado() {
 		return resultado;
@@ -21,28 +27,34 @@ public class ConclusaoProgressivaForm {
 		this.resultado = resultado;
 	}
 
-	public LocalDate getDataAlteracao() {
+	public String getDataAlteracao() {
 		return dataAlteracao;
 	}
 
-	public void setDataAlteracao(LocalDate dataAlteracao) {
+	public void setDataAlteracao(String dataAlteracao) {
 		this.dataAlteracao = dataAlteracao;
 	}
 
-	public BigDecimal getSalario() {
-		return salario;
+	public String getCargo() {
+		return cargo;
 	}
 
-	public void setSalario(BigDecimal salario) {
-		this.salario = salario;
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}
 
-	public String getComprovante() {
-		return Comprovante;
+	public byte[] getComprovante() {
+		return comprovante;
 	}
 
-	public void setComprovante(String comprovante) {
-		Comprovante = comprovante;
+	public void setComprovante(byte[] comprovante) {
+		this.comprovante = comprovante;
 	}
 
+	public Conclusao converter(Participante participante, RemuneracaoProgramaRepository remuneracaoProgramaRepository) {
+		LocalDate data = LocalDate.parse(this.dataAlteracao, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		RemuneracaoPrograma cargo = remuneracaoProgramaRepository.findByCargo(this.cargo);
+		return new Conclusao(participante, data, cargo, comprovante, 
+				resultado, StatusConclusao.PROGRESSIVA, "");
+	}
 }

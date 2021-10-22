@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -15,10 +16,11 @@ import javax.persistence.Table;
 public class Alura {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "CODIGO_ALURA")
+	@Column(name = "ID")
 	private Long codigoAlura;
 
 	@ManyToOne
+	@JoinColumn(name = "CODIGO_PARTICIPANTE_FK")
 	private Participante participante;
 
 	@Column(name = "QTD_HORAS")

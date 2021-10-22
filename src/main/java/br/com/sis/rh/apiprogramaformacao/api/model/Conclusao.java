@@ -1,6 +1,5 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -12,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoConclusao;
@@ -22,53 +23,61 @@ import br.com.sis.rh.apiprogramaformacao.core.enums.StatusConclusao;
 public class Conclusao {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
 	private Long id;
-	
-	//TODO Perguntar Guilherme Cargo Efetivado na tabela.
 
-	@JoinColumn(name = "CODIGO_PARTICIPANTE")
-	private Long codigoParticipante;
+	@ManyToOne
+	@JoinColumn(name = "CODIGO_PARTICIPANTE_FK")
+	private Participante participante;
 
-	@Column(name = "data_alteracao")
+	@Column(name = "DATA_ALTERACAO")
 	private LocalDate dataAlteracao;
 
-	@Column(name = "valor_salario_atual")
-	private RemuneracaoPrograma cargo;
+	@OneToOne
+	@JoinColumn(name = "CODIGO_REMUN_PROGRAMA_FK")
+	private RemuneracaoPrograma cargoPrograma;
+	
+	@Column(name = "CARGO_EFETIVADO")
+	private String cargoEfetivado;
 
-
-	@Column(name = "comprovante_rematricula") @Lob
-	//private String comprovanteRematricula;
+	@Column(name = "COMPROVANTE_REMATRICULA") @Lob
 	private byte[] comprovanteRematricula;
 
-	@Column(name = "resultado") @Enumerated(EnumType.STRING)
+	@Column(name = "RESULTADO") @Enumerated(EnumType.STRING)
 	private ResultadoConclusao resultado;
 
-	@Column(name = "status_progresso") @Enumerated(EnumType.STRING)
+	@Column(name = "STATUS_PROGRESSO") @Enumerated(EnumType.STRING)
 	private StatusConclusao statusProgresso;
 
-	@Column(name = "observacao")
+	@Column(name = "OBSERVACAO")
 	private String observacao;
 
 	public Conclusao() {
 
 	}
 	
-	public Conclusao(Long id, Long codigoParticipante, LocalDate dataAlteracao, RemuneracaoPrograma cargo,
+	public Conclusao(Participante participante, LocalDate dataAlteracao, RemuneracaoPrograma cargo,
 			byte[] comprovanteRematricula, ResultadoConclusao resultado, StatusConclusao statusProgresso,
 			String observacao) {
-		this.id = id;
-		this.codigoParticipante = codigoParticipante;
+		this.participante = participante;
 		this.dataAlteracao = dataAlteracao;
-		this.cargo = cargo;
+		this.cargoPrograma = cargo;
 		this.comprovanteRematricula = comprovanteRematricula;
 		this.resultado = resultado;
 		this.statusProgresso = statusProgresso;
 		this.observacao = observacao;
 	}
-
-	public Conclusao(ResultadoConclusao resultado2, LocalDate dataAlteracao2, BigDecimal salario, String cargoEfetivado,
-			String comprovante, String campoObservacao) {
-		this.statusProgresso = StatusConclusao.FINAL;
+	
+	public Conclusao(Participante participante, LocalDate dataAlteracao, String cargo,
+			byte[] comprovanteRematricula, ResultadoConclusao resultado, StatusConclusao statusProgresso,
+			String observacao) {
+		this.participante = participante;
+		this.dataAlteracao = dataAlteracao;
+		this.cargoEfetivado = cargo;
+		this.comprovanteRematricula = comprovanteRematricula;
+		this.resultado = resultado;
+		this.statusProgresso = statusProgresso;
+		this.observacao = observacao;
 	}
 
 	public ResultadoConclusao getResultado() {
@@ -95,12 +104,12 @@ public class Conclusao {
 		this.id = id;
 	}
 
-	public Long getCodigoParticipante() {
-		return codigoParticipante;
+	public Participante getParticipante() {
+		return participante;
 	}
 
-	public void setCodigoParticipante(Long codigoParticipante) {
-		this.codigoParticipante = codigoParticipante;
+	public void setParticipante(Participante participante) {
+		this.participante = participante;
 	}
 
 	public LocalDate getDataAlteracao() {
@@ -111,12 +120,20 @@ public class Conclusao {
 		this.dataAlteracao = dataAltarecao;
 	}
 	
-	public RemuneracaoPrograma getCargo() {
-		return cargo;
+	public RemuneracaoPrograma getCargoPrograma() {
+		return cargoPrograma;
 	}
 
-	public void setCargo(RemuneracaoPrograma cargo) {
-		this.cargo = cargo;
+	public void setCargoPrograma(RemuneracaoPrograma cargoPrograma) {
+		this.cargoPrograma = cargoPrograma;
+	}
+
+	public String getCargoEfetivado() {
+		return cargoEfetivado;
+	}
+
+	public void setCargoEfetivado(String cargoEfetivado) {
+		this.cargoEfetivado = cargoEfetivado;
 	}
 
 	public byte[] getComprovanteRematricula() {

@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Formacao;
-import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.vo.FormacaoBuscaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.ParticipanteBuscaDto;
 import br.com.sis.rh.apiprogramaformacao.core.service.BuscaService;
