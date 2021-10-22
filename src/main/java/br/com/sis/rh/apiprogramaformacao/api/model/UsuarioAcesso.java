@@ -1,14 +1,18 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDate;
+import java.util.Collection;
 
 @Entity
 @Table(name="TB_USUARIO_ACESSO")
-public class UsuarioAcesso {
+public class UsuarioAcesso implements UserDetails {
 
     @Id
     @Column(name = "usuario_AD", nullable = false, length = 50)
@@ -55,5 +59,40 @@ public class UsuarioAcesso {
     }
     public void setDataInclusao(LocalDate dataInclusao) {
         this.dataInclusao = dataInclusao;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.senha;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.usuarioAd;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

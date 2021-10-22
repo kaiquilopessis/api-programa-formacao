@@ -21,10 +21,6 @@ public class Instrutor {
 
 	public Instrutor(){}
 
-	@ManyToOne
-	@JoinColumn(name = "codigo_remun_programa_fk", referencedColumnName = "id", nullable = false)
-	private RemuneracaoPrograma remuneracao;
-
 	public String getCpfInstrutor() {
 		return cpfInstrutor;
 	}
@@ -44,12 +40,5 @@ public class Instrutor {
 	}
 	public void setStatus(int status) {
 		this.status = status;
-	}
-
-	public RemuneracaoPrograma getRemuneracao() {
-		return remuneracao;
-	}
-	public void setRemuneracao(RemuneracaoPrograma remuneracao) {
-		this.remuneracao = remuneracao;
 	}
 }

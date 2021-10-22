@@ -16,7 +16,7 @@ import java.util.List;
 public class RemuneracaoController {
 
     @Autowired
-    RemuneracaoProgramaRepository repository;
+    private RemuneracaoProgramaRepository repository;
 
     @GetMapping
     public ResponseEntity<List<RemuneracaoPrograma>> getPadrao(){

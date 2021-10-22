@@ -11,7 +11,7 @@ import java.util.Optional;
 @Service
 public class InstrutorService {
     @Autowired
-    InstrutorRepository repository;
+    private InstrutorRepository repository;
 
     public List<Instrutor> todosInstrutores(){
         return repository.findAll();
