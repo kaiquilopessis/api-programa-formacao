@@ -5,24 +5,19 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 import br.com.sis.rh.apiprogramaformacao.api.model.RemuneracaoPrograma;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 @Getter
-@Setter
 @NoArgsConstructor
 public class ParticipanteDto {
 
+    private Long id;
     private String cpfParticipante;
-    private Programa programa;
-    private String faculdade;
-    private RemuneracaoPrograma remuneracaoPrograma;
-
+    private Programa codigoRemunPrograma;
 
     public ParticipanteDto(Participante participante) {
+        this.id = participante.getId();
         this.cpfParticipante = participante.getCpfParticipante();
-        this.programa = participante.getPrograma();
-        this.faculdade = participante.getFaculdade();
-        this.remuneracaoPrograma = participante.getRemuneracaoPrograma();
+        this.codigoRemunPrograma = participante.getCodigoRemunPrograma();
     }
-
 }
