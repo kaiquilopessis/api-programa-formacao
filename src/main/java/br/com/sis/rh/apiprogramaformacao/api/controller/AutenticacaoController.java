@@ -9,10 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -28,6 +25,7 @@ public class AutenticacaoController {
     private TokenService tokenService;
 
     @PostMapping
+    @CrossOrigin
     // Esse método recebe as requisições e autentica os dados presentes no Body
     // Caso os dados (Usuario e Senha) coincidem com os presentes no BD, o método retorna
     // o Token para utilização da API.
@@ -43,6 +41,15 @@ public class AutenticacaoController {
         catch (AuthenticationException e) {
             return ResponseEntity.badRequest().build();
         }
+    }
 
+    @GetMapping("/{token}")
+    @CrossOrigin
+    public ResponseEntity verificaToken(@PathVariable String token){
+        if(tokenService.isTokenValido(token)){
+            return ResponseEntity.ok().build();
+        }
+
+        return ResponseEntity.badRequest().build();
     }
 }
