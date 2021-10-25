@@ -25,24 +25,6 @@ public class InstrutorService {
         return optionalInstrutor.get();
     }
 
-    public List<Instrutor> buscaPorNome(String nome){
-        List<Instrutor> listInstrutor = instrutorRepository.findByNome(nome);
-
-        return listInstrutor;
-    }
-
-    public List<Instrutor> buscaPorPrograma(String programa){
-        List<Instrutor> listInstrutor = instrutorRepository.findByPrograma(programa);
-
-        return listInstrutor;
-    }
-
-    public List<Instrutor> buscaPorTurma(String turma){
-        List<Instrutor> listInstrutor = instrutorRepository.findByTurma(turma);
-
-        return listInstrutor;
-    }
-
     public void salva(Instrutor instrutor){
         instrutorRepository.save(instrutor);
     }

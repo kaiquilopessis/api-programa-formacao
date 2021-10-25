@@ -20,30 +20,27 @@ import java.util.stream.Collectors;
 public class CandidatoDto {
     private Long id;
     private String nome;
-    private String nomePrograma;
-    private String nomeTurma;
-    private BigDecimal bolsaAux;
 
 
-    public CandidatoDto(Candidato candidato, Programa programa, RemuneracaoPrograma remuneracaoPrograma) {
+    public CandidatoDto(Candidato candidato) {
         this.id = candidato.getId();
         this.nome = candidato.getNome();
-        this.nomePrograma = programa.getNome();
-        this.nomeTurma = programa.getNomeTurma();
-        this.bolsaAux = remuneracaoPrograma.getBolsa();
+
     }
-}
-//    public static CandidatoDto converterParaDto(Candidato candidato){
-//        return new CandidatoDto(candidato);
-//    }
-//
-//    public static List<CandidatoDto> converterListaParaDto(List<Candidato> candidatos){
-//        List<CandidatoDto> CandidatoDtos = new ArrayList<>();
-//
-//        candidatos.forEach(candidato -> {
-//            CandidatoDtos.add(new CandidatoDto(candidatos));
-//        });
-//
-//        return CandidatoDtos;
-//    }
-//
+
+
+        public static CandidatoDto converterParaDto (Candidato candidato) {
+            return new CandidatoDto(candidato);
+        }
+
+        public static List<CandidatoDto> converterListaParaDto (List< Candidato >candidatos) {
+            List<CandidatoDto> CandidatoDtos = new ArrayList<>();
+
+            candidatos.forEach(candidato -> {
+                CandidatoDtos.add(new CandidatoDto(candidato));
+            });
+            return CandidatoDtos;
+        }
+    }
+
+
