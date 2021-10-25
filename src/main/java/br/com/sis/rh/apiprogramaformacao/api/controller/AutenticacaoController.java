@@ -45,11 +45,11 @@ public class AutenticacaoController {
 
     @GetMapping("/{token}")
     @CrossOrigin
-    public ResponseEntity verificaToken(@PathVariable String token){
+    public String verificaToken(@PathVariable String token){
         if(tokenService.isTokenValido(token)){
-            return ResponseEntity.ok().build();
+            return "SUCESSO";
         }
 
-        return ResponseEntity.badRequest().build();
+        return "ERRO";
     }
 }
