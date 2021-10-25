@@ -11,10 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import lombok.Data;
 
-
-@Entity()
+@Entity
 @Table(name = "TB_PROGRAMA")
 public class Programa {
 	@Id

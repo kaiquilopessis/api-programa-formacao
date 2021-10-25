@@ -4,45 +4,44 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import lombok.Getter;
-import lombok.Setter;
-
 
 public class ParticipanteBuscaDto {
-	
+
 	private String nome;
 	private String cpf;
-	private String formacao;
-	
+	private String programa;
+
 	public ParticipanteBuscaDto(Participante participante) {
-		this.nome = participante.getNome();
-		this.cpf = participante.getCpf();
-		this.formacao = participante.getFormacao().getNome();
+		this.nome = participante.getCandidato().getNome();
+		this.cpf = participante.getCpfParticipante();
+		this.programa = participante.getPrograma().getNome();
 	}
-	
-	
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+
 	public String getNome() {
 		return nome;
 	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
 	public String getCpf() {
 		return cpf;
 	}
-	
-	public String getFormacao() {
-		return formacao;
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
-	public void setFormacao(String formacao) {
-		this.formacao = formacao;
+	public String getPrograma() {
+		return programa;
 	}
 
-	public static List<ParticipanteBuscaDto> converter (List<Participante> participantes){
+	public void setPrograma(String programa) {
+		this.programa = programa;
+	}
+
+	public static List<ParticipanteBuscaDto> converter(List<Participante> participantes) {
 		return participantes.stream().map(ParticipanteBuscaDto::new).collect(Collectors.toList());
 	}
 

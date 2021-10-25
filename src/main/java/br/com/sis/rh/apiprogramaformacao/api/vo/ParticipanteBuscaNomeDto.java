@@ -3,7 +3,7 @@ package br.com.sis.rh.apiprogramaformacao.api.vo;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 
 public class ParticipanteBuscaNomeDto {
-	
+
 	private String nome;
 
 	public String getNome() {
@@ -13,9 +13,9 @@ public class ParticipanteBuscaNomeDto {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	public ParticipanteBuscaNomeDto(Participante participante) {
-		this.nome = participante.getNome();
+		this.nome = participante.getCandidato().getNome();
 	}
 
 }

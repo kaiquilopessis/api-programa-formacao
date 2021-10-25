@@ -9,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity(name = "TB_NOTAS_AVALIACOES")
+@Entity
 @Table(name = "TB_NOTAS_AVALIACOES")
 public class Avaliacoes {
 

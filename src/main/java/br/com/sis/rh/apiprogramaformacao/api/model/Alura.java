@@ -11,11 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.Setter;
 
-
-@Entity(name="TB_ALURA")
+@Entity
 @Table(name="TB_ALURA")
 public class Alura {
 	@Id

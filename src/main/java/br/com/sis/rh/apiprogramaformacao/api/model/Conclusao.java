@@ -18,7 +18,7 @@ import javax.persistence.Table;
 import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoConclusao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusConclusao;
 
-@Entity(name = "TB_CONCLUSAO")
+@Entity
 @Table(name = "TB_CONCLUSAO")
 public class Conclusao {
 	@Id
