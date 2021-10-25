@@ -16,50 +16,63 @@ import java.util.List;
 @RequestMapping("/api/instrutor")
 public class InstrutorController {
 
-    @Autowired
-    private InstrutorService instrutorService;
+	@Autowired
+	private InstrutorService instrutorService;
 
-    @CrossOrigin
-    @GetMapping
-    public ResponseEntity<List<InstrutorVo>> getPadrao(){
-        List<Instrutor> listaInstrutores = instrutorService.todosInstrutores();
-        List<InstrutorVo> listaVo = InstrutorVo.converterListaParaVo(listaInstrutores);
+	@CrossOrigin
+	@GetMapping
+	public ResponseEntity<List<InstrutorVo>> getPadrao() {
+		List<Instrutor> listaInstrutores = instrutorService.todosInstrutores();
+		List<InstrutorVo> listaVo = InstrutorVo.converterListaParaVo(listaInstrutores);
 
-        return ResponseEntity.ok(listaVo);
+		return ResponseEntity.ok(listaVo);
+	}
+
+	@CrossOrigin
+	@GetMapping("/{cpf}")
+	public ResponseEntity<InstrutorVo> getByCpf(@PathVariable String cpf) {
+		Instrutor instrutor = instrutorService.buscaPorCpf(cpf);
+		InstrutorVo instrutorVo = InstrutorVo.converterParaVo(instrutor);
+
+		return ResponseEntity.ok(instrutorVo);
+	}
+
+	@CrossOrigin
+	@GetMapping("/status/{status}")
+	public ResponseEntity<List<Instrutor>> getByStatus(@PathVariable int status) {
+		List<Instrutor> listaInstrutoresPorStatus = instrutorService.buscaPorStatus(status);
+
+		return ResponseEntity.ok(listaInstrutoresPorStatus);
+	}
+
+	@CrossOrigin
+    @PutMapping("/status/{cpf}")
+    public ResponseEntity alteraStatus(@PathVariable String cpf){
+    	try {
+    	Instrutor instrutor = instrutorService.buscaPorCpf(cpf);
+    	if (instrutor.getStatus() == 1) {
+    		instrutor.setStatus(0);
+    	}else {
+    		instrutor.setStatus(1);
+    		}
+    	return ResponseEntity.ok().build();
+    	} catch (Exception e) {
+    		return ResponseEntity.badRequest().build();
+    	}
     }
 
-    @CrossOrigin
-    @GetMapping("/{cpf}")
-    public ResponseEntity<InstrutorVo> getByCpf(@PathVariable String cpf){
-        Instrutor instrutor = instrutorService.buscaPorCpf(cpf);
-        InstrutorVo instrutorVo = InstrutorVo.converterParaVo(instrutor);
+	@CrossOrigin
+	@PostMapping
+	@Transactional
+	public String cadastro(@RequestBody @Valid InstrutorForm form) {
+		try {
+			Instrutor instrutor = form.converter();
+			instrutorService.salva(instrutor);
 
-        return ResponseEntity.ok(instrutorVo);
-    }
-
-    @CrossOrigin
-    @GetMapping("/status/{status}")
-    public ResponseEntity<List<Instrutor>> getByStatus(@PathVariable int status){
-        List<Instrutor> listaInstrutoresPorStatus = instrutorService.buscaPorStatus(status);
-
-        return ResponseEntity.ok(listaInstrutoresPorStatus);
-    }
-
-    @CrossOrigin
-    @PostMapping
-    @Transactional
-    public String cadastro(@RequestBody @Valid InstrutorForm form){
-        try {
-            Instrutor instrutor = form.converter();
-            instrutorService.salva(instrutor);
-
-            return "SUCESSO";
-        }
-        catch (Exception e) {
-            return "ERRO: " + e;
-        }
-    }
-
-
+			return "SUCESSO";
+		} catch (Exception e) {
+			return "ERRO: " + e;
+		}
+	}
 
 }

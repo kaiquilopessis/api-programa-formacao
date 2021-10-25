@@ -9,6 +9,8 @@ public class InstrutorVo {
     private String cpf;
     private int status;
     private String telefone;
+    private String nome =  "Leticia";
+    private String email =  "leticiaangulo.sisconsultoria@.com.br";
 
     public InstrutorVo(Instrutor instrutor) {
         this.cpf = instrutor.getCpfInstrutor();
@@ -50,4 +52,20 @@ public class InstrutorVo {
 
         return instrutoresVos;
     }
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 }
