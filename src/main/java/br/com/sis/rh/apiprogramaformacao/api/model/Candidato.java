@@ -2,6 +2,7 @@ package br.com.sis.rh.apiprogramaformacao.api.model;
 
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCandidatoParticipante;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
@@ -13,6 +14,7 @@ import javax.persistence.*;
 @Table(name = "TB_CANDIDATO")
 @Getter
 @Setter
+@NoArgsConstructor
 public class Candidato {
 
 	@Id
@@ -22,7 +24,7 @@ public class Candidato {
 	private String nome;
 	@Column(name = "telefone", nullable = false, length = 255)
 	private String telefone;
-	@Column(name = "data_agendamento", nullable = false)
+	@Column(name = "data_agendamento")
 	private LocalDate dataAgendamento;
 	@Column(name = "teste_logico", nullable = false)
 	private BigDecimal testeLogico;
@@ -33,13 +35,25 @@ public class Candidato {
 	private StatusCandidatoParticipante statusCandidatoParticipante;
 	@Column(name = "observacao", length = 8000)
 	private String observacao;
-//	@Lob
 //	@Column(name = "DISC")
 //	private byte[] disc;
 //	@Column(name = "curriculo")
-//	private File curriculo;
+//	private byte[] curriculo;
 	@Column(name = "curso")
 	private String curso;
 	@Column(name = "fonte_recrutamento")
 	private String fonteRecrutamento;
+
+	public Candidato (String nome, String telefone, LocalDate dataAgendamento, BigDecimal testeLogico, String notaDisc,
+				   StatusCandidatoParticipante status, String observacao, String fonteRecrutamento, String curso){
+		this.nome = nome;
+		this.telefone = telefone;
+		this.dataAgendamento = dataAgendamento;
+		this.testeLogico = testeLogico;
+		this.notaDisc = notaDisc;
+		this.statusCandidatoParticipante = status;
+		this.observacao = observacao;
+		this.curso = curso;
+		this.fonteRecrutamento = fonteRecrutamento;
+	}
 }
