@@ -17,7 +17,7 @@ import br.com.sis.rh.apiprogramaformacao.core.util.DataConfiguration;
 @RestController
 @RequestMapping("/conclusao")
 @CrossOrigin
-public class conclusãoController {
+public class ConclusaoController {
 
 //	@Autowired
 //	private conclusãoRepository ConclusaoRepository;
@@ -41,8 +41,12 @@ public class conclusãoController {
 	private ParticipanteRepository participanteRepository;
 	
 	@GetMapping("/total")
-	public Integer lista(){
-		List<Participante> listas = participanteRepository.findAll();
-		return listas.size();
+	public Integer PartAtivos(){
+		List<Participante> partAtivos = participanteRepository.findAll();
+		return partAtivos.size();
+	}
+	public Integer PartEfetivados(){
+		List<Participante> partAtivos = participanteRepository.findAll();
+		return partAtivos.size();
 	}
 }

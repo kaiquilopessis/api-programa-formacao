@@ -7,18 +7,18 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity(name = "TB_PROGRAMA")
-public class conclusão {
+public class Conclusao {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codigo")
 	private Integer codigo;
 
-	public conclusão(Integer codigo) {
+	public Conclusao(Integer codigo) {
 		this.codigo = codigo;
 	}
 
-	public conclusão() {
+	public Conclusao() {
 	}
 	
 	public Integer getCodigo() {
