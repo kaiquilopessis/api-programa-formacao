@@ -22,12 +22,12 @@ public class BuscaService {
 	private FormacaoRepository formacaoRepository;
 	
 	
-	public List<ParticipanteBuscaDto> buscaPorStatus(Boolean status) {
+	public List<ParticipanteBuscaDto> buscaPorStatus(String status) {
 		List<Participante> participantes = participanteRepository.findByStatus(status);
 		return ParticipanteBuscaDto.converter(participantes);
 	}
 	
-	public List<FormacaoBuscaDto> buscaPorStatusForm(Boolean status){
+	public List<FormacaoBuscaDto> buscaPorStatusForm(String status){
 		List<Programa> formacoes = formacaoRepository.findByStatus(status);
 		return FormacaoBuscaDto.converter(formacoes);
 	}

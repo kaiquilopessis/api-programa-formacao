@@ -33,7 +33,7 @@ public class ConclusaoService {
 	private RemuneracaoProgramaRepository remuneracaoProgramaRepository;
 	
 	public List<ConclusaoDto> listarConclusoes(String cpf){
-		List<Conclusao> conclusoes = conclusaoRepository.findAllByParticipanteCpf(cpf);
+		List<Conclusao> conclusoes = conclusaoRepository.findAllByParticipanteCpfParticipante(cpf);
 		return ConclusaoDto.converter(conclusoes);
 	}
 
@@ -42,6 +42,7 @@ public class ConclusaoService {
 		Optional<Participante> participante = participanteRepository.findById(cpf);
 		if (participante.isPresent()) {
 			Conclusao conclusaoFinal = conclusaoFinalForm.converter(participante.get());
+			conclusaoRepository.save(conclusaoFinal);
 			URI uri = uriComponentsBuilder
 					.path("/conclusoes/registrociclofinal/{id}")
 					.buildAndExpand(conclusaoFinal.getId())
@@ -57,6 +58,7 @@ public class ConclusaoService {
 		if(participante.isPresent()) {
 			Conclusao conclusaoProgressiva = conclusaoProgressivaForm
 					.converter(participante.get(), remuneracaoProgramaRepository);
+			conclusaoRepository.save(conclusaoProgressiva);
 			URI uri = uriComponentsBuilder
 					.path("/conclusoes/registrocicloprogressivo/{id}")
 					.buildAndExpand(conclusaoProgressiva.getId())

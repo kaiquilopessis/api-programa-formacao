@@ -8,5 +8,5 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
 
 public interface ConclusaoRepository  extends JpaRepository<Conclusao, Long>{
 	
-	List<Conclusao> findAllByParticipanteCpf(String cpf);
+	List<Conclusao> findAllByParticipanteCpfParticipante(String cpf);
 }

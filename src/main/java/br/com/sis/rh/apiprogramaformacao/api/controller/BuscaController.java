@@ -21,14 +21,14 @@ public class BuscaController {
 	
 	//lista participantes na tabela - busca participantes
 	@GetMapping("participantes/{statusPart}")
-	public List<ParticipanteBuscaDto> listarPart(@PathVariable Boolean statusPart) {
+	public List<ParticipanteBuscaDto> listarPart(@PathVariable String statusPart) {
 		return buscaService.buscaPorStatus(statusPart);
 	}
 	
 	
 	//lista formação no select - busca participantes
 	@GetMapping("participantes/programa/{statusProg}")
-	public List<FormacaoBuscaDto> listarForm(@PathVariable Boolean statusProg){
+	public List<FormacaoBuscaDto> listarForm(@PathVariable String statusProg){
 		return buscaService.buscaPorStatusForm(statusProg);
 	}
 	

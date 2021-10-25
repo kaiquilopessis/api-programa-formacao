@@ -11,11 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TB_CANDITADO")
+@Table(name="TB_CANDIDATO")
 public class Candidato {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	@Column(name = "nome", nullable = false, length = 50)
 	private String nome;
@@ -44,11 +44,13 @@ public class Candidato {
 	@Column(name = "curriculo")
 	private String curriculo;
 
-	public long getId() {
+	
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -17,14 +17,15 @@ public class RemuneracaoPrograma {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String cargo;
+	
 	@Column(name = "bolsa_aux")
 	private BigDecimal bolsa;
 	
 	private BigDecimal beneficios;
 	
 	private BigDecimal convenio;
-	@Column(name = "hr_extra")
 	
+	@Column(name = "hr_extra")
 	private BigDecimal horaExtra;
 	@Column(name = "beneficio_legislacao")
 	private BigDecimal beneficioLegislacao;
@@ -36,9 +37,6 @@ public class RemuneracaoPrograma {
 	private BigDecimal remunExtra;
 	
 	private BigDecimal alura;
-	
-	@Column(name = "val_hora_instrutor")
-	private BigDecimal valorHoraInstrutor;
 
 	public long getId() {
 		return id;
@@ -120,13 +118,6 @@ public class RemuneracaoPrograma {
 		this.alura = alura;
 	}
 
-	public BigDecimal getValorHoraInstrutor() {
-		return valorHoraInstrutor;
-	}
-
-	public void setValorHoraInstrutor(BigDecimal valorHoraInstrutor) {
-		this.valorHoraInstrutor = valorHoraInstrutor;
-	}
 	
 	
 }

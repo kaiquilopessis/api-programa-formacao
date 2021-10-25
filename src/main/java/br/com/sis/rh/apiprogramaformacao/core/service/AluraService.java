@@ -27,13 +27,13 @@ public class AluraService {
 	private ParticipanteRepository participanteRepository;
 
 	public List<AluraDto> listaRegistros(String cpf) {
-		List<Alura> alura = aluraRepository.findAllByParticipanteCpf(cpf);
+		List<Alura> alura = aluraRepository.findAllByParticipanteCpfParticipante(cpf);
 		return AluraDto.converter(alura);
 	}
 
 	public ResponseEntity<AluraDto> cadastrar(String cpf, @RequestBody AluraForm aluraForm,
 			UriComponentsBuilder uriComponentsBuilder) {
-		Optional<Participante> participante = participanteRepository.findByCpf(cpf);
+		Optional<Participante> participante = participanteRepository.findById(cpf);
 		if (participante.isPresent()) {
 			Alura alura = aluraForm.converter(participante.get());
 			aluraRepository.save(alura);

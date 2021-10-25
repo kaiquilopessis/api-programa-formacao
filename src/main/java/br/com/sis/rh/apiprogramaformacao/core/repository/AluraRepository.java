@@ -9,7 +9,7 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Alura;
 
 public interface AluraRepository extends JpaRepository<Alura, Long> {
 	
-	List<Alura> findAllByParticipanteCpf(String cpf);
+	List<Alura> findAllByParticipanteCpfParticipante(String cpf);
 	
 	Optional <Alura> findByParticipante(String cpf);
 

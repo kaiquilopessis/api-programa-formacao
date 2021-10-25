@@ -17,12 +17,16 @@ public class Instrutor {
 	@Column(length = 255, nullable = false)
 	private String telefone;
 
-	private int status;
+	private String status;
 
-	public Instrutor(String cpfInstrutor, String telefone, int status) {
+	public Instrutor(String cpfInstrutor, String telefone, String status) {
 		this.cpfInstrutor = cpfInstrutor;
 		this.telefone = telefone;
 		this.status = status;
+	}
+	
+	public Instrutor() {
+		
 	}
 
 	public String getCpfInstrutor() {
@@ -41,12 +45,14 @@ public class Instrutor {
 		this.telefone = telefone;
 	}
 
-	public int getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	
 
 }

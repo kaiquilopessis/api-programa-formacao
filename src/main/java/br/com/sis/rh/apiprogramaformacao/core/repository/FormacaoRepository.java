@@ -8,5 +8,5 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 
 public interface FormacaoRepository  extends JpaRepository <Programa, Long> {
 	
-	List<Programa> findByStatus(Boolean status);
+	List<Programa> findByStatus(String status);
 }

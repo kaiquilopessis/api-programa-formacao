@@ -21,9 +21,9 @@ import br.com.sis.rh.apiprogramaformacao.core.enums.StatusConclusao;
 @Entity
 @Table(name = "TB_CONCLUSAO")
 public class Conclusao {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
 	private Long id;
 
 	@ManyToOne
@@ -59,18 +59,18 @@ public class Conclusao {
 
 	}
 
+	//Progressivo
 	public Conclusao(Participante participante, LocalDate dataAlteracao, RemuneracaoPrograma cargo,
-			byte[] comprovanteRematricula, ResultadoConclusao resultado, StatusConclusao statusProgresso,
-			String observacao) {
+			byte[] comprovanteRematricula, ResultadoConclusao resultado, StatusConclusao statusProgresso) {
 		this.participante = participante;
 		this.dataAlteracao = dataAlteracao;
 		this.cargoPrograma = cargo;
 		this.comprovanteRematricula = comprovanteRematricula;
 		this.resultado = resultado;
 		this.statusProgresso = statusProgresso;
-		this.observacao = observacao;
 	}
 
+	//Final
 	public Conclusao(Participante participante, LocalDate dataAlteracao, String cargo, byte[] comprovanteRematricula,
 			ResultadoConclusao resultado, StatusConclusao statusProgresso, String observacao) {
 		this.participante = participante;

@@ -28,7 +28,7 @@ public class AvaliacoesService {
 	
 	
 	public List<AvaliacoesDto> listarNotas(String cpf) {
-		List<Avaliacoes> listaNotas = avaliacoesRepository.findAllByParticipanteCpf(cpf);
+		List<Avaliacoes> listaNotas = avaliacoesRepository.findAllByParticipanteCpfParticipante(cpf);
 		return AvaliacoesDto.converter(listaNotas);
 
 	}	

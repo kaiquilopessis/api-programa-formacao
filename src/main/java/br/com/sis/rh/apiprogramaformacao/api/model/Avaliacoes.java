@@ -28,7 +28,7 @@ public class Avaliacoes {
 	@Column(name = "NOTA_COMPORTAMENTAL")
 	private Float notaComportamental;
 
-	@Column(name = "NOTA_PATRICAS_AGEIS")
+	@Column(name = "NOTA_PRATICAS_AGEIS")
 	private Float notaPraticasAgeis;
 
 	@Column(name = "NOTA_LIDERANCA")

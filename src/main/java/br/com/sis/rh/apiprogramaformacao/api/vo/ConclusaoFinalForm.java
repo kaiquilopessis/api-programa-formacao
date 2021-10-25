@@ -12,7 +12,6 @@ import br.com.sis.rh.apiprogramaformacao.core.enums.StatusConclusao;
 public class ConclusaoFinalForm {
 	private ResultadoConclusao resultado;
 	private String dataAlteracao;
-	private BigDecimal salario;
 	private String cargoEfetivado;
 	private byte[] comprovante;
 	private String campoObservacao;
@@ -29,12 +28,6 @@ public class ConclusaoFinalForm {
 	}
 	public void setDataAlteracao(String dataAlteracao) {
 		this.dataAlteracao = dataAlteracao;
-	}
-	public BigDecimal getSalario() {
-		return salario;
-	}
-	public void setSalario(BigDecimal salario) {
-		this.salario = salario;
 	}
 	public String getCargoEfetivado() {
 		return cargoEfetivado;

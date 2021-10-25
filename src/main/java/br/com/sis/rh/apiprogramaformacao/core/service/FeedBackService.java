@@ -28,7 +28,7 @@ public class FeedBackService {
 	private ParticipanteRepository participanteRepository;
 
 	public List<FeedBackDto> listar(String cpf) {
-		List<FeedBack> feedbacks = feedBackRepository.findAllByParticipanteCpf(cpf);
+		List<FeedBack> feedbacks = feedBackRepository.findAllByParticipanteCpfParticipante(cpf);
 		return FeedBackDto.converter(feedbacks);
 	}
 
