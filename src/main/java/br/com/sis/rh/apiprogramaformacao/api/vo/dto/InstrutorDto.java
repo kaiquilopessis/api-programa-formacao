@@ -1,23 +1,19 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
+
 import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 import br.com.sis.rh.apiprogramaformacao.api.model.RemuneracaoPrograma;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCandidatoParticipante;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class CandidatoDto {
+public class InstrutorDto {
     private Long id;
     private String nome;
     private String nomePrograma;
@@ -25,15 +21,14 @@ public class CandidatoDto {
     private BigDecimal bolsaAux;
 
 
-    public CandidatoDto(Candidato candidato, Programa programa, RemuneracaoPrograma remuneracaoPrograma) {
+    public InstrutorDto(Candidato candidato, Programa programa, RemuneracaoPrograma remuneracaoPrograma) {
         this.id = candidato.getId();
         this.nome = candidato.getNome();
         this.nomePrograma = programa.getNome();
         this.nomeTurma = programa.getNomeTurma();
         this.bolsaAux = remuneracaoPrograma.getBolsa();
     }
-}
-//    public static CandidatoDto converterParaDto(Candidato candidato){
+//        public static CandidatoDto converterParaDto(Candidato candidato){
 //        return new CandidatoDto(candidato);
 //    }
 //
@@ -47,3 +42,5 @@ public class CandidatoDto {
 //        return CandidatoDtos;
 //    }
 //
+
+}
