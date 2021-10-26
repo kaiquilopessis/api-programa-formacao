@@ -19,7 +19,6 @@ public class InstrutorController {
     @Autowired
     private InstrutorService instrutorService;
 
-    @CrossOrigin
     @GetMapping
     public ResponseEntity<List<InstrutorVo>> getPadrao(){
         List<Instrutor> listaInstrutores = instrutorService.todosInstrutores();
@@ -28,7 +27,6 @@ public class InstrutorController {
         return ResponseEntity.ok(listaVo);
     }
 
-    @CrossOrigin
     @GetMapping("/{cpf}")
     public ResponseEntity<InstrutorVo> getByCpf(@PathVariable String cpf){
         Instrutor instrutor = instrutorService.buscaPorCpf(cpf);
@@ -37,7 +35,6 @@ public class InstrutorController {
         return ResponseEntity.ok(instrutorVo);
     }
 
-    @CrossOrigin
     @GetMapping("/status/{status}")
     public ResponseEntity<List<Instrutor>> getByStatus(@PathVariable int status){
         List<Instrutor> listaInstrutoresPorStatus = instrutorService.buscaPorStatus(status);
@@ -45,7 +42,6 @@ public class InstrutorController {
         return ResponseEntity.ok(listaInstrutoresPorStatus);
     }
 
-    @CrossOrigin
     @PostMapping
     @Transactional
     public String cadastro(@RequestBody @Valid InstrutorForm form){
