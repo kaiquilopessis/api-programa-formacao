@@ -1,10 +1,10 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCandidatoParticipante;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivado;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusParticipante;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.File;
 import java.time.LocalDate;
 
 import javax.persistence.*;
@@ -24,16 +24,21 @@ public class Participante {
 	@OneToOne
 	@JoinColumn(name = "codigo_candidato_fk", referencedColumnName = "id", nullable = false)
 	private Candidato cadidato;
+	@ManyToOne
+	@JoinColumn(name = "FK_codigo_remun", referencedColumnName = "id", nullable = false)
+	private Remuneracao remuneracao;
 	@Column(name = "nmFaculdade", length = 50)
 	private String faculdade;
 	@Column(name = "nmCurso", length = 50)
 	private String curso;
 	@Column(name = "data_fim_graduacao")
 	private LocalDate dataFinal;
-//	@Column(name = "status_ativo")
-//	@Enumerated(EnumType.STRING)
-//	@Column(name = "status_efetivado")
-//	@Enumerated(EnumType.STRING)
-	@Column(name = "TCE")
-	private File tce;
+	@Column(name = "status_ativo")
+	@Enumerated(EnumType.STRING)
+	private StatusParticipante statusParticipante;
+	@Column(name = "status_efetivado")
+	@Enumerated(EnumType.STRING)
+	private StatusEfetivado statusEfetivado;
+//	@Column(name = "TCE")
+//	private File tce;
 }

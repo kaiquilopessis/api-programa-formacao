@@ -1,21 +1,32 @@
 package br.com.sis.rh.apiprogramaformacao.api.controller;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
-import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
-import br.com.sis.rh.apiprogramaformacao.api.model.RemuneracaoPrograma;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CandidatoDto;
-import br.com.sis.rh.apiprogramaformacao.core.service.CandidatoService;
-import br.com.sis.rh.apiprogramaformacao.core.service.ProgramaService;
-import br.com.sis.rh.apiprogramaformacao.core.service.RemuneraçãoProgramaService;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.ParametrosFiltroForm;
+import br.com.sis.rh.apiprogramaformacao.core.service.ParticipanteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api/folha")
+@CrossOrigin
 public class FolhaController {
+
+    @Autowired
+    private ParticipanteService participanteService;
+
+    @GetMapping()
+    public List<FiltragemDto> mostrarDados(){
+        return participanteService.listagemFiltroTodos();
+    }
+
+    @PostMapping()
+    public List<FiltragemDto> mostrarFiltros(@RequestBody ParametrosFiltroForm form){
+        return participanteService.listagemFiltro(form.getParametroNomeParticipante(), form.getParametroNomeFormacao(), form.getParametroNomeTurma(), form.getParametroBolsaAux());
+    }
+
+
 
 
 }

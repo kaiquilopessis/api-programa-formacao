@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Table(name="TB_REMUNERACAO_PROGRAMA")
 @Getter
 @Setter
-public class RemuneracaoPrograma {
+public class Remuneracao {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,6 +37,4 @@ public class RemuneracaoPrograma {
 	@Column(name = "remun_extra")
 	private BigDecimal remunExtra;
 	private BigDecimal alura;
-	@Column(name = "val_hora_instrutor")
-	private BigDecimal valorHoraInstrutor;
 }
