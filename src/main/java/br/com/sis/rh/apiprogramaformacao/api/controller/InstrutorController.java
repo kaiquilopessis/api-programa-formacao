@@ -19,14 +19,18 @@ public class InstrutorController {
 	@Autowired
 	private InstrutorService instrutorService;
 
-	@CrossOrigin
-	@GetMapping
-	public ResponseEntity<List<InstrutorVo>> getPadrao() {
-		List<Instrutor> listaInstrutores = instrutorService.todosInstrutores();
-		List<InstrutorVo> listaVo = InstrutorVo.converterListaParaVo(listaInstrutores);
+    @GetMapping
+    public ResponseEntity<List<InstrutorVo>> getPadrao(){
+        List<Instrutor> listaInstrutores = instrutorService.todosInstrutores();
+        List<InstrutorVo> listaVo = InstrutorVo.converterListaParaVo(listaInstrutores);
 
-		return ResponseEntity.ok(listaVo);
-	}
+        return ResponseEntity.ok(listaVo);
+    }
+
+    @GetMapping("/{cpf}")
+    public ResponseEntity<InstrutorVo> getByCpf(@PathVariable String cpf){
+        Instrutor instrutor = instrutorService.buscaPorCpf(cpf);
+        InstrutorVo instrutorVo = InstrutorVo.converterParaVo(instrutor);
 
 	@CrossOrigin
 	@GetMapping("/{cpf}")
@@ -34,16 +38,21 @@ public class InstrutorController {
 		Instrutor instrutor = instrutorService.buscaPorCpf(cpf);
 		InstrutorVo instrutorVo = InstrutorVo.converterParaVo(instrutor);
 
-		return ResponseEntity.ok(instrutorVo);
-	}
+    @GetMapping("/status/{status}")
+    public ResponseEntity<List<Instrutor>> getByStatus(@PathVariable int status){
+        List<Instrutor> listaInstrutoresPorStatus = instrutorService.buscaPorStatus(status);
 
 	@CrossOrigin
 	@GetMapping("/status/{status}")
 	public ResponseEntity<List<Instrutor>> getByStatus(@PathVariable int status) {
 		List<Instrutor> listaInstrutoresPorStatus = instrutorService.buscaPorStatus(status);
 
-		return ResponseEntity.ok(listaInstrutoresPorStatus);
-	}
+    @PostMapping
+    @Transactional
+    public String cadastro(@RequestBody @Valid InstrutorForm form){
+        try {
+            Instrutor instrutor = form.converter();
+            instrutorService.salva(instrutor);
 
 	@CrossOrigin
     @PutMapping("/status/altera/{cpf}")

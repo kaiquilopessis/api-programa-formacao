@@ -25,7 +25,6 @@ public class AutenticacaoController {
     private TokenService tokenService;
 
     @PostMapping
-    @CrossOrigin
     // Esse método recebe as requisições e autentica os dados presentes no Body
     // Caso os dados (Usuario e Senha) coincidem com os presentes no BD, o método retorna
     // o Token para utilização da API.
@@ -43,13 +42,14 @@ public class AutenticacaoController {
         }
     }
 
+    // Esse método recebe o token armazenado no FrontEnd e retorna uma String com o resultado
+    // da verificação do Token
     @GetMapping("/{token}")
-    @CrossOrigin
-    public ResponseEntity verificaToken(@PathVariable String token){
+    public String verificaToken(@PathVariable String token){
         if(tokenService.isTokenValido(token)){
-            return ResponseEntity.ok().build();
+            return "SUCESSO";
         }
 
-        return ResponseEntity.badRequest().build();
+        return "ERRO";
     }
 }
