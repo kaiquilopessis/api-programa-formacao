@@ -16,9 +16,9 @@ public class InstrutorForm {
     private String telefone;
 
     @NotNull
-    private int status;
+    private String status;
 
-    public InstrutorForm(String cpf, String telefone, int status) {
+    public InstrutorForm(String cpf, String telefone, String status) {
         this.cpf = cpf;
         this.telefone = telefone;
         this.status = status;
@@ -40,10 +40,10 @@ public class InstrutorForm {
         this.telefone = telefone;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
