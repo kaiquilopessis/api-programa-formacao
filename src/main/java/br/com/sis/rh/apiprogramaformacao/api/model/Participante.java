@@ -2,13 +2,7 @@ package br.com.sis.rh.apiprogramaformacao.api.model;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "TB_PARTICIPANTE")
@@ -20,36 +14,26 @@ public class Participante {
 	@ManyToOne
 	@JoinColumn(name = "codigo_programa_fk", referencedColumnName = "id", nullable = false)
 	private Programa programa;
-	
 	@OneToOne
 	@JoinColumn(name = "codigo_candidato_fk", referencedColumnName = "id", nullable = false)
-	private Candidato candidato;
-	
+	private Candidato cadidato;
+	@ManyToOne
+	@JoinColumn(name = "codigo_remun_programa_fk", referencedColumnName = "id", nullable = false)
+	private RemuneracaoPrograma remuneracaoPrograma;
 	@Column(name = "nmFaculdade", length = 50)
 	private String faculdade;
-	
 	@Column(name = "nmCurso", length = 50)
 	private String curso;
-	
 	@Column(name = "data_fim_graduacao")
 	private LocalDate dataFinal;
-	
-	@Column(name = "status_ativo")
-	private String status;
-	
-	@Column(name = "status_efetivado")
-	private String statusEfetivado;
-	
+	@Column(name = "status")
+	private long status;
 	@Column(name = "TCE")
 	private String tce;
 
 	public String getCpfParticipante() {
 		return cpfParticipante;
 	}
-	
-	
-
-	
 	public void setCpfParticipante(String cpfParticipante) {
 		this.cpfParticipante = cpfParticipante;
 	}
@@ -57,23 +41,27 @@ public class Participante {
 	public Programa getPrograma() {
 		return programa;
 	}
-
 	public void setPrograma(Programa programa) {
 		this.programa = programa;
 	}
 
-	public Candidato getCandidato() {
-		return candidato;
+	public Candidato getCadidato() {
+		return cadidato;
+	}
+	public void setCadidato(Candidato cadidato) {
+		this.cadidato = cadidato;
 	}
 
-	public void setCandidato(Candidato candidato) {
-		this.candidato = candidato;
+	public RemuneracaoPrograma getRemuneracaoPrograma() {
+		return remuneracaoPrograma;
+	}
+	public void setRemuneracaoPrograma(RemuneracaoPrograma remuneracaoPrograma) {
+		this.remuneracaoPrograma = remuneracaoPrograma;
 	}
 
 	public String getFaculdade() {
 		return faculdade;
 	}
-
 	public void setFaculdade(String faculdade) {
 		this.faculdade = faculdade;
 	}
@@ -81,7 +69,6 @@ public class Participante {
 	public String getCurso() {
 		return curso;
 	}
-
 	public void setCurso(String curso) {
 		this.curso = curso;
 	}
@@ -89,7 +76,6 @@ public class Participante {
 	public LocalDate getDataFinal() {
 		return dataFinal;
 	}
-
 	public void setDataFinal(LocalDate dataFinal) {
 		this.dataFinal = dataFinal;
 	}

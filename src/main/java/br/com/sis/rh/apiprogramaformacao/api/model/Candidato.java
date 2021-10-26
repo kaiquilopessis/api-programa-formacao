@@ -11,53 +11,41 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TB_CANDIDATO")
+@Table(name = "TB_CANDIDATO")
 public class Candidato {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
+	private long id;
 	@Column(name = "nome", nullable = false, length = 50)
 	private String nome;
-	
 	@Column(name = "telefone", nullable = false, length = 255)
 	private String telefone;
-	
 	@Column(name = "data_agendamento", nullable = false)
 	private LocalDate dataAgendamento;
-	
 	@Column(name = "teste_logico", nullable = false)
 	private BigDecimal testeLogico;
-	
 	@Column(name = "nota_disc", length = 15, nullable = false)
 	private String notaDisc;
-	
 	@Column(name = "status", nullable = false)
-	private String status;
-	
+	private long status;
 	@Column(name = "observacao", length = 8000)
 	private String observacao;
-	
 	@Column(name = "DISC")
 	private String disc;
-	
 	@Column(name = "curriculo")
 	private String curriculo;
 
-	
-
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
-
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
 	public String getNome() {
 		return nome;
 	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -65,7 +53,6 @@ public class Candidato {
 	public String getTelefone() {
 		return telefone;
 	}
-
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
@@ -73,7 +60,6 @@ public class Candidato {
 	public LocalDate getDataAgendamento() {
 		return dataAgendamento;
 	}
-
 	public void setDataAgendamento(LocalDate dataAgendamento) {
 		this.dataAgendamento = dataAgendamento;
 	}
@@ -81,7 +67,6 @@ public class Candidato {
 	public BigDecimal getTesteLogico() {
 		return testeLogico;
 	}
-
 	public void setTesteLogico(BigDecimal testeLogico) {
 		this.testeLogico = testeLogico;
 	}
@@ -89,23 +74,20 @@ public class Candidato {
 	public String getNotaDisc() {
 		return notaDisc;
 	}
-
 	public void setNotaDisc(String notaDisc) {
 		this.notaDisc = notaDisc;
 	}
 
-	public String getStatus() {
+	public long getStatus() {
 		return status;
 	}
-
-	public void setStatus(String status) {
+	public void setStatus(long status) {
 		this.status = status;
 	}
 
 	public String getObservacao() {
 		return observacao;
 	}
-
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
 	}
@@ -113,7 +95,6 @@ public class Candidato {
 	public String getDisc() {
 		return disc;
 	}
-
 	public void setDisc(String disc) {
 		this.disc = disc;
 	}
@@ -121,10 +102,7 @@ public class Candidato {
 	public String getCurriculo() {
 		return curriculo;
 	}
-
 	public void setCurriculo(String curriculo) {
 		this.curriculo = curriculo;
 	}
-	
-	
 }

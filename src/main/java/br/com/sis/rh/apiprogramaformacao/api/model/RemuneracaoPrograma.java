@@ -10,21 +10,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TB_REMUNERACAO_PROGRAMA")
+@Table(name="TB_REMUNERACAO")
 public class RemuneracaoPrograma {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String cargo;
-	
 	@Column(name = "bolsa_aux")
 	private BigDecimal bolsa;
-	
 	private BigDecimal beneficios;
-	
 	private BigDecimal convenio;
-	
 	@Column(name = "hr_extra")
 	private BigDecimal horaExtra;
 	@Column(name = "beneficio_legislacao")
@@ -41,7 +37,6 @@ public class RemuneracaoPrograma {
 	public long getId() {
 		return id;
 	}
-
 	public void setId(long id) {
 		this.id = id;
 	}
@@ -49,7 +44,6 @@ public class RemuneracaoPrograma {
 	public String getCargo() {
 		return cargo;
 	}
-
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
 	}
@@ -57,7 +51,6 @@ public class RemuneracaoPrograma {
 	public BigDecimal getBolsa() {
 		return bolsa;
 	}
-
 	public void setBolsa(BigDecimal bolsa) {
 		this.bolsa = bolsa;
 	}
@@ -65,7 +58,6 @@ public class RemuneracaoPrograma {
 	public BigDecimal getBeneficios() {
 		return beneficios;
 	}
-
 	public void setBeneficios(BigDecimal beneficios) {
 		this.beneficios = beneficios;
 	}
@@ -73,7 +65,6 @@ public class RemuneracaoPrograma {
 	public BigDecimal getConvenio() {
 		return convenio;
 	}
-
 	public void setConvenio(BigDecimal convenio) {
 		this.convenio = convenio;
 	}
@@ -81,7 +72,6 @@ public class RemuneracaoPrograma {
 	public BigDecimal getHoraExtra() {
 		return horaExtra;
 	}
-
 	public void setHoraExtra(BigDecimal horaExtra) {
 		this.horaExtra = horaExtra;
 	}
@@ -89,7 +79,6 @@ public class RemuneracaoPrograma {
 	public BigDecimal getBeneficioLegislacao() {
 		return beneficioLegislacao;
 	}
-
 	public void setBeneficioLegislacao(BigDecimal beneficioLegislacao) {
 		this.beneficioLegislacao = beneficioLegislacao;
 	}
@@ -97,7 +86,6 @@ public class RemuneracaoPrograma {
 	public BigDecimal getRemunExporadica() {
 		return remunExporadica;
 	}
-
 	public void setRemunExporadica(BigDecimal remunExporadica) {
 		this.remunExporadica = remunExporadica;
 	}
@@ -105,7 +93,6 @@ public class RemuneracaoPrograma {
 	public BigDecimal getRemunExtra() {
 		return remunExtra;
 	}
-
 	public void setRemunExtra(BigDecimal remunExtra) {
 		this.remunExtra = remunExtra;
 	}
@@ -113,7 +100,6 @@ public class RemuneracaoPrograma {
 	public BigDecimal getAlura() {
 		return alura;
 	}
-
 	public void setAlura(BigDecimal alura) {
 		this.alura = alura;
 	}
