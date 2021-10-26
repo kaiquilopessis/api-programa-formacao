@@ -7,7 +7,7 @@ import java.util.List;
 
 public class InstrutorVo {
     private String cpf;
-    private int status;
+    private String status;
     private String telefone;
     private String nome =  "Leticia";
     private String email =  "leticiaangulo.sisconsultoria@.com.br";
@@ -25,10 +25,10 @@ public class InstrutorVo {
         this.cpf = cpf;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

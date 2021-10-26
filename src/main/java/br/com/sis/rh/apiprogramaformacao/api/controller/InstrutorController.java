@@ -46,16 +46,18 @@ public class InstrutorController {
 	}
 
 	@CrossOrigin
-    @PutMapping("/status/{cpf}")
+    @PutMapping("/status/altera/{cpf}")
     public ResponseEntity alteraStatus(@PathVariable String cpf){
     	try {
-    	Instrutor instrutor = instrutorService.buscaPorCpf(cpf);
-    	if (instrutor.getStatus() == 1) {
-    		instrutor.setStatus(0);
-    	}else {
-    		instrutor.setStatus(1);
-    		}
-    	return ResponseEntity.ok().build();
+	    	Instrutor instrutor = instrutorService.buscaPorCpf(cpf);
+	    	System.out.println(instrutor.getStatus());
+	    	if (instrutor.getStatus().equals("ATIVO")) {
+	    		instrutor.setStatus("INATIVO");
+	    	}else {
+	    		instrutor.setStatus("ATIVO");
+	    	}
+	    	instrutorService.salva(instrutor);
+	    	return ResponseEntity.ok().build();
     	} catch (Exception e) {
     		return ResponseEntity.badRequest().build();
     	}
