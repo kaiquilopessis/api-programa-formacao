@@ -10,8 +10,7 @@ import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivo;
 import lombok.Getter;
 
-@Entity
-@Table(name = "TB_PARTICIPANTE")
+@Entity(name = "TB_PARTICIPANTE")
 @Getter
 public class Participante {
 

@@ -9,8 +9,7 @@ import javax.persistence.Table;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusFormacao;
 import lombok.Getter;
 
-@Entity
-@Table(name = "TB_PROGRAMA")
+@Entity(name = "TB_PROGRAMA")
 @Getter
 public class Programa {
 

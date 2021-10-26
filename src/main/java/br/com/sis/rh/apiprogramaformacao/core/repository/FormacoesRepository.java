@@ -11,11 +11,11 @@ import br.com.sis.rh.apiprogramaformacao.core.enums.StatusFormacao;
 public interface FormacoesRepository extends JpaRepository<Programa, Long> {
 	
 	// Método que devolve uma lista somente com as formações com status EM_ANDAMENTO
-	@Query(value = "SELECT p FROM Programa p WHERE status = ?1 ")
+	@Query(value = "SELECT p FROM TB_PROGRAMA p WHERE status = ?1 ")
 	List<Programa> findByStatusFormacao(StatusFormacao status);
 	
 	// Método que devolve a contagem total de formações com status EM_ANDAMENTO
-	@Query(value = "SELECT COUNT(p) FROM Programa p WHERE status = 'EM_ANDAMENTO'")
+	@Query(value = "SELECT COUNT(p) FROM TB_PROGRAMA p WHERE status = 'EM_ANDAMENTO'")
 	Integer totalFormacoes();
 	
 }
