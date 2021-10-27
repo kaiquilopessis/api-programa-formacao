@@ -1,8 +1,8 @@
 package br.com.sis.rh.apiprogramaformacao.api.controller;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
-import br.com.sis.rh.apiprogramaformacao.api.vo.InstrutorForm;
-import br.com.sis.rh.apiprogramaformacao.api.vo.InstrutorVo;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.InstrutorForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.InstrutorVo;
 import br.com.sis.rh.apiprogramaformacao.core.service.InstrutorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +16,8 @@ import java.util.List;
 @RequestMapping("/api/instrutor")
 public class InstrutorController {
 
-	@Autowired
-	private InstrutorService instrutorService;
+    @Autowired
+    private InstrutorService instrutorService;
 
     @GetMapping
     public ResponseEntity<List<InstrutorVo>> getPadrao(){
@@ -31,9 +31,9 @@ public class InstrutorController {
     public ResponseEntity<InstrutorVo> getByCpf(@PathVariable String cpf){
         Instrutor instrutor = instrutorService.buscaPorCpf(cpf);
         InstrutorVo instrutorVo = InstrutorVo.converterParaVo(instrutor);
-        
+
         return ResponseEntity.ok(instrutorVo);
-        }
+    }
 
     @GetMapping("/status/{status}")
     public ResponseEntity<List<Instrutor>> getByStatus(@PathVariable int status){
