@@ -22,18 +22,18 @@ import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoProgramaRepo
 
 @Service
 public class ConclusaoService {
-	
+
 	@Autowired
 	private ConclusaoRepository conclusaoRepository;
-	
+
 	@Autowired
 	private ParticipanteRepository participanteRepository;
-	
+
 	@Autowired
 	private RemuneracaoProgramaRepository remuneracaoProgramaRepository;
-	
+
 	public List<ConclusaoDto> listarConclusoes(String cpf){
-		List<Conclusao> conclusoes = conclusaoRepository.findAllByParticipanteCpfParticipante(cpf);
+		List<Conclusao> conclusoes = conclusaoRepository.findAllByParticipanteCpf(cpf);
 		return ConclusaoDto.converter(conclusoes);
 	}
 
@@ -48,7 +48,7 @@ public class ConclusaoService {
 					.buildAndExpand(conclusaoFinal.getId())
 					.toUri();
 			return ResponseEntity.created(uri).body(new ConclusaoDto(conclusaoFinal));
-		} 
+		}
 		return ResponseEntity.notFound().build();
 	}
 
@@ -72,6 +72,6 @@ public class ConclusaoService {
 		List<RemuneracaoPrograma> remuneracaoPrograma = remuneracaoProgramaRepository.findAll();
 		return RemuneracaoProgramaDto.converter(remuneracaoPrograma);
 	}
-	
-	
+
+
 }

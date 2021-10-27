@@ -8,6 +8,6 @@ import br.com.sis.rh.apiprogramaformacao.api.model.FeedBack;
 
 public interface FeedBackRepository  extends JpaRepository<FeedBack, Long>{
 
-	List<FeedBack> findAllByParticipanteCpfParticipante(String cpf);
+	List<FeedBack> findAllByParticipanteCpf(String cpf);
 
 }

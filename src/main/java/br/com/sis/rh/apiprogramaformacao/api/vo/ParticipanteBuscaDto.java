@@ -13,7 +13,7 @@ public class ParticipanteBuscaDto {
 
 	public ParticipanteBuscaDto(Participante participante) {
 		this.nome = participante.getCandidato().getNome();
-		this.cpf = participante.getCpfParticipante();
+		this.cpf = participante.getCpf();
 		this.programa = participante.getPrograma().getNome();
 	}
 
