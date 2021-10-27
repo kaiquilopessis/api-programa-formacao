@@ -38,24 +38,41 @@ public class InstrutorController {
     @GetMapping("/status/{status}")
     public ResponseEntity<List<Instrutor>> getByStatus(@PathVariable int status){
         List<Instrutor> listaInstrutoresPorStatus = instrutorService.buscaPorStatus(status);
-
+        
         return ResponseEntity.ok(listaInstrutoresPorStatus);
     }
-
-    @PostMapping
-    @Transactional
-    public String cadastro(@RequestBody @Valid InstrutorForm form){
-        try {
-            Instrutor instrutor = form.converter();
-            instrutorService.salva(instrutor);
-
-            return "SUCESSO";
-        }
-        catch (Exception e) {
-            return "ERRO: " + e;
-        }
+	
+  
+	@CrossOrigin
+    @PutMapping("/status/altera/{cpf}")
+    public ResponseEntity alteraStatus(@PathVariable String cpf){
+    	try {
+	    	Instrutor instrutor = instrutorService.buscaPorCpf(cpf);
+	    	System.out.println(instrutor.getStatus());
+	    	if (instrutor.getStatus().equals("ATIVO")) {
+	    		instrutor.setStatus("INATIVO");
+	    	}else {
+	    		instrutor.setStatus("ATIVO");
+	    	}
+	    	instrutorService.salva(instrutor);
+	    	return ResponseEntity.ok().build();
+    	} catch (Exception e) {
+    		return ResponseEntity.badRequest().build();
+    	}
     }
 
+	@CrossOrigin
+	@PostMapping
+	@Transactional
+	public String cadastro(@RequestBody @Valid InstrutorForm form) {
+		try {
+			Instrutor instrutor = form.converter();
+			instrutorService.salva(instrutor);
 
+			return "SUCESSO";
+		} catch (Exception e) {
+			return "ERRO: " + e;
+		}
+	}
 
 }

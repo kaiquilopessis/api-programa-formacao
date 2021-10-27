@@ -1,8 +1,5 @@
 package br.com.sis.rh.apiprogramaformacao.api.mock;
 
-import javassist.NotFoundException;
-import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +30,13 @@ public class MockDatasource extends ArrayList {
         inst3.setEmail("nicosteppat@alura.com.br");
         inst3.setTelefone("21999998888");
         inst3.setCargo("Desenvolvedor");
+        
+        MockData inst4 = new MockData();
+        inst4.setNome("Rodrigo Ferreira");
+        inst4.setCpf("10987654321");
+        inst4.setEmail("rodrigo@alura.com.br");
+        inst4.setTelefone("119999870989");
+        inst4.setCargo("Desenvolvedor");
 
         MockData part1 = new MockData();
         part1.setNome("Iago Baldani");
@@ -107,6 +111,7 @@ public class MockDatasource extends ArrayList {
         this.listaDeInstrutores.add(inst1);
         this.listaDeInstrutores.add(inst2);
         this.listaDeInstrutores.add(inst3);
+        this.listaDeInstrutores.add(inst4);
 
         this.listaDeParticipantes.add(part1);
         this.listaDeParticipantes.add(part2);
