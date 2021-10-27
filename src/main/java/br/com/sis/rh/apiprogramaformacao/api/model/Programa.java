@@ -1,23 +1,23 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusProgramaUsuario;
-import lombok.Getter;
-import lombok.Setter;
-
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "TB_PROGRAMA")
-@Getter
-@Setter
 public class Programa {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 	@OneToOne
 	@JoinColumn(name = "cpf_instrutor", referencedColumnName = "cpf_instrutor", nullable = false)
 	private Instrutor instrutor;
@@ -30,17 +30,82 @@ public class Programa {
 	@Column(name = "nome_turma", nullable = false, length = 50)
 	private String nomeTurma;
 	@Column(name = "status", nullable = false)
-	@Enumerated(EnumType.STRING)
-	private StatusProgramaUsuario status;
+	private String status;
 	@Column(name = "qtd_aprendiz")
-	private Integer qtdAprendiz;
+	private long qtdAprendiz;
 	@Column(name = "qtd_estagiario")
-	private Integer qtdEstagiario;
+	private long qtdEstagiario;
 	@Column(name = "qtd_trainee")
-	private Integer qtdTrainee;
-	@Column(name = "vlr_hora_instrutor")
-	private BigDecimal valorHoraInstrutor;
-	@Column(name = "qtd_hora_instrutor")
-	private BigDecimal qtd_hr_instrutor;
+	private long qtdTrainee;
 
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Instrutor getInstrutor() {
+		return instrutor;
+	}
+	public void setInstrutor(Instrutor instrutor) {
+		this.instrutor = instrutor;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public LocalDate getDataInicio() {
+		return dataInicio;
+	}
+	public void setDataInicio(LocalDate dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
+	public LocalDate getDataFim() {
+		return dataFim;
+	}
+	public void setDataFim(LocalDate dataFim) {
+		this.dataFim = dataFim;
+	}
+
+	public String getNomeTurma() {
+		return nomeTurma;
+	}
+	public void setNomeTurma(String nomeTurma) {
+		this.nomeTurma = nomeTurma;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public long getQtdAprendiz() {
+		return qtdAprendiz;
+	}
+	public void setQtdAprendiz(long qtdAprendiz) {
+		this.qtdAprendiz = qtdAprendiz;
+	}
+
+	public long getQtdEstagiario() {
+		return qtdEstagiario;
+	}
+	public void setQtdEstagiario(long qtdEstagiario) {
+		this.qtdEstagiario = qtdEstagiario;
+	}
+
+	public long getQtdTrainee() {
+		return qtdTrainee;
+	}
+	public void setQtdTrainee(long qtdTrainee) {
+		this.qtdTrainee = qtdTrainee;
+	}
 }

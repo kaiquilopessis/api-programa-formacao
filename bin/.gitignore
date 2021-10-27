@@ -3,8 +3,6 @@
 # Learn more about .gitignore:
 #     https://www.atlassian.com/git/tutorials/saving-changes/gitignore
 
-*.properties
-
 # Node artifact files
 node_modules/
 dist/
@@ -84,5 +82,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-*.properties
