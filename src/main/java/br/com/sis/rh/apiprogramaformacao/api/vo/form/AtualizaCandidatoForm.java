@@ -21,7 +21,7 @@ public class AtualizaCandidatoForm {
     private LocalDate dataAgendamento;
     private String curso;
     private String observacao;
-    private StatusCandidato status;
+    private String status;
     private BigDecimal testeLogico;
     private String notaDisc;
 
@@ -34,7 +34,7 @@ public class AtualizaCandidatoForm {
         candidato.setDataAgendamento(this.dataAgendamento);
         candidato.setCurso(this.curso);
         candidato.setObservacao(this.observacao);
-        candidato.setStatusCandidato(this.status);
+        candidato.setStatus(this.status);
         candidato.setTesteLogico(this.testeLogico);
         candidato.setNotaDisc(this.notaDisc);
         return candidato;

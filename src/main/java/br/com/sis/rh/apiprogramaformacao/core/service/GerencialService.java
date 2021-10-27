@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import br.com.sis.rh.apiprogramaformacao.api.vo.ParticipanteBuscaNomeDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteBuscaNomeDto;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 
 @Service

@@ -35,6 +35,40 @@ public class Candidato {
 	private String disc;
 	@Column(name = "curriculo")
 	private String curriculo;
+	@Column(name = "curso")
+	private String curso;
+	@Column(name = "fonte_recrutamento")
+	private String fonteRecrutamento;
+
+	public Candidato(String nome, String telefone, LocalDate dataAgendamento, BigDecimal testeLogico, String notaDisc, String status, String observacao, String disc, String curriculo, String curso, String fonteRecrutamento) {
+		this.nome = nome;
+		this.telefone = telefone;
+		this.dataAgendamento = dataAgendamento;
+		this.testeLogico = testeLogico;
+		this.notaDisc = notaDisc;
+		this.status = status;
+		this.observacao = observacao;
+		this.disc = disc;
+		this.curriculo = curriculo;
+		this.curso = curso;
+		this.fonteRecrutamento = fonteRecrutamento;
+	}
+
+	public Candidato(){}
+
+	public String getFonteRecrutamento() {
+		return fonteRecrutamento;
+	}
+	public void setFonteRecrutamento(String fonteRecrutamento) {
+		this.fonteRecrutamento = fonteRecrutamento;
+	}
+
+	public String getCurso() {
+		return curso;
+	}
+	public void setCurso(String curso) {
+		curso = curso;
+	}
 
 	public long getId() {
 		return id;

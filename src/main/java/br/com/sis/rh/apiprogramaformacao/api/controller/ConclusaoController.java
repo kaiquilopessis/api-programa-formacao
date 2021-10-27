@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.ConclusaoDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.ConclusaoFinalForm;
-import br.com.sis.rh.apiprogramaformacao.api.vo.ConclusaoProgressivaForm;
-import br.com.sis.rh.apiprogramaformacao.api.vo.RemuneracaoProgramaDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ConclusaoDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.ConclusaoFinalForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.ConclusaoProgressivaForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RemuneracaoProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.core.service.ConclusaoService;
 
 @RestController

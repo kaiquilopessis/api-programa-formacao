@@ -13,8 +13,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Avaliacoes;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import br.com.sis.rh.apiprogramaformacao.api.vo.AvaliacoesDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.AvaliacoesForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.AvaliacoesDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.AvaliacoesForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.AvaliacoesRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 @Service

@@ -19,7 +19,7 @@ public class CandidatoDto {
     private String fonteRecrutamento;
     private LocalDate dataAgendamento;
     private String curso;
-    private StatusCandidato status;
+    private String status;
     private BigDecimal testeLogico;
     //private File curriculo;
     //private File arquivoDisc;
@@ -33,7 +33,7 @@ public class CandidatoDto {
         this.telefone = candidato.getTelefone();
         this.dataAgendamento = candidato.getDataAgendamento();
         this.curso = candidato.getCurso();
-        this.status = candidato.getStatusCandidato();
+        this.status = candidato.getStatus();
         this.testeLogico = candidato.getTesteLogico();
         this.observacoes = candidato.getObservacao();
         this.notaDisc = candidato.getNotaDisc();

@@ -12,8 +12,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Alura;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import br.com.sis.rh.apiprogramaformacao.api.vo.AluraDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.AluraForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.AluraDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.AluraForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.AluraRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 

@@ -14,12 +14,12 @@ public class ListaCandidatoDto {
 
     private Long id;
     private String nome;
-    private StatusCandidato status;
+    private String status;
 
     public ListaCandidatoDto (Candidato candidato){
         this.id = candidato.getId();
         this.nome = candidato.getNome();
-        this.status = candidato.getStatusCandidato();
+        this.status = candidato.getStatus();
     }
 
     public static List<ListaCandidatoDto> toListaCandidatoDto(List<Candidato> candidato){

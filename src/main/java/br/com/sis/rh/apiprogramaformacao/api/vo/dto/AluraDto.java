@@ -1,4 +1,4 @@
-package br.com.sis.rh.apiprogramaformacao.api.vo;
+package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
 import java.time.LocalDate;
 import java.util.List;

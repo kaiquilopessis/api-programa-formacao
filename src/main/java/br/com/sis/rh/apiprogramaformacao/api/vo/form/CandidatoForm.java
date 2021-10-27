@@ -18,11 +18,13 @@ public class CandidatoForm {
     private LocalDate dataAgendamento;
     private String curso;
     private String observacao;
-    private StatusCandidato status;
+    private String status;
     private BigDecimal testeLogico;
     private String notaDisc;
+    private String curriculo;
+    private String disc;
 
     public Candidato converter (){
-        return new Candidato(nome, telefone, dataAgendamento, testeLogico, notaDisc, status, observacao, fonteRecrutamento, curso);
+        return new Candidato(nome, telefone, dataAgendamento, testeLogico, notaDisc, status, observacao, curriculo, disc, curso, fonteRecrutamento);
     }
 }

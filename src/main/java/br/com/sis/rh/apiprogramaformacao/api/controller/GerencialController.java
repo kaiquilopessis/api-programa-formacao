@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.ParticipanteBuscaNomeDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteBuscaNomeDto;
 import br.com.sis.rh.apiprogramaformacao.core.service.GerencialService;
 
 @RestController

@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import br.com.sis.rh.apiprogramaformacao.api.vo.FormacaoBuscaDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.ParticipanteBuscaDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FormacaoBuscaDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteBuscaDto;
 import br.com.sis.rh.apiprogramaformacao.core.repository.FormacaoRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 
