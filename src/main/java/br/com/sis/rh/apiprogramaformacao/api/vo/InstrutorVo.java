@@ -9,11 +9,13 @@ public class InstrutorVo {
     private String cpf;
     private String status;
     private String telefone;
+    private String nome;
 
     public InstrutorVo(Instrutor instrutor) {
         this.cpf = instrutor.getCpfInstrutor();
         this.status = instrutor.getStatus();
         this.telefone = instrutor.getTelefone();
+        this.nome = "Instrutor Teste";
     }
 
     public String getCpf() {
@@ -35,6 +37,13 @@ public class InstrutorVo {
     }
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public static InstrutorVo converterParaVo(Instrutor instrutor){

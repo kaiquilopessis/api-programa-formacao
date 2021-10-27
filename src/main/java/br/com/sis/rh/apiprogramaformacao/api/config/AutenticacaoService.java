@@ -26,4 +26,8 @@ public class AutenticacaoService implements UserDetailsService {
 
         throw new UsernameNotFoundException("Dados inválidos");
     }
+
+    public void salvaUsuario(String user, String senha){
+
+    }
 }

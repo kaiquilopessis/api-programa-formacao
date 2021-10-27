@@ -26,6 +26,8 @@ public class UsuarioAcesso implements UserDetails {
     @Column(name = "data_inclusao")
     private LocalDate dataInclusao;
 
+
+
     public String getUsuarioAd() {
         return usuarioAd;
     }
