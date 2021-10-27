@@ -19,34 +19,34 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.RemuneracaoProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.core.service.ConclusaoService;
 
 @RestController
-@RequestMapping("/conclusoes")
+@RequestMapping("/api/conclusoes")
 public class ConclusaoController {
 
 	@Autowired
 	ConclusaoService conclusaoService;
-	
+
 	@GetMapping("/{cpf}")
 	public List<ConclusaoDto> listaConclusoes (@PathVariable String cpf){
 		return conclusaoService.listarConclusoes(cpf);
 	}
-	
+
 	@GetMapping
 	public List<RemuneracaoProgramaDto> listarRemuneracao() {
 		return conclusaoService.listarRemuneracao();
 	}
-	
+
 	@PostMapping("/registrocicloprogressivo/{cpf}")
 	public ResponseEntity<ConclusaoDto> registroProgressivo (@PathVariable String cpf ,
-			@RequestBody ConclusaoProgressivaForm conclusaoProgressivaForm, 
+			@RequestBody ConclusaoProgressivaForm conclusaoProgressivaForm,
 			UriComponentsBuilder uriComponentsBuilder){
 		return conclusaoService.registrarCicloProgressivo(cpf, conclusaoProgressivaForm, uriComponentsBuilder);
 	}
-	
+
 	@PostMapping("/registrociclofinal/{cpf}")
 	public ResponseEntity<ConclusaoDto> registroFinal(@PathVariable String cpf, @RequestBody ConclusaoFinalForm conclusaoFinalForm,
 			UriComponentsBuilder uriComponentsBuilder) {
 		return conclusaoService.registrarCicloFinal(cpf, conclusaoFinalForm, uriComponentsBuilder);
 	}
 }
-	
+
 

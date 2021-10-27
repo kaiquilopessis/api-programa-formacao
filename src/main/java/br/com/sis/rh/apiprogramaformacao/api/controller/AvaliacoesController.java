@@ -18,7 +18,7 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.AvaliacoesForm;
 import br.com.sis.rh.apiprogramaformacao.core.service.AvaliacoesService;
 
 @RestController
-@RequestMapping("/avaliacoes")
+@RequestMapping("/api/avaliacoes")
 public class AvaliacoesController {
 
 	@Autowired

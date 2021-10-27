@@ -18,7 +18,7 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.AluraForm;
 import br.com.sis.rh.apiprogramaformacao.core.service.AluraService;
 
 @RestController
-@RequestMapping("/alura")
+@RequestMapping("/api/alura")
 public class AluraController {
 
 	// precisamos passar para o service os ifs de tratamento
