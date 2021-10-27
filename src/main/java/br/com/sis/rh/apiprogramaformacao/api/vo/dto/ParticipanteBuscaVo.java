@@ -11,16 +11,18 @@ public class ParticipanteBuscaVo {
     private String cpf;
     private String nome;
     private String programa;
+    private String turmaPrograma;
     private String status;
     private MockDatasource mockDatasource = new MockDatasource();
 
     public ParticipanteBuscaVo(Participante participante){
         this.cpf = participante.getCpf();
         this.programa = participante.getPrograma().getNome();
+        this.turmaPrograma = participante.getPrograma().getNomeTurma();
         this.status = participante.getStatus();
     }
 
-    public String getId() {
+    public String getCpf() {
         return cpf;
     }
 
@@ -36,6 +38,10 @@ public class ParticipanteBuscaVo {
 
     public String getStatus() {
         return status;
+    }
+
+    public String getTurmaPrograma() {
+        return turmaPrograma;
     }
 
     public static ParticipanteBuscaVo converter(Participante participante){
