@@ -16,7 +16,7 @@ public class Participante {
 	private Programa programa;
 	@OneToOne
 	@JoinColumn(name = "codigo_candidato_fk", referencedColumnName = "id", nullable = false)
-	private Candidato cadidato;
+	private Candidato candidato;
 	@ManyToOne
 	@JoinColumn(name = "codigo_remun_programa_fk", referencedColumnName = "id", nullable = false)
 	private RemuneracaoPrograma remuneracaoPrograma;
@@ -27,9 +27,11 @@ public class Participante {
 	@Column(name = "data_fim_graduacao")
 	private LocalDate dataFinal;
 	@Column(name = "status")
-	private long status;
+	private String status;
 	@Column(name = "TCE")
 	private String tce;
+	@Column(name = "status_efetivado")
+	private String statusEfetivado;
 
 	public String getCpfParticipante() {
 		return cpfParticipante;
@@ -45,11 +47,11 @@ public class Participante {
 		this.programa = programa;
 	}
 
-	public Candidato getCadidato() {
-		return cadidato;
+	public Candidato getCandidato() {
+		return candidato;
 	}
-	public void setCadidato(Candidato cadidato) {
-		this.cadidato = cadidato;
+	public void setCadidato(Candidato candidato) {
+		this.candidato = candidato;
 	}
 
 	public RemuneracaoPrograma getRemuneracaoPrograma() {

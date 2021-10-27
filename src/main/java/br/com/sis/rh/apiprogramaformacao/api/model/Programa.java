@@ -30,7 +30,7 @@ public class Programa {
 	@Column(name = "nome_turma", nullable = false, length = 50)
 	private String nomeTurma;
 	@Column(name = "status", nullable = false)
-	private long status;
+	private String status;
 	@Column(name = "qtd_aprendiz")
 	private long qtdAprendiz;
 	@Column(name = "qtd_estagiario")
