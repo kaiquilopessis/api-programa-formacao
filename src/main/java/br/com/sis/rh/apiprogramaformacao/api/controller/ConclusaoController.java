@@ -19,7 +19,7 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RemuneracaoProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.core.service.ConclusaoService;
 
 @RestController
-@RequestMapping("/api/conclusoes")
+@RequestMapping("/api/conclusao")
 public class ConclusaoController {
 
 	@Autowired

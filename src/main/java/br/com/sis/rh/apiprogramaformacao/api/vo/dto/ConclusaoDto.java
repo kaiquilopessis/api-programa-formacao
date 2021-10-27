@@ -17,7 +17,7 @@ public class ConclusaoDto {
 	private LocalDate dataRegistro;
 	private StatusConclusao status;
 	private byte[] comprovante;
-	private RemuneracaoPrograma cargoPrograma;
+	private String cargoPrograma;
 	private String cargoEfetivado;
 	private String observacao;
 
@@ -27,7 +27,7 @@ public class ConclusaoDto {
 		this.dataRegistro = conclusao.getDataAlteracao();
 		this.status = conclusao.getStatusProgresso();
 		this.comprovante = conclusao.getComprovanteRematricula();
-		this.cargoPrograma = conclusao.getCargoPrograma();
+		this.cargoPrograma = conclusao.getCargoPrograma().getCargo();
 		this.cargoEfetivado = conclusao.getCargoEfetivado();
 		this.observacao = conclusao.getObservacao();
 	}
@@ -76,11 +76,11 @@ public class ConclusaoDto {
 		this.comprovante = comprovante;
 	}
 
-	public RemuneracaoPrograma getCargoPrograma() {
+	public String getCargoPrograma() {
 		return cargoPrograma;
 	}
 
-	public void setCargoPrograma(RemuneracaoPrograma cargoPrograma) {
+	public void setCargoPrograma(String cargoPrograma) {
 		this.cargoPrograma = cargoPrograma;
 	}
 
