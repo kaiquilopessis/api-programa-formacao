@@ -1,7 +1,7 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCandidatoParticipante;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCandidato;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,12 +14,12 @@ public class ListaCandidatoDto {
 
     private Long id;
     private String nome;
-    private StatusCandidatoParticipante status;
+    private StatusCandidato status;
 
     public ListaCandidatoDto (Candidato candidato){
         this.id = candidato.getId();
         this.nome = candidato.getNome();
-        this.status = candidato.getStatusCandidatoParticipante();
+        this.status = candidato.getStatusCandidato();
     }
 
     public static List<ListaCandidatoDto> toListaCandidatoDto(List<Candidato> candidato){

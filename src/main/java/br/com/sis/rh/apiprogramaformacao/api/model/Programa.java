@@ -1,10 +1,10 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCandidatoParticipante;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusProgramaUsuario;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.*;
@@ -38,5 +38,9 @@ public class Programa {
 	private Integer qtdEstagiario;
 	@Column(name = "qtd_trainee")
 	private Integer qtdTrainee;
+	@Column(name = "vlr_hora_instrutor")
+	private BigDecimal valorHoraInstrutor;
+	@Column(name = "qtd_hora_instrutor")
+	private BigDecimal qtd_hr_instrutor;
 
 }

@@ -1,6 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCandidatoParticipante;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCandidato;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -32,7 +32,7 @@ public class Candidato {
 	private String notaDisc;
 	@Column(name = "status", nullable = false, length = 50)
 	@Enumerated(EnumType.STRING)
-	private StatusCandidatoParticipante statusCandidatoParticipante;
+	private StatusCandidato statusCandidato;
 	@Column(name = "observacao", length = 8000)
 	private String observacao;
 //	@Column(name = "DISC")
@@ -45,13 +45,13 @@ public class Candidato {
 	private String fonteRecrutamento;
 
 	public Candidato (String nome, String telefone, LocalDate dataAgendamento, BigDecimal testeLogico, String notaDisc,
-				   StatusCandidatoParticipante status, String observacao, String fonteRecrutamento, String curso){
+					  StatusCandidato status, String observacao, String fonteRecrutamento, String curso){
 		this.nome = nome;
 		this.telefone = telefone;
 		this.dataAgendamento = dataAgendamento;
 		this.testeLogico = testeLogico;
 		this.notaDisc = notaDisc;
-		this.statusCandidatoParticipante = status;
+		this.statusCandidato = status;
 		this.observacao = observacao;
 		this.curso = curso;
 		this.fonteRecrutamento = fonteRecrutamento;

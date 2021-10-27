@@ -1,6 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.core.enums;
 
-public enum StatusCandidatoParticipante {
+public enum StatusCandidato {
     APROVADO_1_FASE,
     APROVADO_2_FASE,
     REPROVADO_1_FASE,

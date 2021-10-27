@@ -1,6 +1,5 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCandidatoParticipante;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusProgramaUsuario;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,8 +1,7 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
-import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCandidatoParticipante;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCandidato;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,7 +19,7 @@ public class CandidatoDto {
     private String fonteRecrutamento;
     private LocalDate dataAgendamento;
     private String curso;
-    private StatusCandidatoParticipante status;
+    private StatusCandidato status;
     private BigDecimal testeLogico;
     //private File curriculo;
     //private File arquivoDisc;
@@ -34,7 +33,7 @@ public class CandidatoDto {
         this.telefone = candidato.getTelefone();
         this.dataAgendamento = candidato.getDataAgendamento();
         this.curso = candidato.getCurso();
-        this.status = candidato.getStatusCandidatoParticipante();
+        this.status = candidato.getStatusCandidato();
         this.testeLogico = candidato.getTesteLogico();
         this.observacoes = candidato.getObservacao();
         this.notaDisc = candidato.getNotaDisc();

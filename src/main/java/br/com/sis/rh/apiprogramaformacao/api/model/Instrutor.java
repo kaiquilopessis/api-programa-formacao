@@ -22,7 +22,4 @@ public class Instrutor {
 //	private String email;
 	@Column(name = "status")
 	private long status;
-	@OneToOne
-	@JoinColumn(name = "cod_remun_programa", referencedColumnName = "id", nullable = false)
-	private RemuneracaoPrograma remuneracaoPrograma;
 }
