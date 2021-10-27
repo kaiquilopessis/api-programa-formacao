@@ -12,13 +12,12 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Entity
-public class FiltragemDto {
+public class FiltragemInstrutorDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nomeParticipante;
+    private String nomeInstrutor;
     private String nomeFormacao;
     private String nomeTurma;
-    private BigDecimal bolsaAux;
-
+    private BigDecimal ValorHora;
 }

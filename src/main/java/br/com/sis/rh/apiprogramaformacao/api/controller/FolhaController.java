@@ -1,7 +1,7 @@
 package br.com.sis.rh.apiprogramaformacao.api.controller;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.form.ParametrosFiltroForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemFolhaDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.ParametrosFiltroFolhaForm;
 import br.com.sis.rh.apiprogramaformacao.core.service.ParticipanteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,13 +17,13 @@ public class FolhaController {
     private ParticipanteService participanteService;
 
     @GetMapping()
-    public List<FiltragemDto> mostrarDados(){
-        return participanteService.listagemFiltroTodos();
+    public List<FiltragemFolhaDto> mostrarDados(){
+        return participanteService.listagemFiltroFolhaTodos();
     }
 
     @PostMapping()
-    public List<FiltragemDto> mostrarFiltros(@RequestBody ParametrosFiltroForm form){
-        return participanteService.listagemFiltro(form.getParametroNomeParticipante(), form.getParametroNomeFormacao(), form.getParametroNomeTurma(), form.getParametroBolsaAux());
+    public List<FiltragemFolhaDto> mostrarFiltros(@RequestBody ParametrosFiltroFolhaForm form){
+        return participanteService.listagemFiltroFolha(form.getParametroNomeParticipante(), form.getParametroNomeFormacao(), form.getParametroNomeTurma(), form.getParametroBolsaAux());
     }
 
 

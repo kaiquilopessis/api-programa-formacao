@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ParametrosFiltroForm {
+public class ParametrosFiltroFolhaForm {
 
     private String parametroNomeParticipante;
     private String parametroNomeFormacao;
