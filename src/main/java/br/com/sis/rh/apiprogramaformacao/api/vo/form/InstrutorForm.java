@@ -1,4 +1,4 @@
-package br.com.sis.rh.apiprogramaformacao.api.vo;
+package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;

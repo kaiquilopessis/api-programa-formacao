@@ -1,4 +1,4 @@
-package br.com.sis.rh.apiprogramaformacao.api.vo;
+package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

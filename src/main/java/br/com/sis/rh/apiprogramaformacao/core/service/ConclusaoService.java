@@ -12,28 +12,28 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.model.RemuneracaoPrograma;
-import br.com.sis.rh.apiprogramaformacao.api.vo.ConclusaoDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.ConclusaoFinalForm;
-import br.com.sis.rh.apiprogramaformacao.api.vo.ConclusaoProgressivaForm;
-import br.com.sis.rh.apiprogramaformacao.api.vo.RemuneracaoProgramaDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ConclusaoDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.ConclusaoFinalForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.ConclusaoProgressivaForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RemuneracaoProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ConclusaoRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoProgramaRepository;
 
 @Service
 public class ConclusaoService {
-	
+
 	@Autowired
 	private ConclusaoRepository conclusaoRepository;
-	
+
 	@Autowired
 	private ParticipanteRepository participanteRepository;
-	
+
 	@Autowired
 	private RemuneracaoProgramaRepository remuneracaoProgramaRepository;
-	
+
 	public List<ConclusaoDto> listarConclusoes(String cpf){
-		List<Conclusao> conclusoes = conclusaoRepository.findAllByParticipanteCpfParticipante(cpf);
+		List<Conclusao> conclusoes = conclusaoRepository.findAllByParticipanteCpf(cpf);
 		return ConclusaoDto.converter(conclusoes);
 	}
 
@@ -48,7 +48,7 @@ public class ConclusaoService {
 					.buildAndExpand(conclusaoFinal.getId())
 					.toUri();
 			return ResponseEntity.created(uri).body(new ConclusaoDto(conclusaoFinal));
-		} 
+		}
 		return ResponseEntity.notFound().build();
 	}
 
@@ -72,6 +72,6 @@ public class ConclusaoService {
 		List<RemuneracaoPrograma> remuneracaoPrograma = remuneracaoProgramaRepository.findAll();
 		return RemuneracaoProgramaDto.converter(remuneracaoPrograma);
 	}
-	
-	
+
+
 }

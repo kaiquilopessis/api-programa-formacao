@@ -10,19 +10,19 @@ public class Participante {
 
 	@Id
 	@Column(name = "cpf_participante", length = 12)
-	private String cpfParticipante;
-	@ManyToOne
+	private String cpf;
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "codigo_programa_fk", referencedColumnName = "id", nullable = false)
 	private Programa programa;
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "codigo_candidato_fk", referencedColumnName = "id", nullable = false)
 	private Candidato candidato;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fk_codigo_remun", referencedColumnName = "id", nullable = false)
 	private RemuneracaoPrograma remuneracaoPrograma;
-	@Column(name = "nmFaculdade", length = 50)
+	@Column(name = "nm_faculdade", length = 50)
 	private String faculdade;
-	@Column(name = "nmCurso", length = 50)
+	@Column(name = "nm_curso", length = 50)
 	private String curso;
 	@Column(name = "data_fim_graduacao")
 	private LocalDate dataFinal;
@@ -33,11 +33,11 @@ public class Participante {
 	@Column(name = "status_efetivado")
 	private String statusEfetivado;
 
-	public String getCpfParticipante() {
-		return cpfParticipante;
+	public String getCpf() {
+		return cpf;
 	}
-	public void setCpfParticipante(String cpfParticipante) {
-		this.cpfParticipante = cpfParticipante;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public Programa getPrograma() {
@@ -105,6 +105,6 @@ public class Participante {
 	public void setTce(String tce) {
 		this.tce = tce;
 	}
-	
-	
+
+
 }

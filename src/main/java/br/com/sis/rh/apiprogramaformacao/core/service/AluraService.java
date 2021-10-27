@@ -12,8 +12,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Alura;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import br.com.sis.rh.apiprogramaformacao.api.vo.AluraDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.AluraForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.AluraDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.AluraForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.AluraRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 
@@ -27,7 +27,7 @@ public class AluraService {
 	private ParticipanteRepository participanteRepository;
 
 	public List<AluraDto> listaRegistros(String cpf) {
-		List<Alura> alura = aluraRepository.findAllByParticipanteCpfParticipante(cpf);
+		List<Alura> alura = aluraRepository.findAllByParticipanteCpf(cpf);
 		return AluraDto.converter(alura);
 	}
 
@@ -43,7 +43,7 @@ public class AluraService {
 		return ResponseEntity.notFound().build();
 	}
 
-	
+
 	public ResponseEntity<AluraDto> deletar(Long id) {
 		Optional<Alura> alura = aluraRepository.findById(id);
 		if (alura.isPresent()) {

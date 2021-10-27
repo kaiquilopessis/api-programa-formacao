@@ -1,8 +1,8 @@
 package br.com.sis.rh.apiprogramaformacao.api.controller;
 
 import br.com.sis.rh.apiprogramaformacao.api.config.TokenService;
-import br.com.sis.rh.apiprogramaformacao.api.vo.AutenticacaoForm;
-import br.com.sis.rh.apiprogramaformacao.api.vo.TokenVo;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.AutenticacaoForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TokenVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

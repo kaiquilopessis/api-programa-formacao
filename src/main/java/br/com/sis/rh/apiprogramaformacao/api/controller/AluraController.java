@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.AluraDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.AluraForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.AluraDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.AluraForm;
 import br.com.sis.rh.apiprogramaformacao.core.service.AluraService;
 
 @RestController
-@RequestMapping("/alura")
+@RequestMapping("/api/alura")
 public class AluraController {
 
 	// precisamos passar para o service os ifs de tratamento

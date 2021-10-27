@@ -13,26 +13,26 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Avaliacoes;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import br.com.sis.rh.apiprogramaformacao.api.vo.AvaliacoesDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.AvaliacoesForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.AvaliacoesDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.AvaliacoesForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.AvaliacoesRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 @Service
 public class AvaliacoesService {
-	
+
 	@Autowired
 	private AvaliacoesRepository avaliacoesRepository;
-	
+
 	@Autowired
 	private ParticipanteRepository participanteRepository;
-	
-	
+
+
 	public List<AvaliacoesDto> listarNotas(String cpf) {
-		List<Avaliacoes> listaNotas = avaliacoesRepository.findAllByParticipanteCpfParticipante(cpf);
+		List<Avaliacoes> listaNotas = avaliacoesRepository.findAllByParticipanteCpf(cpf);
 		return AvaliacoesDto.converter(listaNotas);
 
-	}	
-	
+	}
+
 	public ResponseEntity<AvaliacoesDto> cadastrar(@PathVariable String cpf, @RequestBody AvaliacoesForm avaliacoesForm,
 			UriComponentsBuilder uriComponentsBuilder) {
 		Optional<Participante> participante = participanteRepository.findById(cpf);
@@ -44,7 +44,7 @@ public class AvaliacoesService {
 		}
 		return ResponseEntity.notFound().build();
 	}
-	
+
 	public ResponseEntity<AvaliacoesDto> deletar( Long id) {
 		Optional<Avaliacoes> avaliacoes = avaliacoesRepository.findById(id);
 		if (avaliacoes.isPresent()) {
@@ -53,5 +53,5 @@ public class AvaliacoesService {
 		}
 		return ResponseEntity.notFound().build();
 	}
-	
+
 }

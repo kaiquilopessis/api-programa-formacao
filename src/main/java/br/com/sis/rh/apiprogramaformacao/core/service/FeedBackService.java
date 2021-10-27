@@ -13,8 +13,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.FeedBack;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import br.com.sis.rh.apiprogramaformacao.api.vo.FeedBackDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.FeedBackForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FeedBackDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.FeedBackForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.FeedBackRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 
@@ -28,7 +28,7 @@ public class FeedBackService {
 	private ParticipanteRepository participanteRepository;
 
 	public List<FeedBackDto> listar(String cpf) {
-		List<FeedBack> feedbacks = feedBackRepository.findAllByParticipanteCpfParticipante(cpf);
+		List<FeedBack> feedbacks = feedBackRepository.findAllByParticipanteCpf(cpf);
 		return FeedBackDto.converter(feedbacks);
 	}
 

@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.FeedBackDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.FeedBackForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FeedBackDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.FeedBackForm;
 import br.com.sis.rh.apiprogramaformacao.core.service.FeedBackService;
 
 @RestController
@@ -28,7 +28,7 @@ public class FeedBackController {
 	public List<FeedBackDto> listarFeedBacks(@PathVariable String cpf) {
 		return feedBackService.listar(cpf);
 	}
-	
+
 
 	@PostMapping("/novo/{cpf}")
 	public ResponseEntity<FeedBackDto> cadastrarFeed(@PathVariable String cpf, @RequestBody FeedBackForm feedBackForm,

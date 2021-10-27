@@ -8,6 +8,6 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Avaliacoes;
 
 public interface AvaliacoesRepository extends JpaRepository<Avaliacoes, Long> {
 
-	List<Avaliacoes>findAllByParticipanteCpfParticipante(String cpf);
+	List<Avaliacoes>findAllByParticipanteCpf(String cpf);
 
 }

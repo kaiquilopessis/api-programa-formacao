@@ -6,48 +6,53 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InstrutorVo {
-    private String cpf;
-    private String status;
-    private String telefone;
+	private String cpf;
+	private String status;
+	private String telefone;
 
-    public InstrutorVo(Instrutor instrutor) {
-        this.cpf = instrutor.getCpfInstrutor();
-        this.status = instrutor.getStatus();
-        this.telefone = instrutor.getTelefone();
-    }
+	public InstrutorVo(Instrutor instrutor) {
+		this.cpf = instrutor.getCpfInstrutor();
+		this.status = instrutor.getStatus();
+		this.telefone = instrutor.getTelefone();
 
-    public String getCpf() {
-        return cpf;
-    }
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
+	}
 
-    public String getStatus() {
-        return status;
-    }
-    public void setStatus(String status) {
-        this.status = status;
-    }
+	public String getCpf() {
+		return cpf;
+	}
 
-    public String getTelefone() {
-        return telefone;
-    }
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 
-    public static InstrutorVo converterParaVo(Instrutor instrutor){
-        return new InstrutorVo(instrutor);
-    }
+	public String getStatus() {
+		return status;
+	}
 
-    public static List<InstrutorVo> converterListaParaVo(List<Instrutor> instrutores){
-        List<InstrutorVo> instrutoresVos = new ArrayList<>();
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
-        instrutores.forEach(instrutor -> {
-            instrutoresVos.add(new InstrutorVo(instrutor));
-        });
+	public String getTelefone() {
+		return telefone;
+	}
 
-        return instrutoresVos;
-    }
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public static InstrutorVo converterParaVo(Instrutor instrutor) {
+		return new InstrutorVo(instrutor);
+	}
+
+	public static List<InstrutorVo> converterListaParaVo(List<Instrutor> instrutores) {
+		List<InstrutorVo> instrutoresVos = new ArrayList<>();
+
+		instrutores.forEach(instrutor -> {
+			instrutoresVos.add(new InstrutorVo(instrutor));
+		});
+
+		return instrutoresVos;
+	}
+
 }

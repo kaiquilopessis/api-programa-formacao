@@ -1,4 +1,4 @@
-package br.com.sis.rh.apiprogramaformacao.api.vo;
+package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,7 +13,7 @@ public class ParticipanteBuscaDto {
 
 	public ParticipanteBuscaDto(Participante participante) {
 		this.nome = participante.getCandidato().getNome();
-		this.cpf = participante.getCpfParticipante();
+		this.cpf = participante.getCpf();
 		this.programa = participante.getPrograma().getNome();
 	}
 
