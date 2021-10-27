@@ -34,7 +34,7 @@ public class Conclusao {
 	private LocalDate dataAlteracao;
 
 	@OneToOne
-	@JoinColumn(name = "CODIGO_REMUN_PROGRAMA_FK")
+	@JoinColumn(name = "fk_codigo_remun")
 	private RemuneracaoPrograma cargoPrograma;
 
 	@Column(name = "CARGO_EFETIVADO")

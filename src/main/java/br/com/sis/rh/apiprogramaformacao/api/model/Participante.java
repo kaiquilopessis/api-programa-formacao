@@ -18,7 +18,7 @@ public class Participante {
 	@JoinColumn(name = "codigo_candidato_fk", referencedColumnName = "id", nullable = false)
 	private Candidato candidato;
 	@ManyToOne
-	@JoinColumn(name = "codigo_remun_programa_fk", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "fk_codigo_remun", referencedColumnName = "id", nullable = false)
 	private RemuneracaoPrograma remuneracaoPrograma;
 	@Column(name = "nmFaculdade", length = 50)
 	private String faculdade;
@@ -26,7 +26,7 @@ public class Participante {
 	private String curso;
 	@Column(name = "data_fim_graduacao")
 	private LocalDate dataFinal;
-	@Column(name = "status")
+	@Column(name = "status_ativo")
 	private String status;
 	@Column(name = "TCE")
 	private String tce;
