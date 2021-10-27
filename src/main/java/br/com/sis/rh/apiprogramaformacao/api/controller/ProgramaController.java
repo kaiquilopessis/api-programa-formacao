@@ -2,15 +2,13 @@ package br.com.sis.rh.apiprogramaformacao.api.controller;
 
 import java.util.List;
 
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaBuscaVo;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaCompletoVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
 import br.com.sis.rh.apiprogramaformacao.core.service.ProgramaService;
 
 @RestController
@@ -18,43 +16,42 @@ import br.com.sis.rh.apiprogramaformacao.core.service.ProgramaService;
 public class ProgramaController {
 
 	@Autowired
-	private ProgramaRepository programaRepository;
+	private ProgramaService programaService;
 
-	@GetMapping("/programa")
-	public List<Programa> getNome() {
-		return programaRepository.findAll();
-	}
-	
-	@GetMapping("/{id}") 
-	@PostMapping("/{nome}")
-	public Programa savePrograma(@RequestBody Programa programa) {
-		return programaRepository.save(programa);
-	}
-	
-	
-	
-	@GetMapping("/{instrutor}")
-	public List<Programa> getInstrutor(){
-		
-		return null;
+	@GetMapping
+	public ResponseEntity<List<ProgramaBuscaVo>> getPadrao(){
+		List<Programa> listaProgramas = programaService.getProgramaList();
+		List<ProgramaBuscaVo> programaBuscaVos = ProgramaBuscaVo.converterParaLista(listaProgramas);
+
+		return ResponseEntity.ok(programaBuscaVos);
 	}
 
-//	ProgramaForm programa = new ProgramaForm();
-//	List<Programa> programaList = this.programaService.getProgramaList();
-//	programaForm.addObject();
-//	}
-//	
-//	
-//	public List<Programa> listaProgramas(){
-//		Programa programa = new Programa();
-//		return Arrays.asList(programa);
-//	}
+	@GetMapping("/{id}")
+	public ResponseEntity<ProgramaCompletoVo> getProgramaById(@PathVariable long id){
+		Programa programa  = programaService.getProgramaPorId(id);
+		ProgramaCompletoVo programaVo = ProgramaCompletoVo.converter(programa);
 
-//	@GetMapping
-//	public ResponseEntity<List<ProgramaForm>> getPadrao(){
-//		List<Programa> listaProgramas = programaService.todosProgramas();
-//		List<ProgramaForm> listaForm = ProgramaForm.converterListaParaVo(listaProgramas);
-//		return ResponseEntity.ok(listaForm);
-//	}
+		return ResponseEntity.ok(programaVo);
+	}
+
+	@PutMapping("/altera-status/{id}")
+	public ResponseEntity alteraStatus(@PathVariable Long id){
+		try {
+			Programa programa = programaService.getProgramaPorId(id);
+			if (programa.getStatus().equals("EM_ANDAMENTO")) {
+				programa.setStatus("ENCERRADO");
+			}
+			else {
+				programa.setStatus("EM_ANDAMENTO");
+			}
+
+			programaService.salva(programa);
+			return ResponseEntity.ok().build();
+		}
+		catch (Exception e) {
+			return ResponseEntity.badRequest().body(e);
+		}
+	}
+
 
 }

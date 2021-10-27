@@ -2,7 +2,7 @@ package br.com.sis.rh.apiprogramaformacao.api.controller;
 
 import java.util.List;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.ParticipanteBuscaVo;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteBuscaVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

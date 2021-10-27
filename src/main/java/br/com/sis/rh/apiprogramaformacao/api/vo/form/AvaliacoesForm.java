@@ -1,14 +1,9 @@
-package br.com.sis.rh.apiprogramaformacao.api.vo;
-
-import java.util.List;
-import java.util.stream.Collectors;
+package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Avaliacoes;
+import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 
-public class AvaliacoesDto {
-
-	private Long id;
-
+public class AvaliacoesForm {
 	private Float notaTecnica;
 
 	private Float notaComportamental;
@@ -18,23 +13,6 @@ public class AvaliacoesDto {
 	private Float notaLideranca;
 
 	private Float notaNegocios;
-
-	public AvaliacoesDto(Avaliacoes avaliacao) {
-		this.id = avaliacao.getId();
-		this.notaComportamental = avaliacao.getNotaComportamental();
-		this.notaLideranca = avaliacao.getNotaLideranca();
-		this.notaNegocios = avaliacao.getNotaNegocios();
-		this.notaPraticasAgeis = avaliacao.getNotaPraticasAgeis();
-		this.notaTecnica = avaliacao.getNotaTecnica();
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public Float getNotaTecnica() {
 		return notaTecnica;
@@ -75,9 +53,8 @@ public class AvaliacoesDto {
 	public void setNotaNegocios(Float notaNegocios) {
 		this.notaNegocios = notaNegocios;
 	}
-	
-	public static List<AvaliacoesDto> converter (List<Avaliacoes> avaliacoes){
-		return avaliacoes.stream().map(AvaliacoesDto::new).collect(Collectors.toList());
+
+	public Avaliacoes converter (Participante participante) {
+		return new Avaliacoes(participante, notaTecnica, notaComportamental, notaPraticasAgeis, notaLideranca, notaNegocios);
 	}
-	
 }

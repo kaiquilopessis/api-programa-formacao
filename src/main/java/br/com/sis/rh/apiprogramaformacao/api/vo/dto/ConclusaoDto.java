@@ -1,4 +1,4 @@
-package br.com.sis.rh.apiprogramaformacao.api.vo;
+package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
 import br.com.sis.rh.apiprogramaformacao.api.model.RemuneracaoPrograma;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.ConclusaoFinalForm;
 import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoConclusao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusConclusao;
 

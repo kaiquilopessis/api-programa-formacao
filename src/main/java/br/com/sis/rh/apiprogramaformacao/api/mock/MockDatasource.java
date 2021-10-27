@@ -15,25 +15,24 @@ public class MockDatasource extends ArrayList {
     public MockDatasource(){
         MockData inst1 = new MockData();
         inst1.setNome("Kaiqui Lopes");
-        inst1.setCpf("12312312312");
+        inst1.setCpf("12345678910");
         inst1.setEmail("kaiquilopes@sisconsultoria.com.br");
         inst1.setTelefone("14999998888");
         inst1.setCargo("Analista Java Sr");
 
         MockData inst2 = new MockData();
         inst2.setNome("Luciana Neuber");
-        inst2.setCpf("23423423434");
+        inst2.setCpf("90980870732");
         inst2.setEmail("luciananeuber@sisconsultoria.com.br");
         inst2.setTelefone("11999998888");
         inst2.setCargo("Consultora de RH");
 
         MockData inst3 = new MockData();
         inst3.setNome("Nico Steppat");
-        inst3.setCpf("45645645678");
+        inst3.setCpf("56778906375");
         inst3.setEmail("nicosteppat@alura.com.br");
         inst3.setTelefone("21999998888");
         inst3.setCargo("Desenvolvedor");
-
 
         MockData part1 = new MockData();
         part1.setNome("Iago Baldani");

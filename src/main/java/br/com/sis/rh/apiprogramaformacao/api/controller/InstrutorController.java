@@ -1,8 +1,8 @@
 package br.com.sis.rh.apiprogramaformacao.api.controller;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
-import br.com.sis.rh.apiprogramaformacao.api.vo.InstrutorForm;
-import br.com.sis.rh.apiprogramaformacao.api.vo.InstrutorVo;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.InstrutorForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.InstrutorVo;
 import br.com.sis.rh.apiprogramaformacao.core.service.InstrutorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

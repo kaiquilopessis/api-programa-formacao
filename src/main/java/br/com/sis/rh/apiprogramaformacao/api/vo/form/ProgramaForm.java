@@ -1,4 +1,4 @@
-package br.com.sis.rh.apiprogramaformacao.api.vo;
+package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,14 +12,14 @@ public class ProgramaForm {
     private LocalDate termino;
     private String coordenador;
     private String turma;
-    
+
     public ProgramaForm(Programa programa) {
     	this.coordenador = programa.getInstrutor().toString();
     	this.nome = programa.getNome();
     	this.inicio = programa.getDataInicio();
     	this.termino = programa.getDataFim();
     	this.turma = programa.getNomeTurma();
-    	
+
     }
 
     public String getNome() {
@@ -56,17 +56,17 @@ public class ProgramaForm {
     public void setTurma(String turma) {
         this.turma = turma;
     }
-    
+
     public static ProgramaForm converter(Programa programa) {
     	return new ProgramaForm(programa);
     }
-    
+
     public static List<ProgramaForm> converteLista(List<Programa> programas){
-    	List<ProgramaForm> programasForm = new ArrayList<>();    	
+    	List<ProgramaForm> programasForm = new ArrayList<>();
     	programas.forEach(programa ->{
     		programasForm.add(new ProgramaForm(programa));
     	});
-    	
+
     	return programasForm;
     }
 }
