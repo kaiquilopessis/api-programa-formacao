@@ -1,8 +1,8 @@
 package br.com.sis.rh.apiprogramaformacao.api.controller;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
-import br.com.sis.rh.apiprogramaformacao.api.vo.InstrutorForm;
-import br.com.sis.rh.apiprogramaformacao.api.vo.InstrutorVo;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.InstrutorForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.InstrutorVo;
 import br.com.sis.rh.apiprogramaformacao.core.service.InstrutorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -47,15 +47,8 @@ public class InstrutorController {
 	public ResponseEntity<List<Instrutor>> getByStatus(@PathVariable int status) {
 		List<Instrutor> listaInstrutoresPorStatus = instrutorService.buscaPorStatus(status);
 
-    @PostMapping
-    @Transactional
-    public String cadastro(@RequestBody @Valid InstrutorForm form){
-        try {
-            Instrutor instrutor = form.converter();
-            instrutorService.salva(instrutor);
-
-	@CrossOrigin
     @PutMapping("/status/altera/{cpf}")
+	@Transactional
     public ResponseEntity alteraStatus(@PathVariable String cpf){
     	try {
 	    	Instrutor instrutor = instrutorService.buscaPorCpf(cpf);
@@ -72,7 +65,6 @@ public class InstrutorController {
     	}
     }
 
-	@CrossOrigin
 	@PostMapping
 	@Transactional
 	public String cadastro(@RequestBody @Valid InstrutorForm form) {

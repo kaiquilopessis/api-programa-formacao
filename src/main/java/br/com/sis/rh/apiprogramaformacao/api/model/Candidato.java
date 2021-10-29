@@ -28,7 +28,7 @@ public class Candidato {
 	@Column(name = "nota_disc", length = 15, nullable = false)
 	private String notaDisc;
 	@Column(name = "status", nullable = false)
-	private long status;
+	private String status;
 	@Column(name = "observacao", length = 8000)
 	private String observacao;
 	@Column(name = "DISC")
@@ -78,10 +78,10 @@ public class Candidato {
 		this.notaDisc = notaDisc;
 	}
 
-	public long getStatus() {
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(long status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 

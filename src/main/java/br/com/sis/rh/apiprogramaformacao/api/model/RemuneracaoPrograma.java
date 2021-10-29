@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TB_REMUNERACAO_PROGRAMA")
+@Table(name="TB_REMUNERACAO")
 public class RemuneracaoPrograma {
 
 	@Id
@@ -25,13 +25,14 @@ public class RemuneracaoPrograma {
 	private BigDecimal horaExtra;
 	@Column(name = "beneficio_legislacao")
 	private BigDecimal beneficioLegislacao;
+	
 	@Column(name = "remun_exporadica")
 	private BigDecimal remunExporadica;
+	
 	@Column(name = "remun_extra")
 	private BigDecimal remunExtra;
+	
 	private BigDecimal alura;
-	@Column(name = "val_hora_instrutor")
-	private BigDecimal valorHoraInstrutor;
 
 	public long getId() {
 		return id;
@@ -103,10 +104,6 @@ public class RemuneracaoPrograma {
 		this.alura = alura;
 	}
 
-	public BigDecimal getValorHoraInstrutor() {
-		return valorHoraInstrutor;
-	}
-	public void setValorHoraInstrutor(BigDecimal valorHoraInstrutor) {
-		this.valorHoraInstrutor = valorHoraInstrutor;
-	}
+	
+	
 }

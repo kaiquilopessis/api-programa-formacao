@@ -1,22 +1,30 @@
-package br.com.sis.rh.apiprogramaformacao.api.vo;
-
-import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
+package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.sis.rh.apiprogramaformacao.api.mock.MockData;
+import br.com.sis.rh.apiprogramaformacao.api.mock.MockDatasource;
+import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
 
 public class InstrutorVo {
     private String cpf;
     private String status;
     private String telefone;
-    private String nome =  "Leticia";
-    private String email =  "leticiaangulo.sisconsultoria@.com.br";
+    private String nome;
+    private String email;
+    private MockDatasource mockDatasource = new MockDatasource();
 
     public InstrutorVo(Instrutor instrutor) {
         this.cpf = instrutor.getCpfInstrutor();
         this.status = instrutor.getStatus();
         this.telefone = instrutor.getTelefone();
-        this.nome = "Instrutor Teste";
+        
+        
+        MockData inst = mockDatasource.getInstrutorPorCpf(instrutor.getCpfInstrutor());
+        this.nome = inst.getNome();
+        this.email = inst.getEmail();
+ 
     }
 
     public String getCpf() {
@@ -61,19 +69,7 @@ public class InstrutorVo {
         return instrutoresVos;
     }
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
 	public String getEmail() {
 		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 }
