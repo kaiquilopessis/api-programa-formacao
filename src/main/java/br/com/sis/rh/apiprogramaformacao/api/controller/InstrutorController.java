@@ -36,7 +36,7 @@ public class InstrutorController {
     }
 
     @GetMapping("/status/{status}")
-    public ResponseEntity<List<Instrutor>> getByStatus(@PathVariable int status){
+    public ResponseEntity<List<Instrutor>> getByStatus(@PathVariable String status){
         List<Instrutor> listaInstrutoresPorStatus = instrutorService.buscaPorStatus(status);
 
         return ResponseEntity.ok(listaInstrutoresPorStatus);
@@ -47,7 +47,7 @@ public class InstrutorController {
     public ResponseEntity alteraStatus(@PathVariable String cpf){
     	try {
 	    	Instrutor instrutor = instrutorService.buscaPorCpf(cpf);
-	    	System.out.println(instrutor.getStatus());
+
 	    	if (instrutor.getStatus().equals("ATIVO")) {
 	    		instrutor.setStatus("INATIVO");
 	    	}else {
