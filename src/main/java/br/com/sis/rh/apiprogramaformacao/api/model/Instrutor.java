@@ -14,10 +14,10 @@ public class Instrutor {
 	@Id
 	@Column(name = "cpf_instrutor")
 	private String cpfInstrutor;
-	@Column(name = "nome_instrutor", length = 50, nullable = false)
-	private String nome;
 	@Column(name = "telefone", length = 255, nullable = false)
 	private String telefone;
 	@Column(name = "status")
 	private long status;
+	@Column(name = "nome_instrutor", length = 50, nullable = false)
+	private String nomeInstrutor;
 }

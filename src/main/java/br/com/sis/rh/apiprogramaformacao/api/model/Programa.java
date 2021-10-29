@@ -42,5 +42,4 @@ public class Programa {
 	private BigDecimal valorHoraInstrutor;
 	@Column(name = "qtd_hora_instrutor")
 	private BigDecimal qtd_hr_instrutor;
-
 }

@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.math.BigDecimal;
 import java.util.List;
 
-public interface ParticipanteRepository extends JpaRepository<Participante, Long> {
+public interface ParticipanteRepository extends JpaRepository<FiltragemFolhaDto, Long> {
 
     @Query(value = "SELECT ca.nome AS nome_participante, pr.nome AS nome_programa, pr.nome_turma AS nome_turma, re.bolsa_aux " +
             "FROM TB_PARTICIPANTE AS pa INNER JOIN TB_PROGRAMA AS pr ON pr.id = pa.codigo_programa_fk " +

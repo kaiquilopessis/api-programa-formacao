@@ -27,6 +27,7 @@ public class Remuneracao {
 	private BigDecimal bolsa;
 	@Column(name = "beneficios")
 	private BigDecimal beneficio;
+	@Column(name = "convenio")
 	private BigDecimal convenio;
 	@Column(name = "hr_extra")
 	private BigDecimal horaExtra;
@@ -36,5 +37,6 @@ public class Remuneracao {
 	private BigDecimal remunExporadica;
 	@Column(name = "remun_extra")
 	private BigDecimal remunExtra;
+	@Column(name = "alura")
 	private BigDecimal alura;
 }

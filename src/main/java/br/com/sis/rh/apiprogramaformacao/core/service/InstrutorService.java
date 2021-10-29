@@ -1,6 +1,5 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemFolhaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemInstrutorDto;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
