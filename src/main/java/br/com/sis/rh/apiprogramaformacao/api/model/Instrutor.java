@@ -12,11 +12,14 @@ public class Instrutor {
 	@Column( length = 255, nullable = false)
 	private String telefone;
 	private String status;
+	@Column(name = "nome_instrutor")
+	private String nome;
 
-	public Instrutor(String cpfInstrutor, String telefone, String status) {
+	public Instrutor(String cpfInstrutor, String telefone, String status, String nome) {
 		this.cpfInstrutor = cpfInstrutor;
 		this.telefone = telefone;
 		this.status = status;
+		this.nome = nome;
 	}
 
 	public Instrutor(){}
@@ -40,5 +43,12 @@ public class Instrutor {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 }

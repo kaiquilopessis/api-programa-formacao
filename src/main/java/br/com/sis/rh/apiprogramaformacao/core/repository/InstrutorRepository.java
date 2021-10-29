@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface InstrutorRepository extends JpaRepository<Instrutor, String> {
-    List<Instrutor> findByStatus(int status);
+    List<Instrutor> findByStatus(String status);
 }

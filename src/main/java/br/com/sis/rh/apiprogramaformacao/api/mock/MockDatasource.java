@@ -11,30 +11,30 @@ public class MockDatasource extends ArrayList {
 
     public MockDatasource(){
         MockData inst1 = new MockData();
-        inst1.setNome("Kaiqui Lopes");
+        inst1.setNome("Fernando Lima");
         inst1.setCpf("12345678910");
-        inst1.setEmail("kaiquilopes@sisconsultoria.com.br");
+        inst1.setEmail("fernandolima@sisconsultoria.com.br");
         inst1.setTelefone("14999998888");
         inst1.setCargo("Analista Java Sr");
 
         MockData inst2 = new MockData();
-        inst2.setNome("Luciana Neuber");
+        inst2.setNome("Vinicius Azevedo");
         inst2.setCpf("90980870732");
-        inst2.setEmail("luciananeuber@sisconsultoria.com.br");
+        inst2.setEmail("viniciusazevedo@sisconsultoria.com.br");
         inst2.setTelefone("11999998888");
-        inst2.setCargo("Consultora de RH");
+        inst2.setCargo("Consultor de RH");
 
         MockData inst3 = new MockData();
-        inst3.setNome("Nico Steppat");
+        inst3.setNome("Camila Souza");
         inst3.setCpf("56778906375");
-        inst3.setEmail("nicosteppat@alura.com.br");
+        inst3.setEmail("camilasouza@sisconsultoria.com.br");
         inst3.setTelefone("21999998888");
         inst3.setCargo("Desenvolvedor");
         
         MockData inst4 = new MockData();
-        inst4.setNome("Rodrigo Ferreira");
+        inst4.setNome("Kaiqui Lopes");
         inst4.setCpf("10987654321");
-        inst4.setEmail("rodrigo@alura.com.br");
+        inst4.setEmail("kaiquilopes@alura.com.br");
         inst4.setTelefone("119999870989");
         inst4.setCargo("Desenvolvedor");
         

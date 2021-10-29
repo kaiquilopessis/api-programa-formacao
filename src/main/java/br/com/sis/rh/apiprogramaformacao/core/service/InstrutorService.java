@@ -23,7 +23,7 @@ public class InstrutorService {
         return optionalInstrutor.get();
     }
 
-    public List<Instrutor> buscaPorStatus(int status){
+    public List<Instrutor> buscaPorStatus(String status){
         List<Instrutor> listInstrutor = repository.findByStatus(status);
 
         return listInstrutor;

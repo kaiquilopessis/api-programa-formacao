@@ -31,28 +31,25 @@ public class InstrutorController {
     public ResponseEntity<InstrutorVo> getByCpf(@PathVariable String cpf){
         Instrutor instrutor = instrutorService.buscaPorCpf(cpf);
         InstrutorVo instrutorVo = InstrutorVo.converterParaVo(instrutor);
+        
+        return ResponseEntity.ok(instrutorVo);
+    }
 
-	@CrossOrigin
-	@GetMapping("/{cpf}")
-	public ResponseEntity<InstrutorVo> getByCpf(@PathVariable String cpf) {
-		Instrutor instrutor = instrutorService.buscaPorCpf(cpf);
-		InstrutorVo instrutorVo = InstrutorVo.converterParaVo(instrutor);
+
 
     @GetMapping("/status/{status}")
-    public ResponseEntity<List<Instrutor>> getByStatus(@PathVariable int status){
+    public ResponseEntity<List<Instrutor>> getByStatus(@PathVariable String status){
         List<Instrutor> listaInstrutoresPorStatus = instrutorService.buscaPorStatus(status);
+        
+        return ResponseEntity.ok(listaInstrutoresPorStatus);
+    }
 
-	@CrossOrigin
-	@GetMapping("/status/{status}")
-	public ResponseEntity<List<Instrutor>> getByStatus(@PathVariable int status) {
-		List<Instrutor> listaInstrutoresPorStatus = instrutorService.buscaPorStatus(status);
 
     @PutMapping("/status/altera/{cpf}")
 	@Transactional
     public ResponseEntity alteraStatus(@PathVariable String cpf){
     	try {
 	    	Instrutor instrutor = instrutorService.buscaPorCpf(cpf);
-	    	System.out.println(instrutor.getStatus());
 	    	if (instrutor.getStatus().equals("ATIVO")) {
 	    		instrutor.setStatus("INATIVO");
 	    	}else {
@@ -67,14 +64,14 @@ public class InstrutorController {
 
 	@PostMapping
 	@Transactional
-	public String cadastro(@RequestBody @Valid InstrutorForm form) {
+	public ResponseEntity cadastro(@RequestBody @Valid InstrutorForm form) {
 		try {
 			Instrutor instrutor = form.converter();
 			instrutorService.salva(instrutor);
 
-			return "SUCESSO";
+			return ResponseEntity.ok().build();
 		} catch (Exception e) {
-			return "ERRO: " + e;
+			return ResponseEntity.badRequest().body(e);
 		}
 	}
 
