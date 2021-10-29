@@ -38,13 +38,12 @@ public class InstrutorController {
     @GetMapping("/status/{status}")
     public ResponseEntity<List<Instrutor>> getByStatus(@PathVariable int status){
         List<Instrutor> listaInstrutoresPorStatus = instrutorService.buscaPorStatus(status);
-        
+
         return ResponseEntity.ok(listaInstrutoresPorStatus);
     }
-	
-  
-	@CrossOrigin
+
     @PutMapping("/status/altera/{cpf}")
+	@Transactional
     public ResponseEntity alteraStatus(@PathVariable String cpf){
     	try {
 	    	Instrutor instrutor = instrutorService.buscaPorCpf(cpf);
@@ -61,7 +60,6 @@ public class InstrutorController {
     	}
     }
 
-	@CrossOrigin
 	@PostMapping
 	@Transactional
 	public String cadastro(@RequestBody @Valid InstrutorForm form) {
