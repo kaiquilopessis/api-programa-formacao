@@ -15,13 +15,17 @@ public class InstrutorForm {
     @NotNull @NotEmpty
     private String telefone;
 
-    @NotNull
+    @NotNull @NotEmpty
     private String status;
+    
+    @NotNull @NotEmpty
+    private String nome;
 
-    public InstrutorForm(String cpf, String telefone, String status) {
+    public InstrutorForm(String cpf, String telefone, String status, String nome) {
         this.cpf = cpf;
         this.telefone = telefone;
         this.status = status;
+        this.nome = nome;
     }
 
     public InstrutorForm() {}
@@ -46,9 +50,17 @@ public class InstrutorForm {
     public void setStatus(String status) {
         this.status = status;
     }
+    
+    public String getNome() {
+		return nome;
+	}
+    
+    public void setNome(String nome) {
+		this.nome = nome;
+	}
 
     public Instrutor converter(){
-        return new Instrutor(cpf, telefone,status);
+        return new Instrutor(cpf, telefone,status,nome);
     }
 
 }
