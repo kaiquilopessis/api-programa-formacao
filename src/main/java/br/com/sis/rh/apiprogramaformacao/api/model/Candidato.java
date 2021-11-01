@@ -19,7 +19,8 @@ public class Candidato {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name = "id")
+	private Integer id;
 	@Column(name = "nome", nullable = false, length = 50)
 	private String nome;
 	@Column(name = "telefone", nullable = false, length = 255)

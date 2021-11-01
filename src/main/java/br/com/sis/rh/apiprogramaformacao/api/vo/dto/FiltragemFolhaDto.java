@@ -15,10 +15,9 @@ import java.math.BigDecimal;
 public class FiltragemFolhaDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     @Column(name = "nome_participante")
     private String nomeParticipante;
-    @Column(name = "nome_formacao")
+    @Column(name = "nome_programa")
     private String nomeFormacao;
     @Column(name = "nome_turma")
     private String nomeTurma;

@@ -20,7 +20,8 @@ public class Remuneracao {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name = "id")
+	private Integer id;
 	@Column(name = "cargo", length = 30)
 	private String cargo;
 	@Column(name = "bolsa_aux")

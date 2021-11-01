@@ -26,7 +26,4 @@ public class FolhaController {
         return participanteService.listagemFiltroFolha(form.getParametroNomeParticipante(), form.getParametroNomeFormacao(), form.getParametroNomeTurma(), form.getParametroBolsaAux());
     }
 
-
-
-
 }

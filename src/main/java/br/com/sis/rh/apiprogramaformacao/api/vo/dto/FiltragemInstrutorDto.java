@@ -15,8 +15,6 @@ import java.math.BigDecimal;
 public class FiltragemInstrutorDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cpf_instrutor")
-    private String cpf_instrutor;
     @Column(name = "nome_instrutor")
     private String nomeInstrutor;
     @Column(name = "nome_programa")
@@ -25,7 +23,4 @@ public class FiltragemInstrutorDto {
     private String nomeTurma;
     @Column(name = "vlr_hora_instrutor")
     private BigDecimal ValorHora;
-
-
-    // Retirar o cpf do get pelo front
 }

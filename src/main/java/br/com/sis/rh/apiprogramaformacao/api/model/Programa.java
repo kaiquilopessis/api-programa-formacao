@@ -17,7 +17,8 @@ public class Programa {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name = "id")
+	private Integer id;
 	@OneToOne
 	@JoinColumn(name = "cpf_instrutor", referencedColumnName = "cpf_instrutor", nullable = false)
 	private Instrutor instrutor;
