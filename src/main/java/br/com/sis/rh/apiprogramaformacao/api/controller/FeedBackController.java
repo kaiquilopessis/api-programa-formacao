@@ -18,7 +18,7 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.form.FeedBackForm;
 import br.com.sis.rh.apiprogramaformacao.core.service.FeedBackService;
 
 @RestController
-@RequestMapping("/feedback")
+@RequestMapping("/api/feedback")
 public class FeedBackController {
 
 	@Autowired

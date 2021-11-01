@@ -11,7 +11,7 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteBuscaNomeDto;
 import br.com.sis.rh.apiprogramaformacao.core.service.GerencialService;
 
 @RestController
-@RequestMapping("/gerencial")
+@RequestMapping("/api/gerencial")
 public class GerencialController {
 
 	@Autowired

@@ -13,7 +13,7 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteBuscaDto;
 import br.com.sis.rh.apiprogramaformacao.core.service.BuscaService;
 
 @RestController
-@RequestMapping("/busca")
+@RequestMapping("/api/busca")
 public class BuscaController {
 
 	@Autowired
