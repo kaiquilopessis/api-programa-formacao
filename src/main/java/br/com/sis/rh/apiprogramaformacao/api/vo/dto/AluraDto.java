@@ -7,17 +7,17 @@ import java.util.stream.Collectors;
 import br.com.sis.rh.apiprogramaformacao.api.model.Alura;
 
 public class AluraDto {
-	
-	
+
+
 	private Long codigoAlura;
 	private Integer qtdHoras;
 	private int mesAvaliado;
 	private int semanaAvaliada;
 	private LocalDate dataRegistro;
 	private int hrMinSemana;
-	
-	
-	
+
+
+
 	public AluraDto(Alura alura) {
 		this.codigoAlura = alura.getCodigoAlura();
 		this.qtdHoras = alura.getQtdHoras();
@@ -63,7 +63,7 @@ public class AluraDto {
 	public void setHrMinSemana(int hrMinSemana) {
 		this.hrMinSemana = hrMinSemana;
 	}
-	
+
 	public static List<AluraDto> converter(List<Alura> alura) {
 		return alura.stream().map(AluraDto::new).collect(Collectors.toList());
 	}

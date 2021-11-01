@@ -7,17 +7,17 @@ import java.util.stream.Collectors;
 import br.com.sis.rh.apiprogramaformacao.api.model.FeedBack;
 
 public class FeedBackDto {
-	
+
 	private Long id;
 	private LocalDate data;
 	private String anotacao;
-	
+
 	public FeedBackDto(FeedBack feedBack) {
 		this.id = feedBack.getId();
 		this.data = feedBack.getData();
 		this.anotacao = feedBack.getAnotacoes();
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -36,7 +36,7 @@ public class FeedBackDto {
 	public void setAnotacao(String anotacao) {
 		this.anotacao = anotacao;
 	}
-	
+
 	public static List<FeedBackDto> converter(List<FeedBack> feedBacks){
 		return feedBacks.stream().map(FeedBackDto::new).collect(Collectors.toList());
 	}

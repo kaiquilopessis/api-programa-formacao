@@ -27,7 +27,7 @@ public class AluraService {
 	private ParticipanteRepository participanteRepository;
 
 	public List<AluraDto> listaRegistros(String cpf) {
-		List<Alura> alura = aluraRepository.findAllByParticipanteCpfParticipante(cpf);
+		List<Alura> alura = aluraRepository.findAllByParticipanteCpf(cpf);
 		return AluraDto.converter(alura);
 	}
 
@@ -43,7 +43,7 @@ public class AluraService {
 		return ResponseEntity.notFound().build();
 	}
 
-	
+
 	public ResponseEntity<AluraDto> deletar(Long id) {
 		Optional<Alura> alura = aluraRepository.findById(id);
 		if (alura.isPresent()) {

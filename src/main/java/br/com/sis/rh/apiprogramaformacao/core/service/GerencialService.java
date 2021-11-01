@@ -12,10 +12,10 @@ import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 
 @Service
 public class GerencialService {
-	
+
 	@Autowired
 	private ParticipanteRepository participanteRepository;
-	
+
 	public ResponseEntity<ParticipanteBuscaNomeDto> buscaPorId (String cpf){
 		Optional<Participante> participante = participanteRepository.findById(cpf);
 		if(participante.isPresent()) {

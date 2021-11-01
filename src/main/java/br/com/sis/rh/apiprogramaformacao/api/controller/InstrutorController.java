@@ -16,8 +16,8 @@ import java.util.List;
 @RequestMapping("/api/instrutor")
 public class InstrutorController {
 
-    @Autowired
-    private InstrutorService instrutorService;
+	@Autowired
+	private InstrutorService instrutorService;
 
     @GetMapping
     public ResponseEntity<List<InstrutorVo>> getPadrao(){
@@ -31,31 +31,48 @@ public class InstrutorController {
     public ResponseEntity<InstrutorVo> getByCpf(@PathVariable String cpf){
         Instrutor instrutor = instrutorService.buscaPorCpf(cpf);
         InstrutorVo instrutorVo = InstrutorVo.converterParaVo(instrutor);
-
+        
         return ResponseEntity.ok(instrutorVo);
     }
 
-    @GetMapping("/status/{status}")
-    public ResponseEntity<List<Instrutor>> getByStatus(@PathVariable int status){
-        List<Instrutor> listaInstrutoresPorStatus = instrutorService.buscaPorStatus(status);
 
+
+    @GetMapping("/status/{status}")
+    public ResponseEntity<List<Instrutor>> getByStatus(@PathVariable String status){
+        List<Instrutor> listaInstrutoresPorStatus = instrutorService.buscaPorStatus(status);
+        
         return ResponseEntity.ok(listaInstrutoresPorStatus);
     }
 
-    @PostMapping
-    @Transactional
-    public String cadastro(@RequestBody @Valid InstrutorForm form){
-        try {
-            Instrutor instrutor = form.converter();
-            instrutorService.salva(instrutor);
 
-            return "SUCESSO";
-        }
-        catch (Exception e) {
-            return "ERRO: " + e;
-        }
+    @PutMapping("/status/altera/{cpf}")
+	@Transactional
+    public ResponseEntity alteraStatus(@PathVariable String cpf){
+    	try {
+	    	Instrutor instrutor = instrutorService.buscaPorCpf(cpf);
+	    	if (instrutor.getStatus().equals("ATIVO")) {
+	    		instrutor.setStatus("INATIVO");
+	    	}else {
+	    		instrutor.setStatus("ATIVO");
+	    	}
+	    	instrutorService.salva(instrutor);
+	    	return ResponseEntity.ok().build();
+    	} catch (Exception e) {
+    		return ResponseEntity.badRequest().build();
+    	}
     }
 
+	@PostMapping
+	@Transactional
+	public ResponseEntity cadastro(@RequestBody @Valid InstrutorForm form) {
+		try {
+			Instrutor instrutor = form.converter();
+			instrutorService.salva(instrutor);
 
+			return ResponseEntity.ok().build();
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().body(e);
+		}
+	}
 
 }

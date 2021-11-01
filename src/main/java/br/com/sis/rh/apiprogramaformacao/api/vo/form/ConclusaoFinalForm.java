@@ -15,8 +15,8 @@ public class ConclusaoFinalForm {
 	private String cargoEfetivado;
 	private byte[] comprovante;
 	private String campoObservacao;
-	
-	
+
+
 	public ResultadoConclusao getResultado() {
 		return resultado;
 	}
@@ -47,12 +47,12 @@ public class ConclusaoFinalForm {
 	public void setCampoObservacao(String campoObservacao) {
 		this.campoObservacao = campoObservacao;
 	}
-		
+
 	public Conclusao converter (Participante participante) {
 		LocalDate data = LocalDate.parse(this.dataAlteracao, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		return new Conclusao(participante, data, cargoEfetivado, comprovante, resultado, 
+		return new Conclusao(participante, data, cargoEfetivado, comprovante, resultado,
 				StatusConclusao.FINAL, campoObservacao);
 	}
-	
-	
+
+
 }

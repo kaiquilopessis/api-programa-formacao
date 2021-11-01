@@ -75,9 +75,9 @@ public class AvaliacoesDto {
 	public void setNotaNegocios(Float notaNegocios) {
 		this.notaNegocios = notaNegocios;
 	}
-	
+
 	public static List<AvaliacoesDto> converter (List<Avaliacoes> avaliacoes){
 		return avaliacoes.stream().map(AvaliacoesDto::new).collect(Collectors.toList());
 	}
-	
+
 }

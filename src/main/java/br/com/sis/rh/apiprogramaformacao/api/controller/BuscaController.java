@@ -15,21 +15,21 @@ import br.com.sis.rh.apiprogramaformacao.core.service.BuscaService;
 @RestController
 @RequestMapping("/busca")
 public class BuscaController {
-	
+
 	@Autowired
 	private BuscaService buscaService;
-	
+
 	//lista participantes na tabela - busca participantes
 	@GetMapping("participantes/{statusPart}")
 	public List<ParticipanteBuscaDto> listarPart(@PathVariable String statusPart) {
 		return buscaService.buscaPorStatus(statusPart);
 	}
-	
-	
+
+
 	//lista formação no select - busca participantes
 	@GetMapping("participantes/programa/{statusProg}")
 	public List<FormacaoBuscaDto> listarForm(@PathVariable String statusProg){
 		return buscaService.buscaPorStatusForm(statusProg);
 	}
-	
+
 }

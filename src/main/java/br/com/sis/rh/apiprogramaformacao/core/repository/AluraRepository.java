@@ -8,9 +8,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import br.com.sis.rh.apiprogramaformacao.api.model.Alura;
 
 public interface AluraRepository extends JpaRepository<Alura, Long> {
-	
-	List<Alura> findAllByParticipanteCpfParticipante(String cpf);
-	
+
+	List<Alura> findAllByParticipanteCpf(String cpf);
+
 	Optional <Alura> findByParticipante(String cpf);
 
 }

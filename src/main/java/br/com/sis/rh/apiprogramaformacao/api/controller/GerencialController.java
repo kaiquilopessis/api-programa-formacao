@@ -13,10 +13,10 @@ import br.com.sis.rh.apiprogramaformacao.core.service.GerencialService;
 @RestController
 @RequestMapping("/gerencial")
 public class GerencialController {
-	
+
 	@Autowired
 	private GerencialService gerencialService;
-	
+
 	@GetMapping("/{cpf}")
 	public ResponseEntity<ParticipanteBuscaNomeDto> mostraNome(@PathVariable String cpf){
 		return gerencialService.buscaPorId(cpf);

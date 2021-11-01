@@ -13,7 +13,7 @@ public class AvaliacoesForm {
 	private Float notaLideranca;
 
 	private Float notaNegocios;
-	
+
 	public Float getNotaTecnica() {
 		return notaTecnica;
 	}
@@ -53,8 +53,8 @@ public class AvaliacoesForm {
 	public void setNotaNegocios(Float notaNegocios) {
 		this.notaNegocios = notaNegocios;
 	}
-	
+
 	public Avaliacoes converter (Participante participante) {
-		return new Avaliacoes(participante, notaTecnica, notaComportamental, notaPraticasAgeis, notaLideranca, notaNegocios);  
+		return new Avaliacoes(participante, notaTecnica, notaComportamental, notaPraticasAgeis, notaLideranca, notaNegocios);
 	}
 }
