@@ -19,12 +19,10 @@ public class InstrutorVo {
         this.cpf = instrutor.getCpfInstrutor();
         this.status = instrutor.getStatus();
         this.telefone = instrutor.getTelefone();
-        
-        
+        this.nome = instrutor.getNome();
+
         MockData inst = mockDatasource.getInstrutorPorCpf(instrutor.getCpfInstrutor());
-        this.nome = inst.getNome();
         this.email = inst.getEmail();
- 
     }
 
     public String getCpf() {

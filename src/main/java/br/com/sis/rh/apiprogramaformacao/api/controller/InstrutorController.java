@@ -31,19 +31,17 @@ public class InstrutorController {
     public ResponseEntity<InstrutorVo> getByCpf(@PathVariable String cpf){
         Instrutor instrutor = instrutorService.buscaPorCpf(cpf);
         InstrutorVo instrutorVo = InstrutorVo.converterParaVo(instrutor);
-        
+
         return ResponseEntity.ok(instrutorVo);
     }
 
-
-
     @GetMapping("/status/{status}")
-    public ResponseEntity<List<Instrutor>> getByStatus(@PathVariable String status){
+    public ResponseEntity<List<InstrutorVo>> getByStatus(@PathVariable String status){
         List<Instrutor> listaInstrutoresPorStatus = instrutorService.buscaPorStatus(status);
-        
-        return ResponseEntity.ok(listaInstrutoresPorStatus);
-    }
+		List<InstrutorVo> listaInstrutoresPorStatusVo = InstrutorVo.converterListaParaVo(listaInstrutoresPorStatus);
 
+        return ResponseEntity.ok(listaInstrutoresPorStatusVo);
+    }
 
     @PutMapping("/status/altera/{cpf}")
 	@Transactional
