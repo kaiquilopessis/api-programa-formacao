@@ -13,6 +13,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
@@ -54,7 +56,7 @@ public class Participante {
 	public Participante() {}
 	
 	public Participante(String cpf, String nomeFaculdade, String nomeCurso, LocalDate dataFimGraduacao,
-			List<Alura> alura, StatusEfetivo status_efetivado, StatusAtivo status_ativo) {
+			List<Alura> alura, StatusEfetivo status_efetivado, StatusAtivo status_ativo, Remuneracao remuneracao) {
 		this.cpf = cpf;
 		this.nomeFaculdade = nomeFaculdade;
 		this.nomeCurso = nomeCurso;
@@ -62,6 +64,7 @@ public class Participante {
 		this.alura = alura;
 		this.status_efetivado = status_efetivado;
 		this.status_ativo = status_ativo;
+		this.remuneracao = remuneracao;
 	}
 
 	public String getCpf() {
@@ -118,6 +121,14 @@ public class Participante {
 	
 	public void setStatus_efetivado(StatusEfetivo status_efetivado) {
 		this.status_efetivado = status_efetivado;
+	}
+	
+	public Remuneracao getRemuneracao() {
+		return remuneracao;
+	}
+
+	public void setRemuneracao(Remuneracao remuneracao) {
+		this.remuneracao = remuneracao;
 	}
 
 	@Override
