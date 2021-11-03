@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import br.com.sis.rh.apiprogramaformacao.core.model.Alura;
+import br.com.sis.rh.apiprogramaformacao.api.model.Alura;
 
 public interface AluraRepository extends JpaRepository<Alura, Long> {
 	

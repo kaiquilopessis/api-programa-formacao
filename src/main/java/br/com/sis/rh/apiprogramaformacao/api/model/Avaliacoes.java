@@ -1,4 +1,4 @@
-package br.com.sis.rh.apiprogramaformacao.core.model;
+package br.com.sis.rh.apiprogramaformacao.api.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
