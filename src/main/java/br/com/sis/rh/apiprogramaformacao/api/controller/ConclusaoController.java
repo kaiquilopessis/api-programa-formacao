@@ -34,8 +34,8 @@ public class ConclusaoController {
 		return filtragem;
 	}
 
-	public Integer listaParticipantesEfetivados(@PathVariable String formacao, @PathVariable String turma) {
-		return participanteRepository.listaParticipantesEfetivados();
-	}
+//	public Integer listaParticipantesEfetivados(@PathVariable String formacao, @PathVariable String turma) {
+//		return participanteRepository.listaParticipantesEfetivados();
+//	}
 
 }

@@ -1,7 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
 import javax.persistence.Entity;
-<<<<<<< HEAD
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
@@ -17,7 +16,6 @@ public class Programa {
 	@Id
 	private Long id;
 	private String nome;
-<<<<<<< HEAD
 
 	@Enumerated(EnumType.STRING)
 	private StatusFormacao status;
@@ -31,7 +29,5 @@ public class Programa {
 		this.status = status;
 	}
 
-=======
 	private String cpf_Instrutor;
->>>>>>> GabrielTanaka
 }

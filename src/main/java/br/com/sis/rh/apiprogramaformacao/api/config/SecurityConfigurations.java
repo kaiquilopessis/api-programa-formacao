@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @EnableWebSecurity
 @Configuration
-<<<<<<< HEAD
 public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	
 	// Método para liberar acesso para a URL /relatorios e /relatorios/*
