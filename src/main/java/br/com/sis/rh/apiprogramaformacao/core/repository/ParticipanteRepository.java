@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-<<<<<<< HEAD
+import org.springframework.data.repository.query.Param;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivo;
 
-public interface ParticipanteRepository extends JpaRepository<Participante, Long> {
+public interface ParticipanteRepository extends JpaRepository<Participante, String> {
 	
 	// Método que devolve uma lista somente com os participantes com status EFETIVADO
 	@Query(value = "SELECT p FROM TB_PARTICIPANTE p WHERE status_efetivado = ?1")
@@ -28,13 +28,10 @@ public interface ParticipanteRepository extends JpaRepository<Participante, Long
 	@Query(value = "SELECT COUNT(p) FROM TB_PARTICIPANTE p WHERE status_efetivado = 'EFETIVADO'")
 	Integer totalEfetivados();
 
-	@Query(value = "SELECT COUNT(*) FROM TB_PROGRAMA WHERE nome = :parametro", nativeQuery = true)
-	Integer listaParticipantesJava(@Param("parametro") String parametro);
+	@Query(value = "select count(*) from TB_PARTICIPANTE p JOIN TB_PROGRAMA prog ON p.codigo_programa_fk = prog.id where p.status_ativo = 'ATIVO' AND prog.nome = ?1 and prog.nome_turma = ?2",  nativeQuery = true)
+	Integer listaParticipantesAtivos(String nome, String turma);
 
-	@Query(value = "select count(p) from TB_PARTICIPANTE P JOIN TB_PROGRAMA prog ON p.codigo_programa_fk = prog.id where p.status_ativo = 'ATIVO' AND prog.nome = ?1 and prog.nome_turma = ?2")
-	Integer listaParticipantesAtivos(@Param("p") Integer p);
-
-	@Query(value = "select count(p) from TB_PARTICIPANTE P JOIN TB_PROGRAMA prog ON p.codigo_programa_fk = prog.id where p.status_ativo = 'EFETIVADO' AND prog.nome = ?1 and prog.nome_turma = ?2")
-	Integer listaParticipantesEfetivados();
+	@Query(value = "select count(*) from TB_PARTICIPANTE p JOIN TB_PROGRAMA prog ON p.codigo_programa_fk = prog.id where p.status_ativo = 'EFETIVADO' AND prog.nome = ?1 and prog.nome_turma = ?2", nativeQuery = true)
+	Integer listaParticipantesEfetivados(String nome, String turma);
 	
 }

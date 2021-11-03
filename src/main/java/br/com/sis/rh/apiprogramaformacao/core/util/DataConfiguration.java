@@ -9,12 +9,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class DataConfiguration {
 
-	public LocalDate dataFormatada(String data) {
-		LocalDate dataFormat = LocalDate.parse(data,DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-		return dataFormat;
+	private DateTimeFormatter formatar = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	
+	public String dataFormatada(LocalDate dataFim) {
+		String data = dataFim.format(formatar);
+		return data;
 	}
 	
-//	public Alura converter(Participante participante) {
-//		LocalDate data = LocalDate.parse(this.dataRegistro, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-//		return new Alura(participante, qtdHoras, mesAvaliado, semanaAvaliada, data, hrMinSemana);
 }
