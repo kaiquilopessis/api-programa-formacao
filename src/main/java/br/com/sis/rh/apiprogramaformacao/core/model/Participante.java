@@ -1,7 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.core.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -22,8 +21,10 @@ public class Participante {
 	private String nomeCurso;
 	@Column(name = "data_fim_graduacao")
 	private LocalDate dataFimGraduacao;
-	@OneToMany(mappedBy = "participante.cpf")
+	@OneToMany(fetch = FetchType.LAZY)
 	private List<Alura> alura;
+	@OneToMany(fetch = FetchType.LAZY)
+	private List<Avaliacoes> avaliacoes;
 
 	public Participante() {}
 	

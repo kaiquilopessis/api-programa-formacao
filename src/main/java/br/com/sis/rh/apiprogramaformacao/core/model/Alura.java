@@ -4,14 +4,18 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity(name = "TB_ALURA")
+@Getter
+@Setter
 public class Alura {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +31,7 @@ public class Alura {
 	private LocalDate dataRegistro;
 	@Column(name = "hr_min_semana")
 	private Integer hrMinSemana;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "codigo_participante_fk")
 	private Participante participante;
 	

@@ -1,13 +1,11 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo;
 
-import java.time.LocalDate;
-
 public class RelatorioAluraVo {
 
 	private Integer mediaDeHorasDosParticipantes;
 	private Integer maiorQuantidadeDeHorasDosParticipantes;
 	private Integer menorQuantidadeDeHorasDosParticipantes;
-	private LocalDate dataUltimoRegistro;
+	private String dataUltimoRegistro;
 	private String nomeFuncionarioComMaiorQuantidadeHoras;
 	private String cargoFuncionarioComMaiorQuantidadeHoras;
 	private String nomeFuncionarioComMenorQuantidadeHoras;
@@ -15,8 +13,10 @@ public class RelatorioAluraVo {
 	private String programaDeFormacao;
 	private String turma;
 
+	public RelatorioAluraVo() {}
+	
 	public RelatorioAluraVo(Integer mediaDeHorasDosParticipantes, Integer maiorQuantidadeDeHorasDosParticipantes,
-			Integer menorQuantidadeDeHorasDosParticipantes, LocalDate dataUltimoRegistro,
+			Integer menorQuantidadeDeHorasDosParticipantes, String dataUltimoRegistro,
 			String nomeFuncionarioComMaiorQuantidadeHoras, String cargoFuncionarioComMaiorQuantidadeHoras,
 			String nomeFuncionarioComMenorQuantidadeHoras, String cargoFuncionarioComMenorQuantidadeHoras,
 			String programaDeFormacao, String turma) {
@@ -57,11 +57,11 @@ public class RelatorioAluraVo {
 		this.menorQuantidadeDeHorasDosParticipantes = menorQuantidadeDeHorasDosParticipantes;
 	}
 
-	public LocalDate getDataUltimoRegistro() {
+	public String getDataUltimoRegistro() {
 		return dataUltimoRegistro;
 	}
 
-	public void setDataUltimoRegistro(LocalDate dataUltimoRegistro) {
+	public void setDataUltimoRegistro(String dataUltimoRegistro) {
 		this.dataUltimoRegistro = dataUltimoRegistro;
 	}
 

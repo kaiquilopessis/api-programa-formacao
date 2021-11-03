@@ -10,10 +10,15 @@ import br.com.sis.rh.apiprogramaformacao.core.model.Alura;
 
 public interface AluraRepository extends JpaRepository<Alura, Long> {
 	
-//	@Query(value = "select a.* from TB_ALURA a where id = ?1", nativeQuery = true)
-//	Optional<Alura> buscarPorId(Long id);
-//	
 	@Query(value = "select * from TB_ALURA a "
 			+ "where a.data_registro = (select max(data_registro) from TB_ALURA)",nativeQuery = true)
 	List<Alura> buscarRegistroHoras();
+	
+	@Query(value = "select codigo_participante_fk from TB_ALURA a where a.data_registro = (select max(data_registro) from TB_ALURA) "
+			+ "and a.qtd_horas = (select max(qtd_horas) from TB_ALURA a where a.data_registro = (select max(data_registro) from TB_ALURA))", nativeQuery = true)
+	String buscarCpfMaiorHora();
+	
+	@Query(value = "select codigo_participante_fk from TB_ALURA a where a.data_registro = (select max(data_registro) from TB_ALURA) "
+			+ "and a.qtd_horas = (select min(qtd_horas) from TB_ALURA a where a.data_registro = (select max(data_registro) from TB_ALURA))", nativeQuery = true)
+	String buscarCpfMenorHora();
 }

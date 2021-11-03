@@ -10,6 +10,8 @@ public class RelatorioAvaliacoesVo {
 	private Integer ultimoCicloRegistrado;
 	private String programaDeFormacao;
 	private String turma;
+	
+	public RelatorioAvaliacoesVo() {}
 
 	public RelatorioAvaliacoesVo(Double notaMediaAvaliacaoTecnica, Double notaMediaAvaliacaoComportamental,
 			Double notaMediaAvaliacaoPraticasAgeis, Double notaMediaAvaliacaoLideranca,
