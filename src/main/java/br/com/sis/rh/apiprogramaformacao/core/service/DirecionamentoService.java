@@ -16,7 +16,7 @@ public class DirecionamentoService {
 		else if(escopo.equals("avaliacao")) {
 			System.out.println("avaliação");
 		}
-		else if(escopo.equals("conclusao")) {
+		else if(escopo.equals("Conclusões")) {
 			System.out.println("formatou " + formacao);
 			Integer total = filtroConclusao.listaParticipantesAtivosPorFormacao(formacao);
 			return total;
