@@ -11,16 +11,33 @@ import br.com.sis.rh.apiprogramaformacao.core.enums.StatusFormacao;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Esta classe faz a ligação com a Tabela Programa contida na database programadeformacao
+ */
+
 @Entity(name = "TB_PROGRAMA")
 @Getter
 @Setter
 public class Programa {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Long id;
+	@Column(name = "nome")
 	private String nome;
 	private String nome_turma;
-	private LocalDate data_fim;
+	@Column(name = "data_inicio")
+	private LocalDate dataInicio;
+	@Column(name = "data_fim")
+	private LocalDate dataFim;
+	@Column(name = "vlr_hora_instrutor")
+	private Double valorHora;
+	@Column(name = "qtd_hr_instrutor")
+	private Double QTDHora;
+
+	@OneToMany(fetch = FetchType.LAZY)
+	private List<Participante> participante;
 	
 	@Enumerated(EnumType.STRING)
 	private StatusFormacao status;
@@ -35,5 +52,4 @@ public class Programa {
 		this.nome_turma = nome_turma;
 		this.data_fim = data_fim;
 	}
-
 }

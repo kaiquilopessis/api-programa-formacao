@@ -1,5 +1,9 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
+/**
+ * Esta classe faz a ligação com a Tabela Participantes contida na database programadeformacao
+ */
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -30,6 +34,16 @@ public class Participante {
 	private List<Alura> alura;
 	@OneToMany(fetch = FetchType.LAZY)
 	private List<Avaliacoes> avaliacoes;
+	@ManyToOne
+	@JoinColumn(name = "codigo_programa_fk")
+	private Programa programa;
+
+	@ManyToOne
+	@JoinColumn(name = "FK_codigo_remun")
+	private Remuneracao remuneracao;
+
+	@OneToMany(fetch = FetchType.LAZY)
+	private List<Conclusao> conclusao;
 	
 	@Enumerated(EnumType.STRING)
 	private StatusEfetivo status_efetivado;
@@ -110,4 +124,5 @@ public class Participante {
 	public String toString() {
 		return "CPF: " + this.cpf;
 	}
+
 }
