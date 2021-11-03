@@ -1,17 +1,10 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCandidato;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Getter
-@Setter
-@NoArgsConstructor
 public class CandidatoDto {
     private Long id;
     private String nome;
@@ -37,5 +30,88 @@ public class CandidatoDto {
         this.testeLogico = candidato.getTesteLogico();
         this.observacoes = candidato.getObservacao();
         this.notaDisc = candidato.getNotaDisc();
+    }
+
+    public CandidatoDto() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getFonteRecrutamento() {
+        return fonteRecrutamento;
+    }
+
+    public void setFonteRecrutamento(String fonteRecrutamento) {
+        this.fonteRecrutamento = fonteRecrutamento;
+    }
+
+    public LocalDate getDataAgendamento() {
+        return dataAgendamento;
+    }
+
+    public void setDataAgendamento(LocalDate dataAgendamento) {
+        this.dataAgendamento = dataAgendamento;
+    }
+
+    public String getCurso() {
+        return curso;
+    }
+
+    public void setCurso(String curso) {
+        this.curso = curso;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public BigDecimal getTesteLogico() {
+        return testeLogico;
+    }
+
+    public void setTesteLogico(BigDecimal testeLogico) {
+        this.testeLogico = testeLogico;
+    }
+
+    public String getNotaDisc() {
+        return notaDisc;
+    }
+
+    public void setNotaDisc(String notaDisc) {
+        this.notaDisc = notaDisc;
+    }
+
+    public String getObservacoes() {
+        return observacoes;
+    }
+
+    public void setObservacoes(String observacoes) {
+        this.observacoes = observacoes;
     }
 }

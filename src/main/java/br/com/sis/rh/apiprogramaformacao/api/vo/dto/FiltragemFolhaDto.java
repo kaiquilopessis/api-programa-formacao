@@ -1,0 +1,25 @@
+package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.math.BigDecimal;
+
+@Getter
+@Setter
+@Entity
+@NoArgsConstructor
+public class FiltragemFolhaDto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "nome_participante")
+    private String nomeParticipante;
+    @Column(name = "nome_programa")
+    private String nomeFormacao;
+    @Column(name = "nome_turma")
+    private String nomeTurma;
+    @Column(name = "bolsa_aux")
+    private BigDecimal bolsaAux;
+}

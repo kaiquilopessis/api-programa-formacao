@@ -31,10 +31,10 @@ public class Candidato {
 	private String status;
 	@Column(name = "observacao", length = 8000)
 	private String observacao;
-	@Column(name = "DISC")
-	private String disc;
-	@Column(name = "curriculo")
-	private String curriculo;
+//	@Column(name = "DISC")
+//	private String disc;
+//	@Column(name = "curriculo")
+//	private String curriculo;
 	@Column(name = "curso")
 	private String curso;
 	@Column(name = "fonte_recrutamento")
@@ -48,8 +48,8 @@ public class Candidato {
 		this.notaDisc = notaDisc;
 		this.status = status;
 		this.observacao = observacao;
-		this.disc = disc;
-		this.curriculo = curriculo;
+		//this.disc = disc;
+		//this.curriculo = curriculo;
 		this.curso = curso;
 		this.fonteRecrutamento = fonteRecrutamento;
 	}
@@ -126,17 +126,17 @@ public class Candidato {
 		this.observacao = observacao;
 	}
 
-	public String getDisc() {
-		return disc;
-	}
-	public void setDisc(String disc) {
-		this.disc = disc;
-	}
+//	public String getDisc() {
+//		return disc;
+//	}
+//	public void setDisc(String disc) {
+//		this.disc = disc;
+//	}
 
-	public String getCurriculo() {
-		return curriculo;
-	}
-	public void setCurriculo(String curriculo) {
-		this.curriculo = curriculo;
-	}
+//	public String getCurriculo() {
+//		return curriculo;
+//	}
+//	public void setCurriculo(String curriculo) {
+//		this.curriculo = curriculo;
+//	}
 }

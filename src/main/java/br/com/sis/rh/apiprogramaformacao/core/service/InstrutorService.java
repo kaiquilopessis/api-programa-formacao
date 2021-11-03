@@ -32,4 +32,7 @@ public class InstrutorService {
     public void salva(Instrutor instrutor){
         repository.save(instrutor);
     }
+
+    //Métodos criados por Marco Aguiar
+
 }

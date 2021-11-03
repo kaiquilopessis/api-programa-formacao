@@ -2,8 +2,10 @@ package br.com.sis.rh.apiprogramaformacao.api.controller;
 
 import java.util.List;
 
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaBuscaVo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaCompletoVo;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProgramaCadastroForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,18 @@ public class ProgramaController {
 
 		return ResponseEntity.ok(programaVo);
 	}
+
+	//Métodos Aplicados pelo Gustavo Rosa
+	@GetMapping("/dados/{id}")
+	public ResponseEntity<ProgramaDto> exibirDadosPrograma(@PathVariable Long id) {
+		return ResponseEntity.ok(new ProgramaDto(programaService.buscarPorId(id)));
+	}
+
+	@GetMapping("/busca")
+	public List<ListaProgramaDto> exibirTodasAsLinhasBusca() {
+		return programaService.exibirTodasAsLinhas();
+	}
+	//Fim dos métodos
 
 	@PostMapping
 	@Transactional
