@@ -20,6 +20,10 @@ public class ConclusaoController {
 
 	@GetMapping("/formacao={formacao}/turma={turma}/escopo={escopo}")
 	public RelatorioConclusaoVO listaParticipantesAtivo(@PathVariable String formacao, @PathVariable String turma,
-			@PathVariable String escopo) {	
+			@PathVariable String escopo) {
+		RelatorioConclusaoVO conclusao = conclusaoService.popularCards(formacao, turma);
+		
+		return conclusao;
+	}
 	
 }
