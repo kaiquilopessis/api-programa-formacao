@@ -15,7 +15,8 @@ public class ConclusaoFinalForm {
 	private String cargoEfetivado;
 	private String comprovante;
 	private String campoObservacao;
-
+	
+	
 
 	public ResultadoConclusao getResultado() {
 		return resultado;

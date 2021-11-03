@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ConclusaoDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ConclusaoFinalDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RemuneracaoProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ConclusaoFinalForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ConclusaoProgressivaForm;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RemuneracaoProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.core.service.ConclusaoService;
 
 @RestController
@@ -43,7 +44,7 @@ public class ConclusaoController {
 	}
 
 	@PostMapping("/registrociclofinal/{cpf}")
-	public ResponseEntity<ConclusaoDto> registroFinal(@PathVariable String cpf, @RequestBody ConclusaoFinalForm conclusaoFinalForm,
+	public ResponseEntity<ConclusaoFinalDto> registroFinal(@PathVariable String cpf, @RequestBody ConclusaoFinalForm conclusaoFinalForm,
 			UriComponentsBuilder uriComponentsBuilder) {
 		return conclusaoService.registrarCicloFinal(cpf, conclusaoFinalForm, uriComponentsBuilder);
 	}

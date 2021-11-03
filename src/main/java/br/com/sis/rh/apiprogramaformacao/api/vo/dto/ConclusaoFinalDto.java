@@ -1,17 +1,13 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
-import br.com.sis.rh.apiprogramaformacao.api.model.RemuneracaoPrograma;
-import br.com.sis.rh.apiprogramaformacao.api.vo.form.ConclusaoFinalForm;
 import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoConclusao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusConclusao;
 
-public class ConclusaoDto {
-
+public class ConclusaoFinalDto {
+	
 	private Long id;
 	private ResultadoConclusao resultado;
 	private LocalDate dataRegistro;
@@ -20,18 +16,6 @@ public class ConclusaoDto {
 	private String cargoPrograma;
 	private String cargoEfetivado;
 	private String observacao;
-
-	public ConclusaoDto(Conclusao conclusao) {
-		this.id = conclusao.getId();
-		this.resultado = conclusao.getResultado();
-		this.dataRegistro = conclusao.getDataAlteracao();
-		this.status = conclusao.getStatusProgresso();
-		this.comprovante = conclusao.getComprovanteRematricula();
-		this.cargoPrograma = conclusao.getCargoPrograma().getCargo();
-		this.cargoEfetivado = conclusao.getCargoEfetivado();
-		this.observacao = conclusao.getObservacao();
-	}
-
 
 	public Long getId() {
 		return id;
@@ -65,7 +49,6 @@ public class ConclusaoDto {
 		this.status = status;
 	}
 
-
 	public String getComprovante() {
 		return comprovante;
 	}
@@ -98,8 +81,12 @@ public class ConclusaoDto {
 		this.observacao = observacao;
 	}
 
-	public static List<ConclusaoDto> converter(List<Conclusao> conclusoes) {
-		return conclusoes.stream().map(ConclusaoDto::new).collect(Collectors.toList());
+	public ConclusaoFinalDto(Conclusao conclusaoFinal) {
+		this.id = conclusaoFinal.getId();
+		this.resultado = conclusaoFinal.getResultado();
+		this.dataRegistro = conclusaoFinal.getDataAlteracao();
+		this.comprovante = conclusaoFinal.getComprovanteRematricula();
+		this.cargoEfetivado = conclusaoFinal.getCargoEfetivado();
+		this.observacao = conclusaoFinal.getObservacao();
 	}
-
 }

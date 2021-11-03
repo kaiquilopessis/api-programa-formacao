@@ -13,9 +13,10 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.model.RemuneracaoPrograma;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ConclusaoDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ConclusaoFinalDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RemuneracaoProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ConclusaoFinalForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ConclusaoProgressivaForm;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RemuneracaoProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ConclusaoRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoProgramaRepository;
@@ -37,7 +38,7 @@ public class ConclusaoService {
 		return ConclusaoDto.converter(conclusoes);
 	}
 
-	public ResponseEntity<ConclusaoDto> registrarCicloFinal(String cpf, ConclusaoFinalForm conclusaoFinalForm,
+	public ResponseEntity<ConclusaoFinalDto> registrarCicloFinal(String cpf, ConclusaoFinalForm conclusaoFinalForm,
 			UriComponentsBuilder uriComponentsBuilder) {
 		Optional<Participante> participante = participanteRepository.findById(cpf);
 		if (participante.isPresent()) {
@@ -47,7 +48,7 @@ public class ConclusaoService {
 					.path("/conclusoes/registrociclofinal/{id}")
 					.buildAndExpand(conclusaoFinal.getId())
 					.toUri();
-			return ResponseEntity.created(uri).body(new ConclusaoDto(conclusaoFinal));
+			return ResponseEntity.created(uri).body(new ConclusaoFinalDto(conclusaoFinal));
 		}
 		return ResponseEntity.notFound().build();
 	}
