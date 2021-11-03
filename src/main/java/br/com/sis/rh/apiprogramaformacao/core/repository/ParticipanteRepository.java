@@ -30,7 +30,7 @@ public interface ParticipanteRepository extends JpaRepository<Participante, Stri
 	@Query(value = "select count(*) from TB_PARTICIPANTE p JOIN TB_PROGRAMA prog ON p.codigo_programa_fk = prog.id where p.status_ativo = 'ATIVO' AND prog.nome = ?1 and prog.nome_turma = ?2",  nativeQuery = true)
 	Integer listaParticipantesAtivos(String nome, String turma);
 
-	@Query(value = "select count(*) from TB_PARTICIPANTE p JOIN TB_PROGRAMA prog ON p.codigo_programa_fk = prog.id where p.status_ativo = 'EFETIVADO' AND prog.nome = ?1 and prog.nome_turma = ?2", nativeQuery = true)
+	@Query(value = "select count(*) from TB_PARTICIPANTE p JOIN TB_PROGRAMA prog ON p.codigo_programa_fk = prog.id where p.status_efetivado = 'EFETIVADO' AND prog.nome = ?1 and prog.nome_turma = ?2", nativeQuery = true)
 	Integer listaParticipantesEfetivados(String nome, String turma);
 	
 	// busca o participante com o referio codigo do programa
