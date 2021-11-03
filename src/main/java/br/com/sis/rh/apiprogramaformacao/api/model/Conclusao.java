@@ -21,7 +21,7 @@ import br.com.sis.rh.apiprogramaformacao.core.enums.StatusConclusao;
 @Entity
 @Table(name = "TB_CONCLUSAO")
 public class Conclusao {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -41,8 +41,7 @@ public class Conclusao {
 	private String cargoEfetivado;
 
 	@Column(name = "COMPROVANTE_REMATRICULA")
-	@Lob
-	private byte[] comprovanteRematricula;
+	private String comprovanteRematricula;
 
 	@Column(name = "RESULTADO")
 	@Enumerated(EnumType.STRING)
@@ -59,9 +58,9 @@ public class Conclusao {
 
 	}
 
-	//Progressivo
+	// Progressivo
 	public Conclusao(Participante participante, LocalDate dataAlteracao, RemuneracaoPrograma cargo,
-			byte[] comprovanteRematricula, ResultadoConclusao resultado, StatusConclusao statusProgresso) {
+			String comprovanteRematricula, ResultadoConclusao resultado, StatusConclusao statusProgresso) {
 		this.participante = participante;
 		this.dataAlteracao = dataAlteracao;
 		this.cargoPrograma = cargo;
@@ -70,8 +69,8 @@ public class Conclusao {
 		this.statusProgresso = statusProgresso;
 	}
 
-	//Final
-	public Conclusao(Participante participante, LocalDate dataAlteracao, String cargo, byte[] comprovanteRematricula,
+	// Final
+	public Conclusao(Participante participante, LocalDate dataAlteracao, String cargo, String comprovanteRematricula,
 			ResultadoConclusao resultado, StatusConclusao statusProgresso, String observacao) {
 		this.participante = participante;
 		this.dataAlteracao = dataAlteracao;
@@ -138,11 +137,11 @@ public class Conclusao {
 		this.cargoEfetivado = cargoEfetivado;
 	}
 
-	public byte[] getComprovanteRematricula() {
+	public String getComprovanteRematricula() {
 		return comprovanteRematricula;
 	}
 
-	public void setComprovanteRematricula(byte[] comprovanteRematricula) {
+	public void setComprovanteRematricula(String comprovanteRematricula) {
 		this.comprovanteRematricula = comprovanteRematricula;
 	}
 

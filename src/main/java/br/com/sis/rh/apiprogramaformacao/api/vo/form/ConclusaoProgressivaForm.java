@@ -15,7 +15,7 @@ public class ConclusaoProgressivaForm {
 	private ResultadoConclusao resultado;
 	private String dataAlteracao;
 	private String cargo;
-	private byte[] comprovante;
+	private String comprovante;
 
 	public ResultadoConclusao getResultado() {
 		return resultado;
@@ -41,11 +41,11 @@ public class ConclusaoProgressivaForm {
 		this.cargo = cargo;
 	}
 
-	public byte[] getComprovante() {
+	public String getComprovante() {
 		return comprovante;
 	}
 
-	public void setComprovante(byte[] comprovante) {
+	public void setComprovante(String comprovante) {
 		this.comprovante = comprovante;
 	}
 

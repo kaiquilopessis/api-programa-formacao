@@ -13,7 +13,7 @@ public class ConclusaoFinalForm {
 	private ResultadoConclusao resultado;
 	private String dataAlteracao;
 	private String cargoEfetivado;
-	private byte[] comprovante;
+	private String comprovante;
 	private String campoObservacao;
 
 
@@ -35,10 +35,10 @@ public class ConclusaoFinalForm {
 	public void setCargoEfetivado(String cargoEfetivado) {
 		this.cargoEfetivado = cargoEfetivado;
 	}
-	public byte[] getComprovante() {
+	public String getComprovante() {
 		return comprovante;
 	}
-	public void setComprovante(byte[] comprovante) {
+	public void setComprovante(String comprovante) {
 		this.comprovante = comprovante;
 	}
 	public String getCampoObservacao() {

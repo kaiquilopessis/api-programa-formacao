@@ -16,7 +16,7 @@ public class ConclusaoDto {
 	private ResultadoConclusao resultado;
 	private LocalDate dataRegistro;
 	private StatusConclusao status;
-	private byte[] comprovante;
+	private String comprovante;
 	private String cargoPrograma;
 	private String cargoEfetivado;
 	private String observacao;
@@ -68,11 +68,12 @@ public class ConclusaoDto {
 		this.status = status;
 	}
 
-	public byte[] getComprovante() {
+
+	public String getComprovante() {
 		return comprovante;
 	}
 
-	public void setComprovante(byte[] comprovante) {
+	public void setComprovante(String comprovante) {
 		this.comprovante = comprovante;
 	}
 
