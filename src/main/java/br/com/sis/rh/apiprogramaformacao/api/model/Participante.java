@@ -32,4 +32,5 @@ public class Participante {
 		this.status_ativo = status_ativo;
 	}
 
-   }
+}
+

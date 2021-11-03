@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
-import br.com.sis.rh.apiprogramaformacao.core.service.DirecionamentoService;
-import br.com.sis.rh.apiprogramaformacao.core.service.FiltroConclusao;
+import br.com.sis.rh.apiprogramaformacao.api.vo.RelatorioConclusaoVO;
+import br.com.sis.rh.apiprogramaformacao.core.service.ConclusaoService;
 
 @RestController
 @RequestMapping("/conclusoes")
@@ -17,25 +16,10 @@ import br.com.sis.rh.apiprogramaformacao.core.service.FiltroConclusao;
 public class ConclusaoController {
 
 	@Autowired
-	private FiltroConclusao filtroConclusao;
-
-	@Autowired
-	private ParticipanteRepository participanteRepository;
-
-	@Autowired
-	private DirecionamentoService direcionamento;
+	private ConclusaoService conclusaoService;
 
 	@GetMapping("/formacao={formacao}/turma={turma}/escopo={escopo}")
-	public Integer listaParticipantesAtivo(@PathVariable String formacao, @PathVariable String turma,
-			@PathVariable String escopo) {
-		System.out.println("chamando service " + escopo + ".");
-		Integer filtragem = direcionamento.Direcionar(formacao, turma, escopo);
-		System.out.println(filtragem);
-		return filtragem;
-	}
-
-//	public Integer listaParticipantesEfetivados(@PathVariable String formacao, @PathVariable String turma) {
-//		return participanteRepository.listaParticipantesEfetivados();
-//	}
-
+	public RelatorioConclusaoVO listaParticipantesAtivo(@PathVariable String formacao, @PathVariable String turma,
+			@PathVariable String escopo) {	
+	
 }

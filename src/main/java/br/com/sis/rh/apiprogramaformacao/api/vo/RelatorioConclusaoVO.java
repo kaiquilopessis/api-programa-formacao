@@ -12,15 +12,19 @@ public class RelatorioConclusaoVO {
 	private String turma;
 	private Integer participantesAtivos;
 	private Integer participantesEfetivados;
-	private LocalDate dataConclusao;
+	private String dataConclusao;
 	
 	public RelatorioConclusaoVO(String programadeformacao, String turma, Integer participantesAtivos,
-			Integer participantesEfetivados, LocalDate dataConclusao) {
+			Integer participantesEfetivados, String dataConclusao) {
 		this.programadeformacao = programadeformacao;
 		this.turma = turma;
 		this.participantesAtivos = participantesAtivos;
 		this.participantesEfetivados = participantesEfetivados;
 		this.dataConclusao = dataConclusao;
+	}
+	
+	public RelatorioConclusaoVO() {
+		
 	}
 
 }
