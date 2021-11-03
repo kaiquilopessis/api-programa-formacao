@@ -24,9 +24,9 @@ public class ParticipanteDto {
 	private StatusAtivo status_ativo;
 
 	public ParticipanteDto(Participante participante) {
-//		this.cpf_participante = participante.getCpf_participante();
-//		this.status_efetivo = participante.getStatus_efetivado();
-//		this.status_ativo = participante.getStatus_ativo();
+		this.cpf_participante = participante.getCpf();
+		this.status_efetivo = participante.getStatus_efetivado();
+		this.status_ativo = participante.getStatus_ativo();
 	}
 
 	public static List<ParticipanteDto> converter(List<Participante> participantes) {

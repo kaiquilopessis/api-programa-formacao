@@ -8,14 +8,16 @@ package br.com.sis.rh.apiprogramaformacao.core.service;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
 import br.com.sis.rh.apiprogramaformacao.api.vo.InvestimentoProgFormacaoVo;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ConclusaoRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipantesRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
 
@@ -32,7 +34,7 @@ public class ServiceFiltroPeriodo {
 	@Autowired
 	private ProgramaRepository programaRepository;
 	@Autowired
-	private ParticipantesRepository participantesRepository;
+	private ParticipanteRepository participantesRepository;
 	@Autowired
 	private ConclusaoRepository conclusaoRepository;
 	@Autowired
