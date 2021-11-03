@@ -1,6 +1,7 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
 import javax.persistence.Entity;
+<<<<<<< HEAD
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
@@ -16,6 +17,7 @@ public class Participante {
 
 	@Id
 	private String cpf_participante;
+<<<<<<< HEAD
 
 	@Enumerated(EnumType.STRING)
 	private StatusEfetivo status_efetivado;
@@ -34,3 +36,6 @@ public class Participante {
 	}
 
 }
+=======
+}
+>>>>>>> GabrielTanaka

@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @EnableWebSecurity
 @Configuration
+<<<<<<< HEAD
 public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	
 	// Método para liberar acesso para a URL /relatorios e /relatorios/*
@@ -15,7 +16,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 		.antMatchers(HttpMethod.GET, "/relatorios").permitAll()
-		.antMatchers(HttpMethod.GET, "/relatorios/*").permitAll();
-	}
-	
+		.antMatchers(HttpMethod.GET, "/relatorios/*").permitAll()
+		.antMatchers(HttpMethod.GET, "/conclusao").permitAll();
+	}	
 }
