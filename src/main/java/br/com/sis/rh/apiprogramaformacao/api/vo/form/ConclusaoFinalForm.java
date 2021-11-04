@@ -50,7 +50,7 @@ public class ConclusaoFinalForm {
 	}
 
 	public Conclusao converter (Participante participante) {
-		LocalDate data = LocalDate.parse(this.dataAlteracao, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		LocalDate data = LocalDate.parse(this.dataAlteracao, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		return new Conclusao(participante, data, cargoEfetivado, comprovante, resultado,
 				StatusConclusao.FINAL, campoObservacao);
 	}
