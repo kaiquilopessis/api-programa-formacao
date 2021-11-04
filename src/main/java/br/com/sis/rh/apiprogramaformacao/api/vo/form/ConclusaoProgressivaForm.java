@@ -50,7 +50,7 @@ public class ConclusaoProgressivaForm {
 	}
 
 	public Conclusao converter(Participante participante, RemuneracaoProgramaRepository remuneracaoProgramaRepository) {
-		LocalDate data = LocalDate.parse(this.dataAlteracao, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		LocalDate data = LocalDate.parse(this.dataAlteracao, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		RemuneracaoPrograma cargo = remuneracaoProgramaRepository.findByCargo(this.cargo);
 		return new Conclusao(participante, data, cargo, comprovante, resultado, StatusConclusao.PROGRESSIVA);
 	}
