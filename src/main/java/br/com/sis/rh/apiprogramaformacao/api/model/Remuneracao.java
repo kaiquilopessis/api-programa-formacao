@@ -19,7 +19,7 @@ public class Remuneracao {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 	@Column(name = "cargo", length = 30)
 	private String cargo;
 	@Column(name = "bolsa_aux")
@@ -53,11 +53,11 @@ public class Remuneracao {
 
 	public Remuneracao(){}
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

@@ -25,7 +25,7 @@ public class RemuneracaoService {
         return ListaRemuneracaoDto.converterLista(remuneracoes);
     }
 
-    public RemuneracaoDto exibeRemuneracao(Long id) {
+    public RemuneracaoDto exibeRemuneracao(long id) {
 
         Optional<Remuneracao> optional = remuneracaoRepository.findById(id);
 

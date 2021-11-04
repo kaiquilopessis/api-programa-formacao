@@ -30,7 +30,7 @@ public class RemuneracaoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<RemuneracaoDto> exibeRemuneracao(@PathVariable Long id){
+    public ResponseEntity<RemuneracaoDto> exibeRemuneracao(@PathVariable long id){
         return ResponseEntity.ok(remuneracaoService.exibeRemuneracao(id));
     }
 
