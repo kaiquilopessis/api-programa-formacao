@@ -1,6 +1,5 @@
 package br.com.sis.rh.apiprogramaformacao.core.util;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 

@@ -16,12 +16,13 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 		.antMatchers(HttpMethod.GET, "/relatorios").permitAll()
 		.antMatchers(HttpMethod.GET, "/relatorios/*").permitAll()
-		.antMatchers(HttpMethod.GET, "/conclusao").permitAll()
+		.antMatchers(HttpMethod.GET, "/conclusoes/*/*/*").permitAll()
 		.antMatchers(HttpMethod.GET, "/api/relatorio-alura/**").permitAll()
 		.antMatchers(HttpMethod.GET, "/api/relatorio-avaliacao/**").permitAll()
+		.antMatchers(HttpMethod.GET, "/investimentos/**").permitAll()
 		.antMatchers(HttpMethod.GET, "/investimentoInstrutores/**" ).permitAll()
 		.antMatchers(HttpMethod.POST, "/investimentoInstrutores/**").permitAll()
 		.anyRequest().authenticated()
-		.and().csrf().disable();;
+		.and().csrf().disable();
 	}	
 }

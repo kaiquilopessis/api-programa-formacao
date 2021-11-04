@@ -1,16 +1,9 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
-/**
- * Nesta classe contem as regras de negocios e servicos da aplicações referentes a pagina de relatorio de investimentos
- * Os métodos que compõem a classe, processam os dados dos três cards contidos na parte inferior da pagina após o filtro selecionado
- */
-
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
@@ -21,8 +14,17 @@ import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
 
+/**
+ * 
+ * @author dkalbiak
+ *
+ *         Nesta classe contem as regras de negocios e servicos da aplicações
+ *         referentes a pagina de relatorio de investimentos Os métodos que
+ *         compõem a classe, processam os dados dos três cards contidos na parte
+ *         inferior da pagina após o filtro selecionado
+ */
 @org.springframework.stereotype.Service
-public class ServiceFiltroPeriodo {
+public class InvestimentoFiltroPeriodoService {
 
 	private Long mesAnterior;
 	private Long mesPosterior;
@@ -142,7 +144,5 @@ public class ServiceFiltroPeriodo {
 		investTotal.setInvestTotalPeriodoSelecionado(investTotal2);
 
 		return investTotal;
-
 	}
-
 }
