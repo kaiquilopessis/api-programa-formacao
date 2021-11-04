@@ -23,6 +23,6 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		.antMatchers(HttpMethod.GET, "/investimentoInstrutores/**" ).permitAll()
 		.antMatchers(HttpMethod.POST, "/investimentoInstrutores/**").permitAll()
 		.anyRequest().authenticated()
-		.and().csrf().disable();;
+		.and().csrf().disable();
 	}	
 }
