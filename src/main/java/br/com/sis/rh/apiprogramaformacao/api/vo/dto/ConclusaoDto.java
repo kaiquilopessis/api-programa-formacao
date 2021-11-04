@@ -27,10 +27,14 @@ public class ConclusaoDto {
 		this.dataRegistro = conclusao.getDataAlteracao();
 		this.status = conclusao.getStatusProgresso();
 		this.comprovante = conclusao.getComprovanteRematricula();
-		this.cargoPrograma = conclusao.getCargoPrograma().getCargo();
+		if (conclusao.getStatusProgresso() == StatusConclusao.PROGRESSIVA) {
+			this.cargoPrograma = conclusao.getCargoPrograma().getCargo();
+		}		
 		this.cargoEfetivado = conclusao.getCargoEfetivado();
 		this.observacao = conclusao.getObservacao();
 	}
+	
+	
 
 
 	public Long getId() {
