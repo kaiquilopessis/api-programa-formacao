@@ -1,9 +1,5 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
-/**
- * Classe Classe exportadora XLSX, formatação e afins
- */
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -16,9 +12,14 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
-
 import br.com.sis.rh.apiprogramaformacao.api.vo.InvestimentoProgFormacaoVo;
 
+/**
+ * 
+ * @author dkalbiak
+ *
+ *         Esta Classe funciona com uma exportadora XLSX, formatação e afins
+ */
 @Service
 public class ExcelServiceInvestimento {
 
@@ -77,9 +78,6 @@ public class ExcelServiceInvestimento {
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 			workbook.write(outputStream);
 			return new ByteArrayInputStream(outputStream.toByteArray());
-
 		}
-
 	}
-
 }
