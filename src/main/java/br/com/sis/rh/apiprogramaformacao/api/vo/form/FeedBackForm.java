@@ -25,7 +25,7 @@ public class FeedBackForm {
 	}
 
 	public FeedBack converter (Participante participante) {
-		LocalDate data = LocalDate.parse(this.data, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		LocalDate data = LocalDate.parse(this.data, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		return new FeedBack(data, anotacoes, participante);
 	}
 
