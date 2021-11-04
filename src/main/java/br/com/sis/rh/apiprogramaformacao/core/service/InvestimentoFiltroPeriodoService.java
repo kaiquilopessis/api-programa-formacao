@@ -46,17 +46,18 @@ public class InvestimentoFiltroPeriodoService {
 	// valores a serem utilizados no vue.js
 	public InvestimentoProgFormacaoVo popularCards(LocalDate dataInicio, LocalDate dataFim, String nomePrograma,
 			String nomeTurma) {
+		String tumaFormatada = nomeTurma.replace("+", " ");
 		InvestimentoProgFormacaoVo investimentoProgFormacaoVo = new InvestimentoProgFormacaoVo();
-		investimentoProgFormacaoVo = investParticipantesPeriodo(dataInicio, dataFim, nomePrograma, nomeTurma,
+		investimentoProgFormacaoVo = investParticipantesPeriodo(dataInicio, dataFim, nomePrograma, tumaFormatada,
 				investimentoProgFormacaoVo);
 
-		investimentoProgFormacaoVo = investInstrutorPeriodo(nomePrograma, nomeTurma, investimentoProgFormacaoVo);
+		investimentoProgFormacaoVo = investInstrutorPeriodo(nomePrograma, tumaFormatada, investimentoProgFormacaoVo);
 		investimentoProgFormacaoVo
 				.setInvestTotalPeriodoSelecionado(investimentoProgFormacaoVo.getInvestInstrutoresPeriodoSelecionado()
 						+ investimentoProgFormacaoVo.getInvestParticipantesPeriodoSelecionado());
 
 		investimentoProgFormacaoVo.setFormacao(nomePrograma);
-		investimentoProgFormacaoVo.setTurma(nomeTurma);
+		investimentoProgFormacaoVo.setTurma(tumaFormatada);
 		
 		return investimentoProgFormacaoVo;
 	}

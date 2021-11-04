@@ -79,15 +79,15 @@ public class InvestimentosProgFormacaoController {
 	 * @throws ParseException
 	 */
 
-	@GetMapping("/investimentoPeriodoSelecionado/{dataInicio}/{dataFim}")
-	public InvestimentoProgFormacaoVo investDoPeriodoPrograma(@PathVariable String dataInicio,
-			@PathVariable String dataFim, String nomePrograma, String nomeTurma) throws ParseException {
+	@GetMapping("/investimentoPeriodoSelecionado/{nomePrograma}/{nomeTurma}/{dataInicio}/{dataFim}")
+	public InvestimentoProgFormacaoVo investDoPeriodoPrograma(@PathVariable String nomePrograma, @PathVariable String nomeTurma, @PathVariable String dataInicio,
+			@PathVariable String dataFim) throws ParseException {
 		
 		LocalDate dataFormatadaInicio = dataFormat.dataFormatada(dataInicio);
 		LocalDate dataFormatadaFim = dataFormat.dataFormatada(dataFim);
 
 		InvestimentoProgFormacaoVo investimentoPrograma = service.popularCards(dataFormatadaInicio, dataFormatadaFim,
-				"Turma II", "Turma I");
+				nomePrograma, nomeTurma);
 
 		return investimentoPrograma;
 	}

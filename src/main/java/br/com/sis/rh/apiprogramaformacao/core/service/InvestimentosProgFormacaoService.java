@@ -49,14 +49,15 @@ public class InvestimentosProgFormacaoService {
 	 */
 	//
 	public InvestimentoProgFormacaoVo popularCardsSuperiores(String nomePrograma, String nomeTurma) {
-
+		String turmaFormatada = nomeTurma.replace("+", " ");
+		
 		InvestimentoProgFormacaoVo investimentoProgFormacaoVo = new InvestimentoProgFormacaoVo();
-		investimentoProgFormacaoVo = investimentosParticipantes(nomePrograma, nomeTurma, investimentoProgFormacaoVo);
-		investimentoProgFormacaoVo = investimentoInstrutores(nomePrograma, nomeTurma, investimentoProgFormacaoVo);
+		investimentoProgFormacaoVo = investimentosParticipantes(nomePrograma, turmaFormatada, investimentoProgFormacaoVo);
+		investimentoProgFormacaoVo = investimentoInstrutores(nomePrograma, turmaFormatada, investimentoProgFormacaoVo);
 		investimentoProgFormacaoVo = investimentoTotal(investimentoProgFormacaoVo);
 		
 		investimentoProgFormacaoVo.setFormacao(nomePrograma);
-		investimentoProgFormacaoVo.setTurma(nomeTurma);
+		investimentoProgFormacaoVo.setTurma(turmaFormatada);
 		
 		return investimentoProgFormacaoVo;
 	}
