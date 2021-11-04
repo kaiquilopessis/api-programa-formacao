@@ -12,6 +12,11 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.RelatorioAluraVo;
 import br.com.sis.rh.apiprogramaformacao.core.repository.AluraRepository;
 import br.com.sis.rh.apiprogramaformacao.core.util.FormatadorDataUtil;
 
+/**
+ * Classe onde estão as regras de negócio referente a tela de relatorios
+ * do acompanhamento da plataforma Alura dos participantes de determinado programa.
+ */
+
 @Service
 public class AluraService {
 	
@@ -23,6 +28,19 @@ public class AluraService {
 
 	@Autowired
 	private FormatadorDataUtil formatador;
+	
+	/**
+	 * Executa outros métodos para popular o Vo
+	 * para levar as informações para o front-end e popular
+	 * os cards.
+	 * 
+	 * @param formacao nome do programa de formação selecionado
+	 * @param turma turma do programa de formação selecionado
+	 * @return Vo populado com a media de horas, maior e menor
+	 * horas registradas, data do último registro, nome e cargo
+	 * do participante que teve a maior e menor hora, além do 
+	 * nome do programa e a turma.
+	 */
 	
 	public RelatorioAluraVo popularCards(String formacao, String turma) {
 		RelatorioAluraVo aluraVo = new RelatorioAluraVo();
@@ -41,19 +59,17 @@ public class AluraService {
 		
 		return aluraVo;
 	}
-	
-	public RelatorioAluraVo popularVo() {
-		RelatorioAluraVo aluraVo = new RelatorioAluraVo();
-		List<Alura> relatorios = new ArrayList<Alura>();
-		
-		relatorios = aluraRepository.buscarRegistroHoras();
-		aluraVo = calcularMediaMaxMinHoras(relatorios);
-		LocalDate dataRegistro = relatorios.get(0).getDataRegistro();
-		aluraVo.setDataUltimoRegistro(formatador.formatarData(dataRegistro));
-		
-		return aluraVo;
-	}
 
+	/**
+	 * Calcula a média de horas por semana dos participantes,
+	 * busca a maior e a menor quantidade de horas registradas.
+	 *
+	 * @param relatorios Lista do último registro de apontamento
+	 * de horas da plataforma Alura
+	 * @return Vo com os campos de média, máxima e menor quantidade
+	 * de horas populados.
+	 */
+	
 	public RelatorioAluraVo calcularMediaMaxMinHoras(List<Alura> relatorios) {
 		RelatorioAluraVo aluraVo = new RelatorioAluraVo();
 		aluraVo.setMediaDeHorasDosParticipantes(0);

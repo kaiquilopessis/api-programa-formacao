@@ -8,7 +8,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import lombok.Data;
+
+/**
+ * Classe/Entidade que representa a tabela TB_AVALIACOES da base de dados,
+ * os métodos getter e setter estão implementados pelo Lombok utilizando
+ * a anotação @Data
+ */
+
 @Entity(name = "TB_NOTAS_AVALIACOES")
+@Data
 public class Avaliacoes {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,56 +49,5 @@ public class Avaliacoes {
 		this.notaNegocio = nota_negocio;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Double getNota_tecnica() {
-		return notaTecnica;
-	}
-
-	public void setNota_tecnica(Double nota_tecnica) {
-		this.notaTecnica = nota_tecnica;
-	}
-
-	public Double getNota_comportamental() {
-		return notaComportamental;
-	}
-
-	public void setNota_comportamental(Double nota_comportamental) {
-		this.notaComportamental = nota_comportamental;
-	}
-
-	public Double getNota_praticas_ageis() {
-		return notaPraticasAgeis;
-	}
-
-	public void setNota_praticas_ageis(Double nota_praticas_ageis) {
-		this.notaPraticasAgeis = nota_praticas_ageis;
-	}
-
-	public Double getNota_lideranca() {
-		return notaLideranca;
-	}
-
-	public void setNota_lideranca(Double nota_lideranca) {
-		this.notaLideranca = nota_lideranca;
-	}
-
-	public Double getNota_negocio() {
-		return notaNegocio;
-	}
-
-	public void setNota_negocio(Double nota_negocio) {
-		this.notaNegocio = nota_negocio;
-	}
 	
-	@Override
-	public String toString() {
-		return "Id= " + this.id + ", Nota = " + this.notaTecnica;
-	}
 }

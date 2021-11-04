@@ -16,9 +16,23 @@ import org.springframework.stereotype.Service;
 
 import br.com.sis.rh.apiprogramaformacao.api.vo.RelatorioAvaliacoesVo;
 
+/**
+ * Classe para gerar um arquivo XLSX com os valores do
+ * relatório referente as notas das avaliaçoes dos
+ * participantes
+ */
+
 @Service
 public class ExcelServiceAvaliacao {
 
+	/**
+	 * Pega os valores do Vo e insere nas linhas/colunas
+	 * e monta o arquivo xlsx
+	 * 
+	 * @param avaliacaoVo recebe o Vo com todos os campos
+	 * populados
+	 */
+	
 	public ByteArrayInputStream gerarRelatorioAvaliacoes(RelatorioAvaliacoesVo avaliacaoVo) throws IOException {
 		try(Workbook workbook = new XSSFWorkbook()){
 			Sheet sheet = workbook.createSheet("Alura");
@@ -29,6 +43,8 @@ public class ExcelServiceAvaliacao {
 	        headerCellStyle.setFillForegroundColor(IndexedColors.AQUA.getIndex());
 	        headerCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			
+	        //Criação das células da primeira linha, onde vão
+	        //os títulos das colunas
 	        Cell cell = row.createCell(0);
 	        cell.setCellValue("Nota média Avaliação Técnica");
 	        cell.setCellStyle(headerCellStyle);
@@ -53,6 +69,8 @@ public class ExcelServiceAvaliacao {
 	        cell.setCellValue("Último ciclo registrado");
 	        cell.setCellStyle(headerCellStyle);
 	        
+	        //Inserçao dos dados na segunda linha, pegando os
+	        //valores do Vo
 	        Row dataRow = sheet.createRow(1);
 	        dataRow.createCell(0).setCellValue(avaliacaoVo.getNotaMediaAvaliacaoTecnica());
 	        dataRow.createCell(1).setCellValue(avaliacaoVo.getNotaMediaAvaliacaoComportamental());

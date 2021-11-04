@@ -48,7 +48,6 @@ public class InvestimentosProgFormacaoController {
 	@GetMapping("/investimentoPeriodoSelecionado/{dataInicio}/{dataFim}")
 	public InvestimentoProgFormacaoVo investDoPeriodoPrograma(@PathVariable String dataInicio,
 			@PathVariable String dataFim, String nomePrograma, String nomeTurma) throws ParseException {
-
 		LocalDate dataFormatadaInicio = dataFormat.dataFormatada(dataInicio);
 		LocalDate dataFormatadaFim = dataFormat.dataFormatada(dataFim);
 

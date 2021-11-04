@@ -19,14 +19,35 @@ import com.lowagie.text.pdf.PdfWriter;
 
 import br.com.sis.rh.apiprogramaformacao.api.vo.RelatorioAluraVo;
 
+/**
+ * Classe para gerar um arquivo PDF com os valores
+ * do relatorio referente ao apontamento de horas
+ * da plataforma Alura
+ */
+
 public class PDFServiceAlura {
 	
 
 	private RelatorioAluraVo aluraVo;
 	
+	/**
+	 * Construtor que recebe um Vo já populado para
+	 * inserir em uma tabela
+	 * 
+	 * @param aluraVo Vo populado com os valores a
+	 * serem inseridos
+	 */
 	public PDFServiceAlura(RelatorioAluraVo aluraVo) {
 		this.aluraVo = aluraVo;
 	}
+	
+	/**
+	 * Cria a primeira linha da tabela onde estará
+	 * os títulos de cada coluna
+	 * 
+	 * @param table Objeto criado com o número de
+	 * colunas que a tabela terá
+	 */
 	
 	private void writeTableHeader(PdfPTable table) {
         PdfPCell cell = new PdfPCell();
@@ -55,6 +76,13 @@ public class PDFServiceAlura {
         table.addCell(cell);
     }
      
+	/**
+	 * É criado uma nova linha da tabela, porém agora
+	 * com os valores vindos do Vo
+	 * 
+	 * @param table table Objeto criado com o número de
+	 * colunas que a tabela terá
+	 */
     private void writeTableData(PdfPTable table) {   
             table.addCell(String.valueOf(aluraVo.getDataUltimoRegistro()));
             table.addCell(String.valueOf(aluraVo.getMediaDeHorasDosParticipantes()));
@@ -64,6 +92,9 @@ public class PDFServiceAlura {
             table.addCell(String.valueOf(aluraVo.getNomeFuncionarioComMenorQuantidadeHoras() + " - " + aluraVo.getCargoFuncionarioComMenorQuantidadeHoras()));
     }
      
+    /**
+     * Cria o documento pdf e adiciona a tabela criada no mesmo
+     */
     public void export(HttpServletResponse response) throws DocumentException, IOException {
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document, response.getOutputStream());

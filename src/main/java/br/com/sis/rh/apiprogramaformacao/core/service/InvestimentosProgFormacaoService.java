@@ -44,9 +44,11 @@ public class InvestimentosProgFormacaoService {
 		investimentoProgFormacaoVo = investimentoInstrutores(nomePrograma, nomeTurma, investimentoProgFormacaoVo);
 
 		investimentoProgFormacaoVo = investimentoTotal(investimentoProgFormacaoVo);
-
+		
+		investimentoProgFormacaoVo.setFormacao(nomePrograma);
+		investimentoProgFormacaoVo.setTurma(nomeTurma);
+		
 		return investimentoProgFormacaoVo;
-
 	}
 
 	// esta método processa os dados gerais e totais dos participantes de acordo com

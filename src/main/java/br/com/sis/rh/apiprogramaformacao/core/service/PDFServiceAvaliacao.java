@@ -20,13 +20,35 @@ import com.lowagie.text.pdf.PdfWriter;
 
 import br.com.sis.rh.apiprogramaformacao.api.vo.RelatorioAvaliacoesVo;
 
+/**
+ * Classe para gerar um arquivo PDF com os valores
+ * do relatorio referente as notas das avaliaçoes
+ * dos participantes
+ */
+
 public class PDFServiceAvaliacao {
 	
 	private RelatorioAvaliacoesVo avaliacaoVo;
 	
+	/**
+	 * Construtor que recebe um Vo já populado para
+	 * inserir em uma tabela
+	 * 
+	 * @param avaliacaoVo Vo populado com os valores a
+	 * serem inseridos
+	 */
+	
 	public PDFServiceAvaliacao(RelatorioAvaliacoesVo avaliacaoVo) {
 		this.avaliacaoVo = avaliacaoVo;
 	}
+	
+	/**
+	 * Cria a primeira linha da tabela onde estará
+	 * os títulos de cada coluna
+	 * 
+	 * @param table Objeto criado com o número de
+	 * colunas que a tabela terá
+	 */
 	
 	private void writeTableHeader(PdfPTable table) {
         PdfPCell cell = new PdfPCell();
@@ -55,6 +77,14 @@ public class PDFServiceAvaliacao {
         table.addCell(cell);       
     }
      
+	/**
+	 * É criado uma nova linha da tabela, porém agora
+	 * com os valores vindos do Vo
+	 * 
+	 * @param table table Objeto criado com o número de
+	 * colunas que a tabela terá
+	 */
+	
     private void writeTableData(PdfPTable table) {   
             table.addCell(String.valueOf(avaliacaoVo.getNotaMediaAvaliacaoTecnica()));
             table.addCell(String.valueOf(avaliacaoVo.getNotaMediaAvaliacaoComportamental()));
@@ -64,6 +94,10 @@ public class PDFServiceAvaliacao {
             table.addCell(String.valueOf(avaliacaoVo.getUltimoCicloRegistrado()));
     }
      
+    /**
+     * Cria o documento pdf e adiciona a tabela criada no mesmo
+     */
+    
     public void export(HttpServletResponse response) throws DocumentException, IOException {
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document, response.getOutputStream());
@@ -91,7 +125,5 @@ public class PDFServiceAvaliacao {
         document.add(table);
          
         document.close();
-         
     }
-
 }

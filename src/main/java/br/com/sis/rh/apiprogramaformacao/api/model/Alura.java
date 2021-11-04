@@ -10,12 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+
+/**
+ * Classe/Entidade que representa a tabela TB_ALURA da base de dados,
+ * os métodos getter e setter estão implementados pelo Lombok utilizando
+ * a anotação @Data
+ */
 
 @Entity(name = "TB_ALURA")
-@Getter
-@Setter
+@Data
 public class Alura {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,65 +51,4 @@ public class Alura {
 		this.hrMinSemana = hrMinSemana;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Integer getQtdHoras() {
-		return qtdHoras;
-	}
-
-	public void setQtdHoras(Integer qtdHoras) {
-		this.qtdHoras = qtdHoras;
-	}
-
-	public Integer getMesAvaliado() {
-		return mesAvaliado;
-	}
-
-	public void setMesAvaliado(Integer mesAvaliado) {
-		this.mesAvaliado = mesAvaliado;
-	}
-
-	public Integer getSemanaAvaliada() {
-		return semanaAvaliada;
-	}
-
-	public void setSemanaAvaliada(Integer semanaAvaliada) {
-		this.semanaAvaliada = semanaAvaliada;
-	}
-
-	public LocalDate getDataRegistro() {
-		return dataRegistro;
-	}
-
-	public void setDataRegistro(LocalDate dataRegistro) {
-		this.dataRegistro = dataRegistro;
-	}
-
-	public Integer getHrMinSemana() {
-		return hrMinSemana;
-	}
-
-	public void setHrMinSemana(Integer hrMinSemana) {
-		this.hrMinSemana = hrMinSemana;
-	}
-
-	public Participante getParticipante() {
-		return participante;
-	}
-
-	public void setParticipante(Participante participante) {
-		this.participante = participante;
-	}
-
-	@Override
-	public String toString() {
-		return "Id: " + this.id + ", Qtd horas: " + this.qtdHoras + ", Mês: " + this.mesAvaliado
-				+ ", Semana: " + this.semanaAvaliada + ", Data Registro: " + this.dataRegistro + ", Min Horas: " + this.hrMinSemana;
-	}
 }

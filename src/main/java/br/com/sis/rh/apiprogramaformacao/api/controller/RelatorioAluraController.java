@@ -19,6 +19,11 @@ import br.com.sis.rh.apiprogramaformacao.core.service.AluraService;
 import br.com.sis.rh.apiprogramaformacao.core.service.ExcelServiceAlura;
 import br.com.sis.rh.apiprogramaformacao.core.service.PDFServiceAlura;
 
+/**
+ * Classe onde estão criados os endpoints referente
+ * a tela de relatórios da Alura
+ */
+
 @RestController
 @RequestMapping("/api/relatorio-alura")
 @CrossOrigin
@@ -30,21 +35,34 @@ public class RelatorioAluraController {
 	@Autowired
 	private ExcelServiceAlura excelServiceAlura;
 	
+	/**
+	 * Endpoint para popular os cards
+	 * 
+	 * @param formacao, nome do programa de formação
+	 * @param turma, turma do programa de formação
+	 * @param escopo, qual relatório foi selecionado
+	 * (Alura, Avaliações, Conclusões ou Investimentos)
+	 * @return aluraVo com os campos populados
+	 */
+	
 	@GetMapping("/formacao={formacao}/turma={turma}/escopo={escopo}")
-	public RelatorioAluraVo popular(@PathVariable String formacao, @PathVariable String turma, @PathVariable String escopo) {
+	public RelatorioAluraVo popularCards(@PathVariable String formacao, @PathVariable String turma, @PathVariable String escopo) {
 		RelatorioAluraVo aluraVo = aluraService.popularCards(formacao, turma);
 		return aluraVo;
 	}
 	
-//	@GetMapping
-//	public RelatorioAluraVo informacoesGeraisAcompanhamentoAlura() {
-//		RelatorioAluraVo aluraVo = aluraService.popularCards();
-//		return aluraVo;
-//	}
+	/**
+	 * Endpoint para fazer o download do relatório xlsx
+	 * 
+	 * @param response
+	 * @param formacao, nome do programa de formação
+	 * @param turma, turma do programa de formação
+	 * @throws IOException
+	 */
 	
-	@GetMapping("/xlsx")
-	public void downloadXLSX(HttpServletResponse response) throws IOException {
-		RelatorioAluraVo aluraVo = aluraService.popularVo();
+	@GetMapping("/formacao={formacao}/turma={turma}/xlsx")
+	public void downloadXLSX(HttpServletResponse response, @PathVariable String formacao, @PathVariable String turma) throws IOException {
+		RelatorioAluraVo aluraVo = aluraService.popularCards(formacao, turma);
 		
 		response.setContentType("application/octet-stream");
         response.setHeader("Content-Disposition", "attachment; filename=RelatorioAlura.xlsx");
@@ -52,15 +70,25 @@ public class RelatorioAluraController {
         IOUtils.copy(stream, response.getOutputStream());
 	}
 	
-	@GetMapping("/pdf")
-    public void downloadPDF(HttpServletResponse response) throws DocumentException, IOException {
+	/**
+	 * Endpoint para download do relatório pdf
+	 * 
+	 * @param response
+	 * @param formacao, nome do programa de formação
+	 * @param turma, turma do programa de formação
+	 * @throws DocumentException
+	 * @throws IOException
+	 */
+	
+	@GetMapping("/formacao={formacao}/turma={turma}/pdf")
+    public void downloadPDF(HttpServletResponse response, @PathVariable String formacao, @PathVariable String turma) throws DocumentException, IOException {
         response.setContentType("application/pdf");
          
         String headerKey = "Content-Disposition";
         String headerValue = "attachment; filename=RelatorioAlura.pdf";
         response.setHeader(headerKey, headerValue);
          
-        RelatorioAluraVo aluraVo = aluraService.popularVo();
+        RelatorioAluraVo aluraVo = aluraService.popularCards(formacao, turma);
          
         PDFServiceAlura exporter = new PDFServiceAlura(aluraVo);
         exporter.export(response);

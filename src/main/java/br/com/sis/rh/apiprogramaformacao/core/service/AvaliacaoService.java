@@ -10,6 +10,11 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.RelatorioAvaliacoesVo;
 import br.com.sis.rh.apiprogramaformacao.core.repository.AvaliacaoRepository;
 import br.com.sis.rh.apiprogramaformacao.core.util.FormatadorDeNumeroDecimalUtil;
 
+/**
+ * Classe onde estão as regras de negócio referente a tela de relatorios
+ * das avaliaçoes dos participantes de determinado programa.
+ */
+
 @Service
 public class AvaliacaoService {
 	
@@ -18,6 +23,18 @@ public class AvaliacaoService {
 	
 	@Autowired
 	private FormatadorDeNumeroDecimalUtil formatador;
+	
+	/**
+	 * Executa outros métodos para popular o Vo
+	 * para levar as informações para o front-end e popular
+	 * os cards.
+	 * 
+	 * @param formacao nome do programa de formação
+	 * @param turma nome da turma do programa de formação
+	 * @return Vo com os campos de notas, ultimo
+	 * ciclo registrado, nome do programa de formação e a
+	 * turma populados
+	 */
 	
 	public RelatorioAvaliacoesVo popularCards(String formacao, String turma) {
 		RelatorioAvaliacoesVo avaliacaoVo = calcularMedia();
@@ -29,23 +46,23 @@ public class AvaliacaoService {
 		return avaliacaoVo;
 	}
 	
-	public RelatorioAvaliacoesVo popularVo() {
-		RelatorioAvaliacoesVo avaliacaoVo = calcularMedia();
-		avaliacaoVo.setUltimoCicloRegistrado(avaliacaoRepository.buscaNumeroCiclo());
-		avaliacaoVo = formatarNotas(avaliacaoVo);
-		return avaliacaoVo;
-	}
+	/**
+	 * Calcula a média das notas retornadas da base de dados
+	 *
+	 * @return Vo único com os campos de notas populados com
+	 * as médias das notas dos participantes
+	 */
 	
 	public RelatorioAvaliacoesVo calcularMedia() {
 		RelatorioAvaliacoesVo avaliacaoVo = new RelatorioAvaliacoesVo(0.0,0.0,0.0,0.0,0.0,0,"Java","Java 01");
 		List<Avaliacoes> avaliacoes = avaliacaoRepository.buscarNotasMaisRecentes();
 		
 		avaliacoes.forEach(avaliacao -> {
-			avaliacaoVo.setNotaMediaAvaliacaoTecnica(avaliacaoVo.getNotaMediaAvaliacaoTecnica() + avaliacao.getNota_tecnica());
-			avaliacaoVo.setNotaMediaAvaliacaoComportamental(avaliacaoVo.getNotaMediaAvaliacaoComportamental() + avaliacao.getNota_comportamental());
-			avaliacaoVo.setNotaMediaAvaliacaoLideranca(avaliacaoVo.getNotaMediaAvaliacaoLideranca() + avaliacao.getNota_lideranca());
-			avaliacaoVo.setNotaMediaAvaliacaoNegocio(avaliacaoVo.getNotaMediaAvaliacaoNegocio() + avaliacao.getNota_negocio());
-			avaliacaoVo.setNotaMediaAvaliacaoPraticasAgeis(avaliacaoVo.getNotaMediaAvaliacaoPraticasAgeis() + avaliacao.getNota_praticas_ageis());
+			avaliacaoVo.setNotaMediaAvaliacaoTecnica(avaliacaoVo.getNotaMediaAvaliacaoTecnica() + avaliacao.getNotaTecnica());
+			avaliacaoVo.setNotaMediaAvaliacaoComportamental(avaliacaoVo.getNotaMediaAvaliacaoComportamental() + avaliacao.getNotaComportamental());
+			avaliacaoVo.setNotaMediaAvaliacaoLideranca(avaliacaoVo.getNotaMediaAvaliacaoLideranca() + avaliacao.getNotaLideranca());
+			avaliacaoVo.setNotaMediaAvaliacaoNegocio(avaliacaoVo.getNotaMediaAvaliacaoNegocio() + avaliacao.getNotaNegocio());
+			avaliacaoVo.setNotaMediaAvaliacaoPraticasAgeis(avaliacaoVo.getNotaMediaAvaliacaoPraticasAgeis() + avaliacao.getNotaPraticasAgeis());
 		});
 		avaliacaoVo.setNotaMediaAvaliacaoTecnica(avaliacaoVo.getNotaMediaAvaliacaoTecnica() / avaliacoes.size());
 		avaliacaoVo.setNotaMediaAvaliacaoComportamental(avaliacaoVo.getNotaMediaAvaliacaoComportamental() / avaliacoes.size());
@@ -55,6 +72,13 @@ public class AvaliacaoService {
 		
 		return avaliacaoVo;
 	}
+	
+	/**
+	 * Formata as notas para deixá-las com 2 casas decimais
+	 * 
+	 * @param avaliacaoVo populado e com as médias já calculadas
+	 * @return O mesmo Vo já populado, porém com as notas já formatadas
+	 */
 	
 	public RelatorioAvaliacoesVo formatarNotas(RelatorioAvaliacoesVo avaliacaoVo) {
 		String notaTecnica = formatador.formatarDecimal(avaliacaoVo.getNotaMediaAvaliacaoTecnica());

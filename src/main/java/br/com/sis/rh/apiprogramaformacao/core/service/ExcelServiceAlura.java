@@ -16,8 +16,22 @@ import org.springframework.stereotype.Service;
 
 import br.com.sis.rh.apiprogramaformacao.api.vo.RelatorioAluraVo;
 
+/**
+ * Classe para gerar um arquivo XLSX com os valores do
+ * relatório da plataforma Alura
+ */
+
 @Service
 public class ExcelServiceAlura {
+	
+	/**
+	 * Pega os valores do Vo e insere nas linhas/colunas
+	 * e monta o arquivo xlsx
+	 * 
+	 * @param aluraVo recebe o Vo com todos os campos
+	 * populados
+	 */
+	
 	public ByteArrayInputStream gerarRelatorioAlura(RelatorioAluraVo aluraVo) throws IOException {
 		try(Workbook workbook = new XSSFWorkbook()){
 			Sheet sheet = workbook.createSheet("Alura");
@@ -28,6 +42,8 @@ public class ExcelServiceAlura {
 	        headerCellStyle.setFillForegroundColor(IndexedColors.AQUA.getIndex());
 	        headerCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			
+	        //Criação das células da primeira linha, onde vão
+	        //os títulos das colunas
 	        Cell cell = row.createCell(0);
 	        cell.setCellValue("Data do último registro");
 	        cell.setCellStyle(headerCellStyle);
@@ -52,6 +68,8 @@ public class ExcelServiceAlura {
 	        cell.setCellValue("Participante");
 	        cell.setCellStyle(headerCellStyle);
 	        
+	        //Inserçao dos dados na segunda linha, pegando os
+	        //valores do Vo
 	        Row dataRow = sheet.createRow(1);
 	        dataRow.createCell(0).setCellValue(aluraVo.getDataUltimoRegistro());
 	        dataRow.createCell(1).setCellValue(aluraVo.getMediaDeHorasDosParticipantes());

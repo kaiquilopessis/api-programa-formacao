@@ -53,6 +53,9 @@ public class ServiceFiltroPeriodo {
 				.setInvestTotalPeriodoSelecionado(investimentoProgFormacaoVo.getInvestInstrutoresPeriodoSelecionado()
 						+ investimentoProgFormacaoVo.getInvestParticipantesPeriodoSelecionado());
 
+		investimentoProgFormacaoVo.setFormacao(nomePrograma);
+		investimentoProgFormacaoVo.setTurma(nomeTurma);
+		
 		return investimentoProgFormacaoVo;
 	}
 
@@ -62,7 +65,7 @@ public class ServiceFiltroPeriodo {
 			String nomePrograma, String nomeTurma, InvestimentoProgFormacaoVo investimentoProgFormacaoVo) {
 		investimentoProgFormacaoVo.setInvestParticipantesPeriodoSelecionado(0.0);
 
-		Programa programa = (Programa) programaRepository.ListarPrograma(dataInicio, dataFim, nomePrograma, nomeTurma);
+		Programa programa = (Programa) programaRepository.listarProgramaSemData(nomePrograma, nomeTurma);
 		List<Participante> participantes = (List<Participante>) participantesRepository
 				.listarParticipantes(programa.getId());
 		participantes.forEach(participante -> {

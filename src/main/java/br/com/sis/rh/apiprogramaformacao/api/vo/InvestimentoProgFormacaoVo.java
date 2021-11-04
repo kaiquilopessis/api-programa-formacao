@@ -17,5 +17,7 @@ public class InvestimentoProgFormacaoVo {
 	private Double investParticipantesPeriodoSelecionado;
 	private Double investInstrutoresPeriodoSelecionado;
 	private Double investTotalPeriodoSelecionado;
+	private String formacao;
+	private String turma;
 	
 }
