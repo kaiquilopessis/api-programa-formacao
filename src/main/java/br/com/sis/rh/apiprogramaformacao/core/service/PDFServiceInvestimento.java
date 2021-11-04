@@ -1,9 +1,5 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
-/**
- * Classe Classe exportadora PDF, formatação e afins
- */
-
 import java.awt.Color;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
@@ -17,10 +13,14 @@ import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
-
 import br.com.sis.rh.apiprogramaformacao.api.vo.InvestimentoProgFormacaoVo;
 
-
+/**
+ * 
+ * @author dkalbiak
+ *
+ *         Esta classe funciona como uma exportadora PDF, formatação e afins
+ */
 public class PDFServiceInvestimento {
 
 	private InvestimentoProgFormacaoVo investimentoProgFormacaoVo;
@@ -91,5 +91,4 @@ public class PDFServiceInvestimento {
 		document.add(table);
 		document.close();
 	}
-
 }
