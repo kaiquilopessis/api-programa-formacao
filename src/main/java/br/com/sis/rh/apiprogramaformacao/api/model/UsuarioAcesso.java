@@ -20,13 +20,18 @@ public class UsuarioAcesso implements UserDetails {
     @Column(name = "email", length = 100)
     private String email;
     @Column(name = "status", nullable = false)
-    private long status;
+    private String status;
     @Column(name = "senha_criptografada", length = 20, nullable = false)
     private String senha;
     @Column(name = "data_inclusao")
     private LocalDate dataInclusao;
 
+    public UsuarioAcesso(){}
 
+    public UsuarioAcesso(String usuario, String senha){
+        this.usuarioAd = usuario;
+        this.senha = senha;
+    }
 
     public String getUsuarioAd() {
         return usuarioAd;
@@ -42,10 +47,10 @@ public class UsuarioAcesso implements UserDetails {
         this.email = email;
     }
 
-    public long getStatus() {
+    public String getStatus() {
         return status;
     }
-    public void setStatus(long status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
