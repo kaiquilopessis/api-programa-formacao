@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 
 import lombok.Data;
 
+
+// Info. da tabela de conclusão
 @Entity(name = "TB_CONCLUSAO")
 @Data
 public class Conclusao {
