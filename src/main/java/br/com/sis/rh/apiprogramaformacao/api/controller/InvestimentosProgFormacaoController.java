@@ -101,20 +101,30 @@ public class InvestimentosProgFormacaoController {
 	 * @param nomeTurma    processa o nome da truma selecionada na tela Relatórios
 	 * @throws DocumentException
 	 * @throws IOException
+	 * @throws ParseException 
 	 */
-	@GetMapping("/pdf")
-	public void downloadPDF(HttpServletResponse response, @PathVariable String nomePrograma,
-			@PathVariable String nomeTurma) throws DocumentException, IOException {
+	@GetMapping("/{nomePrograma}/{nomeTurma}/{dataInicio}/{dataFim}/pdf")
+	public void downloadPDF(HttpServletResponse response, @PathVariable String nomePrograma, @PathVariable String nomeTurma, @PathVariable String dataInicio,
+			@PathVariable String dataFim) throws DocumentException, IOException, ParseException {
 		response.setContentType("application/pdf");
 
 		String headerKey = "Content-Disposition";
-		String headerValue = "attachment; filename=RelatorioAlura.pdf";
+		String headerValue = "attachment; filename=Investimento.pdf";
 		response.setHeader(headerKey, headerValue);
 
-		InvestimentoProgFormacaoVo investimentoSemFiltroData = investService.popularCardsSuperiores(nomePrograma,
+		InvestimentoProgFormacaoVo investimentoProgFormacaoVo = investService.popularCardsSuperiores(nomePrograma,
 				nomeTurma);
+		
+		LocalDate dataFormatadaInicio = dataFormat.dataFormatada(dataInicio);
+		LocalDate dataFormatadaFim = dataFormat.dataFormatada(dataFim);
+		
+		InvestimentoProgFormacaoVo investimento = service.popularCards(dataFormatadaInicio, dataFormatadaFim, nomePrograma, nomeTurma);
+		
+		investimentoProgFormacaoVo.setInvestParticipantesPeriodoSelecionado(investimento.getInvestParticipantesPeriodoSelecionado());
+		investimentoProgFormacaoVo.setInvestInstrutoresPeriodoSelecionado(investimento.getInvestInstrutoresPeriodoSelecionado());
+		investimentoProgFormacaoVo.setInvestTotalPeriodoSelecionado(investimento.getInvestTotalPeriodoSelecionado());
 
-		PDFServiceInvestimento exporter = new PDFServiceInvestimento(investimentoSemFiltroData);
+		PDFServiceInvestimento exporter = new PDFServiceInvestimento(investimentoProgFormacaoVo);
 		exporter.export(response);
 
 	}
@@ -127,12 +137,22 @@ public class InvestimentosProgFormacaoController {
 	 *                     Relatórios
 	 * @param nomeTurma    processa o nome da truma selecionada na tela Relatórios
 	 * @throws IOException
+	 * @throws ParseException 
 	 */
-	@GetMapping("/xlsx")
-	public void downloadXLSX(HttpServletResponse response, @PathVariable String nomePrograma,
-			@PathVariable String nomeTurma) throws IOException {
+	@GetMapping("/{nomePrograma}/{nomeTurma}/{dataInicio}/{dataFim}/xlsx")
+	public void downloadXLSX(HttpServletResponse response, @PathVariable String nomePrograma, @PathVariable String nomeTurma, @PathVariable String dataInicio,
+			@PathVariable String dataFim) throws IOException, ParseException {
 		InvestimentoProgFormacaoVo investimentoProgFormacaoVo = investService.popularCardsSuperiores(nomePrograma,
 				nomeTurma);
+		
+		LocalDate dataFormatadaInicio = dataFormat.dataFormatada(dataInicio);
+		LocalDate dataFormatadaFim = dataFormat.dataFormatada(dataFim);
+		
+		InvestimentoProgFormacaoVo investimento = service.popularCards(dataFormatadaInicio, dataFormatadaFim, nomePrograma, nomeTurma);
+		
+		investimentoProgFormacaoVo.setInvestParticipantesPeriodoSelecionado(investimento.getInvestParticipantesPeriodoSelecionado());
+		investimentoProgFormacaoVo.setInvestInstrutoresPeriodoSelecionado(investimento.getInvestInstrutoresPeriodoSelecionado());
+		investimentoProgFormacaoVo.setInvestTotalPeriodoSelecionado(investimento.getInvestTotalPeriodoSelecionado());
 
 		response.setContentType("application/octet-stream");
 		response.setHeader("Content-Disposition", "attachment; filename=Investimentos.xlsx");
