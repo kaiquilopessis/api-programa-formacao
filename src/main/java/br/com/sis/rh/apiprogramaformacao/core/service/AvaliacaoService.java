@@ -39,9 +39,9 @@ public class AvaliacaoService {
 	public RelatorioAvaliacoesVo popularCards(String formacao, String turma) {
 		RelatorioAvaliacoesVo avaliacaoVo = calcularMedia();
 		avaliacaoVo.setUltimoCicloRegistrado(avaliacaoRepository.buscaNumeroCiclo());
-		String formacaoFormatada = formacao.replace("+", " ");
-		avaliacaoVo.setProgramaDeFormacao(formacaoFormatada);
-		avaliacaoVo.setTurma(turma);
+		String turmaFormatada = turma.replace("+", " ");
+		avaliacaoVo.setProgramaDeFormacao(formacao);
+		avaliacaoVo.setTurma(turmaFormatada);
 		avaliacaoVo = formatarNotas(avaliacaoVo);
 		return avaliacaoVo;
 	}
