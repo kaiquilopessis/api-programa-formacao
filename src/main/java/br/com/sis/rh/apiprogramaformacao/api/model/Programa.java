@@ -39,8 +39,4 @@ public class Programa {
 	private Integer qtdEstagiario;
 	@Column(name = "qtd_trainee")
 	private Integer qtdTrainee;
-	@Column(name = "vlr_hora_instrutor")
-	private BigDecimal valorHoraInstrutor;
-	@Column(name = "qtd_hora_instrutor")
-	private BigDecimal qtd_hr_instrutor;
 }
