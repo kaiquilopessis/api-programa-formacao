@@ -43,12 +43,6 @@ public class Programa {
 	@Column(name = "data_fim")
 	private LocalDate dataFim;
 
-	@Column(name = "vlr_hora_instrutor")
-	private Double valorHora;
-
-	@Column(name = "qtd_hr_instrutor")
-	private Double QTDHora;
-
 	@OneToMany(fetch = FetchType.LAZY)
 	private List<Participante> participante;
 

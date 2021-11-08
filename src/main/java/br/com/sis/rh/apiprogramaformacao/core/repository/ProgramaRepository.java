@@ -30,9 +30,5 @@ public interface ProgramaRepository extends JpaRepository<Programa, Long> {
 	// busca nome do programa onde nome da turma for igual ao selecionado
 	@Query("select p from TB_PROGRAMA p where nome= ?1 and nome_turma= ?2")
 	Programa listarProgramaSemData(String nomePrograma,String nomeTurma);
-	
-	// busca o valor do salario instutor de acordo com o programa selecionado
-	@Query("select (vlr_hora_instrutor * qtd_hr_instrutor) from TB_PROGRAMA where nome= ?1")
-	List<Double> calcularSalarioInstrutores(String nomePrograma, String nomeTurma);
 
 }

@@ -12,6 +12,7 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.InvestimentoProgFormacaoVo;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ConclusaoRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoInstrutorRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
 
 /**
@@ -41,6 +42,8 @@ public class InvestimentoFiltroPeriodoService {
 	private ConclusaoRepository conclusaoRepository;
 	@Autowired
 	private RemuneracaoRepository remuneracaoRepository;
+	@Autowired
+	private RemuneracaoInstrutorRepository remuneracaoInstrutorRepository;
 
 	// Metodo chamado no controller para popular os cards, contém a sequencia de
 	// valores a serem utilizados no vue.js
@@ -51,7 +54,7 @@ public class InvestimentoFiltroPeriodoService {
 		investimentoProgFormacaoVo = investParticipantesPeriodo(dataInicio, dataFim, nomePrograma, tumaFormatada,
 				investimentoProgFormacaoVo);
 
-		investimentoProgFormacaoVo = investInstrutorPeriodo(nomePrograma, tumaFormatada, investimentoProgFormacaoVo);
+		investimentoProgFormacaoVo = investInstrutorPeriodo(dataInicio, dataFim, nomePrograma, tumaFormatada, investimentoProgFormacaoVo);
 		investimentoProgFormacaoVo
 				.setInvestTotalPeriodoSelecionado(investimentoProgFormacaoVo.getInvestInstrutoresPeriodoSelecionado()
 						+ investimentoProgFormacaoVo.getInvestParticipantesPeriodoSelecionado());
@@ -122,17 +125,11 @@ public class InvestimentoFiltroPeriodoService {
 
 	// este metodo processa os dados dos custos totais com instrutores de acordo com
 	// o programa, turma e data selecionada
-	public InvestimentoProgFormacaoVo investInstrutorPeriodo(String nomePrograma, String nomeTurma,
-			InvestimentoProgFormacaoVo investimentoProgFormacaoVo) {
-		investimentoProgFormacaoVo.setInvestInstrutoresPeriodoSelecionado(0.0);
+	public InvestimentoProgFormacaoVo investInstrutorPeriodo(LocalDate dataInicio, LocalDate dataFim,
+			String nomePrograma,String nomeTurma,InvestimentoProgFormacaoVo investimentoProgFormacaoVo) {
 
-		List<Double> salarioInstrutores = programaRepository.calcularSalarioInstrutores(nomePrograma, nomeTurma);
-
-		salarioInstrutores.forEach(salario -> {
-			investimentoProgFormacaoVo.setInvestInstrutoresPeriodoSelecionado(
-					investimentoProgFormacaoVo.getInvestInstrutoresPeriodoSelecionado() + salario);
-
-		});
+		Double salarioInstrutores = remuneracaoInstrutorRepository.calcularSalarioInstrutoresPeriodo(nomePrograma, nomeTurma, dataInicio, dataFim);
+		investimentoProgFormacaoVo.setInvestInstrutoresPeriodoSelecionado(salarioInstrutores);
 
 		return investimentoProgFormacaoVo;
 	}

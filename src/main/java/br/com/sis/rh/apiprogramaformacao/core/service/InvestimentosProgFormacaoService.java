@@ -11,6 +11,7 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.InvestimentoProgFormacaoVo;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ConclusaoRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoInstrutorRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
 
 /**
@@ -35,6 +36,8 @@ public class InvestimentosProgFormacaoService {
 	private ParticipanteRepository participantesRepository;
 	@Autowired
 	private ConclusaoRepository conclusaoRepository;
+	@Autowired
+	private RemuneracaoInstrutorRepository remuneracaoInstrutorRepository;
 
 	/**
 	 * Metodo chamado no controller para popular os cards superiores antes do filtro
@@ -117,13 +120,9 @@ public class InvestimentosProgFormacaoService {
 	public InvestimentoProgFormacaoVo investimentoInstrutores(String nomePrograma, String nomeTurma,
 			InvestimentoProgFormacaoVo investInstrutores) {
 
-		List<Double> salarioInstrutores = programaRepository.calcularSalarioInstrutores(nomePrograma, nomeTurma);
-
-		investInstrutores.setInvestInstrutores(0.0);
-
-		salarioInstrutores.forEach(salario -> {
-			investInstrutores.setInvestInstrutores(investInstrutores.getInvestInstrutores() + salario);
-		});
+		Double salarioInstrutores = remuneracaoInstrutorRepository.calcularSalarioInstrutores(nomePrograma, nomeTurma);
+		investInstrutores.setInvestInstrutores(salarioInstrutores);
+			
 		return investInstrutores;
 	}
 
