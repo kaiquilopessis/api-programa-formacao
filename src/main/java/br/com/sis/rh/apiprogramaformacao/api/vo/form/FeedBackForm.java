@@ -10,24 +10,35 @@ public class FeedBackForm {
 
 	private String data;
 	private String anotacoes;
-	
+	private byte[] disc;
 
 	public String getData() {
 		return data;
 	}
+
 	public void setData(String data) {
 		this.data = data;
 	}
+
 	public String getAnotacoes() {
 		return anotacoes;
 	}
+
 	public void setAnotacoes(String anotacoes) {
 		this.anotacoes = anotacoes;
 	}
 
-	public FeedBack converter (Participante participante) {
+	public byte[] getDisc() {
+		return disc;
+	}
+
+	public void setDisc(byte[] disc) {
+		this.disc = disc;
+	}
+
+	public FeedBack converter(Participante participante) {
 		LocalDate data = LocalDate.parse(this.data, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		return new FeedBack(data, anotacoes, participante);
+		return new FeedBack(data, anotacoes, participante, disc);
 	}
 
 }
