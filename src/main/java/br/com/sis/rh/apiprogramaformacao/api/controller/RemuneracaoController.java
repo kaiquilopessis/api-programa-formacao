@@ -44,7 +44,7 @@ public class RemuneracaoController {
        return ResponseEntity.created(uri).body(new RemuneracaoDto(remuneracao));
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     @Transactional
     public ResponseEntity<RemuneracaoDto> atualizarRemuneracao(@PathVariable Long id, @RequestBody AtualizaRemuneracaoForm form){
         Remuneracao remuneracao = remuneracaoService.atualizaRemuneracao(id, form);

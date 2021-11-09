@@ -17,7 +17,7 @@ public class CandidatoDto {
     //private File curriculo;
     //private File arquivoDisc;
     private String notaDisc;
-    private String observacoes;
+    private String observacao;
 
     public CandidatoDto(Candidato candidato){
         this.id = candidato.getId();
@@ -28,7 +28,7 @@ public class CandidatoDto {
         this.curso = candidato.getCurso();
         this.status = candidato.getStatus();
         this.testeLogico = candidato.getTesteLogico();
-        this.observacoes = candidato.getObservacao();
+        this.observacao = candidato.getObservacao();
         this.notaDisc = candidato.getNotaDisc();
     }
 
@@ -107,11 +107,11 @@ public class CandidatoDto {
         this.notaDisc = notaDisc;
     }
 
-    public String getObservacoes() {
-        return observacoes;
+    public String getObservacao() {
+        return observacao;
     }
 
-    public void setObservacoes(String observacoes) {
-        this.observacoes = observacoes;
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
     }
 }

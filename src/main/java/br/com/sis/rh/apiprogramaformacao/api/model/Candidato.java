@@ -67,7 +67,7 @@ public class Candidato {
 		return curso;
 	}
 	public void setCurso(String curso) {
-		curso = curso;
+		this.curso = curso;
 	}
 
 	public long getId() {
