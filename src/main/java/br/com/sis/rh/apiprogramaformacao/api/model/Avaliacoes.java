@@ -10,6 +10,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 @Table(name = "TB_NOTAS_AVALIACOES")
 public class Avaliacoes {
@@ -36,6 +39,7 @@ public class Avaliacoes {
 	private Double notaNegocios;
 
 	@OneToOne
+	@Cascade(CascadeType.ALL)
 	@JoinColumn(name = "NOTA_COMPORTAMENTAL_FK")
 	private AvaliacaoDesempenho avaliacaoDesempenho;
 
