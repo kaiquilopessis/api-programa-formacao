@@ -24,23 +24,23 @@ public class Avaliacoes {
 	private Participante participante;
 
 	@Column(name = "NOTA_TECNICA")
-	private Float notaTecnica;
+	private Double notaTecnica;
 
 	@Column(name = "NOTA_PRATICAS_AGEIS")
-	private Float notaPraticasAgeis;
+	private Double notaPraticasAgeis;
 
 	@Column(name = "NOTA_LIDERANCA")
-	private Float notaLideranca;
+	private Double notaLideranca;
 
 	@Column(name = "NOTA_NEGOCIO")
-	private Float notaNegocios;
+	private Double notaNegocios;
 
 	@OneToOne
 	@JoinColumn(name = "NOTA_COMPORTAMENTAL_FK")
 	private AvaliacaoDesempenho avaliacaoDesempenho;
 
-	public Avaliacoes(Participante participante, Float notaTecnica, Float notaPraticasAgeis, Float notaLideranca,
-			Float notaNegocios, AvaliacaoDesempenho avaliacaoDesempenho) {
+	public Avaliacoes(Participante participante, Double notaTecnica, Double notaPraticasAgeis, Double notaLideranca,
+			Double notaNegocios, AvaliacaoDesempenho avaliacaoDesempenho) {
 
 		this.participante = participante;
 		this.notaTecnica = notaTecnica;
@@ -70,35 +70,35 @@ public class Avaliacoes {
 		this.participante = participante;
 	}
 
-	public Float getNotaTecnica() {
+	public Double getNotaTecnica() {
 		return notaTecnica;
 	}
 
-	public void setNotaTecnica(Float notaTecnica) {
+	public void setNotaTecnica(Double notaTecnica) {
 		this.notaTecnica = notaTecnica;
 	}
 
-	public Float getNotaPraticasAgeis() {
+	public Double getNotaPraticasAgeis() {
 		return notaPraticasAgeis;
 	}
 
-	public void setNotaPraticasAgeis(Float notaPraticasAgeis) {
+	public void setNotaPraticasAgeis(Double notaPraticasAgeis) {
 		this.notaPraticasAgeis = notaPraticasAgeis;
 	}
 
-	public Float getNotaLideranca() {
+	public Double getNotaLideranca() {
 		return notaLideranca;
 	}
 
-	public void setNotaLideranca(Float notaLideranca) {
+	public void setNotaLideranca(Double notaLideranca) {
 		this.notaLideranca = notaLideranca;
 	}
 
-	public Float getNotaNegocios() {
+	public Double getNotaNegocios() {
 		return notaNegocios;
 	}
 
-	public void setNotaNegocios(Float notaNegocios) {
+	public void setNotaNegocios(Double notaNegocios) {
 		this.notaNegocios = notaNegocios;
 	}
 

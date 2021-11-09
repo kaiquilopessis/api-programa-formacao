@@ -9,19 +9,19 @@ public class AvaliacoesDto {
 
 	private Long id;
 
-	private Float notaTecnica;
+	private Double notaTecnica;
 
-	private Float notaComportamental;
+	private Double notaComportamental;
 
-	private Float notaPraticasAgeis;
+	private Double notaPraticasAgeis;
 
-	private Float notaLideranca;
+	private Double notaLideranca;
 
-	private Float notaNegocios;
+	private Double notaNegocios;
 
 	public AvaliacoesDto(Avaliacoes avaliacao) {
 		this.id = avaliacao.getId();
-		this.notaComportamental = avaliacao.getNotaComportamental();
+		this.notaComportamental = avaliacao.getAvaliacaoDesempenho().getMedia();
 		this.notaLideranca = avaliacao.getNotaLideranca();
 		this.notaNegocios = avaliacao.getNotaNegocios();
 		this.notaPraticasAgeis = avaliacao.getNotaPraticasAgeis();
@@ -36,47 +36,47 @@ public class AvaliacoesDto {
 		this.id = id;
 	}
 
-	public Float getNotaTecnica() {
+	public Double getNotaTecnica() {
 		return notaTecnica;
 	}
 
-	public void setNotaTecnica(Float notaTecnica) {
+	public void setNotaTecnica(Double notaTecnica) {
 		this.notaTecnica = notaTecnica;
 	}
 
-	public Float getNotaComportamental() {
+	public Double getNotaComportamental() {
 		return notaComportamental;
 	}
 
-	public void setNotaComportamental(Float notaComportamental) {
+	public void setNotaComportamental(Double notaComportamental) {
 		this.notaComportamental = notaComportamental;
 	}
 
-	public Float getNotaPraticasAgeis() {
+	public Double getNotaPraticasAgeis() {
 		return notaPraticasAgeis;
 	}
 
-	public void setNotaPraticasAgeis(Float notaPraticasAgeis) {
+	public void setNotaPraticasAgeis(Double notaPraticasAgeis) {
 		this.notaPraticasAgeis = notaPraticasAgeis;
 	}
 
-	public Float getNotaLideranca() {
+	public Double getNotaLideranca() {
 		return notaLideranca;
 	}
 
-	public void setNotaLideranca(Float notaLideranca) {
+	public void setNotaLideranca(Double notaLideranca) {
 		this.notaLideranca = notaLideranca;
 	}
 
-	public Float getNotaNegocios() {
+	public Double getNotaNegocios() {
 		return notaNegocios;
 	}
 
-	public void setNotaNegocios(Float notaNegocios) {
+	public void setNotaNegocios(Double notaNegocios) {
 		this.notaNegocios = notaNegocios;
 	}
 
-	public static List<AvaliacoesDto> converter (List<Avaliacoes> avaliacoes){
+	public static List<AvaliacoesDto> converter(List<Avaliacoes> avaliacoes) {
 		return avaliacoes.stream().map(AvaliacoesDto::new).collect(Collectors.toList());
 	}
 

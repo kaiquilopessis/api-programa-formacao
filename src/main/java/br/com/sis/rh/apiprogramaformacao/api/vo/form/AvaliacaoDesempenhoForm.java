@@ -147,6 +147,14 @@ public class AvaliacaoDesempenhoForm {
 	public void setMedia(Double media) {
 		this.media = media;
 	}
+	
+	public Double getDedicacao() {
+		return dedicacao;
+	}
+
+	public void setDedicacao(Double dedicacao) {
+		this.dedicacao = dedicacao;
+	}
 
 	public AvaliacaoDesempenho converter() {
 		this.media = (this.adaptacao + this.qualidade + this.capTecnica + this.comunicabilidade + this.apPratica + this.dedicacao
@@ -157,14 +165,6 @@ public class AvaliacaoDesempenhoForm {
 				this.comunicabilidade, this.apPratica, this.dedicacao, this.cooperacao, this.iniciativa,
 				this.disciplina, this.organizacao, this.responsabilidade, this.sociabilidade, this.media);
 
-	}
-
-	public Double getDedicacao() {
-		return dedicacao;
-	}
-
-	public void setDedicacao(Double dedicacao) {
-		this.dedicacao = dedicacao;
 	}
 
 }

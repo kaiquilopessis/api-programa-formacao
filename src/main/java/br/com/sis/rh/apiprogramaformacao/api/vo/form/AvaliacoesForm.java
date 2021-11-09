@@ -5,57 +5,59 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Avaliacoes;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 
 public class AvaliacoesForm {
-	
-	private Float notaTecnica;
+
+	private Double notaTecnica;
 
 	private AvaliacaoDesempenhoForm avaliacaoDesempenhoForm;
 
-	private Float notaPraticasAgeis;
+	private Double notaPraticasAgeis;
 
-	private Float notaLideranca;
+	private Double notaLideranca;
 
-	private Float notaNegocios;
+	private Double notaNegocios;
 
-	public Float getNotaTecnica() {
+	public Double getNotaTecnica() {
 		return notaTecnica;
 	}
 
-	public void setNotaTecnica(Float notaTecnica) {
+	public void setNotaTecnica(Double notaTecnica) {
 		this.notaTecnica = notaTecnica;
+	}
+
+	public AvaliacaoDesempenhoForm getAvaliacaoDesempenhoForm() {
+		return avaliacaoDesempenhoForm;
 	}
 
 	public void setAvaliacaoDesempenhoForm(AvaliacaoDesempenhoForm avaliacaoDesempenhoForm) {
 		this.avaliacaoDesempenhoForm = avaliacaoDesempenhoForm;
 	}
 
-	public Float getNotaPraticasAgeis() {
+	public Double getNotaPraticasAgeis() {
 		return notaPraticasAgeis;
 	}
 
-	public void setNotaPraticasAgeis(Float notaPraticasAgeis) {
+	public void setNotaPraticasAgeis(Double notaPraticasAgeis) {
 		this.notaPraticasAgeis = notaPraticasAgeis;
 	}
 
-	public Float getNotaLideranca() {
+	public Double getNotaLideranca() {
 		return notaLideranca;
 	}
 
-	public void setNotaLideranca(Float notaLideranca) {
+	public void setNotaLideranca(Double notaLideranca) {
 		this.notaLideranca = notaLideranca;
 	}
 
-	public Float getNotaNegocios() {
+	public Double getNotaNegocios() {
 		return notaNegocios;
 	}
 
-	public void setNotaNegocios(Float notaNegocios) {
+	public void setNotaNegocios(Double notaNegocios) {
 		this.notaNegocios = notaNegocios;
 	}
-	
-	
-	
-	
+
 	public Avaliacoes converter(Participante participante) {
+		AvaliacaoDesempenho avaliacaoDesempenho = avaliacaoDesempenhoForm.converter();
 		return new Avaliacoes(participante, notaTecnica, notaNegocios, notaPraticasAgeis, notaLideranca,
 				avaliacaoDesempenho);
 	}
