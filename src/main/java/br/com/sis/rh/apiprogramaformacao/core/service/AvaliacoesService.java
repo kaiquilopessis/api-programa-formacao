@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.sis.rh.apiprogramaformacao.api.model.AvaliacaoDesempenho;
 import br.com.sis.rh.apiprogramaformacao.api.model.Avaliacoes;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.AvaliacaoDesempenhoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.AvaliacoesDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AvaliacoesForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.AvaliacoesRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.AvaliacaoDesempenhoRepository;
 @Service
 public class AvaliacoesService {
 
@@ -25,6 +28,9 @@ public class AvaliacoesService {
 
 	@Autowired
 	private ParticipanteRepository participanteRepository;
+	
+	@Autowired
+	private AvaliacaoDesempenhoRepository avaliacaoDesempenhoRepository;
 
 
 	public List<AvaliacoesDto> listarNotas(String cpf) {
@@ -52,6 +58,11 @@ public class AvaliacoesService {
 			return ResponseEntity.ok().build();
 		}
 		return ResponseEntity.notFound().build();
+	}
+
+	public ResponseEntity<AvaliacaoDesempenhoDto> listarAvaliacaoDesempenho(Long id) {
+		AvaliacaoDesempenho avaliacaoDesempenho = avaliacaoDesempenhoRepository.getById(id);
+		return ResponseEntity.ok(new AvaliacaoDesempenhoDto(avaliacaoDesempenho));
 	}
 
 }

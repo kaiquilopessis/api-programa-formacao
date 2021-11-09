@@ -1,95 +1,59 @@
-package br.com.sis.rh.apiprogramaformacao.api.model;
+package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
+import br.com.sis.rh.apiprogramaformacao.api.model.AvaliacaoDesempenho;
+import br.com.sis.rh.apiprogramaformacao.api.model.Parecer;
 import br.com.sis.rh.apiprogramaformacao.core.enums.Avaliacao;
 
-@Entity
-@Table(name = "TB_AVALIACAO_DESEMPENHO")
-public class AvaliacaoDesempenho {
-
-	@Column(name = "ID")
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class AvaliacaoDesempenhoDto {
 	private Long id;
-
-	@Enumerated(EnumType.STRING)
-	@Column(name = "AVALIACAO")
+	
 	private Avaliacao avaliacao;
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "PARECER")
 	private Parecer parecer;
 
-	@Column(name = "ADAPTACAO")
 	private Double adaptacao;
 
-	@Column(name = "QUALIDADE")
 	private Double qualidade;
 
-	@Column(name = "CAP_TECNICA")
 	private Double capTecnica;
 
-	@Column(name = "COMUNICABILIDADE")
 	private Double comunicabilidade;
 
-	@Column(name = "AP_PRATICA")
 	private Double apPratica;
 
-	@Column(name = "DEDICACAO")
 	private Double dedicacao;
 
-	@Column(name = "COOPERACAO")
 	private Double cooperacao;
 
-	@Column(name = "INICIATIVA")
 	private Double iniciativa;
 
-	@Column(name = "DISCIPLINA")
 	private Double disciplina;
 
-	@Column(name = "ORGANIZACAO")
 	private Double organizacao;
 
-	@Column(name = "RESPONSABILIDADE")
 	private Double responsabilidade;
 
-	@Column(name = "SOCIABILIDADE")
 	private Double sociabilidade;
 
-	@Column(name = "MEDIA")
 	private Double media;
-
-	public AvaliacaoDesempenho() {
-
-	}
-
-	public AvaliacaoDesempenho(Avaliacao avaliacao, Parecer parecer, Double adaptacao, Double qualidade,
-			Double capTecnica, Double comunicabilidade, Double apPratica, Double dedicacao, Double cooperacao,
-			Double iniciativa, Double disciplina, Double organizacao, Double responsabilidade, Double sociabilidade,
-			Double media) {
-		this.avaliacao = avaliacao;
-		this.parecer = parecer;
-		this.adaptacao = adaptacao;
-		this.qualidade = qualidade;
-		this.capTecnica = capTecnica;
-		this.comunicabilidade = comunicabilidade;
-		this.apPratica = apPratica;
-		this.dedicacao = dedicacao;
-		this.cooperacao = cooperacao;
-		this.iniciativa = iniciativa;
-		this.disciplina = disciplina;
-		this.organizacao = organizacao;
-		this.responsabilidade = responsabilidade;
-		this.sociabilidade = sociabilidade;
-		this.media = media;
+	
+	public AvaliacaoDesempenhoDto(AvaliacaoDesempenho avaliacaoDesempenho) {
+		this.id = avaliacaoDesempenho.getId();
+		this.avaliacao = avaliacaoDesempenho.getAvaliacao();
+		this.parecer = avaliacaoDesempenho.getParecer();
+		this.adaptacao = avaliacaoDesempenho.getAdaptacao();
+		this.qualidade = avaliacaoDesempenho.getQualidade();
+		this.capTecnica = avaliacaoDesempenho.getCapTecnica();
+		this.comunicabilidade = avaliacaoDesempenho.getComunicabilidade();
+		this.apPratica = avaliacaoDesempenho.getApPratica();
+		this.dedicacao = avaliacaoDesempenho.getDedicacao();
+		this.cooperacao = avaliacaoDesempenho.getCooperacao();
+		this.iniciativa = avaliacaoDesempenho.getIniciativa();
+		this.disciplina = avaliacaoDesempenho.getDisciplina();
+		this.organizacao = avaliacaoDesempenho.getOrganizacao();
+		this.responsabilidade = avaliacaoDesempenho.getResponsabilidade();
+		this.sociabilidade = avaliacaoDesempenho.getSociabilidade();
+		this.media = avaliacaoDesempenho.getMedia();
 	}
 
 	public Long getId() {
@@ -156,14 +120,6 @@ public class AvaliacaoDesempenho {
 		this.apPratica = apPratica;
 	}
 
-	public Double getDedicacao() {
-		return dedicacao;
-	}
-
-	public void setDedicacao(Double dedicacao) {
-		this.dedicacao = dedicacao;
-	}
-
 	public Double getCooperacao() {
 		return cooperacao;
 	}
@@ -218,6 +174,14 @@ public class AvaliacaoDesempenho {
 
 	public void setMedia(Double media) {
 		this.media = media;
+	}
+	
+	public Double getDedicacao() {
+		return dedicacao;
+	}
+
+	public void setDedicacao(Double dedicacao) {
+		this.dedicacao = dedicacao;
 	}
 
 }

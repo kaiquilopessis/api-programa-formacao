@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.AvaliacaoDesempenhoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.AvaliacoesDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AvaliacoesForm;
 import br.com.sis.rh.apiprogramaformacao.core.service.AvaliacoesService;
@@ -30,6 +31,11 @@ public class AvaliacoesController {
 
 	}
 
+	@GetMapping("/desempenho/{id}")
+	public ResponseEntity<AvaliacaoDesempenhoDto> listarAvaliacaoDesempenho(@PathVariable Long id) {
+		return avaliacoesService.listarAvaliacaoDesempenho(id);
+	}
+
 	@PostMapping("/novo/{cpf}")
 	public ResponseEntity<AvaliacoesDto> cadastrar(@PathVariable String cpf, @RequestBody AvaliacoesForm avaliacoesForm,
 			UriComponentsBuilder uriComponentsBuilder) {
@@ -39,5 +45,5 @@ public class AvaliacoesController {
 	@DeleteMapping("/deletar/{id}")
 	public ResponseEntity<AvaliacoesDto> deletar(@PathVariable Long id) {
 		return avaliacoesService.deletar(id);
-}
+	}
 }

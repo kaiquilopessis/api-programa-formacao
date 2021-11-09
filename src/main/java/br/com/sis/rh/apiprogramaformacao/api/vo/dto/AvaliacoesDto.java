@@ -19,8 +19,11 @@ public class AvaliacoesDto {
 
 	private Double notaNegocios;
 
+	private Long idAvaliacaoDesempenho;
+
 	public AvaliacoesDto(Avaliacoes avaliacao) {
 		this.id = avaliacao.getId();
+		this.idAvaliacaoDesempenho = avaliacao.getAvaliacaoDesempenho().getId();
 		this.notaComportamental = avaliacao.getAvaliacaoDesempenho().getMedia();
 		this.notaLideranca = avaliacao.getNotaLideranca();
 		this.notaNegocios = avaliacao.getNotaNegocios();
@@ -74,6 +77,14 @@ public class AvaliacoesDto {
 
 	public void setNotaNegocios(Double notaNegocios) {
 		this.notaNegocios = notaNegocios;
+	}
+
+	public Long getIdAvaliacaoDesempenho() {
+		return idAvaliacaoDesempenho;
+	}
+
+	public void setIdAvaliacaoDesempenho(Long idAvaliacaoDesempenho) {
+		this.idAvaliacaoDesempenho = idAvaliacaoDesempenho;
 	}
 
 	public static List<AvaliacoesDto> converter(List<Avaliacoes> avaliacoes) {
