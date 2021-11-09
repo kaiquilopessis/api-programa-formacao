@@ -1,12 +1,14 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
+import br.com.sis.rh.apiprogramaformacao.api.model.AvaliacaoDesempenho;
 import br.com.sis.rh.apiprogramaformacao.api.model.Avaliacoes;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 
 public class AvaliacoesForm {
+	
 	private Float notaTecnica;
 
-	private Float notaComportamental;
+	private AvaliacaoDesempenhoForm avaliacaoDesempenhoForm;
 
 	private Float notaPraticasAgeis;
 
@@ -22,12 +24,8 @@ public class AvaliacoesForm {
 		this.notaTecnica = notaTecnica;
 	}
 
-	public Float getNotaComportamental() {
-		return notaComportamental;
-	}
-
-	public void setNotaComportamental(Float notaComportamental) {
-		this.notaComportamental = notaComportamental;
+	public void setAvaliacaoDesempenhoForm(AvaliacaoDesempenhoForm avaliacaoDesempenhoForm) {
+		this.avaliacaoDesempenhoForm = avaliacaoDesempenhoForm;
 	}
 
 	public Float getNotaPraticasAgeis() {
@@ -53,8 +51,12 @@ public class AvaliacoesForm {
 	public void setNotaNegocios(Float notaNegocios) {
 		this.notaNegocios = notaNegocios;
 	}
-
-	public Avaliacoes converter (Participante participante) {
-		return new Avaliacoes(participante, notaTecnica, notaComportamental, notaPraticasAgeis, notaLideranca, notaNegocios);
+	
+	
+	
+	
+	public Avaliacoes converter(Participante participante) {
+		return new Avaliacoes(participante, notaTecnica, notaNegocios, notaPraticasAgeis, notaLideranca,
+				avaliacaoDesempenho);
 	}
 }

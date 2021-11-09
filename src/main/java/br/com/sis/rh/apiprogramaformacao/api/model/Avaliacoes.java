@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,16 +18,13 @@ public class Avaliacoes {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Long id;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "CODIGO_PARTICIPANTE_FK")
 	private Participante participante;
 
 	@Column(name = "NOTA_TECNICA")
 	private Float notaTecnica;
-
-	@Column(name = "NOTA_COMPORTAMENTAL")
-	private Float notaComportamental;
 
 	@Column(name = "NOTA_PRATICAS_AGEIS")
 	private Float notaPraticasAgeis;
@@ -37,15 +35,19 @@ public class Avaliacoes {
 	@Column(name = "NOTA_NEGOCIO")
 	private Float notaNegocios;
 
-	public Avaliacoes(Participante participante, Float notaTecnica, Float notaComportamental, Float notaPraticasAgeis,
-			Float notaLideranca, Float notaNegocios) {
+	@OneToOne
+	@JoinColumn(name = "NOTA_COMPORTAMENTAL_FK")
+	private AvaliacaoDesempenho avaliacaoDesempenho;
+
+	public Avaliacoes(Participante participante, Float notaTecnica, Float notaPraticasAgeis, Float notaLideranca,
+			Float notaNegocios, AvaliacaoDesempenho avaliacaoDesempenho) {
 
 		this.participante = participante;
 		this.notaTecnica = notaTecnica;
-		this.notaComportamental = notaComportamental;
 		this.notaPraticasAgeis = notaPraticasAgeis;
 		this.notaLideranca = notaLideranca;
 		this.notaNegocios = notaNegocios;
+		this.avaliacaoDesempenho = avaliacaoDesempenho;
 	}
 
 	public Avaliacoes() {
@@ -59,8 +61,6 @@ public class Avaliacoes {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	
 
 	public Participante getParticipante() {
 		return participante;
@@ -76,14 +76,6 @@ public class Avaliacoes {
 
 	public void setNotaTecnica(Float notaTecnica) {
 		this.notaTecnica = notaTecnica;
-	}
-
-	public Float getNotaComportamental() {
-		return notaComportamental;
-	}
-
-	public void setNotaComportamental(Float notaComportamental) {
-		this.notaComportamental = notaComportamental;
 	}
 
 	public Float getNotaPraticasAgeis() {
@@ -108,6 +100,14 @@ public class Avaliacoes {
 
 	public void setNotaNegocios(Float notaNegocios) {
 		this.notaNegocios = notaNegocios;
+	}
+
+	public AvaliacaoDesempenho getAvaliacaoDesempenho() {
+		return avaliacaoDesempenho;
+	}
+
+	public void setAvaliacaoDesempenho(AvaliacaoDesempenho avaliacaoDesempenho) {
+		this.avaliacaoDesempenho = avaliacaoDesempenho;
 	}
 
 }

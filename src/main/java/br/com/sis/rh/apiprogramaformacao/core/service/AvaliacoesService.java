@@ -33,7 +33,7 @@ public class AvaliacoesService {
 
 	}
 
-	public ResponseEntity<AvaliacoesDto> cadastrar(@PathVariable String cpf, @RequestBody AvaliacoesForm avaliacoesForm,
+	public ResponseEntity<AvaliacoesDto> cadastrar( String cpf,  AvaliacoesForm avaliacoesForm,
 			UriComponentsBuilder uriComponentsBuilder) {
 		Optional<Participante> participante = participanteRepository.findById(cpf);
 		if (participante.isPresent()) {
