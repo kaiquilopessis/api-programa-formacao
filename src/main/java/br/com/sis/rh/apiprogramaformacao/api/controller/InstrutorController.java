@@ -16,15 +16,15 @@ public class InstrutorController {
     @Autowired
     private InstrutorService instrutorService;
 
-    @GetMapping()
-    public List<FiltragemInstrutorDto> mostrarDados(){
-        return instrutorService.listagemFiltroInstrutorTodos();
-    }
-
-    @PostMapping()
-    public List<FiltragemInstrutorDto> mostrarFiltros(@RequestBody ParametrosFiltroInstrutorForm form){
-        return instrutorService.listagemFiltroInstrutor(form.getParametroNomeInstrutor(), form.getParametroNomeFormacao(), form.getParametroNomeTurma(), form.getParametroValorHora());
-    }
+//    @GetMapping()
+//    public List<FiltragemInstrutorDto> mostrarDados(){
+//        return instrutorService.listagemFiltroInstrutorTodos();
+//    }
+//
+//    @PostMapping()
+//    public List<FiltragemInstrutorDto> mostrarFiltros(@RequestBody ParametrosFiltroInstrutorForm form){
+//        return instrutorService.listagemFiltroInstrutor(form.getParametroNomeInstrutor(), form.getParametroNomeFormacao(), form.getParametroNomeTurma(), form.getParametroValorHora());
+//    }
 
 
     }

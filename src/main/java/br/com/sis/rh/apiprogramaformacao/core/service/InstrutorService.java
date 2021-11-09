@@ -15,11 +15,11 @@ public class InstrutorService {
     @Autowired
     private InstrutorRepository instrutorRepository;
 
-    public List<FiltragemInstrutorDto> listagemFiltroInstrutor(String nomeInstrutor, String nomeFormacao, String nomeTurma, BigDecimal valorHoraInstrutor){
-        return instrutorRepository.findByNomeFormacaoTurmaHora(nomeInstrutor, nomeFormacao, nomeTurma, valorHoraInstrutor);
-    }
-
-    public List<FiltragemInstrutorDto> listagemFiltroInstrutorTodos(){
-        return instrutorRepository.findByNomeFormacaoTurmaHoraTodos();
-    }
+//    public List<FiltragemInstrutorDto> listagemFiltroInstrutor(String nomeInstrutor, String nomeFormacao, String nomeTurma, BigDecimal valorHoraInstrutor){
+//        return instrutorRepository.findByNomeFormacaoTurmaHora(nomeInstrutor, nomeFormacao, nomeTurma, valorHoraInstrutor);
+//    }
+//
+//    public List<FiltragemInstrutorDto> listagemFiltroInstrutorTodos(){
+//        return instrutorRepository.findByNomeFormacaoTurmaHoraTodos();
+//    }
 }

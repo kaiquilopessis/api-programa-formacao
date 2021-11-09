@@ -15,13 +15,14 @@ public class ParticipanteService {
     @Autowired
     private ParticipanteRepository participanteRepository;
 
-    public List<FiltragemFolhaDto> listagemFiltroFolha(String nomeParticipante, String nomeFormacao, String nomeTurma, BigDecimal bolsaAux){
-        return participanteRepository.findByNomeFormacaoTurmaBolsa(nomeParticipante, nomeFormacao, nomeTurma, bolsaAux);
+    public List<FiltragemFolhaDto> listagemFiltroFolha(String nomeFormacao, String nomeTurma){
+        String nomeTurmaFormatado = nomeTurma.replace("+", " "); // pesquisa no banco
+        return participanteRepository.findByNomeFormacaoTurmaBolsa(nomeFormacao, nomeTurmaFormatado);
     }
 
-    public List<FiltragemFolhaDto> listagemFiltroFolhaTodos(){
-        return participanteRepository.findByNomeFormacaoTurmaBolsaTodos();
-    }
+//    public List<FiltragemFolhaDto> listagemFiltroFolhaTodos(){
+//        return participanteRepository.findByNomeFormacaoTurmaBolsaTodos();
+//    }
 
 
 
