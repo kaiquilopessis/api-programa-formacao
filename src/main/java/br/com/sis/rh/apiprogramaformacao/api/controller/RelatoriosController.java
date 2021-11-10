@@ -20,7 +20,7 @@ import br.com.sis.rh.apiprogramaformacao.core.service.FiltroRelatorio;
  * @author psedassari
  */
 @RestController
-@RequestMapping("/relatorios")
+@RequestMapping("/api/relatorios")
 @CrossOrigin
 public class RelatoriosController {
 	

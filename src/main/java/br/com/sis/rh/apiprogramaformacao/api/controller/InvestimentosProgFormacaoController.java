@@ -29,7 +29,7 @@ import br.com.sis.rh.apiprogramaformacao.core.util.DataFormaterUtil;
  *
  */
 @RestController
-@RequestMapping("/investimentos")
+@RequestMapping("/api/investimentos")
 @CrossOrigin
 public class InvestimentosProgFormacaoController {
 

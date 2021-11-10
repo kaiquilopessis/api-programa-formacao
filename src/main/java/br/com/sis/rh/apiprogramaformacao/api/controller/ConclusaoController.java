@@ -21,7 +21,7 @@ import br.com.sis.rh.apiprogramaformacao.core.service.PDFConclusaoService;
 
 // url criado para (/conclusões)
 @RestController
-@RequestMapping("/conclusoes")
+@RequestMapping("/api/conclusoes")
 @CrossOrigin
 public class ConclusaoController {
 
