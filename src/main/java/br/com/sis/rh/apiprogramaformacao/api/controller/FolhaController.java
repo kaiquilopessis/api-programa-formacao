@@ -8,17 +8,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/investimento-folha")
+@RequestMapping("/api/investimento-folha")
 @CrossOrigin
 public class FolhaController {
 
     @Autowired
     private ParticipanteService participanteService;
 
-//    @GetMapping()
-//    public List<FiltragemFolhaDto> mostrarDados(){
-//        return participanteService.listagemFiltroFolhaTodos();
-//    }
+
 
     @GetMapping("/{nomePrograma}/{nomeTurma}") //indicar que será um parametro dinamico (flexivel)
     public List<FiltragemFolhaDto> mostrarFiltros(@PathVariable String nomePrograma, @PathVariable String nomeTurma){

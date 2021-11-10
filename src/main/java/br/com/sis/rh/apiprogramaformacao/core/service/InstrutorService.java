@@ -1,11 +1,13 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemInstrutorDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.SalarioInstrutorDto;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -15,11 +17,19 @@ public class InstrutorService {
     @Autowired
     private InstrutorRepository instrutorRepository;
 
-//    public List<FiltragemInstrutorDto> listagemFiltroInstrutor(String nomeInstrutor, String nomeFormacao, String nomeTurma, BigDecimal valorHoraInstrutor){
-//        return instrutorRepository.findByNomeFormacaoTurmaHora(nomeInstrutor, nomeFormacao, nomeTurma, valorHoraInstrutor);
-//    }
-//
-//    public List<FiltragemInstrutorDto> listagemFiltroInstrutorTodos(){
-//        return instrutorRepository.findByNomeFormacaoTurmaHoraTodos();
-//    }
+    public List<FiltragemInstrutorDto> listagemFiltroInstrutor(String nomeFormacao, String nomeTurma){
+        List<FiltragemInstrutorDto> instrutores = instrutorRepository.findByNomeFormacaoTurmaHora(nomeFormacao, nomeTurma);
+        return instrutores;
+    }
+
+    public List<Double> listagemSalarioInstrutor(String nomeFormacao, String nomeTurma){
+        List<FiltragemInstrutorDto> instrutores = instrutorRepository.findByNomeFormacaoTurmaHora(nomeFormacao, nomeTurma);
+        List<Double> salarioInstrutores = new ArrayList<Double>();
+        instrutores.forEach(instrutor -> {
+            List<Double> lista = instrutorRepository.FindBySalarioInstrutor(instrutor.getCpfInstrutor());
+            salarioInstrutores.addAll(lista);
+        });
+        return salarioInstrutores;
+    }
+
 }

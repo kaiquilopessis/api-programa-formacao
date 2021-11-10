@@ -1,12 +1,11 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "TB_REMUNERACAO_INSTRUTOR")
 public class Remuneracao_Instrutor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
