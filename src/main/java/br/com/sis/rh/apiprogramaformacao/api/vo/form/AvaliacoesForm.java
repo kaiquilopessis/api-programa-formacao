@@ -1,26 +1,28 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
+import java.math.BigDecimal;
+
 import br.com.sis.rh.apiprogramaformacao.api.model.AvaliacaoDesempenho;
 import br.com.sis.rh.apiprogramaformacao.api.model.Avaliacoes;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 
 public class AvaliacoesForm {
 
-	private Double notaTecnica;
+	private BigDecimal notaTecnica;
 
 	private AvaliacaoDesempenhoForm avaliacaoDesempenhoForm;
 
-	private Double notaPraticasAgeis;
+	private BigDecimal notaPraticasAgeis;
 
-	private Double notaLideranca;
+	private BigDecimal notaLideranca;
 
-	private Double notaNegocios;
+	private BigDecimal notaNegocios;
 
-	public Double getNotaTecnica() {
+	public BigDecimal getNotaTecnica() {
 		return notaTecnica;
 	}
 
-	public void setNotaTecnica(Double notaTecnica) {
+	public void setNotaTecnica(BigDecimal notaTecnica) {
 		this.notaTecnica = notaTecnica;
 	}
 
@@ -32,33 +34,33 @@ public class AvaliacoesForm {
 		this.avaliacaoDesempenhoForm = avaliacaoDesempenhoForm;
 	}
 
-	public Double getNotaPraticasAgeis() {
+	public BigDecimal getNotaPraticasAgeis() {
 		return notaPraticasAgeis;
 	}
 
-	public void setNotaPraticasAgeis(Double notaPraticasAgeis) {
+	public void setNotaPraticasAgeis(BigDecimal notaPraticasAgeis) {
 		this.notaPraticasAgeis = notaPraticasAgeis;
 	}
 
-	public Double getNotaLideranca() {
+	public BigDecimal getNotaLideranca() {
 		return notaLideranca;
 	}
 
-	public void setNotaLideranca(Double notaLideranca) {
+	public void setNotaLideranca(BigDecimal notaLideranca) {
 		this.notaLideranca = notaLideranca;
 	}
 
-	public Double getNotaNegocios() {
+	public BigDecimal getNotaNegocios() {
 		return notaNegocios;
 	}
 
-	public void setNotaNegocios(Double notaNegocios) {
+	public void setNotaNegocios(BigDecimal notaNegocios) {
 		this.notaNegocios = notaNegocios;
 	}
 
 	public Avaliacoes converter(Participante participante) {
 		AvaliacaoDesempenho avaliacaoDesempenho = avaliacaoDesempenhoForm.converter();
-		return new Avaliacoes(participante, notaTecnica, notaNegocios, notaPraticasAgeis, notaLideranca,
+		return new Avaliacoes(participante, notaTecnica, notaPraticasAgeis, notaLideranca, notaNegocios,
 				avaliacaoDesempenho);
 	}
 }

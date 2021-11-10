@@ -1,5 +1,7 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,24 +29,24 @@ public class Avaliacoes {
 	private Participante participante;
 
 	@Column(name = "NOTA_TECNICA")
-	private Double notaTecnica;
+	private BigDecimal notaTecnica;
 
 	@Column(name = "NOTA_PRATICAS_AGEIS")
-	private Double notaPraticasAgeis;
+	private BigDecimal notaPraticasAgeis;
 
 	@Column(name = "NOTA_LIDERANCA")
-	private Double notaLideranca;
+	private BigDecimal notaLideranca;
 
 	@Column(name = "NOTA_NEGOCIO")
-	private Double notaNegocios;
+	private BigDecimal notaNegocios;
 
 	@OneToOne
 	@Cascade(CascadeType.ALL)
 	@JoinColumn(name = "NOTA_COMPORTAMENTAL_FK")
 	private AvaliacaoDesempenho avaliacaoDesempenho;
 
-	public Avaliacoes(Participante participante, Double notaTecnica, Double notaPraticasAgeis, Double notaLideranca,
-			Double notaNegocios, AvaliacaoDesempenho avaliacaoDesempenho) {
+	public Avaliacoes(Participante participante, BigDecimal notaTecnica, BigDecimal notaPraticasAgeis, BigDecimal notaLideranca,
+			BigDecimal notaNegocios, AvaliacaoDesempenho avaliacaoDesempenho) {
 
 		this.participante = participante;
 		this.notaTecnica = notaTecnica;
@@ -74,35 +76,35 @@ public class Avaliacoes {
 		this.participante = participante;
 	}
 
-	public Double getNotaTecnica() {
+	public BigDecimal getNotaTecnica() {
 		return notaTecnica;
 	}
 
-	public void setNotaTecnica(Double notaTecnica) {
+	public void setNotaTecnica(BigDecimal notaTecnica) {
 		this.notaTecnica = notaTecnica;
 	}
 
-	public Double getNotaPraticasAgeis() {
+	public BigDecimal getNotaPraticasAgeis() {
 		return notaPraticasAgeis;
 	}
 
-	public void setNotaPraticasAgeis(Double notaPraticasAgeis) {
+	public void setNotaPraticasAgeis(BigDecimal notaPraticasAgeis) {
 		this.notaPraticasAgeis = notaPraticasAgeis;
 	}
 
-	public Double getNotaLideranca() {
+	public BigDecimal getNotaLideranca() {
 		return notaLideranca;
 	}
 
-	public void setNotaLideranca(Double notaLideranca) {
+	public void setNotaLideranca(BigDecimal notaLideranca) {
 		this.notaLideranca = notaLideranca;
 	}
 
-	public Double getNotaNegocios() {
+	public BigDecimal getNotaNegocios() {
 		return notaNegocios;
 	}
 
-	public void setNotaNegocios(Double notaNegocios) {
+	public void setNotaNegocios(BigDecimal notaNegocios) {
 		this.notaNegocios = notaNegocios;
 	}
 
@@ -113,5 +115,4 @@ public class Avaliacoes {
 	public void setAvaliacaoDesempenho(AvaliacaoDesempenho avaliacaoDesempenho) {
 		this.avaliacaoDesempenho = avaliacaoDesempenho;
 	}
-
 }

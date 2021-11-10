@@ -1,5 +1,7 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -29,52 +31,52 @@ public class AvaliacaoDesempenho {
 	private Parecer parecer;
 
 	@Column(name = "ADAPTACAO")
-	private Double adaptacao;
+	private BigDecimal adaptacao;
 
 	@Column(name = "QUALIDADE")
-	private Double qualidade;
+	private BigDecimal qualidade;
 
 	@Column(name = "CAP_TECNICA")
-	private Double capTecnica;
+	private BigDecimal capTecnica;
 
 	@Column(name = "COMUNICABILIDADE")
-	private Double comunicabilidade;
+	private BigDecimal comunicabilidade;
 
 	@Column(name = "AP_PRATICA")
-	private Double apPratica;
+	private BigDecimal apPratica;
 
 	@Column(name = "DEDICACAO")
-	private Double dedicacao;
+	private BigDecimal dedicacao;
 
 	@Column(name = "COOPERACAO")
-	private Double cooperacao;
+	private BigDecimal cooperacao;
 
 	@Column(name = "INICIATIVA")
-	private Double iniciativa;
+	private BigDecimal iniciativa;
 
 	@Column(name = "DISCIPLINA")
-	private Double disciplina;
+	private BigDecimal disciplina;
 
 	@Column(name = "ORGANIZACAO")
-	private Double organizacao;
+	private BigDecimal organizacao;
 
 	@Column(name = "RESPONSABILIDADE")
-	private Double responsabilidade;
+	private BigDecimal responsabilidade;
 
 	@Column(name = "SOCIABILIDADE")
-	private Double sociabilidade;
+	private BigDecimal sociabilidade;
 
 	@Column(name = "MEDIA")
-	private Double media;
+	private BigDecimal media;
 
 	public AvaliacaoDesempenho() {
 
 	}
 
-	public AvaliacaoDesempenho(Avaliacao avaliacao, Parecer parecer, Double adaptacao, Double qualidade,
-			Double capTecnica, Double comunicabilidade, Double apPratica, Double dedicacao, Double cooperacao,
-			Double iniciativa, Double disciplina, Double organizacao, Double responsabilidade, Double sociabilidade,
-			Double media) {
+	public AvaliacaoDesempenho(Avaliacao avaliacao, Parecer parecer, BigDecimal adaptacao, BigDecimal qualidade,
+			BigDecimal capTecnica, BigDecimal comunicabilidade, BigDecimal apPratica, BigDecimal dedicacao, BigDecimal cooperacao,
+			BigDecimal iniciativa, BigDecimal disciplina, BigDecimal organizacao, BigDecimal responsabilidade, BigDecimal sociabilidade,
+			BigDecimal media) {
 		this.avaliacao = avaliacao;
 		this.parecer = parecer;
 		this.adaptacao = adaptacao;
@@ -116,107 +118,107 @@ public class AvaliacaoDesempenho {
 		this.parecer = parecer;
 	}
 
-	public Double getAdaptacao() {
+	public BigDecimal getAdaptacao() {
 		return adaptacao;
 	}
 
-	public void setAdaptacao(Double adaptacao) {
+	public void setAdaptacao(BigDecimal adaptacao) {
 		this.adaptacao = adaptacao;
 	}
 
-	public Double getQualidade() {
+	public BigDecimal getQualidade() {
 		return qualidade;
 	}
 
-	public void setQualidade(Double qualidade) {
+	public void setQualidade(BigDecimal qualidade) {
 		this.qualidade = qualidade;
 	}
 
-	public Double getCapTecnica() {
+	public BigDecimal getCapTecnica() {
 		return capTecnica;
 	}
 
-	public void setCapTecnica(Double capTecnica) {
+	public void setCapTecnica(BigDecimal capTecnica) {
 		this.capTecnica = capTecnica;
 	}
 
-	public Double getComunicabilidade() {
+	public BigDecimal getComunicabilidade() {
 		return comunicabilidade;
 	}
 
-	public void setComunicabilidade(Double comunicabilidade) {
+	public void setComunicabilidade(BigDecimal comunicabilidade) {
 		this.comunicabilidade = comunicabilidade;
 	}
 
-	public Double getApPratica() {
+	public BigDecimal getApPratica() {
 		return apPratica;
 	}
 
-	public void setApPratica(Double apPratica) {
+	public void setApPratica(BigDecimal apPratica) {
 		this.apPratica = apPratica;
 	}
 
-	public Double getDedicacao() {
+	public BigDecimal getDedicacao() {
 		return dedicacao;
 	}
 
-	public void setDedicacao(Double dedicacao) {
+	public void setDedicacao(BigDecimal dedicacao) {
 		this.dedicacao = dedicacao;
 	}
 
-	public Double getCooperacao() {
+	public BigDecimal getCooperacao() {
 		return cooperacao;
 	}
 
-	public void setCooperacao(Double cooperacao) {
+	public void setCooperacao(BigDecimal cooperacao) {
 		this.cooperacao = cooperacao;
 	}
 
-	public Double getIniciativa() {
+	public BigDecimal getIniciativa() {
 		return iniciativa;
 	}
 
-	public void setIniciativa(Double iniciativa) {
+	public void setIniciativa(BigDecimal iniciativa) {
 		this.iniciativa = iniciativa;
 	}
 
-	public Double getDisciplina() {
+	public BigDecimal getDisciplina() {
 		return disciplina;
 	}
 
-	public void setDisciplina(Double disciplina) {
+	public void setDisciplina(BigDecimal disciplina) {
 		this.disciplina = disciplina;
 	}
 
-	public Double getOrganizacao() {
+	public BigDecimal getOrganizacao() {
 		return organizacao;
 	}
 
-	public void setOrganizacao(Double organizacao) {
+	public void setOrganizacao(BigDecimal organizacao) {
 		this.organizacao = organizacao;
 	}
 
-	public Double getResponsabilidade() {
+	public BigDecimal getResponsabilidade() {
 		return responsabilidade;
 	}
 
-	public void setResponsabilidade(Double responsabilidade) {
+	public void setResponsabilidade(BigDecimal responsabilidade) {
 		this.responsabilidade = responsabilidade;
 	}
 
-	public Double getSociabilidade() {
+	public BigDecimal getSociabilidade() {
 		return sociabilidade;
 	}
 
-	public void setSociabilidade(Double sociabilidade) {
+	public void setSociabilidade(BigDecimal sociabilidade) {
 		this.sociabilidade = sociabilidade;
 	}
 
-	public Double getMedia() {
+	public BigDecimal getMedia() {
 		return media;
 	}
 
-	public void setMedia(Double media) {
+	public void setMedia(BigDecimal media) {
 		this.media = media;
 	}
 

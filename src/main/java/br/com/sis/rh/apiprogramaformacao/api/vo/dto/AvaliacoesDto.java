@@ -1,5 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,15 +10,15 @@ public class AvaliacoesDto {
 
 	private Long id;
 
-	private Double notaTecnica;
+	private BigDecimal notaTecnica;
 
-	private Double notaComportamental;
+	private BigDecimal notaComportamental;
 
-	private Double notaPraticasAgeis;
+	private BigDecimal notaPraticasAgeis;
 
-	private Double notaLideranca;
+	private BigDecimal notaLideranca;
 
-	private Double notaNegocios;
+	private BigDecimal notaNegocios;
 
 	private Long idAvaliacaoDesempenho;
 
@@ -39,43 +40,43 @@ public class AvaliacoesDto {
 		this.id = id;
 	}
 
-	public Double getNotaTecnica() {
+	public BigDecimal getNotaTecnica() {
 		return notaTecnica;
 	}
 
-	public void setNotaTecnica(Double notaTecnica) {
+	public void setNotaTecnica(BigDecimal notaTecnica) {
 		this.notaTecnica = notaTecnica;
 	}
 
-	public Double getNotaComportamental() {
+	public BigDecimal getNotaComportamental() {
 		return notaComportamental;
 	}
 
-	public void setNotaComportamental(Double notaComportamental) {
+	public void setNotaComportamental(BigDecimal notaComportamental) {
 		this.notaComportamental = notaComportamental;
 	}
 
-	public Double getNotaPraticasAgeis() {
+	public BigDecimal getNotaPraticasAgeis() {
 		return notaPraticasAgeis;
 	}
 
-	public void setNotaPraticasAgeis(Double notaPraticasAgeis) {
+	public void setNotaPraticasAgeis(BigDecimal notaPraticasAgeis) {
 		this.notaPraticasAgeis = notaPraticasAgeis;
 	}
 
-	public Double getNotaLideranca() {
+	public BigDecimal getNotaLideranca() {
 		return notaLideranca;
 	}
 
-	public void setNotaLideranca(Double notaLideranca) {
+	public void setNotaLideranca(BigDecimal notaLideranca) {
 		this.notaLideranca = notaLideranca;
 	}
 
-	public Double getNotaNegocios() {
+	public BigDecimal getNotaNegocios() {
 		return notaNegocios;
 	}
 
-	public void setNotaNegocios(Double notaNegocios) {
+	public void setNotaNegocios(BigDecimal notaNegocios) {
 		this.notaNegocios = notaNegocios;
 	}
 
