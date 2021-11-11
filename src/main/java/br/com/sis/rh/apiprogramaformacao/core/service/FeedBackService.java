@@ -1,5 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
+import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +34,7 @@ public class FeedBackService {
 	}
 
 	public ResponseEntity<FeedBackDto> cadastrar(String cpf, @RequestBody FeedBackForm feedBackForm,
-			UriComponentsBuilder uriComponentsBuilder) {
+			UriComponentsBuilder uriComponentsBuilder) throws IOException {
 		Optional<Participante> participante = participanteRepository.findById(cpf);
 		if (participante.isPresent()) {
 			FeedBack feedback = feedBackForm.converter(participante.get());

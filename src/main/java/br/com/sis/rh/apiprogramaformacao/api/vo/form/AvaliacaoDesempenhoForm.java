@@ -5,8 +5,8 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.AvaliacaoDesempenho;
-import br.com.sis.rh.apiprogramaformacao.api.model.Parecer;
 import br.com.sis.rh.apiprogramaformacao.core.enums.Avaliacao;
+import br.com.sis.rh.apiprogramaformacao.core.enums.Parecer;
 
 public class AvaliacaoDesempenhoForm {
 
