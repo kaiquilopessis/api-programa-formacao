@@ -82,3 +82,5 @@ build/
 
 ### VS Code ###
 .vscode/
+/.metadata/
+/src/

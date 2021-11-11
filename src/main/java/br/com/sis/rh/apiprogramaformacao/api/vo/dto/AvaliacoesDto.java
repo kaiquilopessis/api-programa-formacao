@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import br.com.sis.rh.apiprogramaformacao.api.model.AvaliacaoDesempenho;
 import br.com.sis.rh.apiprogramaformacao.api.model.Avaliacoes;
 
 public class AvaliacoesDto {
@@ -12,7 +13,7 @@ public class AvaliacoesDto {
 
 	private BigDecimal notaTecnica;
 
-	private BigDecimal notaComportamental;
+	private AvaliacaoDesempenho notaComportamental;
 
 	private BigDecimal notaPraticasAgeis;
 
@@ -25,7 +26,7 @@ public class AvaliacoesDto {
 	public AvaliacoesDto(Avaliacoes avaliacao) {
 		this.id = avaliacao.getId();
 		this.idAvaliacaoDesempenho = avaliacao.getAvaliacaoDesempenho().getId();
-		this.notaComportamental = avaliacao.getAvaliacaoDesempenho().getMedia();
+		this.notaComportamental = avaliacao.getAvaliacaoDesempenho();
 		this.notaLideranca = avaliacao.getNotaLideranca();
 		this.notaNegocios = avaliacao.getNotaNegocios();
 		this.notaPraticasAgeis = avaliacao.getNotaPraticasAgeis();
@@ -48,11 +49,13 @@ public class AvaliacoesDto {
 		this.notaTecnica = notaTecnica;
 	}
 
-	public BigDecimal getNotaComportamental() {
+	
+
+	public AvaliacaoDesempenho getNotaComportamental() {
 		return notaComportamental;
 	}
 
-	public void setNotaComportamental(BigDecimal notaComportamental) {
+	public void setNotaComportamental(AvaliacaoDesempenho notaComportamental) {
 		this.notaComportamental = notaComportamental;
 	}
 
