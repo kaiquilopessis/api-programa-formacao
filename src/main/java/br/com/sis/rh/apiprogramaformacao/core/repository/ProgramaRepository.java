@@ -9,4 +9,6 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 
 @Repository
 public interface ProgramaRepository extends JpaRepository<Programa, Long> {
+	
+	public Programa findByNome(String nome);
 }

@@ -28,8 +28,8 @@ public class Participante {
 	private LocalDate dataFinal;
 	@Column(name = "status_ativo")
 	private String status;
-	@Column(name = "TCE")
-	private String tce;
+	//@Column(name = "TCE")
+	//private String tce;
 	@Column(name = "status_efetivado")
 	private String statusEfetivado;
 
@@ -98,13 +98,13 @@ public class Participante {
 		this.statusEfetivado = statusEfetivado;
 	}
 
-	public String getTce() {
-		return tce;
-	}
+	//public String getTce() {
+	//	return tce;
+	//}
 
-	public void setTce(String tce) {
-		this.tce = tce;
-	}
+	//public void setTce(String tce) {
+	//	this.tce = tce;
+	//}
 
 
 }
