@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
-import br.com.sis.rh.apiprogramaformacao.api.model.RemuneracaoPrograma;
-import br.com.sis.rh.apiprogramaformacao.api.vo.form.ConclusaoFinalForm;
 import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoConclusao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusConclusao;
 
@@ -16,7 +14,7 @@ public class ConclusaoDto {
 	private ResultadoConclusao resultado;
 	private LocalDate dataRegistro;
 	private StatusConclusao status;
-	private String comprovante;
+	private byte[] comprovante;
 	private String cargoPrograma;
 	private String cargoEfetivado;
 	private String observacao;
@@ -29,13 +27,10 @@ public class ConclusaoDto {
 		this.comprovante = conclusao.getComprovanteRematricula();
 		if (conclusao.getStatusProgresso() == StatusConclusao.PROGRESSIVA) {
 			this.cargoPrograma = conclusao.getCargoPrograma().getCargo();
-		}		
+		}
 		this.cargoEfetivado = conclusao.getCargoEfetivado();
 		this.observacao = conclusao.getObservacao();
 	}
-	
-	
-
 
 	public Long getId() {
 		return id;
@@ -69,12 +64,11 @@ public class ConclusaoDto {
 		this.status = status;
 	}
 
-
-	public String getComprovante() {
+	public byte[] getComprovante() {
 		return comprovante;
 	}
 
-	public void setComprovante(String comprovante) {
+	public void setComprovante(byte[] comprovante) {
 		this.comprovante = comprovante;
 	}
 

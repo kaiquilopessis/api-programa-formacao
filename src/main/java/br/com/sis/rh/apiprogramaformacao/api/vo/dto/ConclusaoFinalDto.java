@@ -7,12 +7,12 @@ import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoConclusao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusConclusao;
 
 public class ConclusaoFinalDto {
-	
+
 	private Long id;
 	private ResultadoConclusao resultado;
 	private LocalDate dataRegistro;
 	private StatusConclusao status;
-	private String comprovante;
+	private byte[] comprovante;
 	private String cargoPrograma;
 	private String cargoEfetivado;
 	private String observacao;
@@ -49,11 +49,11 @@ public class ConclusaoFinalDto {
 		this.status = status;
 	}
 
-	public String getComprovante() {
+	public byte[] getComprovante() {
 		return comprovante;
 	}
 
-	public void setComprovante(String comprovante) {
+	public void setComprovante(byte[] comprovante) {
 		this.comprovante = comprovante;
 	}
 

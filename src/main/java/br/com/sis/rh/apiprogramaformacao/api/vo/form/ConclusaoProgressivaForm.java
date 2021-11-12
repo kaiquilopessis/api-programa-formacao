@@ -1,7 +1,10 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
@@ -15,7 +18,7 @@ public class ConclusaoProgressivaForm {
 	private ResultadoConclusao resultado;
 	private String dataAlteracao;
 	private String cargo;
-	private String comprovante;
+	private MultipartFile comprovante;
 
 	public ResultadoConclusao getResultado() {
 		return resultado;
@@ -41,17 +44,17 @@ public class ConclusaoProgressivaForm {
 		this.cargo = cargo;
 	}
 
-	public String getComprovante() {
+	public MultipartFile getComprovante() {
 		return comprovante;
 	}
 
-	public void setComprovante(String comprovante) {
+	public void setComprovante(MultipartFile comprovante) {
 		this.comprovante = comprovante;
 	}
 
-	public Conclusao converter(Participante participante, RemuneracaoProgramaRepository remuneracaoProgramaRepository) {
+	public Conclusao converter(Participante participante, RemuneracaoProgramaRepository remuneracaoProgramaRepository) throws IOException {
 		LocalDate data = LocalDate.parse(this.dataAlteracao, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		RemuneracaoPrograma cargo = remuneracaoProgramaRepository.findByCargo(this.cargo);
-		return new Conclusao(participante, data, cargo, comprovante, resultado, StatusConclusao.PROGRESSIVA);
+		return new Conclusao(participante, data, cargo, comprovante.getBytes(), resultado, StatusConclusao.PROGRESSIVA);
 	}
 }

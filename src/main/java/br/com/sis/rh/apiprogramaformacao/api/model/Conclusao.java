@@ -41,7 +41,7 @@ public class Conclusao {
 	private String cargoEfetivado;
 
 	@Column(name = "COMPROVANTE_REMATRICULA")
-	private String comprovanteRematricula;
+	private byte[] comprovanteRematricula;
 
 	@Column(name = "RESULTADO")
 	@Enumerated(EnumType.STRING)
@@ -58,9 +58,9 @@ public class Conclusao {
 
 	}
 
-	// Progressivo
+	// Progressive
 	public Conclusao(Participante participante, LocalDate dataAlteracao, RemuneracaoPrograma cargo,
-			String comprovanteRematricula, ResultadoConclusao resultado, StatusConclusao statusProgresso) {
+			byte[] comprovanteRematricula, ResultadoConclusao resultado, StatusConclusao statusProgresso) {
 		this.participante = participante;
 		this.dataAlteracao = dataAlteracao;
 		this.cargoPrograma = cargo;
@@ -70,7 +70,7 @@ public class Conclusao {
 	}
 
 	// Final
-	public Conclusao(Participante participante, LocalDate dataAlteracao, String cargo, String comprovanteRematricula,
+	public Conclusao(Participante participante, LocalDate dataAlteracao, String cargo, byte[] comprovanteRematricula,
 			ResultadoConclusao resultado, StatusConclusao statusProgresso, String observacao) {
 		this.participante = participante;
 		this.dataAlteracao = dataAlteracao;
@@ -137,11 +137,11 @@ public class Conclusao {
 		this.cargoEfetivado = cargoEfetivado;
 	}
 
-	public String getComprovanteRematricula() {
+	public byte[] getComprovanteRematricula() {
 		return comprovanteRematricula;
 	}
 
-	public void setComprovanteRematricula(String comprovanteRematricula) {
+	public void setComprovanteRematricula(byte[] comprovanteRematricula) {
 		this.comprovanteRematricula = comprovanteRematricula;
 	}
 

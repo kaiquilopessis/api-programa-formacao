@@ -1,5 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
+import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -54,7 +55,7 @@ public class ConclusaoService {
 	}
 
 	public ResponseEntity<ConclusaoDto> registrarCicloProgressivo(String cpf,
-			ConclusaoProgressivaForm conclusaoProgressivaForm, UriComponentsBuilder uriComponentsBuilder) {
+			ConclusaoProgressivaForm conclusaoProgressivaForm, UriComponentsBuilder uriComponentsBuilder) throws IOException {
 		Optional<Participante> participante =  participanteRepository.findById(cpf);
 		if(participante.isPresent()) {
 			Conclusao conclusaoProgressiva = conclusaoProgressivaForm
