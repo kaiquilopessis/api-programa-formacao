@@ -13,7 +13,7 @@ import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
-import br.com.sis.rh.apiprogramaformacao.api.vo.InvestimentoProgFormacaoVo;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.InvestimentoProgFormacaoVo;
 
 /**
  * 

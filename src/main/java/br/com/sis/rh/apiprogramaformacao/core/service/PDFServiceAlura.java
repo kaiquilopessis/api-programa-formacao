@@ -17,7 +17,7 @@ import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.RelatorioAluraVo;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RelatorioAluraVo;
 
 /**
  * Classe para gerar um arquivo PDF com os valores

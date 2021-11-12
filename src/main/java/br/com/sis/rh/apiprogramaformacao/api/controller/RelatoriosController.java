@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.ParticipanteDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.ProgramaDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.core.service.FiltroRelatorio;
 
 /**

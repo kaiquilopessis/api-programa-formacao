@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.RelatorioAvaliacoesVo;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RelatorioAvaliacoesVo;
 import br.com.sis.rh.apiprogramaformacao.core.service.AvaliacaoService;
 import br.com.sis.rh.apiprogramaformacao.core.service.ExcelServiceAvaliacao;
 import br.com.sis.rh.apiprogramaformacao.core.service.PDFServiceAvaliacao;
@@ -48,9 +48,7 @@ public class RelatorioAvaliacaoController {
 	
 	@GetMapping("/formacao={formacao}/turma={turma}/escopo={escopo}")
 	public RelatorioAvaliacoesVo informacoesGeraisDasAvaliacoes(@PathVariable String formacao, @PathVariable String turma, @PathVariable String escopo) {
-		RelatorioAvaliacoesVo avaliacoesVo = avaliacaoService.popularCards(formacao, turma);
-		
-		return avaliacoesVo;
+		return avaliacaoService.popularCards(formacao, turma);
 	}
 	
 	/**

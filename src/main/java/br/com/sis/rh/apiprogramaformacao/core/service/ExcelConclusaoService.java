@@ -14,7 +14,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.RelatorioConclusaoVO;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RelatorioConclusaoVO;
 
 @Service
 public class ExcelConclusaoService {

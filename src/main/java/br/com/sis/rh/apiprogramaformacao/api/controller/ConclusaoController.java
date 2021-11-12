@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.RelatorioConclusaoVO;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RelatorioConclusaoVO;
 import br.com.sis.rh.apiprogramaformacao.core.service.ConclusaoService;
 import br.com.sis.rh.apiprogramaformacao.core.service.ExcelConclusaoService;
 import br.com.sis.rh.apiprogramaformacao.core.service.PDFConclusaoService;

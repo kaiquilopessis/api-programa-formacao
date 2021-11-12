@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.RelatorioAluraVo;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RelatorioAluraVo;
 import br.com.sis.rh.apiprogramaformacao.core.service.AluraService;
 import br.com.sis.rh.apiprogramaformacao.core.service.ExcelServiceAlura;
 import br.com.sis.rh.apiprogramaformacao.core.service.PDFServiceAlura;

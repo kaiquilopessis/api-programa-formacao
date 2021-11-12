@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.lowagie.text.DocumentException;
-import br.com.sis.rh.apiprogramaformacao.api.vo.InvestimentoProgFormacaoVo;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.InvestimentoProgFormacaoVo;
 import br.com.sis.rh.apiprogramaformacao.core.service.ExcelServiceInvestimento;
 import br.com.sis.rh.apiprogramaformacao.core.service.InvestimentosProgFormacaoService;
 import br.com.sis.rh.apiprogramaformacao.core.service.PDFServiceInvestimento;

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Avaliacoes;
-import br.com.sis.rh.apiprogramaformacao.api.vo.RelatorioAvaliacoesVo;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RelatorioAvaliacoesVo;
 import br.com.sis.rh.apiprogramaformacao.core.repository.AvaliacaoRepository;
 import br.com.sis.rh.apiprogramaformacao.core.util.FormatadorDeNumeroDecimalUtil;
 
@@ -54,12 +54,12 @@ public class AvaliacaoService {
 	 */
 	
 	public RelatorioAvaliacoesVo calcularMedia() {
-		RelatorioAvaliacoesVo avaliacaoVo = new RelatorioAvaliacoesVo(0.0,0.0,0.0,0.0,0.0,0,"Java","Java 01");
+		RelatorioAvaliacoesVo avaliacaoVo = new RelatorioAvaliacoesVo(0.0,0.0,0.0,0.0,0.0,2,"Java","Turma I");
 		List<Avaliacoes> avaliacoes = avaliacaoRepository.buscarNotasMaisRecentes();
 		
 		avaliacoes.forEach(avaliacao -> {
 			avaliacaoVo.setNotaMediaAvaliacaoTecnica(avaliacaoVo.getNotaMediaAvaliacaoTecnica() + avaliacao.getNotaTecnica());
-			avaliacaoVo.setNotaMediaAvaliacaoComportamental(avaliacaoVo.getNotaMediaAvaliacaoComportamental() + avaliacao.getNotaComportamental());
+			avaliacaoVo.setNotaMediaAvaliacaoComportamental(avaliacaoVo.getNotaMediaAvaliacaoComportamental() + avaliacao.getAvaliacaoDesempenho().getMedia());
 			avaliacaoVo.setNotaMediaAvaliacaoLideranca(avaliacaoVo.getNotaMediaAvaliacaoLideranca() + avaliacao.getNotaLideranca());
 			avaliacaoVo.setNotaMediaAvaliacaoNegocio(avaliacaoVo.getNotaMediaAvaliacaoNegocio() + avaliacao.getNotaNegocio());
 			avaliacaoVo.setNotaMediaAvaliacaoPraticasAgeis(avaliacaoVo.getNotaMediaAvaliacaoPraticasAgeis() + avaliacao.getNotaPraticasAgeis());

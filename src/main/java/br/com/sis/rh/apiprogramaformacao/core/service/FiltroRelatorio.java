@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
-import br.com.sis.rh.apiprogramaformacao.api.vo.ParticipanteDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.ProgramaDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivo;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusFormacao;

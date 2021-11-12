@@ -17,7 +17,7 @@ import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.RelatorioConclusaoVO;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RelatorioConclusaoVO;
 
 public class PDFConclusaoService {
 

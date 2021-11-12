@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import br.com.sis.rh.apiprogramaformacao.api.vo.RelatorioConclusaoVO;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RelatorioConclusaoVO;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
 import br.com.sis.rh.apiprogramaformacao.core.util.DataConfiguration;

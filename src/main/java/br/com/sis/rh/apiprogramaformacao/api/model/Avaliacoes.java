@@ -1,14 +1,10 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Classe/Entidade que representa a tabela TB_AVALIACOES da base de dados,
@@ -18,6 +14,8 @@ import lombok.Data;
 
 @Entity(name = "TB_NOTAS_AVALIACOES")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Avaliacoes {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +23,9 @@ public class Avaliacoes {
 	private Long id;
 	@Column(name = "nota_tecnica")
 	private Double notaTecnica;
-	@Column(name = "nota_comportamental")
-	private Double notaComportamental;
+	@JoinColumn(name = "nota_comportamental_fk")
+	@OneToOne(fetch = FetchType.LAZY)
+	private AvaliacaoDesempenho avaliacaoDesempenho;
 	@Column(name = "nota_praticas_ageis")
 	private Double notaPraticasAgeis;
 	@Column(name = "nota_lideranca")
@@ -36,18 +35,6 @@ public class Avaliacoes {
 	@ManyToOne
 	@JoinColumn(name = "codigo_participante_fk")
 	private Participante participante;
-	
-	public Avaliacoes() {}
-
-	public Avaliacoes(Long id, Double nota_tecnica, Double nota_comportamental,
-			Double nota_praticas_ageis, Double nota_lideranca, Double nota_negocio) {
-		this.id = id;
-		this.notaTecnica = nota_tecnica;
-		this.notaComportamental = nota_comportamental;
-		this.notaPraticasAgeis = nota_praticas_ageis;
-		this.notaLideranca = nota_lideranca;
-		this.notaNegocio = nota_negocio;
-	}
 
 	
 }
