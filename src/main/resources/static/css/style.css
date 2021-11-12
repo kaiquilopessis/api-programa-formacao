@@ -1,0 +1,536 @@
+/*configurações gerais da pagina*/
+*{
+    
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+html{
+    /* para cada 1rem considera 10px */
+    font-size: 70.5%;
+    overflow-x: hidden;
+}
+
+body{
+    background-color: #EBEBEB !important;  
+    font-size: 3rem;
+    
+}
+
+/*Configurações cabeçalho*/
+.header{
+    background-color: #090B2E;
+    height: 75px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-header{
+    height: 75px;
+    width: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.disabled{
+    display: none !important; 
+}
+
+.btn-header img, .logo img{
+    height: 75px;
+}
+
+.home.btn-header{
+    background-color: #FFB700;
+}
+
+.rollback.btn-header{
+    background-color: #AB0045; 
+}
+
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5em;
+}
+
+/* Relatório - Investimento */
+/*Configuração info programa de formação cabecalho*/
+.txtRelatorio, .txtFormacao, .txtTurma, .buscaFormacao, .buscaTurma{
+    font-weight: bold;
+    font-size: 2.3rem;
+    line-height: 2rem;
+    margin-left: 15%;
+    font-weight: 900;
+}
+
+/* Programa Selecionado */
+.buscaFormacao{
+    color: #737373;
+}
+
+/* Turma selecionada */
+.buscaTurma{
+    color: #737373;
+}
+
+/* card central superior */
+.card-left-superior, .card-central-superior, .card-right-superior, 
+.card-left-inferior,.card-central-inferior, .card-right-inferior{
+    border: 1px solid #BCB3B3;
+    min-height: 275px !important; 
+}
+
+main .card-body{
+    min-height: 275px !important;
+}
+
+/* configurações dados contidos nos Cards inferior e superior */
+h3{
+    font-size: 5rem !important;
+    font-weight: 900;
+    margin: 30px 30px 10px 0;
+}
+
+#txt-saida-card-left{
+    color: #AB0045;
+}
+
+#txt-saida-card-central{ 
+    color: #FFB600;
+}
+
+#txt-saida-card-right{ 
+    color: #090B2E;
+}
+
+#txt-cards-valor-total, #txt-saida-card-central, #txt-saida-card-left{
+    font-size: 6rem;
+}
+
+h6{
+    padding-top: 130px ;
+    color: #737373;
+    font-size: 1.3rem;
+    width: 100%;
+    font-weight: 700;
+    line-height: 8rem;
+}
+
+/* Configurações Filtro Select */
+.selecioneData, .labelData, #bottonConsultaData{
+    display: inline;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+#dataInicial, #dataFinal{
+    font-size: 1.3rem;
+    border-radius: 2%;
+}
+
+#bottonConsultaData{
+    background-color: #FFFFFF;
+    margin-left: 5%;
+    width: 465;
+    color: #090B2E;
+    height: 4rem;
+    border-radius: 7px; 
+    border: none;
+}
+
+/* Configurações botões pdf e xlsx */
+#botao-pdf, #botao-xlsx{
+    width: 100%;
+    height: 4.6rem;
+    border-radius: 7px;
+    font-weight: bold;
+    font-size: 1.9rem;
+    border: none;
+}
+
+.botao{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#botao-pdf{
+    background: #AB0045;
+    width: 432px !important;
+}
+
+#botao-xlsx{
+    background: #FFB600;
+    width: 432px !important;
+}
+
+/* Efeito botões relatorio e Filtro*/
+#botao-pdf:hover,#botao-xlsx:hover{
+    transform: translate(2px, 5px); 
+    box-shadow: 1px 6px 15px rgba(0,0,0,0.6);
+    transition: 0.3s;
+}
+
+#dataInicial:hover, #dataFinal:hover{
+    transform: scale(1.01);
+    box-shadow: 1px 5px 15px rgba(0,0,0,0.6);
+    transition: 00.3s;
+}
+
+#bottonConsultaData:hover{
+    background-color: #090B2E;
+    color: #FFFFFF;
+}
+
+/*Layout Responsivo*/
+/* media queries */
+@media (min-width: 320px) {
+    html, body {
+        overflow-x: hidden;
+    }
+
+    .header {
+        max-height: 60px;
+    }
+
+    .home, .btn-header img, .rollback {
+        max-height: 60px;
+    }
+
+    .logo img{
+        max-height: 60px;
+    }
+
+     /*Informações uteis pós cabeçalho*/
+    .txtRelatorio, .txtFormacao, .txtTurma, .buscaFormacao, .buscaTurma{
+        font-size: 1.5rem;
+        margin-left: 8%;
+        line-height: 25px;
+        text-align: center; 
+    }
+
+    .txtRelatorio{
+        margin-top: 20px;
+    }
+    
+    .txtFormacao{
+        display: block;
+        width: 70%;
+        margin-top: 8px;
+        margin-left: 19%; 
+    }
+
+    .txtTurma, .buscaTurma{
+        margin-top: 10px;
+    }
+
+    /*Cards*/
+    h3{
+        font-size: 3.4rem !important ;
+        position: relative;
+        top: 30px;
+        font-weight: 600 !important;
+    }
+
+    h6{
+        font-size: 1.5rem !important;
+        position: relative;
+        bottom: 20px;
+        max-width: 90%;
+    }
+
+    .card-left-superior, .card-central-superior, .card-right-superior,
+    .card-left-inferior, .card-central-inferior, .card-right-inferior{
+        width: 93%;
+        height: 10%;
+        margin-left: 10px; 
+        margin-top: 10%;
+    }
+
+    /*Filtro de data*/
+    #dataInicial, #dataFinal, .selecioneData, .labelData, #bottonConsultaData{
+        display: block;
+        font-size: 1.5rem;
+        margin-top: 10%;
+        text-align: center;  
+    }
+
+    #dataInicial, #dataFinal{
+        margin-left: 22%;
+    }
+
+    .selecioneData{   
+        margin-top: 16%;   
+    }
+  
+    #bottonConsultaData{
+        margin-left: 32%;
+    }
+   
+    /*Botões de relatorio*/
+    #botao-pdf, #botao-xlsx{
+        font-size: 1.3rem;
+        width: 150px !important;
+        height: 8vh;
+    }
+
+   .botao-div01, .botao-div02{
+        padding: 0 !important;
+       margin: 10px 5px !important;
+   }
+}
+
+@media (min-width: 425px){
+    body{
+        overflow-x: hidden !important;
+    }
+
+    /*Informações uteis pós cabeçalho*/
+    .txtRelatorio, .txtFormacao, .txtTurma, .buscaFormacao, .buscaTurma{
+        font-size: 2rem !important;
+        line-height: 40px;
+        margin-left: 0%;
+    }
+ 
+    .txtFormacao{
+        margin-top: 5.2%;
+        margin-left: 14%;
+       
+    }
+
+    .buscaFormacao{
+        margin-left: 1vmax;
+    }
+    
+    .txtTurma{
+        margin-top: 5.2%;
+    }
+  
+    /*Cards*/
+     h3{
+        font-size: 4.5rem !important;
+        margin-left: 3vh;
+    }
+
+    h6{
+        font-size: 1.7rem !important;
+        margin-left: 3vh;
+    }
+
+    .card-left-superior, .card-central-superior, .card-right-superior,
+    .card-left-inferior, .card-central-inferior, .card-right-inferior{
+        margin-left: 3.6%;   
+    }
+
+    /*Filtro de data*/
+    #dataInicial, #dataFinal, .selecioneData, .labelData, #bottonConsultaData{
+        font-size: 2rem;
+    }
+
+    #bottonConsultaData{
+        margin-left: 31%;
+    }
+
+    #botao-pdf, #botao-xlsx{
+        width: 170px !important;
+    }
+}
+
+/*Config Filtro de data*/
+@media (min-width: 500px){
+    #dataInicial, #dataFinal{
+        margin-left: 27%;
+    }
+}
+
+/*Config Filtro de data*/
+@media (min-width: 580px){
+    #dataInicial, #dataFinal{
+        margin-left: 30%;
+    }
+    #bottonConsultaData{
+        margin-left: 36.5%;
+    }
+}
+
+/*Config Filtro de data*/
+@media (min-width: 680px){
+    #dataInicial, #dataFinal, .selecioneData, .labelData, #bottonConsultaData{
+        margin-top: 5%;
+    }
+
+    #dataInicial, #dataFinal{
+        margin-left: 34%;
+    }
+
+    #bottonConsultaData{
+        margin-left: 40%;
+    }
+
+}
+
+@media (min-width: 768px){
+    /*Informações úteis pós cabeçalho*/
+    .txtFormacao, .txtTurma{
+        margin-top: 0%;
+    }
+
+    .buscaFormacao{
+        margin-left: 5%;
+    }
+
+    .buscaTurma{
+        margin-left: 3%;
+    }
+    
+    /*Cards*/
+    h3{
+        font-size: 3.8rem !important;
+    }
+
+    #txt-saida-card-right{
+       font-size: 5.4rem !important;
+    }
+
+    #txt-cards-valor-total{
+        font-size: 2rem !important;    
+    }
+
+    /*Layout Cards*/
+    .card-left-superior, .card-central-superior, .card-left-inferior, 
+    .card-central-inferior{
+        display: inline-flex;
+        width: 44.5%;
+        margin-top: 6%;       
+    }
+    
+    .card-right-superior, .card-right-inferior{
+        margin-top: 5%;
+    }
+
+    #botao-pdf, #botao-xlsx{
+        width: 300px !important;
+        margin: 10px 10px;
+    }
+}
+
+    @media (min-width: 865px){
+        #dataInicial, #dataFinal{
+            margin-left: 37%;
+        }
+    }
+
+    @media (min-width: 1024px){
+        .header {
+            max-height: 75px;
+        }
+
+        .home, .btn-header img, .rollback {
+            max-height: 75px;
+        }
+
+        .logo img{
+            max-height: 75px;
+        }
+
+        .txtRelatorio, .txtFormacao, .txtTurma, .buscaFormacao, .buscaTurma{
+            display:inline-table;
+            width: auto;
+            margin-top: 18px;
+            font-size: 1.96rem !important;
+        }
+
+        .txtRelatorio{
+            margin-left: 2.4%;
+            margin-top: 7px;   
+        }
+
+        .txtFormacao{
+            display: inline;
+            margin-left: 3%;
+        }
+         
+        .buscaFormacao{
+            margin-left: 1%;
+        }
+
+        .txtTurma{
+            display: inline;
+            margin-left: 3%;
+        }
+
+        .buscaTurma{
+            margin-left: 1%;
+        }
+
+        /*Cards*/
+        h3{
+            font-size: 3.3rem !important;
+            font-weight: bold !important;
+        }
+
+        #txt-saida-card-right{
+            font-size: 3.3rem !important;
+
+        }
+
+        #txt-cards-valor-total{
+            font-size: 1.6rem !important;
+            text-align: justify;   
+        }
+
+        .card-left-superior, .card-central-superior, .card-right-superior,
+        .card-left-inferior, .card-central-inferior, .card-right-inferior{
+            margin-top: 3%;
+            display: inline-block;
+            width: 30.5%;
+            margin-left: 2%;   
+        }
+        
+        .card-left-superior{
+            
+            height: 100%;
+        }
+
+        .selecioneData{
+            margin-bottom: 2%;
+        }
+
+        .selecioneData, #dataInicial, #dataFinal, .labelData, #bottonConsultaData{
+            display: flex;
+            margin-left: 2.5%;
+        }
+       
+        #dataInicial, #dataFinal, .labelData, #bottonConsultaData{
+            display: inline-table;
+            margin-top: 1%;   
+            margin-bottom: 2%;
+        }
+
+        #bottonConsultaData{
+            display: grid;
+            width: 320px;
+            font-size: 2rem !important;
+            margin-top: 25px;
+            margin-left: 168px;
+        }
+
+        #botao-pdf, #botao-xlsx{
+            width: 30%;
+            height: 50px;
+            font-size: 1.8rem !important;  
+        }
+
+        .botao{
+            margin: 100px 35px;
+        }
+   
+}

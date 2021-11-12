@@ -1,14 +1,15 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import java.time.LocalDate;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.time.LocalDate;
-import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name="TB_USUARIO_ACESSO")
@@ -26,7 +27,12 @@ public class UsuarioAcesso implements UserDetails {
     @Column(name = "data_inclusao")
     private LocalDate dataInclusao;
 
+    public UsuarioAcesso(){}
 
+    public UsuarioAcesso(String usuario, String senha){
+        this.usuarioAd = usuario;
+        this.senha = senha;
+    }
 
     public String getUsuarioAd() {
         return usuarioAd;
@@ -41,13 +47,13 @@ public class UsuarioAcesso implements UserDetails {
     public void setEmail(String email) {
         this.email = email;
     }
-  
+
     public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getSenha() {
         return senha;
