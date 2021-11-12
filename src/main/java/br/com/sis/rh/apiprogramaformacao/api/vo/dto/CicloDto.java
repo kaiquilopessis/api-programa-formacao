@@ -4,28 +4,28 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
-import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoConclusao;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusConclusao;
+import br.com.sis.rh.apiprogramaformacao.api.model.Ciclo;
+import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoCiclo;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCiclo;
 
 public class CicloDto {
 
 	private Long id;
-	private ResultadoConclusao resultado;
+	private ResultadoCiclo resultado;
 	private LocalDate dataRegistro;
-	private StatusConclusao status;
+	private StatusCiclo status;
 	private byte[] comprovante;
 	private String cargoPrograma;
 	private String cargoEfetivado;
 	private String observacao;
 
-	public CicloDto(Conclusao conclusao) {
+	public CicloDto(Ciclo conclusao) {
 		this.id = conclusao.getId();
 		this.resultado = conclusao.getResultado();
 		this.dataRegistro = conclusao.getDataAlteracao();
 		this.status = conclusao.getStatusProgresso();
 		this.comprovante = conclusao.getComprovanteRematricula();
-		if (conclusao.getStatusProgresso() == StatusConclusao.PROGRESSIVA) {
+		if (conclusao.getStatusProgresso() == StatusCiclo.PROGRESSIVA) {
 			this.cargoPrograma = conclusao.getCargoPrograma().getCargo();
 		}
 		this.cargoEfetivado = conclusao.getCargoEfetivado();
@@ -40,11 +40,11 @@ public class CicloDto {
 		this.id = id;
 	}
 
-	public ResultadoConclusao getResultado() {
+	public ResultadoCiclo getResultado() {
 		return resultado;
 	}
 
-	public void setResultado(ResultadoConclusao resultado) {
+	public void setResultado(ResultadoCiclo resultado) {
 		this.resultado = resultado;
 	}
 
@@ -56,11 +56,11 @@ public class CicloDto {
 		this.dataRegistro = dataRegistro;
 	}
 
-	public StatusConclusao getStatus() {
+	public StatusCiclo getStatus() {
 		return status;
 	}
 
-	public void setStatus(StatusConclusao status) {
+	public void setStatus(StatusCiclo status) {
 		this.status = status;
 	}
 
@@ -96,7 +96,7 @@ public class CicloDto {
 		this.observacao = observacao;
 	}
 
-	public static List<CicloDto> converter(List<Conclusao> conclusoes) {
+	public static List<CicloDto> converter(List<Ciclo> conclusoes) {
 		return conclusoes.stream().map(CicloDto::new).collect(Collectors.toList());
 	}
 

@@ -2,16 +2,16 @@ package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
 import java.time.LocalDate;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
-import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoConclusao;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusConclusao;
+import br.com.sis.rh.apiprogramaformacao.api.model.Ciclo;
+import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoCiclo;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCiclo;
 
 public class CicloFinalDto {
 
 	private Long id;
-	private ResultadoConclusao resultado;
+	private ResultadoCiclo resultado;
 	private LocalDate dataRegistro;
-	private StatusConclusao status;
+	private StatusCiclo status;
 	private byte[] comprovante;
 	private String cargoPrograma;
 	private String cargoEfetivado;
@@ -25,11 +25,11 @@ public class CicloFinalDto {
 		this.id = id;
 	}
 
-	public ResultadoConclusao getResultado() {
+	public ResultadoCiclo getResultado() {
 		return resultado;
 	}
 
-	public void setResultado(ResultadoConclusao resultado) {
+	public void setResultado(ResultadoCiclo resultado) {
 		this.resultado = resultado;
 	}
 
@@ -41,11 +41,11 @@ public class CicloFinalDto {
 		this.dataRegistro = dataRegistro;
 	}
 
-	public StatusConclusao getStatus() {
+	public StatusCiclo getStatus() {
 		return status;
 	}
 
-	public void setStatus(StatusConclusao status) {
+	public void setStatus(StatusCiclo status) {
 		this.status = status;
 	}
 
@@ -81,7 +81,7 @@ public class CicloFinalDto {
 		this.observacao = observacao;
 	}
 
-	public CicloFinalDto(Conclusao conclusaoFinal) {
+	public CicloFinalDto(Ciclo conclusaoFinal) {
 		this.id = conclusaoFinal.getId();
 		this.resultado = conclusaoFinal.getResultado();
 		this.dataRegistro = conclusaoFinal.getDataAlteracao();

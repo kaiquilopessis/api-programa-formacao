@@ -4,13 +4,13 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
+import br.com.sis.rh.apiprogramaformacao.api.model.Ciclo;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoConclusao;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusConclusao;
+import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoCiclo;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCiclo;
 
-public class ConclusaoFinalForm {
-	private ResultadoConclusao resultado;
+public class CicloFinalForm {
+	private ResultadoCiclo resultado;
 	private String dataAlteracao;
 	private String cargoEfetivado;
 	private byte[] comprovante;
@@ -18,10 +18,10 @@ public class ConclusaoFinalForm {
 	
 	
 
-	public ResultadoConclusao getResultado() {
+	public ResultadoCiclo getResultado() {
 		return resultado;
 	}
-	public void setResultado(ResultadoConclusao resultado) {
+	public void setResultado(ResultadoCiclo resultado) {
 		this.resultado = resultado;
 	}
 	public String getDataAlteracao() {
@@ -50,10 +50,10 @@ public class ConclusaoFinalForm {
 		this.campoObservacao = campoObservacao;
 	}
 
-	public Conclusao converter (Participante participante) {
+	public Ciclo converter (Participante participante) {
 		LocalDate data = LocalDate.parse(this.dataAlteracao, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		return new Conclusao(participante, data, cargoEfetivado, comprovante, resultado,
-				StatusConclusao.FINAL, campoObservacao);
+		return new Ciclo(participante, data, cargoEfetivado, comprovante, resultado,
+				StatusCiclo.FINAL, campoObservacao);
 	}
 
 
