@@ -83,7 +83,7 @@ public class InvestimentoFiltroPeriodoService {
 				System.out.println("Entrei no laço");
 
 				Remuneracao remuneracao = remuneracaoRepository
-						.findBySalario(conclusao.getParticipante().getRemuneracao().getId());
+						.findBySalario(conclusao.getParticipante().getRemuneracaoPrograma().getId());
 
 				if (!participante.getCpf().equals(conclusao.getParticipante().getCpf())) {
 					diferencaMes = dataInicio.until(dataFim, ChronoUnit.MONTHS);

@@ -19,7 +19,6 @@ import lombok.Data;
  */
 @Entity(name = "TB_CONCLUSAO")
 //Generates getters for all fields Lombok
-@Data 
 public class Conclusao {
 
 	@Id
@@ -33,4 +32,29 @@ public class Conclusao {
 	@ManyToOne
 	@JoinColumn(name = "codigo_participante_fk")
 	private Participante participante;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public LocalDate getDataAlteracao() {
+		return dataAlteracao;
+	}
+
+	public void setDataAlteracao(LocalDate dataAlteracao) {
+		this.dataAlteracao = dataAlteracao;
+	}
+
+	public Participante getParticipante() {
+		return participante;
+	}
+
+	public void setParticipante(Participante participante) {
+		this.participante = participante;
+	}
+
 }

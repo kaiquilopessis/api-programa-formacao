@@ -41,4 +41,86 @@ public class RelatorioAluraVo {
 		this.programaDeFormacao = programaDeFormacao;
 		this.turma = turma;
 	}
+
+	public Integer getMediaDeHorasDosParticipantes() {
+		return mediaDeHorasDosParticipantes;
+	}
+
+	public void setMediaDeHorasDosParticipantes(Integer mediaDeHorasDosParticipantes) {
+		this.mediaDeHorasDosParticipantes = mediaDeHorasDosParticipantes;
+	}
+
+	public Integer getMaiorQuantidadeDeHorasDosParticipantes() {
+		return maiorQuantidadeDeHorasDosParticipantes;
+	}
+
+	public void setMaiorQuantidadeDeHorasDosParticipantes(Integer maiorQuantidadeDeHorasDosParticipantes) {
+		this.maiorQuantidadeDeHorasDosParticipantes = maiorQuantidadeDeHorasDosParticipantes;
+	}
+
+	public Integer getMenorQuantidadeDeHorasDosParticipantes() {
+		return menorQuantidadeDeHorasDosParticipantes;
+	}
+
+	public void setMenorQuantidadeDeHorasDosParticipantes(Integer menorQuantidadeDeHorasDosParticipantes) {
+		this.menorQuantidadeDeHorasDosParticipantes = menorQuantidadeDeHorasDosParticipantes;
+	}
+
+	public String getDataUltimoRegistro() {
+		return dataUltimoRegistro;
+	}
+
+	public void setDataUltimoRegistro(String dataUltimoRegistro) {
+		this.dataUltimoRegistro = dataUltimoRegistro;
+	}
+
+	public String getNomeFuncionarioComMaiorQuantidadeHoras() {
+		return nomeFuncionarioComMaiorQuantidadeHoras;
+	}
+
+	public void setNomeFuncionarioComMaiorQuantidadeHoras(String nomeFuncionarioComMaiorQuantidadeHoras) {
+		this.nomeFuncionarioComMaiorQuantidadeHoras = nomeFuncionarioComMaiorQuantidadeHoras;
+	}
+
+	public String getCargoFuncionarioComMaiorQuantidadeHoras() {
+		return cargoFuncionarioComMaiorQuantidadeHoras;
+	}
+
+	public void setCargoFuncionarioComMaiorQuantidadeHoras(String cargoFuncionarioComMaiorQuantidadeHoras) {
+		this.cargoFuncionarioComMaiorQuantidadeHoras = cargoFuncionarioComMaiorQuantidadeHoras;
+	}
+
+	public String getNomeFuncionarioComMenorQuantidadeHoras() {
+		return nomeFuncionarioComMenorQuantidadeHoras;
+	}
+
+	public void setNomeFuncionarioComMenorQuantidadeHoras(String nomeFuncionarioComMenorQuantidadeHoras) {
+		this.nomeFuncionarioComMenorQuantidadeHoras = nomeFuncionarioComMenorQuantidadeHoras;
+	}
+
+	public String getCargoFuncionarioComMenorQuantidadeHoras() {
+		return cargoFuncionarioComMenorQuantidadeHoras;
+	}
+
+	public void setCargoFuncionarioComMenorQuantidadeHoras(String cargoFuncionarioComMenorQuantidadeHoras) {
+		this.cargoFuncionarioComMenorQuantidadeHoras = cargoFuncionarioComMenorQuantidadeHoras;
+	}
+
+	public String getProgramaDeFormacao() {
+		return programaDeFormacao;
+	}
+
+	public void setProgramaDeFormacao(String programaDeFormacao) {
+		this.programaDeFormacao = programaDeFormacao;
+	}
+
+	public String getTurma() {
+		return turma;
+	}
+
+	public void setTurma(String turma) {
+		this.turma = turma;
+	}
+	
+	
 }

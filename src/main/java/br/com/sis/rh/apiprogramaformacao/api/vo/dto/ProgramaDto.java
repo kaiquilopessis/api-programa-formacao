@@ -11,12 +11,13 @@ import br.com.sis.rh.apiprogramaformacao.core.enums.StatusFormacao;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
+@Setter
 public class ProgramaDto {
-	
+
 	private Long id;
 	private String nome;
-	
+
 	@Enumerated(EnumType.STRING)
 	private StatusFormacao status;
 
@@ -30,5 +31,28 @@ public class ProgramaDto {
 		return programa.stream().map(ProgramaDto::new).collect(Collectors.toList());
 	}
 
-}
+	public Long getId() {
+		return id;
+	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public StatusFormacao getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusFormacao status) {
+		this.status = status;
+	}
+
+}

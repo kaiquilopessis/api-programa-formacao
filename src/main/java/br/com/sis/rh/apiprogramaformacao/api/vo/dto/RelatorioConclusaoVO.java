@@ -1,9 +1,5 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter @Setter
 public class RelatorioConclusaoVO {
 
 	// Variaveis do banco
@@ -25,6 +21,46 @@ public class RelatorioConclusaoVO {
 	
 	// Criando um construtor vazio
 	public RelatorioConclusaoVO() {
+	}
+
+	public String getProgramadeformacao() {
+		return programadeformacao;
+	}
+
+	public void setProgramadeformacao(String programadeformacao) {
+		this.programadeformacao = programadeformacao;
+	}
+
+	public String getTurma() {
+		return turma;
+	}
+
+	public void setTurma(String turma) {
+		this.turma = turma;
+	}
+
+	public Integer getParticipantesAtivos() {
+		return participantesAtivos;
+	}
+
+	public void setParticipantesAtivos(Integer participantesAtivos) {
+		this.participantesAtivos = participantesAtivos;
+	}
+
+	public Integer getParticipantesEfetivados() {
+		return participantesEfetivados;
+	}
+
+	public void setParticipantesEfetivados(Integer participantesEfetivados) {
+		this.participantesEfetivados = participantesEfetivados;
+	}
+
+	public String getDataConclusao() {
+		return dataConclusao;
+	}
+
+	public void setDataConclusao(String dataConclusao) {
+		this.dataConclusao = dataConclusao;
 	}
 
 }

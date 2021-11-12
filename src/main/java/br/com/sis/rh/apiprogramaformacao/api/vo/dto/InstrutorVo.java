@@ -16,12 +16,12 @@ public class InstrutorVo {
     private MockDatasource mockDatasource = new MockDatasource();
 
     public InstrutorVo(Instrutor instrutor) {
-        this.cpf = instrutor.getCpfInstrutor();
+        this.cpf = instrutor.getCpf();
         this.status = instrutor.getStatus();
         this.telefone = instrutor.getTelefone();
         
         
-        MockData inst = mockDatasource.getInstrutorPorCpf(instrutor.getCpfInstrutor());
+        MockData inst = mockDatasource.getInstrutorPorCpf(instrutor.getCpf());
         this.nome = inst.getNome();
         this.email = inst.getEmail();
  

@@ -9,10 +9,7 @@ import javax.persistence.Enumerated;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivo;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter @Setter
 public class ParticipanteDto {
 
 	private String cpf_participante;
@@ -31,6 +28,30 @@ public class ParticipanteDto {
 
 	public static List<ParticipanteDto> converter(List<Participante> participantes) {
 		return participantes.stream().map(ParticipanteDto::new).collect(Collectors.toList());
+	}
+
+	public String getCpf_participante() {
+		return cpf_participante;
+	}
+
+	public void setCpf_participante(String cpf_participante) {
+		this.cpf_participante = cpf_participante;
+	}
+
+	public StatusEfetivo getStatus_efetivo() {
+		return status_efetivo;
+	}
+
+	public void setStatus_efetivo(StatusEfetivo status_efetivo) {
+		this.status_efetivo = status_efetivo;
+	}
+
+	public StatusAtivo getStatus_ativo() {
+		return status_ativo;
+	}
+
+	public void setStatus_ativo(StatusAtivo status_ativo) {
+		this.status_ativo = status_ativo;
 	}
 
 }

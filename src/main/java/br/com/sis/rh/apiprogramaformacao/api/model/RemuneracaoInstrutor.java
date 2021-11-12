@@ -10,10 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import lombok.Data;
-
-@Entity(name="TB_REMUNERACAO_INSTRUTOR")
-@Data
+@Entity(name = "TB_REMUNERACAO_INSTRUTOR")
 public class RemuneracaoInstrutor {
 
 	@Id
@@ -29,8 +26,9 @@ public class RemuneracaoInstrutor {
 	@ManyToOne
 	@JoinColumn(name = "codigo_instrutor_fk")
 	private Instrutor instrutor;
-	
-	public RemuneracaoInstrutor() {}
+
+	public RemuneracaoInstrutor() {
+	}
 
 	public RemuneracaoInstrutor(Long id, LocalDate dataLancamento, Integer qtdHora, Integer valorHora) {
 		this.id = id;
@@ -38,4 +36,45 @@ public class RemuneracaoInstrutor {
 		this.qtdHora = qtdHora;
 		this.valorHora = valorHora;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public LocalDate getDataLancamento() {
+		return dataLancamento;
+	}
+
+	public void setDataLancamento(LocalDate dataLancamento) {
+		this.dataLancamento = dataLancamento;
+	}
+
+	public Integer getQtdHora() {
+		return qtdHora;
+	}
+
+	public void setQtdHora(Integer qtdHora) {
+		this.qtdHora = qtdHora;
+	}
+
+	public Integer getValorHora() {
+		return valorHora;
+	}
+
+	public void setValorHora(Integer valorHora) {
+		this.valorHora = valorHora;
+	}
+
+	public Instrutor getInstrutor() {
+		return instrutor;
+	}
+
+	public void setInstrutor(Instrutor instrutor) {
+		this.instrutor = instrutor;
+	}
+
 }

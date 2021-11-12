@@ -4,14 +4,15 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import lombok.Data;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusInstrutor;
 
 @Entity(name = "TB_INSTRUTOR")
-@Data
 public class Instrutor {
 
 	@Id
@@ -23,12 +24,56 @@ public class Instrutor {
 	private String nome;
 	@OneToMany(fetch = FetchType.LAZY)
 	private List<RemuneracaoInstrutor> remuneracaoInstrutor;
-	
-	public Instrutor() {}
+
+	private String status;
+
+	public Instrutor() {
+	}
 
 	public Instrutor(String cpf, String telefone, String nome) {
 		this.cpf = cpf;
 		this.telefone = telefone;
 		this.nome = nome;
 	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public List<RemuneracaoInstrutor> getRemuneracaoInstrutor() {
+		return remuneracaoInstrutor;
+	}
+
+	public void setRemuneracaoInstrutor(List<RemuneracaoInstrutor> remuneracaoInstrutor) {
+		this.remuneracaoInstrutor = remuneracaoInstrutor;
+	}
+
 }

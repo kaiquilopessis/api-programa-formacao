@@ -13,8 +13,6 @@ public class ListaRemuneracaoDto {
 
     private Long id;
     private String cargo;
-    
-    
 
     public Long getId() {
 		return id;
