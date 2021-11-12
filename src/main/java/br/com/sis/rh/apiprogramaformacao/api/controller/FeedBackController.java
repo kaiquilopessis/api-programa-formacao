@@ -3,18 +3,21 @@ package br.com.sis.rh.apiprogramaformacao.api.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.DiscDownloadFromFeedbackDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FeedBackDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.FeedBackForm;
 import br.com.sis.rh.apiprogramaformacao.core.service.FeedBackService;
@@ -29,6 +32,12 @@ public class FeedBackController {
 	@GetMapping("/{cpf}")
 	public List<FeedBackDto> listarFeedBacks(@PathVariable String cpf) {
 		return feedBackService.listar(cpf);
+	}
+	
+	@GetMapping("/download/{id}")
+	public ResponseEntity<ByteArrayResource> downloadDisc(@PathVariable Long id) {
+		return feedBackService.download(id);
+		
 	}
 
 
