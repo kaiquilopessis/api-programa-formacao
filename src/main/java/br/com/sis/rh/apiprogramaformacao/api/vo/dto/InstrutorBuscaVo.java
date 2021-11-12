@@ -16,8 +16,8 @@ public class InstrutorBuscaVo {
     private MockDatasource mockDatasource = new MockDatasource();
 
     public InstrutorBuscaVo(Instrutor instrutor){
-        this.cpf = instrutor.getCpfInstrutor();
-        this.instrutor = instrutor.getCpfInstrutor();
+        this.cpf = instrutor.getCpf();
+        this.instrutor = instrutor.getCpf();
         this.status = instrutor.getStatus();
     }
 

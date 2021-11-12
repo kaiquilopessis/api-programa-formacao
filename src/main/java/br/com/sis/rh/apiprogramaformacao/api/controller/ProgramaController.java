@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaBuscaVo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaCompletoVo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProgramaCadastroForm;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusFormacao;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -61,10 +62,10 @@ public class ProgramaController {
 		try {
 			Programa programa = programaService.getProgramaPorId(id);
 			if (programa.getStatus().equals("EM_ANDAMENTO")) {
-				programa.setStatus("ENCERRADO");
+				programa.setStatus(StatusFormacao.ENCERRADO);
 			}
 			else {
-				programa.setStatus("EM_ANDAMENTO");
+				programa.setStatus(StatusFormacao.EM_ANDAMENTO);
 			}
 
 			programaService.salva(programa);

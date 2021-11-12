@@ -30,10 +30,11 @@ public class Instrutor {
 	public Instrutor() {
 	}
 
-	public Instrutor(String cpf, String telefone, String nome) {
+	public Instrutor(String cpf, String telefone, String nome, String status) {
 		this.cpf = cpf;
 		this.telefone = telefone;
 		this.nome = nome;
+		this.status = status;
 	}
 
 	public String getCpf() {

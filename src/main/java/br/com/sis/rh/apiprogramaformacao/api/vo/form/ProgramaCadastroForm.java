@@ -2,6 +2,7 @@ package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusFormacao;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -65,7 +66,7 @@ public class ProgramaCadastroForm {
         programa.setDataFim(this.termino);
         programa.setInstrutor(optInstrutor.get());
         programa.setNomeTurma(this.turma);
-        programa.setStatus("EM_ANDAMENTO");
+        programa.setStatus(StatusFormacao.EM_ANDAMENTO);
 
         return programa;
     }

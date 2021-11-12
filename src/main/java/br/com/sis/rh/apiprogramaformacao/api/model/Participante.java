@@ -4,6 +4,10 @@ import java.time.LocalDate;
 
 import javax.persistence.*;
 
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivado;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusParticipante;
+
 @Entity
 @Table(name = "TB_PARTICIPANTE")
 public class Participante {
@@ -27,15 +31,16 @@ public class Participante {
 	@Column(name = "data_fim_graduacao")
 	private LocalDate dataFinal;
 	@Column(name = "status_ativo")
-	private String status;
+	private StatusAtivo status;
 	@Column(name = "TCE")
 	private String tce;
 	@Column(name = "status_efetivado")
-	private String statusEfetivado;
+	private StatusEfetivado statusEfetivado;
 
 	public String getCpf() {
 		return cpf;
 	}
+
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
@@ -43,6 +48,7 @@ public class Participante {
 	public Programa getPrograma() {
 		return programa;
 	}
+
 	public void setPrograma(Programa programa) {
 		this.programa = programa;
 	}
@@ -50,6 +56,7 @@ public class Participante {
 	public Candidato getCandidato() {
 		return candidato;
 	}
+
 	public void setCadidato(Candidato candidato) {
 		this.candidato = candidato;
 	}
@@ -57,6 +64,7 @@ public class Participante {
 	public RemuneracaoPrograma getRemuneracaoPrograma() {
 		return remuneracaoPrograma;
 	}
+
 	public void setRemuneracaoPrograma(RemuneracaoPrograma remuneracaoPrograma) {
 		this.remuneracaoPrograma = remuneracaoPrograma;
 	}
@@ -64,6 +72,7 @@ public class Participante {
 	public String getFaculdade() {
 		return faculdade;
 	}
+
 	public void setFaculdade(String faculdade) {
 		this.faculdade = faculdade;
 	}
@@ -71,6 +80,7 @@ public class Participante {
 	public String getCurso() {
 		return curso;
 	}
+
 	public void setCurso(String curso) {
 		this.curso = curso;
 	}
@@ -78,24 +88,29 @@ public class Participante {
 	public LocalDate getDataFinal() {
 		return dataFinal;
 	}
+
 	public void setDataFinal(LocalDate dataFinal) {
 		this.dataFinal = dataFinal;
 	}
 
-	public String getStatus() {
+	public StatusAtivo getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(StatusAtivo status) {
 		this.status = status;
 	}
 
-	public String getStatusEfetivado() {
+	public StatusEfetivado getStatusEfetivado() {
 		return statusEfetivado;
 	}
 
-	public void setStatusEfetivado(String statusEfetivado) {
+	public void setStatusEfetivado(StatusEfetivado statusEfetivado) {
 		this.statusEfetivado = statusEfetivado;
+	}
+
+	public void setCandidato(Candidato candidato) {
+		this.candidato = candidato;
 	}
 
 	public String getTce() {
@@ -105,6 +120,5 @@ public class Participante {
 	public void setTce(String tce) {
 		this.tce = tce;
 	}
-
 
 }

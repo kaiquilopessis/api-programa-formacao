@@ -15,7 +15,7 @@ public class ProgramaBuscaVo {
         this.id = programa.getId();
         this.nome = programa.getNome();
         this.turma = programa.getNomeTurma();
-        this.status = programa.getStatus();
+        this.status = String.valueOf(programa.getStatus());
     }
 
 

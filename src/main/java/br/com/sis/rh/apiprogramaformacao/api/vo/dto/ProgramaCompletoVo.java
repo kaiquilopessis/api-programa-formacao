@@ -22,11 +22,11 @@ public class ProgramaCompletoVo {
         this.id = programa.getId();
         this.nome = programa.getNome();
         this.turma = programa.getNomeTurma();
-        this.status = programa.getStatus();
+        this.status = String.valueOf(programa.getStatus());
         this.inicio = programa.getDataInicio();
         this.termino = programa.getDataFim();
 
-        MockData instrutor = mockDatasource.getInstrutorPorCpf(programa.getInstrutor().getCpfInstrutor());
+        MockData instrutor = mockDatasource.getInstrutorPorCpf(programa.getInstrutor().getCpf());
         this.nomeCoordenador = instrutor.getNome();
     }
 
