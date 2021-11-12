@@ -13,8 +13,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.model.RemuneracaoPrograma;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ConclusaoDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ConclusaoFinalDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CicloDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CicloFinalDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RemuneracaoProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ConclusaoFinalForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ConclusaoProgressivaForm;
@@ -34,12 +34,12 @@ public class ConclusaoService {
 	@Autowired
 	private RemuneracaoProgramaRepository remuneracaoProgramaRepository;
 
-	public List<ConclusaoDto> listarConclusoes(String cpf){
+	public List<CicloDto> listarConclusoes(String cpf){
 		List<Conclusao> conclusoes = conclusaoRepository.findAllByParticipanteCpf(cpf);
-		return ConclusaoDto.converter(conclusoes);
+		return CicloDto.converter(conclusoes);
 	}
 
-	public ResponseEntity<ConclusaoFinalDto> registrarCicloFinal(String cpf, ConclusaoFinalForm conclusaoFinalForm,
+	public ResponseEntity<CicloFinalDto> registrarCicloFinal(String cpf, ConclusaoFinalForm conclusaoFinalForm,
 			UriComponentsBuilder uriComponentsBuilder) {
 		Optional<Participante> participante = participanteRepository.findById(cpf);
 		if (participante.isPresent()) {
@@ -49,12 +49,12 @@ public class ConclusaoService {
 					.path("/conclusoes/registrociclofinal/{id}")
 					.buildAndExpand(conclusaoFinal.getId())
 					.toUri();
-			return ResponseEntity.created(uri).body(new ConclusaoFinalDto(conclusaoFinal));
+			return ResponseEntity.created(uri).body(new CicloFinalDto(conclusaoFinal));
 		}
 		return ResponseEntity.notFound().build();
 	}
 
-	public ResponseEntity<ConclusaoDto> registrarCicloProgressivo(String cpf,
+	public ResponseEntity<CicloDto> registrarCicloProgressivo(String cpf,
 			ConclusaoProgressivaForm conclusaoProgressivaForm, UriComponentsBuilder uriComponentsBuilder) throws IOException {
 		Optional<Participante> participante =  participanteRepository.findById(cpf);
 		if(participante.isPresent()) {
@@ -65,7 +65,7 @@ public class ConclusaoService {
 					.path("/conclusoes/registrocicloprogressivo/{id}")
 					.buildAndExpand(conclusaoProgressiva.getId())
 					.toUri();
-			return ResponseEntity.created(uri).body(new ConclusaoDto(conclusaoProgressiva));
+			return ResponseEntity.created(uri).body(new CicloDto(conclusaoProgressiva));
 		}
 		return ResponseEntity.notFound().build();
 	}

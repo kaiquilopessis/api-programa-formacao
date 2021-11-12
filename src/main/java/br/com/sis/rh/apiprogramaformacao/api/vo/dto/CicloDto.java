@@ -8,7 +8,7 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoConclusao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusConclusao;
 
-public class ConclusaoDto {
+public class CicloDto {
 
 	private Long id;
 	private ResultadoConclusao resultado;
@@ -19,7 +19,7 @@ public class ConclusaoDto {
 	private String cargoEfetivado;
 	private String observacao;
 
-	public ConclusaoDto(Conclusao conclusao) {
+	public CicloDto(Conclusao conclusao) {
 		this.id = conclusao.getId();
 		this.resultado = conclusao.getResultado();
 		this.dataRegistro = conclusao.getDataAlteracao();
@@ -96,8 +96,8 @@ public class ConclusaoDto {
 		this.observacao = observacao;
 	}
 
-	public static List<ConclusaoDto> converter(List<Conclusao> conclusoes) {
-		return conclusoes.stream().map(ConclusaoDto::new).collect(Collectors.toList());
+	public static List<CicloDto> converter(List<Conclusao> conclusoes) {
+		return conclusoes.stream().map(CicloDto::new).collect(Collectors.toList());
 	}
 
 }

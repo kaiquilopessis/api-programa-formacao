@@ -6,7 +6,7 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoConclusao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusConclusao;
 
-public class ConclusaoFinalDto {
+public class CicloFinalDto {
 
 	private Long id;
 	private ResultadoConclusao resultado;
@@ -81,7 +81,7 @@ public class ConclusaoFinalDto {
 		this.observacao = observacao;
 	}
 
-	public ConclusaoFinalDto(Conclusao conclusaoFinal) {
+	public CicloFinalDto(Conclusao conclusaoFinal) {
 		this.id = conclusaoFinal.getId();
 		this.resultado = conclusaoFinal.getResultado();
 		this.dataRegistro = conclusaoFinal.getDataAlteracao();

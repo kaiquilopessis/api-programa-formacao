@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ConclusaoDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ConclusaoFinalDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CicloDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CicloFinalDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RemuneracaoProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ConclusaoFinalForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ConclusaoProgressivaForm;
@@ -22,13 +22,13 @@ import br.com.sis.rh.apiprogramaformacao.core.service.ConclusaoService;
 
 @RestController
 @RequestMapping("/api/conclusao")
-public class ConclusaoController {
+public class CicloController {
 
 	@Autowired
 	ConclusaoService conclusaoService;
 
 	@GetMapping("/{cpf}")
-	public List<ConclusaoDto> listaConclusoes (@PathVariable String cpf){
+	public List<CicloDto> listaConclusoes (@PathVariable String cpf){
 		return conclusaoService.listarConclusoes(cpf);
 	}
 
@@ -38,14 +38,14 @@ public class ConclusaoController {
 	}
 
 	@PostMapping("/registrocicloprogressivo/{cpf}")
-	public ResponseEntity<ConclusaoDto> registroProgressivo (@PathVariable String cpf ,
+	public ResponseEntity<CicloDto> registroProgressivo (@PathVariable String cpf ,
 			@ModelAttribute ConclusaoProgressivaForm conclusaoProgressivaForm,
 			UriComponentsBuilder uriComponentsBuilder) throws IOException{
 		return conclusaoService.registrarCicloProgressivo(cpf, conclusaoProgressivaForm, uriComponentsBuilder);
 	}
 
 	@PostMapping("/registrociclofinal/{cpf}")
-	public ResponseEntity<ConclusaoFinalDto> registroFinal(@PathVariable String cpf, @ModelAttribute ConclusaoFinalForm conclusaoFinalForm,
+	public ResponseEntity<CicloFinalDto> registroFinal(@PathVariable String cpf, @ModelAttribute ConclusaoFinalForm conclusaoFinalForm,
 			UriComponentsBuilder uriComponentsBuilder) {
 		return conclusaoService.registrarCicloFinal(cpf, conclusaoFinalForm, uriComponentsBuilder);
 	}
