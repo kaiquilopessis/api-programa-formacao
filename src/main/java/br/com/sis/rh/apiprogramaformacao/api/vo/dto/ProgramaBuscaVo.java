@@ -13,7 +13,7 @@ public class ProgramaBuscaVo {
 
     public ProgramaBuscaVo(Programa programa){
         this.id = programa.getId();
-        this.nome = programa.getNome();
+        this.nome = programa.getProcessoSeletivo().getNome();
         this.turma = programa.getNomeTurma();
         this.status = programa.getStatus();
     }

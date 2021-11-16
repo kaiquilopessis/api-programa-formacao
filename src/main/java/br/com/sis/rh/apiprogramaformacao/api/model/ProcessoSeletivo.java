@@ -2,14 +2,17 @@ package br.com.sis.rh.apiprogramaformacao.api.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusProcessoSeletivo;
-
+@Entity
+@Table(name = "TB_PROCESSO_SELETIVO")
 public class ProcessoSeletivo {
 
 	@Id

@@ -42,19 +42,19 @@ public class ProgramaController {
 		return ResponseEntity.ok(programaVo);
 	}
 
-	@PostMapping
-	@Transactional
-	public ResponseEntity cadastra(@RequestBody @Valid ProgramaCadastroForm programaCadastroForm){
-		try{
-			Programa programa = programaCadastroForm.converter(instrutorRepository);
-			programaService.salva(programa);
-
-			return ResponseEntity.ok().body("Cadastro concluído com sucesso!");
-		}
-		catch (Exception e){
-			return ResponseEntity.badRequest().body(e);
-		}
-	}
+//	@PostMapping
+//	@Transactional
+//	public ResponseEntity cadastra(@RequestBody @Valid ProgramaCadastroForm programaCadastroForm){
+//		try{
+//			Programa programa = programaCadastroForm.converter(instrutorRepository);
+//			programaService.salva(programa);
+//
+//			return ResponseEntity.ok().body("Cadastro concluído com sucesso!");
+//		}
+//		catch (Exception e){
+//			return ResponseEntity.badRequest().body(e);
+//		}
+//	}
 
 	@PutMapping("/altera-status/{id}")
 	public ResponseEntity alteraStatus(@PathVariable Long id){

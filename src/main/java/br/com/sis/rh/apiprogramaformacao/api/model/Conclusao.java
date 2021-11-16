@@ -41,6 +41,7 @@ public class Conclusao {
 	private String cargoEfetivado;
 
 	@Column(name = "COMPROVANTE_REMATRICULA")
+	@Lob
 	private byte[] comprovanteRematricula;
 
 	@Column(name = "RESULTADO")

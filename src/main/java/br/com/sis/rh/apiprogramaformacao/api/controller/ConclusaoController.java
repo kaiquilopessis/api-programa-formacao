@@ -37,8 +37,9 @@ public class ConclusaoController {
 	public List<RemuneracaoProgramaDto> listarRemuneracao() {
 		return conclusaoService.listarRemuneracao();
 	}
+	
 	@GetMapping("/download/{id}")
-	public ResponseEntity<ByteArrayResource> downloadDisc(@PathVariable Long id) {
+	public ResponseEntity<ByteArrayResource> downloadComprovante(@PathVariable Long id) {
 		return conclusaoService.download(id);
 		
 	}
@@ -51,7 +52,7 @@ public class ConclusaoController {
 
 	@PostMapping("/registrociclofinal/{cpf}")
 	public ResponseEntity<ConclusaoFinalDto> registroFinal(@PathVariable String cpf, @ModelAttribute ConclusaoFinalForm conclusaoFinalForm,
-			UriComponentsBuilder uriComponentsBuilder) {
+			UriComponentsBuilder uriComponentsBuilder) throws IOException {
 		return conclusaoService.registrarCicloFinal(cpf, conclusaoFinalForm, uriComponentsBuilder);
 	}
 }

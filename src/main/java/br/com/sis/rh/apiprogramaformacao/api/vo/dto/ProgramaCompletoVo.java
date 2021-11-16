@@ -20,14 +20,13 @@ public class ProgramaCompletoVo {
 
     public ProgramaCompletoVo(Programa programa){
         this.id = programa.getId();
-        this.nome = programa.getNome();
+        this.nome = programa.getProcessoSeletivo().getNome();
         this.turma = programa.getNomeTurma();
         this.status = programa.getStatus();
         this.inicio = programa.getDataInicio();
         this.termino = programa.getDataFim();
 
-        MockData instrutor = mockDatasource.getInstrutorPorCpf(programa.getInstrutor().getCpfInstrutor());
-        this.nomeCoordenador = instrutor.getNome();
+       
     }
 
 

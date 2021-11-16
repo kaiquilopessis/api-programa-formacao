@@ -42,7 +42,7 @@ public class ConclusaoService {
 	}
 
 	public ResponseEntity<ConclusaoFinalDto> registrarCicloFinal(String cpf, ConclusaoFinalForm conclusaoFinalForm,
-			UriComponentsBuilder uriComponentsBuilder) {
+			UriComponentsBuilder uriComponentsBuilder) throws IOException {
 		Optional<Participante> participante = participanteRepository.findById(cpf);
 		if (participante.isPresent()) {
 			Conclusao conclusaoFinal = conclusaoFinalForm.converter(participante.get());
