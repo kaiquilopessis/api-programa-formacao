@@ -20,10 +20,5 @@ public class ParticipanteService {
         return participanteRepository.findByNomeFormacaoTurmaBolsa(nomeFormacao, nomeTurmaFormatado);
     }
 
-//    public List<FiltragemFolhaDto> listagemFiltroFolhaTodos(){
-//        return participanteRepository.findByNomeFormacaoTurmaBolsaTodos();
-//    }
-
-
 
 }
