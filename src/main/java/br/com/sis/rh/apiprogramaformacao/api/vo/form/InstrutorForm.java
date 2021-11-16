@@ -1,11 +1,9 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
-import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.Optional;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
 
 public class InstrutorForm {
 
@@ -20,12 +18,16 @@ public class InstrutorForm {
     
     @NotNull @NotEmpty
     private String nome;
+    
+    @NotNull @NotEmpty
+    private String email;
 
-    public InstrutorForm(String cpf, String telefone, String status, String nome) {
+    public InstrutorForm(String cpf, String telefone, String status, String nome, String email) {
         this.cpf = cpf;
         this.telefone = telefone;
         this.status = status;
         this.nome = nome;
+        this.email = email;
     }
 
     public InstrutorForm() {}
@@ -55,12 +57,20 @@ public class InstrutorForm {
 		return nome;
 	}
     
-    public void setNome(String nome) {
+    public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
     public Instrutor converter(){
-        return new Instrutor(cpf, telefone,status,nome);
+        return new Instrutor(cpf, telefone,status,nome,email);
     }
 
 }

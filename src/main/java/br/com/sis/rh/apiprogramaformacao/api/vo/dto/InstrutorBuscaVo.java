@@ -1,24 +1,21 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
-import br.com.sis.rh.apiprogramaformacao.api.mock.MockData;
-import br.com.sis.rh.apiprogramaformacao.api.mock.MockDatasource;
-import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
-import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
 
 public class InstrutorBuscaVo {
     private String cpf;
     private String nome;
     private String instrutor;
     private String status;
-    private MockDatasource mockDatasource = new MockDatasource();
 
     public InstrutorBuscaVo(Instrutor instrutor){
         this.cpf = instrutor.getCpfInstrutor();
         this.instrutor = instrutor.getCpfInstrutor();
         this.status = instrutor.getStatus();
+        this.nome = instrutor.getNome();
     }
 
     public String getId() {
@@ -26,9 +23,7 @@ public class InstrutorBuscaVo {
     }
 
     public String getNome() {
-        MockData instrutorMock = mockDatasource.getInstrutorPorCpf(this.cpf);
-
-        return instrutorMock.getNome();
+        return this.nome;
     }
 
     public String getInstrutor() {

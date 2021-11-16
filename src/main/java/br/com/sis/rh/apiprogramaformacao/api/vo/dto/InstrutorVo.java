@@ -3,8 +3,6 @@ package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.sis.rh.apiprogramaformacao.api.mock.MockData;
-import br.com.sis.rh.apiprogramaformacao.api.mock.MockDatasource;
 import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
 
 public class InstrutorVo {
@@ -13,16 +11,13 @@ public class InstrutorVo {
     private String telefone;
     private String nome;
     private String email;
-    private MockDatasource mockDatasource = new MockDatasource();
 
     public InstrutorVo(Instrutor instrutor) {
         this.cpf = instrutor.getCpfInstrutor();
         this.status = instrutor.getStatus();
         this.telefone = instrutor.getTelefone();
         this.nome = instrutor.getNome();
-
-        MockData inst = mockDatasource.getInstrutorPorCpf(instrutor.getCpfInstrutor());
-        this.email = inst.getEmail();
+        this.email = instrutor.getEmail();
     }
 
     public String getCpf() {
@@ -69,5 +64,9 @@ public class InstrutorVo {
 
 	public String getEmail() {
 		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

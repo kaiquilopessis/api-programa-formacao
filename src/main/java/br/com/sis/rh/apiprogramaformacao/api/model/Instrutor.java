@@ -14,12 +14,24 @@ public class Instrutor {
 	private String status;
 	@Column(name = "nome_instrutor")
 	private String nome;
+	@Column(name = "email_corp")
+	private String email;
+	
 
-	public Instrutor(String cpfInstrutor, String telefone, String status, String nome) {
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Instrutor(String cpfInstrutor, String telefone, String status, String nome, String email) {
 		this.cpfInstrutor = cpfInstrutor;
 		this.telefone = telefone;
 		this.status = status;
 		this.nome = nome;
+		this.email = email;
 	}
 
 	public Instrutor(){}
