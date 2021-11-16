@@ -17,7 +17,7 @@ public class ParticipanteBuscaVo {
 
     public ParticipanteBuscaVo(Participante participante){
         this.cpf = participante.getCpf();
-        this.programa = participante.getPrograma().getNome();
+        this.programa = participante.getPrograma().getProcessoSeletivo().getNome();
         this.turmaPrograma = participante.getPrograma().getNomeTurma();
         this.status = participante.getStatus();
     }

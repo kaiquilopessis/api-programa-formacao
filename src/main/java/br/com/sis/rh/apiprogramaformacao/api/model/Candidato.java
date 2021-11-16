@@ -3,12 +3,7 @@ package br.com.sis.rh.apiprogramaformacao.api.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "TB_CANDIDATO")
@@ -39,6 +34,9 @@ public class Candidato {
 	private String curso;
 	@Column(name = "fonte_recrutamento")
 	private String fonteRecrutamento;
+	@ManyToOne
+	@JoinColumn(name = "processo_seletivo_fk", referencedColumnName = "id")
+	private ProcessoSeletivo processoSeletivo;
 
 	public Candidato(String nome, String telefone, LocalDate dataAgendamento, BigDecimal testeLogico, String notaDisc, String status, String observacao, String disc, String curriculo, String curso, String fonteRecrutamento) {
 		this.nome = nome;
@@ -126,7 +124,15 @@ public class Candidato {
 		this.observacao = observacao;
 	}
 
-//	public String getDisc() {
+	public ProcessoSeletivo getProcessoSeletivo() {
+		return processoSeletivo;
+	}
+
+	public void setProcessoSeletivo(ProcessoSeletivo processoSeletivo) {
+		this.processoSeletivo = processoSeletivo;
+	}
+
+	//	public String getDisc() {
 //		return disc;
 //	}
 //	public void setDisc(String disc) {

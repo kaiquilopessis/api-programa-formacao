@@ -9,6 +9,10 @@ import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
 
 public class AtualizaParticipanteForm {
+	
+	private String nome;
+	private String cpf;
+	private String telefone;
 	private String fonteRecrutamento;
 	private BigDecimal testeLogico;
 	private String nmFaculdade;
@@ -21,6 +25,10 @@ public class AtualizaParticipanteForm {
 	public Participante atualizar(String cpf, ParticipanteRepository participanteRepository, ProgramaRepository programaRepository) {
 		Participante participante = participanteRepository.getById(cpf);
 		Programa programa = programaRepository.findByNome(turma);
+		
+		participante.getCandidato().getNome();
+		participante.getCpf();
+		participante.getCandidato().getTelefone();
 		participante.getCandidato().setFonteRecrutamento(this.fonteRecrutamento);
 		participante.getCandidato().setTesteLogico(this.testeLogico);
 		participante.setFaculdade(this.nmFaculdade);
@@ -31,6 +39,36 @@ public class AtualizaParticipanteForm {
 		participante.getCandidato().setObservacao(this.observacao);
 		return participante;
 	}
+
+	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
+	public String getCpf() {
+		return cpf;
+	}
+
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
 
 	public String getFonteRecrutamento() {
 		return fonteRecrutamento;
