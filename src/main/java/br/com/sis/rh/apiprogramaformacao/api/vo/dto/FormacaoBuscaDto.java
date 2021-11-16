@@ -18,7 +18,7 @@ public class FormacaoBuscaDto {
 	}
 
 	public FormacaoBuscaDto(Programa programa) {
-		this.nome = programa.getNomeTurma();
+		this.nome = programa.getProcessoSeletivo().getNome();
 	}
 
 	public static List<FormacaoBuscaDto> converter (List<Programa> formacao){
