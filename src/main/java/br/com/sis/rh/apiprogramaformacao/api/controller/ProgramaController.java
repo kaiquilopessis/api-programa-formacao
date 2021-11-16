@@ -6,10 +6,13 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaBuscaVo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaCompletoVo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProgramaCadastroForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 import br.com.sis.rh.apiprogramaformacao.core.service.ProgramaService;
 
@@ -24,7 +27,7 @@ public class ProgramaController {
 	private ProgramaService programaService;
 
 	@Autowired
-	private InstrutorRepository instrutorRepository;
+	private ProcessoSeletivoRepository processoSeletivoRepository;
 
 	@GetMapping
 	public ResponseEntity<List<ProgramaBuscaVo>> getPadrao(){
@@ -46,7 +49,7 @@ public class ProgramaController {
 	@Transactional
 	public ResponseEntity cadastra(@RequestBody @Valid ProgramaCadastroForm programaCadastroForm){
 		try{
-			Programa programa = programaCadastroForm.converter(instrutorRepository);
+			Programa programa = programaCadastroForm.converter(processoSeletivoRepository);
 			programaService.salva(programa);
 
 			return ResponseEntity.ok().body("Cadastro concluído com sucesso!");

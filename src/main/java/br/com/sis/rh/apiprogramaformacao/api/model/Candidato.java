@@ -3,12 +3,7 @@ package br.com.sis.rh.apiprogramaformacao.api.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "TB_CANDIDATO")
@@ -31,10 +26,47 @@ public class Candidato {
 	private String status;
 	@Column(name = "observacao", length = 8000)
 	private String observacao;
-	@Column(name = "DISC")
-	private String disc;
-	@Column(name = "curriculo")
-	private String curriculo;
+//	@Column(name = "DISC")
+//	private String disc;
+//	@Column(name = "curriculo")
+//	private String curriculo;
+	@Column(name = "curso")
+	private String curso;
+	@Column(name = "fonte_recrutamento")
+	private String fonteRecrutamento;
+	@ManyToOne
+	@JoinColumn(name = "processo_seletivo_fk", referencedColumnName = "id")
+	private ProcessoSeletivo processoSeletivo;
+
+	public Candidato(String nome, String telefone, LocalDate dataAgendamento, BigDecimal testeLogico, String notaDisc, String status, String observacao, String disc, String curriculo, String curso, String fonteRecrutamento) {
+		this.nome = nome;
+		this.telefone = telefone;
+		this.dataAgendamento = dataAgendamento;
+		this.testeLogico = testeLogico;
+		this.notaDisc = notaDisc;
+		this.status = status;
+		this.observacao = observacao;
+		//this.disc = disc;
+		//this.curriculo = curriculo;
+		this.curso = curso;
+		this.fonteRecrutamento = fonteRecrutamento;
+	}
+
+	public Candidato(){}
+
+	public String getFonteRecrutamento() {
+		return fonteRecrutamento;
+	}
+	public void setFonteRecrutamento(String fonteRecrutamento) {
+		this.fonteRecrutamento = fonteRecrutamento;
+	}
+
+	public String getCurso() {
+		return curso;
+	}
+	public void setCurso(String curso) {
+		this.curso = curso;
+	}
 
 	public long getId() {
 		return id;
@@ -92,17 +124,25 @@ public class Candidato {
 		this.observacao = observacao;
 	}
 
-	public String getDisc() {
-		return disc;
-	}
-	public void setDisc(String disc) {
-		this.disc = disc;
+	public ProcessoSeletivo getProcessoSeletivo() {
+		return processoSeletivo;
 	}
 
-	public String getCurriculo() {
-		return curriculo;
+	public void setProcessoSeletivo(ProcessoSeletivo processoSeletivo) {
+		this.processoSeletivo = processoSeletivo;
 	}
-	public void setCurriculo(String curriculo) {
-		this.curriculo = curriculo;
-	}
+
+	//	public String getDisc() {
+//		return disc;
+//	}
+//	public void setDisc(String disc) {
+//		this.disc = disc;
+//	}
+
+//	public String getCurriculo() {
+//		return curriculo;
+//	}
+//	public void setCurriculo(String curriculo) {
+//		this.curriculo = curriculo;
+//	}
 }

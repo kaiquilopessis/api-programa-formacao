@@ -1,12 +1,12 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
-import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
-import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
+import java.time.LocalDate;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
-import java.util.Optional;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
+import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
 
 public class ProgramaCadastroForm {
 
@@ -20,8 +20,17 @@ public class ProgramaCadastroForm {
     private String instrutorCpf;
     @NotNull @NotEmpty
     private String turma;
+    @NotNull @NotEmpty
+    private Long idProcessoSeletivo;
+    
 
-    public String getNome() {
+    public Long getIdProcessoSeletivo() {
+		return idProcessoSeletivo;
+	}
+	public void setIdProcessoSeletivo(Long idProcessoSeletivo) {
+		this.idProcessoSeletivo = idProcessoSeletivo;
+	}
+	public String getNome() {
         return nome;
     }
     public void setNome(String nome) {
@@ -56,16 +65,15 @@ public class ProgramaCadastroForm {
         this.turma = turma;
     }
 
-    public Programa converter(InstrutorRepository repository){
+    public Programa converter(ProcessoSeletivoRepository repository){
         Programa programa = new Programa();
-        Optional<Instrutor> optInstrutor = repository.findById(this.instrutorCpf);
+        programa.setProcessoSeletivo(repository.getById(idProcessoSeletivo));
 
-        programa.setNome(this.nome);
         programa.setDataInicio(this.inicio);
         programa.setDataFim(this.termino);
-        programa.setInstrutor(optInstrutor.get());
         programa.setNomeTurma(this.turma);
         programa.setStatus("EM_ANDAMENTO");
+        programa.getProcessoSeletivo().setStatus("ENCERRADO");
 
         return programa;
     }

@@ -4,6 +4,7 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProgramaBuscaVo {
     private Long id;
@@ -13,7 +14,7 @@ public class ProgramaBuscaVo {
 
     public ProgramaBuscaVo(Programa programa){
         this.id = programa.getId();
-        this.nome = programa.getNome();
+        this.nome = programa.getProcessoSeletivo().getNome();
         this.turma = programa.getNomeTurma();
         this.status = programa.getStatus();
     }
@@ -52,13 +53,14 @@ public class ProgramaBuscaVo {
     }
 
     public static List<ProgramaBuscaVo> converterParaLista(List<Programa> programas){
-        List<ProgramaBuscaVo> programasVos = new ArrayList<>();
-
-        programas.forEach(programa -> {
-            programasVos.add(new ProgramaBuscaVo(programa));
-        });
-
-        return programasVos;
+//        List<ProgramaBuscaVo> programasVos = new ArrayList<>();
+//
+//        programas.forEach(programa -> {
+//            programasVos.add(new ProgramaBuscaVo(programa));
+//        });
+//
+//        return programasVos;
+    	return programas.stream().map(ProgramaBuscaVo::new).collect(Collectors.toList());
     }
 
 }
