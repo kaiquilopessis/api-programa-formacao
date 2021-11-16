@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -36,7 +37,11 @@ public class ConclusaoController {
 	public List<RemuneracaoProgramaDto> listarRemuneracao() {
 		return conclusaoService.listarRemuneracao();
 	}
-
+	@GetMapping("/download/{id}")
+	public ResponseEntity<ByteArrayResource> downloadDisc(@PathVariable Long id) {
+		return conclusaoService.download(id);
+		
+	}
 	@PostMapping("/registrocicloprogressivo/{cpf}")
 	public ResponseEntity<ConclusaoDto> registroProgressivo (@PathVariable String cpf ,
 			@ModelAttribute ConclusaoProgressivaForm conclusaoProgressivaForm,

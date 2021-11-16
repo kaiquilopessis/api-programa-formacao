@@ -2,11 +2,8 @@ package br.com.sis.rh.apiprogramaformacao.core.service;
 
 import java.io.IOException;
 import java.net.URI;
-import java.net.http.HttpHeaders;
 import java.util.List;
 import java.util.Optional;
-
-import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -23,7 +20,6 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FeedBackDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.FeedBackForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.FeedBackRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
-import javassist.bytecode.ByteArray;
 
 @Service
 public class FeedBackService {
