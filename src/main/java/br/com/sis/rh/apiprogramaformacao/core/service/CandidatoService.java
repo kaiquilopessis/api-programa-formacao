@@ -6,6 +6,7 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaCandidatoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaCandidatoForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.CandidatoForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.CandidatoRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,9 @@ public class CandidatoService {
 
     @Autowired
     private CandidatoRepository candidatoRepository;
+
+    @Autowired
+    private ProcessoSeletivoRepository processoSeletivoRepository;
 
     public Candidato buscaPorId(Long id){
         Optional<Candidato> optionalCandidato = candidatoRepository.findById(id);
@@ -43,8 +47,15 @@ public class CandidatoService {
     public Candidato criaCandidato(CandidatoForm form){
 
         Candidato candidato = form.converter();
+        candidato.setProcessoSeletivo(processoSeletivoRepository.findByNome(form.getNome()));
         candidatoRepository.save(candidato);
 
         return candidato;
+    }
+
+    public List<ListaCandidatoDto> buscaCandidadoPorFormacao(Long id) {
+        List<Candidato> candidatos = candidatoRepository.findCandidatosPorFormacao(id);
+
+        return ListaCandidatoDto.toListaCandidatoDto(candidatos);
     }
 }

@@ -9,4 +9,7 @@ import java.util.List;
 @Repository
 public interface InstrutorRepository extends JpaRepository<Instrutor, String> {
     List<Instrutor> findByStatus(String status);
+
+    Instrutor findInstrutorByNome(String nome);
+
 }

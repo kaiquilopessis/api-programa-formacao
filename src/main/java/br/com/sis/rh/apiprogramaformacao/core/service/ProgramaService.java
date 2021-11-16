@@ -5,6 +5,9 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaProgramaDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaProcessoSeletivoForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProcessoSeletivoForm;
+import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +19,9 @@ public class ProgramaService  {
 
 	@Autowired
 	ProgramaRepository repository;
+
+	@Autowired
+	InstrutorRepository instrutorRepository;
 
 	public List<Programa> getProgramaList(){
 		return repository.findAll();
@@ -31,13 +37,5 @@ public class ProgramaService  {
 	}
 
 	//Métodos criados pelo Gustavo Rosa
-	public Programa buscarPorId(Long id) throws NoSuchElementException {
-		Optional<Programa> optionalPrograma = repository.findById(id);
-		return optionalPrograma.get();
-	}
 
-	public List<ListaProgramaDto> exibirTodasAsLinhas() throws NoSuchElementException {
-		List<Programa> listPrograma = repository.findAll();
-		return ListaProgramaDto.toListaProgramaDto(listPrograma);
-	}
 }

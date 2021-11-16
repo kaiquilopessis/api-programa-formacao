@@ -15,6 +15,7 @@ public class ProgramaDto {
     private String nomeTurma;
     private LocalDate dataInicio;
     private LocalDate dataFim;
+    private String nomeInstrutor;
     private long qtdAprendiz;
     private long qtdEstagiario;
     private long qtdTrainee;

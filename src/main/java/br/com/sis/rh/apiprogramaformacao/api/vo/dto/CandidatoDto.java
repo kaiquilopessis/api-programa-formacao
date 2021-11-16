@@ -18,6 +18,7 @@ public class CandidatoDto {
     //private File arquivoDisc;
     private String notaDisc;
     private String observacao;
+    private String processoSeletivo;
 
     public CandidatoDto(Candidato candidato){
         this.id = candidato.getId();
@@ -30,6 +31,7 @@ public class CandidatoDto {
         this.testeLogico = candidato.getTesteLogico();
         this.observacao = candidato.getObservacao();
         this.notaDisc = candidato.getNotaDisc();
+        this.processoSeletivo = candidato.getProcessoSeletivo().getNome();
     }
 
     public CandidatoDto() {

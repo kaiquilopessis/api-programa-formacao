@@ -34,6 +34,11 @@ public class CandidatoController {
         return ResponseEntity.ok(new CandidatoDto(candidatoService.buscaPorId(id)));
     }
 
+    @GetMapping("/listadaformacao/{id}")
+    public List<ListaCandidatoDto> mostraListaCandidatoEmProcesso(@PathVariable Long id){
+        return candidatoService.buscaCandidadoPorFormacao(id);
+    }
+
     @PutMapping("/{id}")
     @Transactional
     public ResponseEntity<CandidatoDto> atualizarCandidato(@PathVariable Long id, @RequestBody AtualizaCandidatoForm form){

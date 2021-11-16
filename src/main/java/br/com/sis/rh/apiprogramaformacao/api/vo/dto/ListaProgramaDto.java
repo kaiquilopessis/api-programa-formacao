@@ -20,11 +20,13 @@ public class ListaProgramaDto {
     private Long id;
     private String nome;
     private String status;
+    private String nomeTurma;
 
     public ListaProgramaDto(Programa programa) {
         this.id = programa.getId();
         this.nome = programa.getNome();
         this.status = programa.getStatus();
+        this.nomeTurma = programa.getNomeTurma();
     }
 
     // Transformar a lista em lista DTO

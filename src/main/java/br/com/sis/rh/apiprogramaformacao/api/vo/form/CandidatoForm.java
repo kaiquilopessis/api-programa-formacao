@@ -23,6 +23,7 @@ public class CandidatoForm {
     private String notaDisc;
     private String curriculo;
     private String disc;
+    private Long idProcessoSeletivo;
 
     public Candidato converter (){
         return new Candidato(nome, telefone, dataAgendamento, testeLogico, notaDisc, status, observacao, curriculo, disc, curso, fonteRecrutamento);
