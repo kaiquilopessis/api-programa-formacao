@@ -24,7 +24,7 @@ public class AtualizaParticipanteForm {
 	
 	public Participante atualizar(String cpf, ParticipanteRepository participanteRepository, ProgramaRepository programaRepository) {
 		Participante participante = participanteRepository.getById(cpf);
-		Programa programa = programaRepository.findByNome(turma);
+		Programa programa = programaRepository.findByNomeTurma(turma);
 		
 		participante.getCandidato().getNome();
 		participante.getCpf();
