@@ -42,4 +42,6 @@ public class Participante {
 	@ManyToOne
 	@JoinColumn(name = "FK_codigo_remun", referencedColumnName = "id", nullable = false)
 	private Remuneracao remuneracao;
+	@Column(name = "email_corp")
+	private String emailCorp;
 }

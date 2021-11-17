@@ -20,4 +20,6 @@ public class Instrutor {
 	private long status;
 	@Column(name = "nome_instrutor", length = 50, nullable = false)
 	private String nomeInstrutor;
+	@Column(name = "email_corp")
+	private String emailCorp;
 }

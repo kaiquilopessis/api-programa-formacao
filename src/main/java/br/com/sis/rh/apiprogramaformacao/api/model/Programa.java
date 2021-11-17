@@ -1,29 +1,31 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusProgramaUsuario;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "TB_PROGRAMA")
 @Getter
 @Setter
 public class Programa {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Integer id;
+	private long id;
 	@OneToOne
-	@JoinColumn(name = "cpf_instrutor", referencedColumnName = "cpf_instrutor", nullable = false)
-	private Instrutor instrutor;
-	@Column(name = "nome", nullable = false, length = 50)
-	private String nome;
+	@JoinColumn(name = "processo_seletivo_fk", referencedColumnName = "id", nullable = false)
+	private ProcessoSeletivo processoSeletivo;
 	@Column(name = "data_inicio", nullable = false)
 	private LocalDate dataInicio;
 	@Column(name = "data_fim", nullable = false)
@@ -31,12 +33,5 @@ public class Programa {
 	@Column(name = "nome_turma", nullable = false, length = 50)
 	private String nomeTurma;
 	@Column(name = "status", nullable = false)
-	@Enumerated(EnumType.STRING)
-	private StatusProgramaUsuario status;
-	@Column(name = "qtd_aprendiz")
-	private Integer qtdAprendiz;
-	@Column(name = "qtd_estagiario")
-	private Integer qtdEstagiario;
-	@Column(name = "qtd_trainee")
-	private Integer qtdTrainee;
+	private String status;
 }

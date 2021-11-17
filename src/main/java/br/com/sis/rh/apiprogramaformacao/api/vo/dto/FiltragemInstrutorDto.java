@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -22,6 +23,8 @@ public class FiltragemInstrutorDto {
     private String nomeFormacao;
     @Column(name = "nome_turma")
     private String nomeTurma;
+    @Column(name = "data_fim")
+    private LocalDate dataFim;
     @Column(name = "qtd_hora")
     private Integer qtdHora;
     @Column(name = "vlr_hora")

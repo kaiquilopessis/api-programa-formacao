@@ -12,9 +12,9 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class ParametrosFiltroInstrutorForm {
 
-    private String parametroNomeInstrutor;
-    private String parametroNomeFormacao;
-    private String parametroNomeTurma;
-    private BigDecimal parametroValorHora;
+    private String nome;
+    private String mesAno;
+    private String valorHora;
+    private BigDecimal horasTrabalhadas;
 
 }

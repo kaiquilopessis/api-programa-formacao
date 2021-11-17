@@ -1,11 +1,16 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "TB_REMUNERACAO_INSTRUTOR")
+@Getter
+@Setter
 public class Remuneracao_Instrutor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,4 +24,6 @@ public class Remuneracao_Instrutor {
     private Integer qtd_hora;
     @Column(name = "vlr_hora")
     private BigDecimal vlr_hora;
+    @Column(name = "cargo")
+    private String cargo;
 }

@@ -15,6 +15,8 @@ import java.time.LocalDate;
 public class FiltragemFolhaDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cpf_participante")
+    private String cpfParticipante;
     @Column(name = "nome_participante")
     private String nomeParticipante;
     @Column(name = "nome_programa")
@@ -31,12 +33,12 @@ public class FiltragemFolhaDto {
     private BigDecimal horaExtra;
     @Column(name = "beneficio_legislacao")
     private BigDecimal beneficioLegislacao;
-    @Column(name = "remun_exporadica")
-    private BigDecimal remuneracaoExporadica;
+    @Column(name = "remun_esporadica")
+    private BigDecimal remuneracaoEsporadica;
     @Column(name = "remun_extra")
     private BigDecimal remuneracaoExtra;
     @Column(name = "alura")
     private BigDecimal alura;
-    @Column(name = "data_fim")
+    @Column(name = "data_fim_programa")
     private LocalDate dataFim;
 }
