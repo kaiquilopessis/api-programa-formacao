@@ -1,23 +1,17 @@
 package br.com.sis.rh.apiprogramaformacao.api.controller;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.compress.utils.IOUtils;
-import org.dom4j.DocumentException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RelatorioConclusaoVO;
 import br.com.sis.rh.apiprogramaformacao.core.service.ConclusaoService;
 import br.com.sis.rh.apiprogramaformacao.core.service.ExcelConclusaoService;
 import br.com.sis.rh.apiprogramaformacao.core.service.PDFConclusaoService;
+import org.apache.commons.compress.utils.IOUtils;
+import org.dom4j.DocumentException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 
 // url criado para (/conclusões)
 @RestController
@@ -43,7 +37,8 @@ public class ConclusaoController {
 	
 	// Geração do pdf
 	@GetMapping("/formacao={formacao}/turma={turma}/pdf")
-	public void downloadPDF(HttpServletResponse response, @PathVariable String formacao, @PathVariable String turma) throws DocumentException, IOException {
+	public void downloadPDF(HttpServletResponse response, @PathVariable String formacao, @PathVariable String turma)
+			throws DocumentException, IOException {
         response.setContentType("application/pdf");
          
         String headerKey = "Content-Disposition";
@@ -58,7 +53,8 @@ public class ConclusaoController {
 	
 	// Geração do xlsx
 	@GetMapping("/formacao={formacao}/turma={turma}/xlsx")
-	public void downloadXLSX(HttpServletResponse response, @PathVariable String formacao, @PathVariable String turma) throws IOException {
+	public void downloadXLSX(HttpServletResponse response, @PathVariable String formacao, @PathVariable String turma)
+			throws IOException {
 		RelatorioConclusaoVO conclusaoVo = conclusaoService.popularCards(formacao, turma);
 		
 		response.setContentType("application/octet-stream");
