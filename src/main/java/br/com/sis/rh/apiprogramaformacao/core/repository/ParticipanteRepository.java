@@ -32,11 +32,11 @@ public interface ParticipanteRepository  extends JpaRepository <Participante, St
 	List<ParticipanteProgramaDto> findByStatusAtivo(StatusAtivo status_ativo);
 	
 	// Método que devolve a contagem total de participantes com status ATIVO
-	@Query(value = "SELECT COUNT(p) FROM TB_PARTICIPANTE p WHERE status_ativo = 'ATIVO'")
+	@Query(value = "SELECT COUNT(p) FROM TB_PARTICIPANTE p WHERE status_ativo = 'ATIVO'", nativeQuery = true)
 	Integer totalParticipantesAtivos();
 	
 	// Método que devolve a contagem total de participantes com status EFETIVADO
-	@Query(value = "SELECT COUNT(p) FROM TB_PARTICIPANTE p WHERE status_efetivado = 'EFETIVADO'")
+	@Query(value = "SELECT COUNT(p) FROM TB_PARTICIPANTE p WHERE status_efetivado = 'EFETIVADO'", nativeQuery = true)
 	Integer totalEfetivados();
 
 		// Busca os participantes ativos no programa e na turma(tela de conclusão)
@@ -48,7 +48,7 @@ public interface ParticipanteRepository  extends JpaRepository <Participante, St
 		Integer listaParticipantesEfetivados(String nome, String turma);
 		
 		// busca o participante com o referio codigo do programa
-		@Query("select p from TB_PARTICIPANTE p where codigo_programa_fk = ?1")
+		@Query("select p from Participante p where programa = ?1")
 		List<Participante> listarParticipantes(Long codPrograma);
 
 	

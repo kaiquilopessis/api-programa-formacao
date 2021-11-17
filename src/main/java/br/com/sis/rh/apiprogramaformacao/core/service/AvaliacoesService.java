@@ -7,8 +7,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.AvaliacaoDesempenho;
@@ -17,14 +15,14 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.AvaliacaoDesempenhoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.AvaliacoesDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AvaliacoesForm;
-import br.com.sis.rh.apiprogramaformacao.core.repository.AvaliacoesRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.AvaliacaoDesempenhoRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.AvaliacaoRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 @Service
 public class AvaliacoesService {
 
 	@Autowired
-	private AvaliacoesRepository avaliacoesRepository;
+	private AvaliacaoRepository avaliacoesRepository;
 
 	@Autowired
 	private ParticipanteRepository participanteRepository;

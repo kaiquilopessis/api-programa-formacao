@@ -1,5 +1,7 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
+import java.math.BigDecimal;
+
 /**
  * 
  * @author dkalbiak
@@ -14,49 +16,50 @@ package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
 public class InvestimentoProgFormacaoVo {
 
-	private Double investParticipantes;
-	private Double investInstrutores;
-	private Double investTotal;
-	private Double investParticipantesPeriodoSelecionado;
-	private Double investInstrutoresPeriodoSelecionado;
-	private Double investTotalPeriodoSelecionado;
+	private BigDecimal investParticipantes;
+	private BigDecimal investInstrutores;
+	private BigDecimal investTotal;
+	private BigDecimal investParticipantesPeriodoSelecionado;
+	private BigDecimal investInstrutoresPeriodoSelecionado;
+	private BigDecimal investTotalPeriodoSelecionado;
 
 	private String formacao;
 	private String turma;
-	public Double getInvestParticipantes() {
+	
+	public BigDecimal getInvestParticipantes() {
 		return investParticipantes;
 	}
-	public void setInvestParticipantes(Double investParticipantes) {
+	public void setInvestParticipantes(BigDecimal investParticipantes) {
 		this.investParticipantes = investParticipantes;
 	}
-	public Double getInvestInstrutores() {
+	public BigDecimal getInvestInstrutores() {
 		return investInstrutores;
 	}
-	public void setInvestInstrutores(Double investInstrutores) {
+	public void setInvestInstrutores(BigDecimal investInstrutores) {
 		this.investInstrutores = investInstrutores;
 	}
-	public Double getInvestTotal() {
+	public BigDecimal getInvestTotal() {
 		return investTotal;
 	}
-	public void setInvestTotal(Double investTotal) {
+	public void setInvestTotal(BigDecimal investTotal) {
 		this.investTotal = investTotal;
 	}
-	public Double getInvestParticipantesPeriodoSelecionado() {
+	public BigDecimal getInvestParticipantesPeriodoSelecionado() {
 		return investParticipantesPeriodoSelecionado;
 	}
-	public void setInvestParticipantesPeriodoSelecionado(Double investParticipantesPeriodoSelecionado) {
+	public void setInvestParticipantesPeriodoSelecionado(BigDecimal investParticipantesPeriodoSelecionado) {
 		this.investParticipantesPeriodoSelecionado = investParticipantesPeriodoSelecionado;
 	}
-	public Double getInvestInstrutoresPeriodoSelecionado() {
+	public BigDecimal getInvestInstrutoresPeriodoSelecionado() {
 		return investInstrutoresPeriodoSelecionado;
 	}
-	public void setInvestInstrutoresPeriodoSelecionado(Double investInstrutoresPeriodoSelecionado) {
+	public void setInvestInstrutoresPeriodoSelecionado(BigDecimal investInstrutoresPeriodoSelecionado) {
 		this.investInstrutoresPeriodoSelecionado = investInstrutoresPeriodoSelecionado;
 	}
-	public Double getInvestTotalPeriodoSelecionado() {
+	public BigDecimal getInvestTotalPeriodoSelecionado() {
 		return investTotalPeriodoSelecionado;
 	}
-	public void setInvestTotalPeriodoSelecionado(Double investTotalPeriodoSelecionado) {
+	public void setInvestTotalPeriodoSelecionado(BigDecimal investTotalPeriodoSelecionado) {
 		this.investTotalPeriodoSelecionado = investTotalPeriodoSelecionado;
 	}
 	public String getFormacao() {

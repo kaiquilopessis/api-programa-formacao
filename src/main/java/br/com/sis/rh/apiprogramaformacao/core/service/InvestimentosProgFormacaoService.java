@@ -1,14 +1,17 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
+import java.math.BigDecimal;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.Ciclo;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.InvestimentoProgFormacaoVo;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ConclusaoRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.CicloRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoInstrutorRepository;
@@ -35,7 +38,7 @@ public class InvestimentosProgFormacaoService {
 	@Autowired
 	private ParticipanteRepository participantesRepository;
 	@Autowired
-	private ConclusaoRepository conclusaoRepository;
+	private CicloRepository cicloRepository;
 	@Autowired
 	private RemuneracaoInstrutorRepository remuneracaoInstrutorRepository;
 
@@ -84,22 +87,22 @@ public class InvestimentosProgFormacaoService {
 		Programa programa = (Programa) programaRepository.listarProgramaSemData(nomePrograma, nomeTurma);
 		List<Participante> participantes = participantesRepository.listarParticipantes(programa.getId());
 
-		investParticipantes.setInvestParticipantes(0.0);
+		investParticipantes.setInvestParticipantes(BigDecimal.ZERO);
 		participantes.forEach(participante -> {
 			System.out.println(participante.getCpf());
 
-			List<Conclusao> conclusoes = conclusaoRepository.listarConclusoes(participante.getCpf());
+			List<Ciclo> conclusoes = cicloRepository.listarConclusoes(participante.getCpf());
 			System.out.println(conclusoes.size());
 
 			conclusoes.forEach(conclusao -> {
 
 				Remuneracao remuneracao = remuneracaoRepository
-						.findBySalario(conclusao.getParticipante().getRemuneracao().getId());
+						.findBySalario(conclusao.getParticipante().getRemuneracaoPrograma().getId());
 
 				investParticipantes.setInvestParticipantes(investParticipantes.getInvestParticipantes()
-						+ remuneracao.getBolsaAux() + remuneracao.getBeneficios() + remuneracao.getConvenio()
-						+ remuneracao.getHoraExtra() + remuneracao.getBeneficioLegislacao()
-						+ remuneracao.getRemuExporadica() + remuneracao.getAlura());
+						.add(remuneracao.getBolsa()).add(remuneracao.getBeneficio()).add(remuneracao.getConvenio())
+						.add(remuneracao.getHoraExtra()).add(remuneracao.getBeneficioLegislacao()) 
+						.add(remuneracao.getRemunEsporadica()).add(remuneracao.getAlura()));
 			});
 		});
 		return investParticipantes;
@@ -121,7 +124,7 @@ public class InvestimentosProgFormacaoService {
 			InvestimentoProgFormacaoVo investInstrutores) {
 
 		Double salarioInstrutores = remuneracaoInstrutorRepository.calcularSalarioInstrutores(nomePrograma, nomeTurma);
-		investInstrutores.setInvestInstrutores(salarioInstrutores);
+		investInstrutores.setInvestInstrutores(new BigDecimal(salarioInstrutores));
 			
 		return investInstrutores;
 	}
@@ -135,7 +138,7 @@ public class InvestimentosProgFormacaoService {
 	 */
 	public InvestimentoProgFormacaoVo investimentoTotal(InvestimentoProgFormacaoVo investTotal) {
 
-		double investTotal2 = investTotal.getInvestParticipantes() + investTotal.getInvestInstrutores();
+		BigDecimal investTotal2 = investTotal.getInvestParticipantes().add(investTotal.getInvestInstrutores());
 		investTotal.setInvestTotal(investTotal2);
 
 		return investTotal;

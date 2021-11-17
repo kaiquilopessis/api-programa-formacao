@@ -1,5 +1,7 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
+import java.math.BigDecimal;
+
 /**
  * Classe que serve como Vo para levar as
  * informações para a tela de relatórios
@@ -8,20 +10,20 @@ package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
 public class RelatorioAvaliacoesVo {
 
-	private Double notaMediaAvaliacaoTecnica;
-	private Double notaMediaAvaliacaoComportamental;
-	private Double notaMediaAvaliacaoPraticasAgeis;
-	private Double notaMediaAvaliacaoLideranca;
-	private Double notaMediaAvaliacaoNegocio;
+	private BigDecimal notaMediaAvaliacaoTecnica;
+	private BigDecimal notaMediaAvaliacaoComportamental;
+	private BigDecimal notaMediaAvaliacaoPraticasAgeis;
+	private BigDecimal notaMediaAvaliacaoLideranca;
+	private BigDecimal notaMediaAvaliacaoNegocio;
 	private Integer ultimoCicloRegistrado;
 	private String programaDeFormacao;
 	private String turma;
 	
 	public RelatorioAvaliacoesVo() {}
 
-	public RelatorioAvaliacoesVo(Double notaMediaAvaliacaoTecnica, Double notaMediaAvaliacaoComportamental,
-			Double notaMediaAvaliacaoPraticasAgeis, Double notaMediaAvaliacaoLideranca,
-			Double notaMediaAvaliacaoNegocio, Integer ultimoCicloRegistrado,
+	public RelatorioAvaliacoesVo(BigDecimal notaMediaAvaliacaoTecnica, BigDecimal notaMediaAvaliacaoComportamental,
+			BigDecimal notaMediaAvaliacaoPraticasAgeis, BigDecimal notaMediaAvaliacaoLideranca,
+			BigDecimal notaMediaAvaliacaoNegocio, Integer ultimoCicloRegistrado,
 			String programaDeFormacao, String turma) {
 		this.notaMediaAvaliacaoTecnica = notaMediaAvaliacaoTecnica;
 		this.notaMediaAvaliacaoComportamental = notaMediaAvaliacaoComportamental;
@@ -33,43 +35,43 @@ public class RelatorioAvaliacoesVo {
 		this.turma = turma;
 	}
 
-	public Double getNotaMediaAvaliacaoTecnica() {
+	public BigDecimal getNotaMediaAvaliacaoTecnica() {
 		return notaMediaAvaliacaoTecnica;
 	}
 
-	public void setNotaMediaAvaliacaoTecnica(Double notaMediaAvaliacaoTecnica) {
+	public void setNotaMediaAvaliacaoTecnica(BigDecimal notaMediaAvaliacaoTecnica) {
 		this.notaMediaAvaliacaoTecnica = notaMediaAvaliacaoTecnica;
 	}
 
-	public Double getNotaMediaAvaliacaoComportamental() {
+	public BigDecimal getNotaMediaAvaliacaoComportamental() {
 		return notaMediaAvaliacaoComportamental;
 	}
 
-	public void setNotaMediaAvaliacaoComportamental(Double notaMediaAvaliacaoComportamental) {
+	public void setNotaMediaAvaliacaoComportamental(BigDecimal notaMediaAvaliacaoComportamental) {
 		this.notaMediaAvaliacaoComportamental = notaMediaAvaliacaoComportamental;
 	}
 
-	public Double getNotaMediaAvaliacaoPraticasAgeis() {
+	public BigDecimal getNotaMediaAvaliacaoPraticasAgeis() {
 		return notaMediaAvaliacaoPraticasAgeis;
 	}
 
-	public void setNotaMediaAvaliacaoPraticasAgeis(Double notaMediaAvaliacaoPraticasAgeis) {
+	public void setNotaMediaAvaliacaoPraticasAgeis(BigDecimal notaMediaAvaliacaoPraticasAgeis) {
 		this.notaMediaAvaliacaoPraticasAgeis = notaMediaAvaliacaoPraticasAgeis;
 	}
 
-	public Double getNotaMediaAvaliacaoLideranca() {
+	public BigDecimal getNotaMediaAvaliacaoLideranca() {
 		return notaMediaAvaliacaoLideranca;
 	}
 
-	public void setNotaMediaAvaliacaoLideranca(Double notaMediaAvaliacaoLideranca) {
+	public void setNotaMediaAvaliacaoLideranca(BigDecimal notaMediaAvaliacaoLideranca) {
 		this.notaMediaAvaliacaoLideranca = notaMediaAvaliacaoLideranca;
 	}
 
-	public Double getNotaMediaAvaliacaoNegocio() {
+	public BigDecimal getNotaMediaAvaliacaoNegocio() {
 		return notaMediaAvaliacaoNegocio;
 	}
 
-	public void setNotaMediaAvaliacaoNegocio(Double notaMediaAvaliacaoNegocio) {
+	public void setNotaMediaAvaliacaoNegocio(BigDecimal notaMediaAvaliacaoNegocio) {
 		this.notaMediaAvaliacaoNegocio = notaMediaAvaliacaoNegocio;
 	}
 

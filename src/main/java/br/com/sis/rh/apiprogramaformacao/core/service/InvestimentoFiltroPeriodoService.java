@@ -1,15 +1,18 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.Ciclo;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.InvestimentoProgFormacaoVo;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ConclusaoRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.CicloRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoInstrutorRepository;
@@ -39,7 +42,7 @@ public class InvestimentoFiltroPeriodoService {
 	@Autowired
 	private ParticipanteRepository participantesRepository;
 	@Autowired
-	private ConclusaoRepository conclusaoRepository;
+	private CicloRepository cicloRepository;
 	@Autowired
 	private RemuneracaoRepository remuneracaoRepository;
 	@Autowired
@@ -57,7 +60,7 @@ public class InvestimentoFiltroPeriodoService {
 		investimentoProgFormacaoVo = investInstrutorPeriodo(dataInicio, dataFim, nomePrograma, tumaFormatada, investimentoProgFormacaoVo);
 		investimentoProgFormacaoVo
 				.setInvestTotalPeriodoSelecionado(investimentoProgFormacaoVo.getInvestInstrutoresPeriodoSelecionado()
-						+ investimentoProgFormacaoVo.getInvestParticipantesPeriodoSelecionado());
+						.add(investimentoProgFormacaoVo.getInvestParticipantesPeriodoSelecionado()) );
 
 		investimentoProgFormacaoVo.setFormacao(nomePrograma);
 		investimentoProgFormacaoVo.setTurma(tumaFormatada);
@@ -69,7 +72,7 @@ public class InvestimentoFiltroPeriodoService {
 	// o programa, turma e data selecionados
 	public InvestimentoProgFormacaoVo investParticipantesPeriodo(LocalDate dataInicio, LocalDate dataFim,
 			String nomePrograma, String nomeTurma, InvestimentoProgFormacaoVo investimentoProgFormacaoVo) {
-		investimentoProgFormacaoVo.setInvestParticipantesPeriodoSelecionado(0.0);
+		investimentoProgFormacaoVo.setInvestParticipantesPeriodoSelecionado(BigDecimal.ZERO);
 
 		Programa programa = (Programa) programaRepository.listarProgramaSemData(nomePrograma, nomeTurma);
 		List<Participante> participantes = (List<Participante>) participantesRepository
@@ -77,7 +80,7 @@ public class InvestimentoFiltroPeriodoService {
 		participantes.forEach(participante -> {
 
 			System.out.println(participante.getCpf());
-			List<Conclusao> conclusoes = conclusaoRepository.listarConclusoes(participante.getCpf());
+			List<Ciclo> conclusoes = cicloRepository.listarConclusoes(participante.getCpf());
 
 			conclusoes.forEach(conclusao -> {
 				System.out.println("Entrei no laço");
@@ -88,10 +91,10 @@ public class InvestimentoFiltroPeriodoService {
 				if (!participante.getCpf().equals(conclusao.getParticipante().getCpf())) {
 					diferencaMes = dataInicio.until(dataFim, ChronoUnit.MONTHS);
 					investimentoProgFormacaoVo.setInvestParticipantesPeriodoSelecionado(
-							(remuneracao.getAlura() + remuneracao.getBeneficioLegislacao() + remuneracao.getBeneficios()
-									+ remuneracao.getBolsaAux() + remuneracao.getConvenio() + remuneracao.getHoraExtra()
-									+ remuneracao.getRemuExporadica() + remuneracao.getRemuExtra()) * diferencaMes
-									+ investimentoProgFormacaoVo.getInvestParticipantesPeriodoSelecionado());
+							(remuneracao.getAlura().add(remuneracao.getBeneficioLegislacao()).add(remuneracao.getBeneficio())
+									.add(remuneracao.getBolsa()).add(remuneracao.getConvenio()).add(remuneracao.getHoraExtra()) 
+									.add(remuneracao.getRemunEsporadica()).add(remuneracao.getRemunExtra())).multiply(new BigDecimal(diferencaMes)) 
+									.add(investimentoProgFormacaoVo.getInvestParticipantesPeriodoSelecionado()));
 					System.out.println("Passei por aqui...");
 				}
 
@@ -99,20 +102,20 @@ public class InvestimentoFiltroPeriodoService {
 					mesAnterior = conclusao.getDataAlteracao().until(dataInicio, ChronoUnit.MONTHS);
 					System.out.println("mes anterior " + mesAnterior);
 					investimentoProgFormacaoVo.setInvestParticipantesPeriodoSelecionado(
-							(remuneracao.getAlura() + remuneracao.getBeneficioLegislacao() + remuneracao.getBeneficios()
-									+ remuneracao.getBolsaAux() + remuneracao.getConvenio() + remuneracao.getHoraExtra()
-									+ remuneracao.getRemuExporadica() + remuneracao.getRemuExtra()) * mesAnterior
-									+ investimentoProgFormacaoVo.getInvestParticipantesPeriodoSelecionado());
+							(remuneracao.getAlura().add(remuneracao.getBeneficioLegislacao()).add(remuneracao.getBeneficio()) 
+									.add(remuneracao.getBolsa()).add(remuneracao.getConvenio()).add(remuneracao.getHoraExtra()) 
+									.add(remuneracao.getRemunEsporadica()).add(remuneracao.getRemunExtra())).multiply(new BigDecimal(mesAnterior)) 
+									.add(investimentoProgFormacaoVo.getInvestParticipantesPeriodoSelecionado()));
 
 				}
 				if (dataFim.isAfter(conclusao.getDataAlteracao())) {
 					mesPosterior = conclusao.getDataAlteracao().until(dataFim, ChronoUnit.MONTHS);
 					System.out.println("mes posterior " + mesPosterior);
 					investimentoProgFormacaoVo.setInvestParticipantesPeriodoSelecionado(
-							(remuneracao.getAlura() + remuneracao.getBeneficioLegislacao() + remuneracao.getBeneficios()
-									+ remuneracao.getBolsaAux() + remuneracao.getConvenio() + remuneracao.getHoraExtra()
-									+ remuneracao.getRemuExporadica() + remuneracao.getRemuExtra()) * mesPosterior
-									+ investimentoProgFormacaoVo.getInvestParticipantesPeriodoSelecionado());
+							(remuneracao.getAlura().add(remuneracao.getBeneficioLegislacao()).add(remuneracao.getBeneficio())
+									.add(remuneracao.getBolsa()).add(remuneracao.getConvenio()).add(remuneracao.getHoraExtra()) 
+									.add(remuneracao.getRemunEsporadica()).add(remuneracao.getRemunExtra())).multiply(new BigDecimal(mesPosterior)) 
+									.add(investimentoProgFormacaoVo.getInvestParticipantesPeriodoSelecionado()));
 
 				}
 
@@ -128,7 +131,7 @@ public class InvestimentoFiltroPeriodoService {
 	public InvestimentoProgFormacaoVo investInstrutorPeriodo(LocalDate dataInicio, LocalDate dataFim,
 			String nomePrograma,String nomeTurma,InvestimentoProgFormacaoVo investimentoProgFormacaoVo) {
 
-		Double salarioInstrutores = remuneracaoInstrutorRepository.calcularSalarioInstrutoresPeriodo(nomePrograma, nomeTurma, dataInicio, dataFim);
+		BigDecimal salarioInstrutores = remuneracaoInstrutorRepository.calcularSalarioInstrutoresPeriodo(nomePrograma, nomeTurma, dataInicio, dataFim);
 		investimentoProgFormacaoVo.setInvestInstrutoresPeriodoSelecionado(salarioInstrutores);
 
 		return investimentoProgFormacaoVo;
@@ -136,8 +139,8 @@ public class InvestimentoFiltroPeriodoService {
 
 	public InvestimentoProgFormacaoVo investimentoTotalDoPeriodo(InvestimentoProgFormacaoVo investTotal) {
 
-		double investTotal2 = investTotal.getInvestInstrutoresPeriodoSelecionado()
-				+ investTotal.getInvestParticipantesPeriodoSelecionado();
+		BigDecimal investTotal2 = investTotal.getInvestInstrutoresPeriodoSelecionado()
+				.add(investTotal.getInvestParticipantesPeriodoSelecionado()) ;
 
 		investTotal.setInvestTotalPeriodoSelecionado(investTotal2);
 

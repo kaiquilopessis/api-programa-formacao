@@ -2,9 +2,17 @@ package br.com.sis.rh.apiprogramaformacao.api.model;
 
 import java.time.LocalDate;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivado;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusParticipante;
 
@@ -31,7 +39,8 @@ public class Participante {
 	@Column(name = "data_fim_graduacao")
 	private LocalDate dataFinal;
 	@Column(name = "status_ativo")
-	private StatusAtivo status;
+	@Enumerated(EnumType.STRING)
+	private StatusParticipante status;
 	@Column(name = "TCE")
 	private String tce;
 	@Column(name = "status_efetivado")
@@ -93,11 +102,12 @@ public class Participante {
 		this.dataFinal = dataFinal;
 	}
 
-	public StatusAtivo getStatus() {
+
+	public StatusParticipante getStatus() {
 		return status;
 	}
 
-	public void setStatus(StatusAtivo status) {
+	public void setStatus(StatusParticipante status) {
 		this.status = status;
 	}
 

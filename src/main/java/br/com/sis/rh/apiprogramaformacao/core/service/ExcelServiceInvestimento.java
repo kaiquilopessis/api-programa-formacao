@@ -61,12 +61,12 @@ public class ExcelServiceInvestimento {
 			cell.setCellStyle(headCellStyle);
 
 			Row dataRow = sheet.createRow(1);
-			dataRow.createCell(0).setCellValue(investimentoProgFormacaoVo.getInvestParticipantes());
-			dataRow.createCell(1).setCellValue(investimentoProgFormacaoVo.getInvestInstrutores());
-			dataRow.createCell(2).setCellValue(investimentoProgFormacaoVo.getInvestTotal());
-			dataRow.createCell(3).setCellValue(investimentoProgFormacaoVo.getInvestParticipantesPeriodoSelecionado());
-			dataRow.createCell(4).setCellValue(investimentoProgFormacaoVo.getInvestInstrutoresPeriodoSelecionado());
-			dataRow.createCell(5).setCellValue(investimentoProgFormacaoVo.getInvestTotalPeriodoSelecionado());
+			dataRow.createCell(0).setCellValue(String.valueOf(investimentoProgFormacaoVo.getInvestParticipantes()));
+			dataRow.createCell(1).setCellValue(String.valueOf(investimentoProgFormacaoVo.getInvestInstrutores()));
+			dataRow.createCell(2).setCellValue(String.valueOf(investimentoProgFormacaoVo.getInvestTotal()));
+			dataRow.createCell(3).setCellValue(String.valueOf(investimentoProgFormacaoVo.getInvestParticipantesPeriodoSelecionado()));
+			dataRow.createCell(4).setCellValue(String.valueOf(investimentoProgFormacaoVo.getInvestInstrutoresPeriodoSelecionado()));
+			dataRow.createCell(5).setCellValue(String.valueOf(investimentoProgFormacaoVo.getInvestTotalPeriodoSelecionado()));
 
 			sheet.autoSizeColumn(0);
 			sheet.autoSizeColumn(1);

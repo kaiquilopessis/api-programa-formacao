@@ -18,4 +18,6 @@ public interface AvaliacaoRepository extends JpaRepository<Avaliacoes, Long>  {
 	@Query(value = "select top(1) count(codigo_participante_fk) from TB_NOTAS_AVALIACOES "
 			+ "group by codigo_participante_fk having count(codigo_participante_fk) > 1 ", nativeQuery =  true)
 	Integer buscaNumeroCiclo();
+	
+	List<Avaliacoes>findAllByParticipanteCpf(String cpf);
 }
