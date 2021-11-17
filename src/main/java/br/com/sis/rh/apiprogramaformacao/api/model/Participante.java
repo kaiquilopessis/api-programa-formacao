@@ -44,7 +44,7 @@ public class Participante {
 	@Column(name = "TCE")
 	private String tce;
 	@Column(name = "status_efetivado")
-	private StatusEfetivado statusEfetivado;
+	private String statusEfetivado;
 
 	public String getCpf() {
 		return cpf;
@@ -102,7 +102,6 @@ public class Participante {
 		this.dataFinal = dataFinal;
 	}
 
-
 	public StatusParticipante getStatus() {
 		return status;
 	}
@@ -111,11 +110,11 @@ public class Participante {
 		this.status = status;
 	}
 
-	public StatusEfetivado getStatusEfetivado() {
+	public String getStatusEfetivado() {
 		return statusEfetivado;
 	}
 
-	public void setStatusEfetivado(StatusEfetivado statusEfetivado) {
+	public void setStatusEfetivado(String statusEfetivado) {
 		this.statusEfetivado = statusEfetivado;
 	}
 

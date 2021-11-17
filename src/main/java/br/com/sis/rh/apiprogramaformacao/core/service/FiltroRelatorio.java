@@ -1,18 +1,19 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteProgramaDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaDto;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivo;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusFormacao;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteProgramaDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaDto;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivado;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusFormacao;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusParticipante;
+import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
 
 /**
  * Classe Service: contém a lógica para as buscas no banco de dados
@@ -47,12 +48,12 @@ public class FiltroRelatorio {
 	
 	//Lógica para listar os participantes de todos os programas com status ATIVO
 	public List<ParticipanteProgramaDto> listaTotalParticipantesAtivos() {
-		return participanteRepository.findByStatusAtivo(StatusAtivo.ATIVO);
+		return participanteRepository.findByStatusAtivo(StatusParticipante.ATIVO);
 	} 
 	
 	//Lógica para listar os participantes de todos os programas com status EFETIVADO
 	public List<ParticipanteProgramaDto> listaTotalParticipantesEfetivados() {
-		return participanteRepository.findByStatusEfetivo(StatusEfetivo.EFETIVADO);
+		return participanteRepository.findByStatusEfetivo(StatusEfetivado.EFETIVADO);
 	}
 	
 	//Lógica para listar todas as formações com status EM_ANDAMENTO

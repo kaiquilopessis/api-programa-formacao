@@ -20,16 +20,16 @@ public class BuscaController {
 	private BuscaService buscaService;
 
 	//lista participantes na tabela - busca participantes
-	@GetMapping("participantes/{statusPart}")
-	public List<ParticipanteBuscaDto> listarPart(@PathVariable String statusPart) {
-		return buscaService.buscaPorStatus(statusPart);
+	@GetMapping("participantes")
+	public List<ParticipanteBuscaDto> listarPart() {
+		return buscaService.buscaPorStatus();
 	}
 
 
 	//lista formação no select - busca participantes
-	@GetMapping("participantes/programa/{statusProg}")
-	public List<FormacaoBuscaDto> listarForm(@PathVariable String statusProg){
-		return buscaService.buscaPorStatusForm(statusProg);
+	@GetMapping("programa")
+	public List<FormacaoBuscaDto> listarForm(){
+		return buscaService.buscaPorStatusForm();
 	}
 
 }

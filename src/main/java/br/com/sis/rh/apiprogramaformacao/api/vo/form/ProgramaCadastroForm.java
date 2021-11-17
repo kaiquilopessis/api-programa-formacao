@@ -57,17 +57,15 @@ public class ProgramaCadastroForm {
         this.turma = turma;
     }
 
-//    public Programa converter(InstrutorRepository repository){
-//        Programa programa = new Programa();
-//        Optional<Instrutor> optInstrutor = repository.findById(this.instrutorCpf);
-//
-//        programa.setNome(this.nome);
-//        programa.setDataInicio(this.inicio);
-//        programa.setDataFim(this.termino);
-//        programa.setInstrutor(optInstrutor.get());
-//        programa.setNomeTurma(this.turma);
-//        programa.setStatus("EM_ANDAMENTO");
-//
-//        return programa;
-//    }
+    public Programa converter(InstrutorRepository repository){
+        Programa programa = new Programa();
+        Optional<Instrutor> optInstrutor = repository.findById(this.instrutorCpf);
+        
+        programa.setDataInicio(this.inicio);
+        programa.setDataFim(this.termino);
+        programa.setNomeTurma(this.turma);
+        programa.setStatus(StatusFormacao.EM_ANDAMENTO);
+
+        return programa;
+    }
 }

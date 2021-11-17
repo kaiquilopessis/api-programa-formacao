@@ -1,7 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -13,17 +12,19 @@ import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoCiclo;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCiclo;
 
 public class CicloFinalForm {
-	private ResultadoConclusao resultado;
+	private ResultadoCiclo resultado;
 	private String dataAlteracao;
 	private String cargoEfetivado;
 	private MultipartFile comprovante;
 	private String campoObservacao;
 
+	
+
 	public ResultadoCiclo getResultado() {
 		return resultado;
 	}
 
-	public void setResultado(ResultadoConclusao resultado) {
+	public void setResultado(ResultadoCiclo resultado) {
 		this.resultado = resultado;
 	}
 
@@ -61,7 +62,7 @@ public class CicloFinalForm {
 
 	public Ciclo converter(Participante participante) throws IOException {
 		LocalDate data = LocalDate.parse(this.dataAlteracao, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		return new Ciclo(participante, data, cargoEfetivado, comprovante.getBytes(), resultado, StatusConclusao.FINAL,
+		return new Ciclo(participante, data, cargoEfetivado, comprovante.getBytes(), resultado, StatusCiclo.FINAL,
 				campoObservacao);
 	}
 

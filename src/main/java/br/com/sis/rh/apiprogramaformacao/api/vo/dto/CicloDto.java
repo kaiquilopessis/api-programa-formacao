@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Ciclo;
-import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoConclusao;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusConclusao;
+import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoCiclo;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCiclo;
 
 public class CicloDto {
 

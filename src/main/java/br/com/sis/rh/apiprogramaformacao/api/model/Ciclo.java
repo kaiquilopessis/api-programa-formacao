@@ -61,7 +61,7 @@ public class Ciclo {
 
 	// Progressive
 	public Ciclo(Participante participante, LocalDate dataAlteracao, RemuneracaoPrograma cargo,
-			byte[] comprovanteRematricula, ResultadoConclusao resultado, StatusConclusao statusProgresso) {
+			byte[] comprovanteRematricula, ResultadoCiclo resultado, StatusCiclo statusProgresso) {
 		this.participante = participante;
 		this.dataAlteracao = dataAlteracao;
 		this.cargoPrograma = cargo;
@@ -72,7 +72,7 @@ public class Ciclo {
 
 	// Final
 	public Ciclo(Participante participante, LocalDate dataAlteracao, String cargo, byte[] comprovanteRematricula,
-			ResultadoConclusao resultado, StatusConclusao statusProgresso, String observacao) {
+			ResultadoCiclo resultado, StatusCiclo statusProgresso, String observacao) {
 		this.participante = participante;
 		this.dataAlteracao = dataAlteracao;
 		this.cargoEfetivado = cargo;

@@ -13,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusFormacao;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusProgramaUsuario;
+
 @Entity
 @Table(name = "TB_PROGRAMA")
 public class Programa {
@@ -26,7 +29,8 @@ public class Programa {
 	@Column(name = "nome_turma", nullable = false, length = 50)
 	private String nomeTurma;
 	@Column(name = "status", nullable = false)
-	private String status;
+	@Enumerated(EnumType.STRING)
+	private StatusFormacao status;
 	@OneToOne
 	@JoinColumn(name = "processo_seletivo_fk", referencedColumnName = "id", nullable = false)
 	private ProcessoSeletivo processoSeletivo;

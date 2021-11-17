@@ -1,12 +1,10 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
-import br.com.sis.rh.apiprogramaformacao.api.mock.MockData;
-import br.com.sis.rh.apiprogramaformacao.api.mock.MockDatasource;
-import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 
 public class ProgramaCompletoVo {
     private Long id;
@@ -16,18 +14,15 @@ public class ProgramaCompletoVo {
     private LocalDate inicio;
     private LocalDate termino;
     private String nomeCoordenador;
-    private MockDatasource mockDatasource = new MockDatasource();
+   
 
     public ProgramaCompletoVo(Programa programa){
         this.id = programa.getId();
-        this.nome = programa.getNome();
+        this.nome = programa.getProcessoSeletivo().getNome();
         this.turma = programa.getNomeTurma();
         this.status = String.valueOf(programa.getStatus());
         this.inicio = programa.getDataInicio();
         this.termino = programa.getDataFim();
-
-        MockData instrutor = mockDatasource.getInstrutorPorCpf(programa.getInstrutor().getCpf());
-        this.nomeCoordenador = instrutor.getNome();
     }
 
 

@@ -11,8 +11,6 @@ import br.com.sis.rh.apiprogramaformacao.core.enums.StatusFormacao;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
 public class ProgramaDto {
 
 	private Long id;
@@ -23,7 +21,7 @@ public class ProgramaDto {
 
 	public ProgramaDto(Programa programa) {
 		this.id = programa.getId();
-		this.nome = programa.getNome();
+		this.nome = programa.getProcessoSeletivo().getNome();
 		this.status = programa.getStatus();
 	}
 
