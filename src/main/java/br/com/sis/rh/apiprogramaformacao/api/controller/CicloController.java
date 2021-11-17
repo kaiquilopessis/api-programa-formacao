@@ -16,16 +16,16 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CicloDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CicloFinalDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RemuneracaoProgramaDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.form.ConclusaoFinalForm;
-import br.com.sis.rh.apiprogramaformacao.api.vo.form.ConclusaoProgressivaForm;
-import br.com.sis.rh.apiprogramaformacao.core.service.ConclusaoService;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.CicloFinalForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.CicloProgressivoForm;
+import br.com.sis.rh.apiprogramaformacao.core.service.CicloService;
 
 @RestController
 @RequestMapping("/api/conclusao")
-public class ConclusaoController {
+public class CicloController {
 
 	@Autowired
-	ConclusaoService conclusaoService;
+	CicloService conclusaoService;
 
 	@GetMapping("/{cpf}")
 	public List<CicloDto> listaConclusoes (@PathVariable String cpf){
@@ -44,13 +44,13 @@ public class ConclusaoController {
 	}
 	@PostMapping("/registrocicloprogressivo/{cpf}")
 	public ResponseEntity<CicloDto> registroProgressivo (@PathVariable String cpf ,
-			@ModelAttribute ConclusaoProgressivaForm conclusaoProgressivaForm,
+			@ModelAttribute CicloProgressivoForm conclusaoProgressivaForm,
 			UriComponentsBuilder uriComponentsBuilder){
 		return conclusaoService.registrarCicloProgressivo(cpf, conclusaoProgressivaForm, uriComponentsBuilder);
 	}
 
 	@PostMapping("/registrociclofinal/{cpf}")
-	public ResponseEntity<CicloFinalDto> registroFinal(@PathVariable String cpf, @ModelAttribute ConclusaoFinalForm conclusaoFinalForm,
+	public ResponseEntity<CicloFinalDto> registroFinal(@PathVariable String cpf, @ModelAttribute CicloFinalForm conclusaoFinalForm,
 			UriComponentsBuilder uriComponentsBuilder){
 		return conclusaoService.registrarCicloFinal(cpf, conclusaoFinalForm, uriComponentsBuilder);
 	}

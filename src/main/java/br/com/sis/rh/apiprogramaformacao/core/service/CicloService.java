@@ -18,14 +18,14 @@ import br.com.sis.rh.apiprogramaformacao.api.model.RemuneracaoPrograma;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CicloDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CicloFinalDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RemuneracaoProgramaDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.form.ConclusaoFinalForm;
-import br.com.sis.rh.apiprogramaformacao.api.vo.form.ConclusaoProgressivaForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.CicloFinalForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.CicloProgressivoForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.CicloRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoProgramaRepository;
 
 @Service
-public class ConclusaoService {
+public class CicloService {
 
 	@Autowired
 	private CicloRepository conclusaoRepository;
@@ -41,7 +41,7 @@ public class ConclusaoService {
 		return CicloDto.converter(conclusoes);
 	}
 
-	public ResponseEntity<CicloFinalDto> registrarCicloFinal(String cpf, ConclusaoFinalForm conclusaoFinalForm,
+	public ResponseEntity<CicloFinalDto> registrarCicloFinal(String cpf, CicloFinalForm conclusaoFinalForm,
 			UriComponentsBuilder uriComponentsBuilder){
 		Optional<Participante> participante = participanteRepository.findById(cpf);
 		try {
@@ -61,7 +61,7 @@ public class ConclusaoService {
 	}
 
 	public ResponseEntity<CicloDto> registrarCicloProgressivo(String cpf,
-			ConclusaoProgressivaForm conclusaoProgressivaForm, UriComponentsBuilder uriComponentsBuilder) {
+			CicloProgressivoForm conclusaoProgressivaForm, UriComponentsBuilder uriComponentsBuilder) {
 		Optional<Participante> participante = participanteRepository.findById(cpf);
 		try {
 

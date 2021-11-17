@@ -1,7 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -9,15 +8,17 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Ciclo;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import br.com.sis.rh.apiprogramaformacao.api.model.RemuneracaoPrograma;
 import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoConclusao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusConclusao;
+import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoProgramaRepository;
 
-public class ConclusaoFinalForm {
+public class CicloProgressivoForm {
+
 	private ResultadoConclusao resultado;
 	private String dataAlteracao;
-	private String cargoEfetivado;
+	private String cargo;
 	private MultipartFile comprovante;
-	private String campoObservacao;
 
 	public ResultadoConclusao getResultado() {
 		return resultado;
@@ -35,12 +36,12 @@ public class ConclusaoFinalForm {
 		this.dataAlteracao = dataAlteracao;
 	}
 
-	public String getCargoEfetivado() {
-		return cargoEfetivado;
+	public String getCargo() {
+		return cargo;
 	}
 
-	public void setCargoEfetivado(String cargoEfetivado) {
-		this.cargoEfetivado = cargoEfetivado;
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}
 
 	public MultipartFile getComprovante() {
@@ -51,18 +52,9 @@ public class ConclusaoFinalForm {
 		this.comprovante = comprovante;
 	}
 
-	public String getCampoObservacao() {
-		return campoObservacao;
-	}
-
-	public void setCampoObservacao(String campoObservacao) {
-		this.campoObservacao = campoObservacao;
-	}
-
-	public Ciclo converter(Participante participante) throws IOException {
+	public Ciclo converter(Participante participante, RemuneracaoProgramaRepository remuneracaoProgramaRepository) throws IOException {
 		LocalDate data = LocalDate.parse(this.dataAlteracao, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		return new Ciclo(participante, data, cargoEfetivado, comprovante.getBytes(), resultado, StatusConclusao.FINAL,
-				campoObservacao);
+		RemuneracaoPrograma cargo = remuneracaoProgramaRepository.findByCargo(this.cargo);
+		return new Ciclo(participante, data, cargo, comprovante.getBytes(), resultado, StatusConclusao.PROGRESSIVA);
 	}
-
 }
