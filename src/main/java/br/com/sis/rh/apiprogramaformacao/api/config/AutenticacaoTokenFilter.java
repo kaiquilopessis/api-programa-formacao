@@ -1,19 +1,17 @@
 package br.com.sis.rh.apiprogramaformacao.api.config;
 
-import java.io.IOException;
-import java.util.Optional;
+import br.com.sis.rh.apiprogramaformacao.api.model.UsuarioAcesso;
+import br.com.sis.rh.apiprogramaformacao.core.repository.UsuarioAcessoRepository;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.filter.OncePerRequestFilter;
-
-import br.com.sis.rh.apiprogramaformacao.api.model.UsuarioAcesso;
-import br.com.sis.rh.apiprogramaformacao.core.repository.UsuarioAcessoRepository;
+import java.io.IOException;
+import java.util.Optional;
 
 //Esse filter é o filtro que faz a verificação do Token enviado em todas as requisições para a API
 public class AutenticacaoTokenFilter extends OncePerRequestFilter {
@@ -60,7 +58,8 @@ public class AutenticacaoTokenFilter extends OncePerRequestFilter {
 
      UsuarioAcesso usuario = optUsuario.get();
 
-     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
+     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(usuario, null
+             , usuario.getAuthorities());
      SecurityContextHolder.getContext().setAuthentication(authentication);
  }
 }

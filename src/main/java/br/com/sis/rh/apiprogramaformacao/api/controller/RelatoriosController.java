@@ -1,16 +1,15 @@
 package br.com.sis.rh.apiprogramaformacao.api.controller;
 
-import java.util.List;
-
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteProgramaDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaDto;
+import br.com.sis.rh.apiprogramaformacao.core.service.FiltroRelatorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaDto;
-import br.com.sis.rh.apiprogramaformacao.core.service.FiltroRelatorio;
+import java.util.List;
 
 /**
  * Classe Controller de relatórios
@@ -34,12 +33,12 @@ public class RelatoriosController {
 	}
 	
 	@GetMapping("/participantesAtivos")
-	public List<ParticipanteDto> listaParticipantesAtivos() {
+	public List<ParticipanteProgramaDto> listaParticipantesAtivos() {
 		return filtroRelatorio.listaTotalParticipantesAtivos();
 	}
 
 	@GetMapping("/participantesEfetivados")
-	public List<ParticipanteDto> listaParticipantesEfetivados() {
+	public List<ParticipanteProgramaDto> listaParticipantesEfetivados() {
 		return filtroRelatorio.listaTotalParticipantesEfetivados();
 	}
 
@@ -47,5 +46,10 @@ public class RelatoriosController {
 	public List<ProgramaDto> listaFormacoesEmAndamento() {
 		return filtroRelatorio.listaTotalFormacoesEmAndamento();
 	}
+
+//	@GetMapping("/formacoesETurma")
+//	public List<ProgramaDto> buscarTodasFormacoesETurmas(){
+//
+//	}
 	
 }

@@ -42,7 +42,7 @@ public class AutenticacaoController {
             String token = tokenService.gerarToken(authentication);
             System.out.println(token);
 
-            return ResponseEntity.ok(new TokenVo(token, "Bearer"));
+            return ResponseEntity.ok(new TokenVo("Bearer", token));
         }
         catch (AuthenticationException e) {
             return ResponseEntity.badRequest().body(e);
