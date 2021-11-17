@@ -36,16 +36,21 @@ public class FeedBackService {
 	}
 
 	public ResponseEntity<FeedBackDto> cadastrar(String cpf, @RequestBody FeedBackForm feedBackForm,
-			UriComponentsBuilder uriComponentsBuilder) throws IOException {
+			UriComponentsBuilder uriComponentsBuilder) {
 		Optional<Participante> participante = participanteRepository.findById(cpf);
-		if (participante.isPresent()) {
-			FeedBack feedback = feedBackForm.converter(participante.get());
-			feedBackRepository.save(feedback);
-			URI uri = uriComponentsBuilder.path("feedback/novo/{id}").buildAndExpand(feedback.getId()).toUri();
-			return ResponseEntity.created(uri).body(new FeedBackDto(feedback));
-
+		try {
+			if (participante.isPresent()) {
+				FeedBack feedback = feedBackForm.converter(participante.get());
+				feedBackRepository.save(feedback);
+				URI uri = uriComponentsBuilder.path("feedback/novo/{id}").buildAndExpand(feedback.getId()).toUri();
+				return ResponseEntity.created(uri).body(new FeedBackDto(feedback));
+			}
+			return ResponseEntity.notFound().build();
+		} catch (IOException e) {
+			System.out.println("Erro no input do arquivo DISC");
+			e.printStackTrace();
+			return ResponseEntity.badRequest().build();
 		}
-		return ResponseEntity.notFound().build();
 	}
 
 	public ResponseEntity<FeedBackDto> deletar(@PathVariable Long id) {
@@ -56,13 +61,14 @@ public class FeedBackService {
 		}
 		return ResponseEntity.notFound().build();
 	}
-	
-	public ResponseEntity<ByteArrayResource> download (Long id){
+
+	public ResponseEntity<ByteArrayResource> download(Long id) {
 		FeedBack disc = feedBackRepository.getById(id);
 		return ResponseEntity.ok()
-				.contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
+				.contentType(
+						MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
 				.body(new ByteArrayResource(disc.getDisc()));
-		
+
 	}
 
 }

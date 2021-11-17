@@ -36,40 +36,50 @@ public class ConclusaoService {
 	@Autowired
 	private RemuneracaoProgramaRepository remuneracaoProgramaRepository;
 
-	public List<ConclusaoDto> listarConclusoes(String cpf){
+	public List<ConclusaoDto> listarConclusoes(String cpf) {
 		List<Conclusao> conclusoes = conclusaoRepository.findAllByParticipanteCpf(cpf);
 		return ConclusaoDto.converter(conclusoes);
 	}
 
 	public ResponseEntity<ConclusaoFinalDto> registrarCicloFinal(String cpf, ConclusaoFinalForm conclusaoFinalForm,
-			UriComponentsBuilder uriComponentsBuilder) throws IOException {
+			UriComponentsBuilder uriComponentsBuilder){
 		Optional<Participante> participante = participanteRepository.findById(cpf);
-		if (participante.isPresent()) {
-			Conclusao conclusaoFinal = conclusaoFinalForm.converter(participante.get());
-			conclusaoRepository.save(conclusaoFinal);
-			URI uri = uriComponentsBuilder
-					.path("/conclusoes/registrociclofinal/{id}")
-					.buildAndExpand(conclusaoFinal.getId())
-					.toUri();
-			return ResponseEntity.created(uri).body(new ConclusaoFinalDto(conclusaoFinal));
+		try {
+			if (participante.isPresent()) {
+				Conclusao conclusaoFinal = conclusaoFinalForm.converter(participante.get());
+				conclusaoRepository.save(conclusaoFinal);
+				URI uri = uriComponentsBuilder.path("/conclusoes/registrociclofinal/{id}")
+						.buildAndExpand(conclusaoFinal.getId()).toUri();
+				return ResponseEntity.created(uri).body(new ConclusaoFinalDto(conclusaoFinal));
+			}
+			return ResponseEntity.notFound().build();
+		} catch (Exception e) {
+			System.out.println("Erro no input do arquivo");
+			e.printStackTrace();
+			return ResponseEntity.badRequest().build();
 		}
-		return ResponseEntity.notFound().build();
 	}
 
 	public ResponseEntity<ConclusaoDto> registrarCicloProgressivo(String cpf,
-			ConclusaoProgressivaForm conclusaoProgressivaForm, UriComponentsBuilder uriComponentsBuilder) throws IOException {
-		Optional<Participante> participante =  participanteRepository.findById(cpf);
-		if(participante.isPresent()) {
-			Conclusao conclusaoProgressiva = conclusaoProgressivaForm
-					.converter(participante.get(), remuneracaoProgramaRepository);
-			conclusaoRepository.save(conclusaoProgressiva);
-			URI uri = uriComponentsBuilder
-					.path("/conclusoes/registrocicloprogressivo/{id}")
-					.buildAndExpand(conclusaoProgressiva.getId())
-					.toUri();
-			return ResponseEntity.created(uri).body(new ConclusaoDto(conclusaoProgressiva));
+			ConclusaoProgressivaForm conclusaoProgressivaForm, UriComponentsBuilder uriComponentsBuilder) {
+		Optional<Participante> participante = participanteRepository.findById(cpf);
+		try {
+
+			if (participante.isPresent()) {
+				Conclusao conclusaoProgressiva = conclusaoProgressivaForm.converter(participante.get(),
+						remuneracaoProgramaRepository);
+				conclusaoRepository.save(conclusaoProgressiva);
+				URI uri = uriComponentsBuilder.path("/conclusoes/registrocicloprogressivo/{id}")
+						.buildAndExpand(conclusaoProgressiva.getId()).toUri();
+				return ResponseEntity.created(uri).body(new ConclusaoDto(conclusaoProgressiva));
+			}
+			return ResponseEntity.notFound().build();
+
+		} catch (IOException e) {
+			System.out.println("Erro no input do arquivo");
+			e.printStackTrace();
+			return ResponseEntity.badRequest().build();
 		}
-		return ResponseEntity.notFound().build();
 	}
 
 	public List<RemuneracaoProgramaDto> listarRemuneracao() {
@@ -79,10 +89,8 @@ public class ConclusaoService {
 
 	public ResponseEntity<ByteArrayResource> download(Long id) {
 		Conclusao comprovante = conclusaoRepository.getById(id);
-		return ResponseEntity.ok()
-				.contentType(MediaType.parseMediaType("application/pdf"))
+		return ResponseEntity.ok().contentType(MediaType.parseMediaType("application/pdf"))
 				.body(new ByteArrayResource(comprovante.getComprovanteRematricula()));
 	}
-
 
 }

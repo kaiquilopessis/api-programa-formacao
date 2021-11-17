@@ -1,6 +1,5 @@
 package br.com.sis.rh.apiprogramaformacao.api.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,13 +45,13 @@ public class ConclusaoController {
 	@PostMapping("/registrocicloprogressivo/{cpf}")
 	public ResponseEntity<ConclusaoDto> registroProgressivo (@PathVariable String cpf ,
 			@ModelAttribute ConclusaoProgressivaForm conclusaoProgressivaForm,
-			UriComponentsBuilder uriComponentsBuilder) throws IOException{
+			UriComponentsBuilder uriComponentsBuilder){
 		return conclusaoService.registrarCicloProgressivo(cpf, conclusaoProgressivaForm, uriComponentsBuilder);
 	}
 
 	@PostMapping("/registrociclofinal/{cpf}")
 	public ResponseEntity<ConclusaoFinalDto> registroFinal(@PathVariable String cpf, @ModelAttribute ConclusaoFinalForm conclusaoFinalForm,
-			UriComponentsBuilder uriComponentsBuilder) throws IOException {
+			UriComponentsBuilder uriComponentsBuilder){
 		return conclusaoService.registrarCicloFinal(cpf, conclusaoFinalForm, uriComponentsBuilder);
 	}
 }
