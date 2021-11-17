@@ -26,8 +26,8 @@ public class RemuneracaoPrograma {
 	@Column(name = "beneficio_legislacao")
 	private BigDecimal beneficioLegislacao;
 	
-	@Column(name = "remun_exporadica")
-	private BigDecimal remunExporadica;
+	@Column(name = "remun_esporadica")
+	private BigDecimal remunEsporadica;
 	
 	@Column(name = "remun_extra")
 	private BigDecimal remunExtra;
@@ -83,11 +83,11 @@ public class RemuneracaoPrograma {
 		this.beneficioLegislacao = beneficioLegislacao;
 	}
 
-	public BigDecimal getRemunExporadica() {
-		return remunExporadica;
+	public BigDecimal getRemunEsporadica() {
+		return remunEsporadica;
 	}
-	public void setRemunExporadica(BigDecimal remunExporadica) {
-		this.remunExporadica = remunExporadica;
+	public void setRemunExporadica(BigDecimal remunEsporadica) {
+		this.remunEsporadica = remunEsporadica;
 	}
 
 	public BigDecimal getRemunExtra() {

@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
+import br.com.sis.rh.apiprogramaformacao.api.model.Ciclo;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoConclusao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusConclusao;
@@ -59,9 +59,9 @@ public class ConclusaoFinalForm {
 		this.campoObservacao = campoObservacao;
 	}
 
-	public Conclusao converter(Participante participante) throws IOException {
+	public Ciclo converter(Participante participante) throws IOException {
 		LocalDate data = LocalDate.parse(this.dataAlteracao, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		return new Conclusao(participante, data, cargoEfetivado, comprovante.getBytes(), resultado, StatusConclusao.FINAL,
+		return new Ciclo(participante, data, cargoEfetivado, comprovante.getBytes(), resultado, StatusConclusao.FINAL,
 				campoObservacao);
 	}
 

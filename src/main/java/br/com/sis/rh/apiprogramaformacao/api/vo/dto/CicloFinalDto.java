@@ -1,14 +1,12 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.stream.Collectors;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
+import br.com.sis.rh.apiprogramaformacao.api.model.Ciclo;
 import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoConclusao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusConclusao;
 
-public class ConclusaoDto {
+public class CicloFinalDto {
 
 	private Long id;
 	private ResultadoConclusao resultado;
@@ -18,19 +16,6 @@ public class ConclusaoDto {
 	private String cargoPrograma;
 	private String cargoEfetivado;
 	private String observacao;
-
-	public ConclusaoDto(Conclusao conclusao) {
-		this.id = conclusao.getId();
-		this.resultado = conclusao.getResultado();
-		this.dataRegistro = conclusao.getDataAlteracao();
-		this.status = conclusao.getStatusProgresso();
-		this.comprovante = conclusao.getComprovanteRematricula();
-		if (conclusao.getStatusProgresso() == StatusConclusao.PROGRESSIVA) {
-			this.cargoPrograma = conclusao.getCargoPrograma().getCargo();
-		}
-		this.cargoEfetivado = conclusao.getCargoEfetivado();
-		this.observacao = conclusao.getObservacao();
-	}
 
 	public Long getId() {
 		return id;
@@ -96,8 +81,12 @@ public class ConclusaoDto {
 		this.observacao = observacao;
 	}
 
-	public static List<ConclusaoDto> converter(List<Conclusao> conclusoes) {
-		return conclusoes.stream().map(ConclusaoDto::new).collect(Collectors.toList());
+	public CicloFinalDto(Ciclo conclusaoFinal) {
+		this.id = conclusaoFinal.getId();
+		this.resultado = conclusaoFinal.getResultado();
+		this.dataRegistro = conclusaoFinal.getDataAlteracao();
+		this.comprovante = conclusaoFinal.getComprovanteRematricula();
+		this.cargoEfetivado = conclusaoFinal.getCargoEfetivado();
+		this.observacao = conclusaoFinal.getObservacao();
 	}
-
 }

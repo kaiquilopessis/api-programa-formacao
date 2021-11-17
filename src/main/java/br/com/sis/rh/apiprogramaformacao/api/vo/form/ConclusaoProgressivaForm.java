@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
+import br.com.sis.rh.apiprogramaformacao.api.model.Ciclo;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.model.RemuneracaoPrograma;
 import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoConclusao;
@@ -52,9 +52,9 @@ public class ConclusaoProgressivaForm {
 		this.comprovante = comprovante;
 	}
 
-	public Conclusao converter(Participante participante, RemuneracaoProgramaRepository remuneracaoProgramaRepository) throws IOException {
+	public Ciclo converter(Participante participante, RemuneracaoProgramaRepository remuneracaoProgramaRepository) throws IOException {
 		LocalDate data = LocalDate.parse(this.dataAlteracao, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		RemuneracaoPrograma cargo = remuneracaoProgramaRepository.findByCargo(this.cargo);
-		return new Conclusao(participante, data, cargo, comprovante.getBytes(), resultado, StatusConclusao.PROGRESSIVA);
+		return new Ciclo(participante, data, cargo, comprovante.getBytes(), resultado, StatusConclusao.PROGRESSIVA);
 	}
 }
