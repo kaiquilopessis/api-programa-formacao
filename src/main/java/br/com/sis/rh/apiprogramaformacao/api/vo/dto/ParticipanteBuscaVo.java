@@ -1,7 +1,7 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 
@@ -45,12 +45,13 @@ public class ParticipanteBuscaVo {
     }
 
     public static List<ParticipanteBuscaVo> converterLista(List<Participante> participantes){
-        List<ParticipanteBuscaVo> participantesVo = new ArrayList<>();
-
-        participantes.forEach(participante -> {
-            participantesVo.add(new ParticipanteBuscaVo(participante));
-        });
-
-        return participantesVo;
+//        List<ParticipanteBuscaVo> participantesVo = new ArrayList<>();
+//
+//        participantes.forEach(participante -> {
+//            participantesVo.add(new ParticipanteBuscaVo(participante));
+//        });
+//
+//        return participantesVo;
+    	return participantes.stream().map(ParticipanteBuscaVo::new).collect(Collectors.toList());
     }
 }

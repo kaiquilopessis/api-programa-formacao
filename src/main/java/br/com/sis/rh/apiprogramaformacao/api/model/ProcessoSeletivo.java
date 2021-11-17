@@ -11,7 +11,7 @@ public class ProcessoSeletivo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne
-    @JoinColumn(name = "cpf_instrutor", referencedColumnName = "cpf_instrutor", nullable = false)
+    @JoinColumn(name = "cpf_instrutor_fk", referencedColumnName = "cpf_instrutor", nullable = false)
     private Instrutor instrutor;
     @Column(name = "qtd_aprendiz")
     private Long qtdAprendiz;
