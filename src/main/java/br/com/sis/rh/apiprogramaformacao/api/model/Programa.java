@@ -13,19 +13,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusFormacao;
-
 @Entity
 @Table(name = "TB_PROGRAMA")
 public class Programa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@OneToOne
-	@JoinColumn(name = "cpf_instrutor", referencedColumnName = "cpf_instrutor", nullable = false)
-	private Instrutor instrutor;
-	@Column(name = "nome", nullable = false, length = 50)
-	private String nome;
 	@Column(name = "data_inicio", nullable = false)
 	private LocalDate dataInicio;
 	@Column(name = "data_fim", nullable = false)
@@ -33,14 +26,10 @@ public class Programa {
 	@Column(name = "nome_turma", nullable = false, length = 50)
 	private String nomeTurma;
 	@Column(name = "status", nullable = false)
-	@Enumerated(EnumType.STRING)
-	private StatusFormacao status;
-	@Column(name = "qtd_aprendiz")
-	private long qtdAprendiz;
-	@Column(name = "qtd_estagiario")
-	private long qtdEstagiario;
-	@Column(name = "qtd_trainee")
-	private long qtdTrainee;
+	private String status;
+	@OneToOne
+	@JoinColumn(name = "processo_seletivo_fk", referencedColumnName = "id", nullable = false)
+	private ProcessoSeletivo processoSeletivo;
 
 	public long getId() {
 		return id;
@@ -48,22 +37,6 @@ public class Programa {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public Instrutor getInstrutor() {
-		return instrutor;
-	}
-
-	public void setInstrutor(Instrutor instrutor) {
-		this.instrutor = instrutor;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public LocalDate getDataInicio() {
@@ -98,27 +71,12 @@ public class Programa {
 		this.status = status;
 	}
 
-	public long getQtdAprendiz() {
-		return qtdAprendiz;
+	public ProcessoSeletivo getProcessoSeletivo() {
+		return processoSeletivo;
 	}
 
-	public void setQtdAprendiz(long qtdAprendiz) {
-		this.qtdAprendiz = qtdAprendiz;
+	public void setProcessoSeletivo(ProcessoSeletivo processoSeletivo) {
+		this.processoSeletivo = processoSeletivo;
 	}
 
-	public long getQtdEstagiario() {
-		return qtdEstagiario;
-	}
-
-	public void setQtdEstagiario(long qtdEstagiario) {
-		this.qtdEstagiario = qtdEstagiario;
-	}
-
-	public long getQtdTrainee() {
-		return qtdTrainee;
-	}
-
-	public void setQtdTrainee(long qtdTrainee) {
-		this.qtdTrainee = qtdTrainee;
-	}
 }

@@ -41,6 +41,7 @@ public class Ciclo {
 	private String cargoEfetivado;
 
 	@Column(name = "COMPROVANTE_REMATRICULA")
+	@Lob
 	private byte[] comprovanteRematricula;
 
 	@Column(name = "RESULTADO")
@@ -60,7 +61,7 @@ public class Ciclo {
 
 	// Progressive
 	public Ciclo(Participante participante, LocalDate dataAlteracao, RemuneracaoPrograma cargo,
-			byte[] comprovanteRematricula, ResultadoCiclo resultado, StatusCiclo statusProgresso) {
+			byte[] comprovanteRematricula, ResultadoConclusao resultado, StatusConclusao statusProgresso) {
 		this.participante = participante;
 		this.dataAlteracao = dataAlteracao;
 		this.cargoPrograma = cargo;
@@ -71,7 +72,7 @@ public class Ciclo {
 
 	// Final
 	public Ciclo(Participante participante, LocalDate dataAlteracao, String cargo, byte[] comprovanteRematricula,
-			ResultadoCiclo resultado, StatusCiclo statusProgresso, String observacao) {
+			ResultadoConclusao resultado, StatusConclusao statusProgresso, String observacao) {
 		this.participante = participante;
 		this.dataAlteracao = dataAlteracao;
 		this.cargoEfetivado = cargo;

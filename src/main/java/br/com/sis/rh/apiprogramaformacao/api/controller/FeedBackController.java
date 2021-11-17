@@ -1,9 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.api.controller;
 
-import java.io.IOException;
 import java.util.List;
-
-import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -17,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.DiscDownloadFromFeedbackDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FeedBackDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.FeedBackForm;
 import br.com.sis.rh.apiprogramaformacao.core.service.FeedBackService;
@@ -43,8 +39,7 @@ public class FeedBackController {
 
 	@PostMapping("/novo/{cpf}")
 	public ResponseEntity<FeedBackDto> cadastrarFeed(@PathVariable String cpf, @ModelAttribute FeedBackForm feedBackForm,
-			UriComponentsBuilder uriComponentsBuilder) throws IOException {
-
+			UriComponentsBuilder uriComponentsBuilder){
 		return feedBackService.cadastrar(cpf, feedBackForm, uriComponentsBuilder);
 
 	}
