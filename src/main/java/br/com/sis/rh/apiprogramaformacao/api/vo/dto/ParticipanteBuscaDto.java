@@ -14,7 +14,7 @@ public class ParticipanteBuscaDto {
 	public ParticipanteBuscaDto(Participante participante) {
 		this.nome = participante.getCandidato().getNome();
 		this.cpf = participante.getCpf();
-		this.programa = participante.getPrograma().getNome();
+		this.programa = participante.getPrograma().getProcessoSeletivo().getNome();
 	}
 
 	public String getNome() {

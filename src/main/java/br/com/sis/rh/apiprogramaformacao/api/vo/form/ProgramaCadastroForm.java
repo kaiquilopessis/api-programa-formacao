@@ -60,10 +60,10 @@ public class ProgramaCadastroForm {
         Programa programa = new Programa();
         Optional<Instrutor> optInstrutor = repository.findById(this.instrutorCpf);
 
-        programa.setNome(this.nome);
+        programa.getProcessoSeletivo().setNome(this.nome);
         programa.setDataInicio(this.inicio);
         programa.setDataFim(this.termino);
-        programa.setInstrutor(optInstrutor.get());
+        programa.getProcessoSeletivo().setInstrutor(optInstrutor.get());
         programa.setNomeTurma(this.turma);
         programa.setStatus("EM_ANDAMENTO");
 

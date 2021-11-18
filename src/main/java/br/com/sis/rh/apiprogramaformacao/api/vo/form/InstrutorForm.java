@@ -21,6 +21,9 @@ public class InstrutorForm {
     @NotNull @NotEmpty
     private String nome;
 
+    @NotNull @NotEmpty
+    private String emailCorp;
+
     public InstrutorForm(String cpf, String telefone, String status, String nome) {
         this.cpf = cpf;
         this.telefone = telefone;
@@ -59,8 +62,15 @@ public class InstrutorForm {
 		this.nome = nome;
 	}
 
+    public String getEmailCorp() {
+        return emailCorp;
+    }
+    public void setEmailCorp(String emailCorp) {
+        this.emailCorp = emailCorp;
+    }
+
     public Instrutor converter(){
-        return new Instrutor(cpf, telefone,status,nome);
+        return new Instrutor(cpf, telefone,status,nome, emailCorp);
     }
 
 }

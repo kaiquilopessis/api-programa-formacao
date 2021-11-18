@@ -37,7 +37,7 @@ public class CandidatoService {
 
         Optional<Candidato> optional = candidatoRepository.findById(id);
         if(optional.isPresent()){
-            Candidato candidato = form.atualizar(id, candidatoRepository);
+            Candidato candidato = form.atualizar(id, candidatoRepository, processoSeletivoRepository);
             return candidato;
         }
         return null;
@@ -46,8 +46,7 @@ public class CandidatoService {
 
     public Candidato criaCandidato(CandidatoForm form){
 
-        Candidato candidato = form.converter();
-        candidato.setProcessoSeletivo(processoSeletivoRepository.findByNome(form.getNome()));
+        Candidato candidato = form.converter(processoSeletivoRepository);
         candidatoRepository.save(candidato);
 
         return candidato;

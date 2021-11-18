@@ -2,6 +2,7 @@ package br.com.sis.rh.apiprogramaformacao.core.repository;
 
 import java.util.List;
 
+import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

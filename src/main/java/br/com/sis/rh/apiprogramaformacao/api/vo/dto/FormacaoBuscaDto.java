@@ -18,11 +18,10 @@ public class FormacaoBuscaDto {
 	}
 
 	public FormacaoBuscaDto(Programa programa) {
-		this.nome = programa.getNome();
+		this.nome = programa.getProcessoSeletivo().getNome();
 	}
 
 	public static List<FormacaoBuscaDto> converter (List<Programa> formacao){
 		return formacao.stream().map(FormacaoBuscaDto::new).collect(Collectors.toList());
 	}
-
 }

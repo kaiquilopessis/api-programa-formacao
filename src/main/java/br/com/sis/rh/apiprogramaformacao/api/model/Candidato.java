@@ -38,7 +38,7 @@ public class Candidato {
 	@JoinColumn(name = "processo_seletivo_fk", referencedColumnName = "id")
 	private ProcessoSeletivo processoSeletivo;
 
-	public Candidato(String nome, String telefone, LocalDate dataAgendamento, BigDecimal testeLogico, String notaDisc, String status, String observacao, String disc, String curriculo, String curso, String fonteRecrutamento) {
+	public Candidato(String nome, String telefone, LocalDate dataAgendamento, BigDecimal testeLogico, String notaDisc, String status, String observacao, String disc, String curriculo, String curso, String fonteRecrutamento, ProcessoSeletivo processoSeletivo) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.dataAgendamento = dataAgendamento;
@@ -50,6 +50,7 @@ public class Candidato {
 		//this.curriculo = curriculo;
 		this.curso = curso;
 		this.fonteRecrutamento = fonteRecrutamento;
+		this.processoSeletivo = processoSeletivo;
 	}
 
 	public Candidato(){}

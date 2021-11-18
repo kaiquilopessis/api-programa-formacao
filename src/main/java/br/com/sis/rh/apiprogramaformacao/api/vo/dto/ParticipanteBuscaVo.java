@@ -1,11 +1,10 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
-import br.com.sis.rh.apiprogramaformacao.api.mock.MockData;
-import br.com.sis.rh.apiprogramaformacao.api.mock.MockDatasource;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ParticipanteBuscaVo {
     private String cpf;
@@ -13,13 +12,33 @@ public class ParticipanteBuscaVo {
     private String programa;
     private String turmaPrograma;
     private String status;
-    private MockDatasource mockDatasource = new MockDatasource();
 
     public ParticipanteBuscaVo(Participante participante){
         this.cpf = participante.getCpf();
-        this.programa = participante.getPrograma().getNome();
+        this.programa = participante.getPrograma().getProcessoSeletivo().getNome();
+        this.nome = participante.getCandidato().getNome();
         this.turmaPrograma = participante.getPrograma().getNomeTurma();
         this.status = participante.getStatus();
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setPrograma(String programa) {
+        this.programa = programa;
+    }
+
+    public void setTurmaPrograma(String turmaPrograma) {
+        this.turmaPrograma = turmaPrograma;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getCpf() {
@@ -27,9 +46,7 @@ public class ParticipanteBuscaVo {
     }
 
     public String getNome() {
-        MockData participanteMock = mockDatasource.getParticipantePorCpf(this.cpf);
-
-        return participanteMock.getNome();
+        return nome;
     }
 
     public String getPrograma() {
@@ -49,12 +66,6 @@ public class ParticipanteBuscaVo {
     }
 
     public static List<ParticipanteBuscaVo> converterLista(List<Participante> participantes){
-        List<ParticipanteBuscaVo> participantesVo = new ArrayList<>();
-
-        participantes.forEach(participante -> {
-            participantesVo.add(new ParticipanteBuscaVo(participante));
-        });
-
-        return participantesVo;
+        return participantes.stream().map(ParticipanteBuscaVo::new).collect(Collectors.toList());
     }
 }

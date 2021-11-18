@@ -19,6 +19,7 @@ public class CandidatoDto {
     private String notaDisc;
     private String observacao;
     private String processoSeletivo;
+    private Long processoSeletivoId;
 
     public CandidatoDto(Candidato candidato){
         this.id = candidato.getId();
@@ -32,6 +33,7 @@ public class CandidatoDto {
         this.observacao = candidato.getObservacao();
         this.notaDisc = candidato.getNotaDisc();
         this.processoSeletivo = candidato.getProcessoSeletivo().getNome();
+        this.processoSeletivoId = candidato.getProcessoSeletivo().getId();
     }
 
     public CandidatoDto() {
@@ -115,5 +117,21 @@ public class CandidatoDto {
 
     public void setObservacao(String observacao) {
         this.observacao = observacao;
+    }
+
+    public String getProcessoSeletivo() {
+        return processoSeletivo;
+    }
+
+    public void setProcessoSeletivo(String processoSeletivo) {
+        this.processoSeletivo = processoSeletivo;
+    }
+
+    public Long getProcessoSeletivoId() {
+        return processoSeletivoId;
+    }
+
+    public void setProcessoSeletivoId(Long processoSeletivoId) {
+        this.processoSeletivoId = processoSeletivoId;
     }
 }

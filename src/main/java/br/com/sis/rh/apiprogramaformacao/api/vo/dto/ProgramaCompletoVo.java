@@ -1,12 +1,10 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
-
-import br.com.sis.rh.apiprogramaformacao.api.mock.MockData;
-import br.com.sis.rh.apiprogramaformacao.api.mock.MockDatasource;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProgramaCompletoVo {
     private Long id;
@@ -16,18 +14,15 @@ public class ProgramaCompletoVo {
     private LocalDate inicio;
     private LocalDate termino;
     private String nomeCoordenador;
-    private MockDatasource mockDatasource = new MockDatasource();
 
     public ProgramaCompletoVo(Programa programa){
         this.id = programa.getId();
-        this.nome = programa.getNome();
+        this.nome = programa.getProcessoSeletivo().getNome();
         this.turma = programa.getNomeTurma();
         this.status = programa.getStatus();
         this.inicio = programa.getDataInicio();
         this.termino = programa.getDataFim();
-
-        MockData instrutor = mockDatasource.getInstrutorPorCpf(programa.getInstrutor().getCpfInstrutor());
-        this.nomeCoordenador = instrutor.getNome();
+        this.nomeCoordenador = programa.getProcessoSeletivo().getInstrutor().getNome();
     }
 
 
@@ -35,28 +30,56 @@ public class ProgramaCompletoVo {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getTurma() {
         return turma;
     }
 
+    public void setTurma(String turma) {
+        this.turma = turma;
+    }
+
     public String getStatus() {
         return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public LocalDate getInicio() {
         return inicio;
     }
 
+    public void setInicio(LocalDate inicio) {
+        this.inicio = inicio;
+    }
+
     public LocalDate getTermino() {
         return termino;
     }
 
+    public void setTermino(LocalDate termino) {
+        this.termino = termino;
+    }
+
     public String getNomeCoordenador() {
         return nomeCoordenador;
+    }
+
+    public void setNomeCoordenador(String nomeCoordenador) {
+        this.nomeCoordenador = nomeCoordenador;
     }
 
     public static ProgramaCompletoVo converter(Programa programa){
@@ -64,13 +87,8 @@ public class ProgramaCompletoVo {
     }
 
     public static List<ProgramaCompletoVo> converterParaLista(List<Programa> programas){
-        List<ProgramaCompletoVo> programasVos = new ArrayList<>();
 
-        programas.forEach(programa -> {
-            programasVos.add(new ProgramaCompletoVo(programa));
-        });
-
-        return programasVos;
+        return programas.stream().map(ProgramaCompletoVo::new).collect(Collectors.toList());
     }
 
 }

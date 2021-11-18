@@ -24,7 +24,7 @@ public class ListaProgramaDto {
 
     public ListaProgramaDto(Programa programa) {
         this.id = programa.getId();
-        this.nome = programa.getNome();
+        this.nome = programa.getProcessoSeletivo().getNome();
         this.status = programa.getStatus();
         this.nomeTurma = programa.getNomeTurma();
     }

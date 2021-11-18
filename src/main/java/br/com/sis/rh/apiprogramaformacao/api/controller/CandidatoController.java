@@ -17,7 +17,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/candidato")
-@CrossOrigin
 public class CandidatoController {
 
     @Autowired
@@ -34,7 +33,7 @@ public class CandidatoController {
         return ResponseEntity.ok(new CandidatoDto(candidatoService.buscaPorId(id)));
     }
 
-    @GetMapping("/listadaformacao/{id}")
+    @GetMapping("/lista-do-processo/{id}")
     public List<ListaCandidatoDto> mostraListaCandidatoEmProcesso(@PathVariable Long id){
         return candidatoService.buscaCandidadoPorFormacao(id);
     }

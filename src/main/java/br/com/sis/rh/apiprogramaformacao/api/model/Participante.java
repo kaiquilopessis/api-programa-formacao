@@ -19,7 +19,7 @@ public class Participante {
 	private Candidato candidato;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fk_codigo_remun", referencedColumnName = "id", nullable = false)
-	private RemuneracaoPrograma remuneracaoPrograma;
+	private Remuneracao remuneracao;
 	@Column(name = "nm_faculdade", length = 50)
 	private String faculdade;
 	@Column(name = "nm_curso", length = 50)
@@ -54,11 +54,11 @@ public class Participante {
 		this.candidato = candidato;
 	}
 
-	public RemuneracaoPrograma getRemuneracaoPrograma() {
-		return remuneracaoPrograma;
+	public Remuneracao getRemuneracaoPrograma() {
+		return remuneracao;
 	}
-	public void setRemuneracaoPrograma(RemuneracaoPrograma remuneracaoPrograma) {
-		this.remuneracaoPrograma = remuneracaoPrograma;
+	public void setRemuneracaoPrograma(Remuneracao remuneracaoPrograma) {
+		this.remuneracao = remuneracaoPrograma;
 	}
 
 	public String getFaculdade() {

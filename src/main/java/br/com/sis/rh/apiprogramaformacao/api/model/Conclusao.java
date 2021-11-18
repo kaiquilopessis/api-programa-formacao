@@ -35,7 +35,7 @@ public class Conclusao {
 
 	@OneToOne
 	@JoinColumn(name = "fk_codigo_remun")
-	private RemuneracaoPrograma cargoPrograma;
+	private Remuneracao cargoPrograma;
 
 	@Column(name = "CARGO_EFETIVADO")
 	private String cargoEfetivado;
@@ -60,7 +60,7 @@ public class Conclusao {
 	}
 
 	//Progressivo
-	public Conclusao(Participante participante, LocalDate dataAlteracao, RemuneracaoPrograma cargo,
+	public Conclusao(Participante participante, LocalDate dataAlteracao, Remuneracao cargo,
 			byte[] comprovanteRematricula, ResultadoConclusao resultado, StatusConclusao statusProgresso) {
 		this.participante = participante;
 		this.dataAlteracao = dataAlteracao;
@@ -122,11 +122,11 @@ public class Conclusao {
 		this.dataAlteracao = dataAltarecao;
 	}
 
-	public RemuneracaoPrograma getCargoPrograma() {
+	public Remuneracao getCargoPrograma() {
 		return cargoPrograma;
 	}
 
-	public void setCargoPrograma(RemuneracaoPrograma cargoPrograma) {
+	public void setCargoPrograma(Remuneracao cargoPrograma) {
 		this.cargoPrograma = cargoPrograma;
 	}
 

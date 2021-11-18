@@ -24,7 +24,7 @@ public class ProcessoSeletivoService {
     private InstrutorRepository instrutorRepository;
 
     public List<ListaDeProcessoSeletivoDto> getExibeListaDeProcessos() {
-        List<ProcessoSeletivo> listaDeProcessos = repository.findAll();
+        List<ProcessoSeletivo> listaDeProcessos = repository.findTodosEmAndamento();
 
         return ListaDeProcessoSeletivoDto.gerarLista(listaDeProcessos);
     }

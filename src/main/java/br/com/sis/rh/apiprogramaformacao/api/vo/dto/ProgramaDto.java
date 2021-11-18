@@ -1,15 +1,10 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
-@NoArgsConstructor
+
 public class ProgramaDto {
 
     private String nomeTurma;
@@ -25,12 +20,75 @@ public class ProgramaDto {
         this.nomeTurma = programa.getNomeTurma();
         this.dataInicio = programa.getDataInicio();
         this.dataFim = programa.getDataFim();
-        this.qtdAprendiz = programa.getQtdAprendiz();
-        this.qtdEstagiario = programa.getQtdEstagiario();
-        this.qtdTrainee = programa.getQtdTrainee();
+        this.qtdAprendiz = programa.getProcessoSeletivo().getQtdAprendiz();
+        this.qtdEstagiario = programa.getProcessoSeletivo().getQtdEstagiario();
+        this.qtdTrainee = programa.getProcessoSeletivo().getQtdTrainee();
 
         // Participantes se referem a soma dos colaboradores
-        this.participantesTotais = (programa.getQtdAprendiz() + programa.getQtdEstagiario() + programa.getQtdTrainee());
+        this.participantesTotais = (programa.getProcessoSeletivo().getQtdAprendiz() + programa.getProcessoSeletivo().getQtdEstagiario() + programa.getProcessoSeletivo().getQtdTrainee());
     }
 
+    public String getNomeTurma() {
+        return nomeTurma;
+    }
+
+    public void setNomeTurma(String nomeTurma) {
+        this.nomeTurma = nomeTurma;
+    }
+
+    public LocalDate getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(LocalDate dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public LocalDate getDataFim() {
+        return dataFim;
+    }
+
+    public void setDataFim(LocalDate dataFim) {
+        this.dataFim = dataFim;
+    }
+
+    public String getNomeInstrutor() {
+        return nomeInstrutor;
+    }
+
+    public void setNomeInstrutor(String nomeInstrutor) {
+        this.nomeInstrutor = nomeInstrutor;
+    }
+
+    public long getQtdAprendiz() {
+        return qtdAprendiz;
+    }
+
+    public void setQtdAprendiz(long qtdAprendiz) {
+        this.qtdAprendiz = qtdAprendiz;
+    }
+
+    public long getQtdEstagiario() {
+        return qtdEstagiario;
+    }
+
+    public void setQtdEstagiario(long qtdEstagiario) {
+        this.qtdEstagiario = qtdEstagiario;
+    }
+
+    public long getQtdTrainee() {
+        return qtdTrainee;
+    }
+
+    public void setQtdTrainee(long qtdTrainee) {
+        this.qtdTrainee = qtdTrainee;
+    }
+
+    public long getParticipantesTotais() {
+        return participantesTotais;
+    }
+
+    public void setParticipantesTotais(long participantesTotais) {
+        this.participantesTotais = participantesTotais;
+    }
 }

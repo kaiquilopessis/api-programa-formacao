@@ -22,7 +22,7 @@ public class AtualizaProcessoSeletivoForm {
     public ProcessoSeletivo atualiza(Long id , ProcessoSeletivoRepository repository, InstrutorRepository instrutorRepository){
         ProcessoSeletivo processoSeletivo = repository.getById(id);
 
-        processoSeletivo.setInstrutor(instrutorRepository.findInstrutorByNome(this.nome));
+        processoSeletivo.setInstrutor(instrutorRepository.findInstrutorByNome(this.nomeInstrutor));
         processoSeletivo.setQtdTrainee(this.qtdTrainees);
         processoSeletivo.setQtdAprendiz(this.qtdAprendizes);
         processoSeletivo.setQtdEstagiario(this.qtdEstagiario);

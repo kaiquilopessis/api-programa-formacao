@@ -5,10 +5,10 @@ import java.time.format.DateTimeFormatter;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import br.com.sis.rh.apiprogramaformacao.api.model.RemuneracaoPrograma;
+import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoConclusao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusConclusao;
-import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoProgramaRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
 
 public class ConclusaoProgressivaForm {
 
@@ -49,9 +49,9 @@ public class ConclusaoProgressivaForm {
 		this.comprovante = comprovante;
 	}
 
-	public Conclusao converter(Participante participante, RemuneracaoProgramaRepository remuneracaoProgramaRepository) {
+	public Conclusao converter(Participante participante, RemuneracaoRepository remuneracaoRepository) {
 		LocalDate data = LocalDate.parse(this.dataAlteracao, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		RemuneracaoPrograma cargo = remuneracaoProgramaRepository.findByCargo(this.cargo);
+		Remuneracao cargo = remuneracaoRepository.findByCargo(this.cargo);
 		return new Conclusao(participante, data, cargo, comprovante, resultado, StatusConclusao.PROGRESSIVA);
 	}
 }
