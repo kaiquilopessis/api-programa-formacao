@@ -32,13 +32,21 @@ public class AluraService {
 
 	@Autowired
 	private ParticipanteRepository participanteRepository;
+	
+	/**
+	 * Retorna uma lista de registros com base no participante selecionado.
+	 */
 
 	public List<AluraDto> listaRegistros(String cpf) {
 		List<Alura> alura = aluraRepository.findAllByParticipanteCpf(cpf);
 		return AluraDto.converter(alura);
 	}
-
-	public ResponseEntity<AluraDto> cadastrar(String cpf, @RequestBody AluraForm aluraForm,
+	
+	/**
+	 * Cadastra um registro com base no participante selecionado.
+	 * Retorna código 201 e um DTO com o objeto criado na resposta caso o participante exista, caso não exista, é retornado erro 404.
+	 */
+	public ResponseEntity<AluraDto> cadastrar(String cpf, AluraForm aluraForm,
 			UriComponentsBuilder uriComponentsBuilder) {
 		Optional<Participante> participante = participanteRepository.findById(cpf);
 		if (participante.isPresent()) {
@@ -50,7 +58,10 @@ public class AluraService {
 		return ResponseEntity.notFound().build();
 	}
 
-
+	/**
+	 * Deleta um registro com base no registro selecionado caso o participante exista
+	 * retorna código 200 caso o registro existir, se não retorna 404.
+	 */
 	public ResponseEntity<AluraDto> deletar(Long id) {
 		Optional<Alura> alura = aluraRepository.findById(id);
 		if (alura.isPresent()) {

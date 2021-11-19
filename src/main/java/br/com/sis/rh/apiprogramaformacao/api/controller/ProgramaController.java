@@ -2,6 +2,7 @@ package br.com.sis.rh.apiprogramaformacao.api.controller;
 
 import java.util.List;
 
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FormacaoBuscaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaBuscaVo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaCompletoVo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProgramaCadastroForm;
@@ -75,4 +76,10 @@ public class ProgramaController {
 			return ResponseEntity.badRequest().body(e);
 		}
 	}
+	
+	//lista formação no select - busca participantes
+		@GetMapping("/ativos")
+		public List<FormacaoBuscaDto> listarForm(){
+			return programaService.buscaPorStatusForm();
+		}
 }

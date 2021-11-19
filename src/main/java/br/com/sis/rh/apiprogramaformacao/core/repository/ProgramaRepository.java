@@ -31,5 +31,7 @@ public interface ProgramaRepository extends JpaRepository<Programa, Long> {
 	// busca nome do programa onde nome da turma for igual ao selecionado
 	@Query("select p from Programa p where nome= ?1 and nomeTurma= ?2")
 	Programa listarProgramaSemData(String nomePrograma,String nomeTurma);
+	
+	List<Programa> findByStatus(StatusFormacao emAndamento);
 
 }

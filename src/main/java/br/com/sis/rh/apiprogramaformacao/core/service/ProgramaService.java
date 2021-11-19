@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FormacaoBuscaDto;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusFormacao;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
 
 @Service
@@ -26,5 +28,10 @@ public class ProgramaService  {
 
 	public void salva(Programa programa) {
 		repository.save(programa);
+	}
+	
+	public List<FormacaoBuscaDto> buscaPorStatusForm(){
+		List<Programa> formacoes = repository.findByStatus(StatusFormacao.EM_ANDAMENTO);
+		return FormacaoBuscaDto.converter(formacoes);
 	}
 }
