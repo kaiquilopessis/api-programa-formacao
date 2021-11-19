@@ -5,6 +5,7 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao_Instrutor;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CpfInstrutorNomeDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemInstrutorDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.InstrutorForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.InvestimentoInstrutorForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InvestimentoInstrutorRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoInstrutorRepository;
@@ -52,10 +53,10 @@ public class InstrutorService {
         return investimentoInstrutorRepository.findByNomeFormacaoTurmaHora(nomeFormacao, nomeTurmaFormatado);
     }
 
-    public void cadastrar(InstrutorForm instrutorForm){
-        Optional<Instrutor> optionalInstrutor = repository.findById(instrutorForm.getCpf());
+    public void cadastrar(InvestimentoInstrutorForm investimentoInstrutorForm){
+        Optional<Instrutor> optionalInstrutor = repository.findById(investimentoInstrutorForm.getCpf());
         if (optionalInstrutor.isPresent()){
-            Remuneracao_Instrutor remuneracaoInstrutor = InstrutorForm.converter(instrutorForm, optionalInstrutor.get());
+            Remuneracao_Instrutor remuneracaoInstrutor = InvestimentoInstrutorForm.converter(investimentoInstrutorForm, optionalInstrutor.get());
             remuneracaoInstrutorRepository.save(remuneracaoInstrutor);
         }
     }

@@ -28,11 +28,22 @@ public class Participante {
 	private LocalDate dataFinal;
 	@Column(name = "status_ativo")
 	private String status;
-	@Column(name = "TCE")
-	private String tce;
+	//@Column(name = "TCE")
+	//private String tce;
 	@Column(name = "status_efetivado")
 	private String statusEfetivado;
+	@Column(name = "email_corp")
+	private String email;
 
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public void setCandidato(Candidato candidato) {
+		this.candidato = candidato;
+	}
 	public String getCpf() {
 		return cpf;
 	}
@@ -98,13 +109,13 @@ public class Participante {
 		this.statusEfetivado = statusEfetivado;
 	}
 
-	public String getTce() {
-		return tce;
-	}
+	//public String getTce() {
+	//	return tce;
+	//}
 
-	public void setTce(String tce) {
-		this.tce = tce;
-	}
+	//public void setTce(String tce) {
+	//	this.tce = tce;
+	//}
 
 
 }

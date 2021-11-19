@@ -5,6 +5,7 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CpfInstrutorNomeDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemInstrutorDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.InstrutorForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.InstrutorVo;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.InvestimentoInstrutorForm;
 import br.com.sis.rh.apiprogramaformacao.core.service.InstrutorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,17 +34,16 @@ public class InstrutorController {
     public ResponseEntity<InstrutorVo> getByCpf(@PathVariable String cpf){
         Instrutor instrutor = instrutorService.buscaPorCpf(cpf);
         InstrutorVo instrutorVo = InstrutorVo.converterParaVo(instrutor);
-
+        
         return ResponseEntity.ok(instrutorVo);
     }
 
-
-
     @GetMapping("/status/{status}")
-    public ResponseEntity<List<Instrutor>> getByStatus(@PathVariable String status){
+    public ResponseEntity<List<InstrutorVo>> getByStatus(@PathVariable String status){
         List<Instrutor> listaInstrutoresPorStatus = instrutorService.buscaPorStatus(status);
+		List<InstrutorVo> listaInstrutoresPorStatusVo = InstrutorVo.converterListaParaVo(listaInstrutoresPorStatus);
 
-        return ResponseEntity.ok(listaInstrutoresPorStatus);
+        return ResponseEntity.ok(listaInstrutoresPorStatusVo);
     }
 
 
@@ -64,33 +64,32 @@ public class InstrutorController {
     	}
     }
 
-//	@PostMapping
-//	@Transactional
-//	public ResponseEntity cadastro(@RequestBody @Valid InstrutorForm form) {
-//		try {
-//			Instrutor instrutor = form.converter();
-//			instrutorService.salva(instrutor);
-//
-//			return ResponseEntity.ok().build();
-//		} catch (Exception e) {
-//			return ResponseEntity.badRequest().body(e);
-//		}
-//	}
+	@PostMapping
+	@Transactional
+	public ResponseEntity cadastro(@RequestBody @Valid InstrutorForm form) {
+		try {
+			Instrutor instrutor = form.converter();
+			instrutorService.salva(instrutor);
 
-    @GetMapping("/buscar-instrutor/{nomePrograma}/{nomeTurma}")
-    public List<FiltragemInstrutorDto> mostrarDados(@PathVariable String nomePrograma, @PathVariable String nomeTurma){
-        return instrutorService.listagemFiltroInstrutor(nomePrograma, nomeTurma);
-    }
+			return ResponseEntity.ok().build();
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().body(e);
+		}
+	}
 
-    @PostMapping("/salvar-invest")
-    public void salvarInvestimentos(@RequestBody InstrutorForm instrutorForm){
-        System.out.println(instrutorForm.getCpf());
-        instrutorService.cadastrar(instrutorForm);
-    }
+	@GetMapping("/buscar-instrutor/{nomePrograma}/{nomeTurma}")
+	public List<FiltragemInstrutorDto> mostrarDados(@PathVariable String nomePrograma, @PathVariable String nomeTurma){
+		return instrutorService.listagemFiltroInstrutor(nomePrograma, nomeTurma);
+	}
 
-    @GetMapping("/instrutores/{nomePrograma}/{nomeTurma}") //indicar que será um parametro dinamico (flexivel)
-    public List<CpfInstrutorNomeDto> mostrarInstrutores(@PathVariable String nomePrograma, @PathVariable String nomeTurma){
-        return instrutorService.listagemInstrutores(nomePrograma, nomeTurma);
-    }
+	@PostMapping("/salvar-invest")
+	public void salvarInvestimentos(@RequestBody InvestimentoInstrutorForm investimentoInstrutorForm){
+		instrutorService.cadastrar(investimentoInstrutorForm);
+	}
+
+	@GetMapping("/instrutores/{nomePrograma}/{nomeTurma}") //indicar que será um parametro dinamico (flexivel)
+	public List<CpfInstrutorNomeDto> mostrarInstrutores(@PathVariable String nomePrograma, @PathVariable String nomeTurma){
+		return instrutorService.listagemInstrutores(nomePrograma, nomeTurma);
+	}
 
 }

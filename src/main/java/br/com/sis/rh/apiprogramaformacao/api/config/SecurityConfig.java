@@ -45,8 +45,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/auth").permitAll()
+                .antMatchers("/api/candidato/download-disc/*", "/api/candidato/download-curriculo/*").permitAll()
                 .antMatchers("/auth/*").permitAll()
-                .anyRequest().permitAll()
+                .anyRequest().authenticated()
                 .and().cors().and().csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().addFilterBefore(new AutenticacaoTokenFilter(tokenService, usuarioAcessoRepository), UsernamePasswordAuthenticationFilter.class);

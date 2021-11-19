@@ -26,7 +26,12 @@ public class UsuarioAcesso implements UserDetails {
     @Column(name = "data_inclusao")
     private LocalDate dataInclusao;
 
+    public UsuarioAcesso(){}
 
+    public UsuarioAcesso(String usuario, String senha){
+        this.usuarioAd = usuario;
+        this.senha = senha;
+    }
 
     public String getUsuarioAd() {
         return usuarioAd;

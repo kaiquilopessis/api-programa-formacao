@@ -15,14 +15,23 @@ public class Instrutor {
 	@Column(name = "nome_instrutor")
 	private String nome;
 	@Column(name = "email_corp")
-	private String emailCorp;
+	private String email;
+	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public Instrutor(String cpfInstrutor, String telefone, String status, String nome, String email) {
 		this.cpfInstrutor = cpfInstrutor;
 		this.telefone = telefone;
 		this.status = status;
 		this.nome = nome;
-		this.emailCorp = email;
+		this.email = email;
 	}
 
 	public Instrutor(){}
@@ -53,12 +62,5 @@ public class Instrutor {
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getEmailCorp() {
-		return emailCorp;
-	}
-	public void setEmailCorp(String emailCorp) {
-		this.emailCorp = emailCorp;
 	}
 }

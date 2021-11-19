@@ -17,4 +17,6 @@ public interface ProgramaRepository extends JpaRepository<Programa, Long> {
 
     @Query(value = "SELECT * FROM TB_PROGRAMA AS P WHERE p.status = 'PROCESSO_SELETIVO'", nativeQuery = true)
     public List<Programa> findAllOrdenado();
+
+    public Programa findByNomeTurma(String nome);
 }

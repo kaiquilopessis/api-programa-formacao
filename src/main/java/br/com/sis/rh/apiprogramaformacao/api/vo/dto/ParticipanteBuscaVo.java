@@ -1,10 +1,9 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 
 public class ParticipanteBuscaVo {
     private String cpf;
@@ -16,29 +15,9 @@ public class ParticipanteBuscaVo {
     public ParticipanteBuscaVo(Participante participante){
         this.cpf = participante.getCpf();
         this.programa = participante.getPrograma().getProcessoSeletivo().getNome();
-        this.nome = participante.getCandidato().getNome();
         this.turmaPrograma = participante.getPrograma().getNomeTurma();
         this.status = participante.getStatus();
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setPrograma(String programa) {
-        this.programa = programa;
-    }
-
-    public void setTurmaPrograma(String turmaPrograma) {
-        this.turmaPrograma = turmaPrograma;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+        this.nome = participante.getCandidato().getNome();
     }
 
     public String getCpf() {
@@ -46,7 +25,7 @@ public class ParticipanteBuscaVo {
     }
 
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     public String getPrograma() {
@@ -66,6 +45,13 @@ public class ParticipanteBuscaVo {
     }
 
     public static List<ParticipanteBuscaVo> converterLista(List<Participante> participantes){
-        return participantes.stream().map(ParticipanteBuscaVo::new).collect(Collectors.toList());
+//        List<ParticipanteBuscaVo> participantesVo = new ArrayList<>();
+//
+//        participantes.forEach(participante -> {
+//            participantesVo.add(new ParticipanteBuscaVo(participante));
+//        });
+//
+//        return participantesVo;
+    	return participantes.stream().map(ParticipanteBuscaVo::new).collect(Collectors.toList());
     }
 }

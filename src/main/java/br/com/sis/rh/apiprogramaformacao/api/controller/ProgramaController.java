@@ -11,10 +11,13 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaProcessoSeletivoFor
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProcessoSeletivoForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProgramaCadastroForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 import br.com.sis.rh.apiprogramaformacao.core.service.ProgramaService;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -28,6 +31,9 @@ public class ProgramaController {
 
 	@Autowired
 	private ProgramaService programaService;
+
+	@Autowired
+	private ProcessoSeletivoRepository processoSeletivoRepository;
 
 	@Autowired
 	private InstrutorRepository instrutorRepository;
@@ -80,6 +86,5 @@ public class ProgramaController {
 			return ResponseEntity.badRequest().body(e);
 		}
 	}
-
 
 }

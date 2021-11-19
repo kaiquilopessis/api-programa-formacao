@@ -1,7 +1,7 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
 
@@ -17,8 +17,7 @@ public class InstrutorVo {
         this.status = instrutor.getStatus();
         this.telefone = instrutor.getTelefone();
         this.nome = instrutor.getNome();
-        this.email = instrutor.getEmailCorp();
- 
+        this.email = instrutor.getEmail();
     }
 
     public String getCpf() {
@@ -54,16 +53,14 @@ public class InstrutorVo {
     }
 
     public static List<InstrutorVo> converterListaParaVo(List<Instrutor> instrutores){
-        List<InstrutorVo> instrutoresVos = new ArrayList<>();
-
-        instrutores.forEach(instrutor -> {
-            instrutoresVos.add(new InstrutorVo(instrutor));
-        });
-
-        return instrutoresVos;
+        return instrutores.stream().map(InstrutorVo::new).collect(Collectors.toList());
     }
 
 	public String getEmail() {
 		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }
