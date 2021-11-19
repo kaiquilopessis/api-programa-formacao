@@ -15,7 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Ciclo;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import br.com.sis.rh.apiprogramaformacao.api.model.RemuneracaoPrograma;
+import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CicloDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CicloFinalDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RelatorioConclusaoVO;
@@ -25,7 +25,7 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.form.CicloProgressivoForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.CicloRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoProgramaRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
 import br.com.sis.rh.apiprogramaformacao.core.util.DataConfiguration;
 
 @Service
@@ -38,7 +38,7 @@ public class CicloService {
 	private ParticipanteRepository participanteRepository;
 
 	@Autowired
-	private RemuneracaoProgramaRepository remuneracaoProgramaRepository;
+	private RemuneracaoRepository remuneracaoRepository;
 	
 	@Autowired
 	private ProgramaRepository programaRepository;
@@ -77,7 +77,7 @@ public class CicloService {
 
 			if (participante.isPresent()) {
 				Ciclo conclusaoProgressiva = conclusaoProgressivaForm.converter(participante.get(),
-						remuneracaoProgramaRepository);
+						remuneracaoRepository);
 				conclusaoRepository.save(conclusaoProgressiva);
 				URI uri = uriComponentsBuilder.path("/conclusoes/registrocicloprogressivo/{id}")
 						.buildAndExpand(conclusaoProgressiva.getId()).toUri();
@@ -93,7 +93,7 @@ public class CicloService {
 	}
 
 	public List<RemuneracaoProgramaDto> listarRemuneracao() {
-		List<RemuneracaoPrograma> remuneracaoPrograma = remuneracaoProgramaRepository.findAll();
+		List<Remuneracao> remuneracaoPrograma = remuneracaoRepository.findAll();
 		return RemuneracaoProgramaDto.converter(remuneracaoPrograma);
 	}
 

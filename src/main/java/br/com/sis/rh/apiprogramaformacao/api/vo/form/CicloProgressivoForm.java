@@ -8,10 +8,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Ciclo;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import br.com.sis.rh.apiprogramaformacao.api.model.RemuneracaoPrograma;
+import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoCiclo;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCiclo;
-import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoProgramaRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
 
 public class CicloProgressivoForm {
 
@@ -52,10 +52,10 @@ public class CicloProgressivoForm {
 		this.comprovante = comprovante;
 	}
 
-	public Ciclo converter(Participante participante, RemuneracaoProgramaRepository remuneracaoProgramaRepository)
+	public Ciclo converter(Participante participante, RemuneracaoRepository remuneracaoProgramaRepository)
 			throws IOException {
 		LocalDate data = LocalDate.parse(this.dataAlteracao, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		RemuneracaoPrograma cargo = remuneracaoProgramaRepository.findByCargo(this.cargo);
+		Remuneracao cargo = remuneracaoProgramaRepository.findByCargo(this.cargo);
 		return new Ciclo(participante, data, cargo, comprovante.getBytes(), resultado, StatusCiclo.PROGRESSIVA);
 	}
 }

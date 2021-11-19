@@ -19,5 +19,7 @@ public interface RemuneracaoRepository extends JpaRepository<Remuneracao, Long>{
 			+ "sum(remun_exporadica), sum(remun_extra), sum(alura) FROM TB_REMUNERACAO where id=?1 group by id", nativeQuery = true)
 	Remuneracao findBySalario(Long id);
 	
+	Remuneracao findByCargo(String cargo);
+	
 	
 }

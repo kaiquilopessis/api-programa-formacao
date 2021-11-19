@@ -13,11 +13,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivado;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusParticipante;
 
-@Entity
-@Table(name = "TB_PARTICIPANTE")
+@Entity(name = "TB_PARTICIPANTE")
 public class Participante {
 
 	@Id
@@ -31,7 +31,7 @@ public class Participante {
 	private Candidato candidato;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fk_codigo_remun", referencedColumnName = "id", nullable = false)
-	private RemuneracaoPrograma remuneracaoPrograma;
+	private Remuneracao remuneracao;
 	@Column(name = "nm_faculdade", length = 50)
 	private String faculdade;
 	@Column(name = "nm_curso", length = 50)
@@ -44,7 +44,8 @@ public class Participante {
 	@Column(name = "TCE")
 	private String tce;
 	@Column(name = "status_efetivado")
-	private String statusEfetivado;
+	@Enumerated(EnumType.STRING)
+	private StatusEfetivado statusEfetivado;
 
 	public String getCpf() {
 		return cpf;
@@ -70,12 +71,12 @@ public class Participante {
 		this.candidato = candidato;
 	}
 
-	public RemuneracaoPrograma getRemuneracaoPrograma() {
-		return remuneracaoPrograma;
+	public Remuneracao getRemuneracao() {
+		return remuneracao;
 	}
 
-	public void setRemuneracaoPrograma(RemuneracaoPrograma remuneracaoPrograma) {
-		this.remuneracaoPrograma = remuneracaoPrograma;
+	public void setRemuneracao(Remuneracao remuneracao) {
+		this.remuneracao = remuneracao;
 	}
 
 	public String getFaculdade() {
@@ -110,11 +111,11 @@ public class Participante {
 		this.status = status;
 	}
 
-	public String getStatusEfetivado() {
+	public StatusEfetivado getStatusEfetivado() {
 		return statusEfetivado;
 	}
 
-	public void setStatusEfetivado(String statusEfetivado) {
+	public void setStatusEfetivado(StatusEfetivado statusEfetivado) {
 		this.statusEfetivado = statusEfetivado;
 	}
 

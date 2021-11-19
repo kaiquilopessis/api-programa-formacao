@@ -6,12 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TurmaDto;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivado;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusFormacao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusParticipante;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
@@ -52,7 +54,7 @@ public class FiltroRelatorio {
 	
 	//Lógica para listar os participantes de todos os programas com status ATIVO
 	public List<ParticipanteProgramaDto> listaTotalParticipantesAtivos() {
-		return participanteRepository.findByStatusAtivo(StatusParticipante.ATIVO);
+		return participanteRepository.buscarParticipantesProgramaAtivos(StatusParticipante.ATIVO);
 	} 
 	
 	//Lógica para listar os participantes de todos os programas com status EFETIVADO
@@ -76,4 +78,6 @@ public class FiltroRelatorio {
 		List<Programa> programas = programaRepository.buscarTurmasPeloNomePrograma(nomePrograma);
 		return TurmaDto.converter(programas);
 	}
+	
+	
 }

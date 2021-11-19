@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ProcessoSeletivoRepository extends JpaRepository<ProcessoSeletivo, Long> {
 
-    @Query(value = "select new br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaDto(ps.nomePrograma) " +
-            "from TB_PROCESSO_SELETIVO ps where ps.statusProcessoSeletivo = 'EM_ANDAMENTO'")
+    @Query(value = "select new br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaDto(ps.nome) " +
+            "from TB_PROCESSO_SELETIVO ps where ps.status = 'EM_ANDAMENTO'")
     List<ProgramaDto> buscarFormacoesEmAndamento(StatusProcessoSeletivo statusEmAndamento);
 }

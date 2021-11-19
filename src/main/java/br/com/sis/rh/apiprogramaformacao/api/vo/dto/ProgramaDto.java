@@ -18,28 +18,20 @@ import lombok.Setter;
 
 public class ProgramaDto {
 
-	private Long id;
 	private String nome;
 
-	@Enumerated(EnumType.STRING)
-	private StatusFormacao status;
-
-	public ProgramaDto(Programa programa) {
-		this.id = programa.getId();
-		this.nome = programa.getProcessoSeletivo().getNome();
-		this.status = programa.getStatus();
-	}
-
 	public ProgramaDto(ProcessoSeletivo processoSeletivo) {
-		this.nomePrograma = processoSeletivo.getNomePrograma();
+		this.nome = processoSeletivo.getNome();
 	}
 
-	public Long getId() {
-		return id;
+
+	public ProgramaDto(String nome) {
+		this.nome = nome;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+
+	public static List<ProgramaDto> converter(List<ProcessoSeletivo> processoSeletivos){
+		return processoSeletivos.stream().map(ProgramaDto::new).collect(Collectors.toList());
 	}
 
 	public String getNome() {
@@ -50,12 +42,5 @@ public class ProgramaDto {
 		this.nome = nome;
 	}
 
-	public StatusFormacao getStatus() {
-		return status;
-	}
-
-	public void setStatus(StatusFormacao status) {
-		this.status = status;
-	}
 
 }

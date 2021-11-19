@@ -18,8 +18,7 @@ import javax.persistence.Table;
 import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoCiclo;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCiclo;
 
-@Entity
-@Table(name = "TB_CONCLUSAO")
+@Entity(name = "TB_CONCLUSAO")
 public class Ciclo {
 
 	@Id
@@ -35,7 +34,7 @@ public class Ciclo {
 
 	@OneToOne
 	@JoinColumn(name = "fk_codigo_remun")
-	private RemuneracaoPrograma cargoPrograma;
+	private Remuneracao cargoPrograma;
 
 	@Column(name = "CARGO_EFETIVADO")
 	private String cargoEfetivado;
@@ -60,8 +59,8 @@ public class Ciclo {
 	}
 
 	// Progressive
-	public Ciclo(Participante participante, LocalDate dataAlteracao, RemuneracaoPrograma cargo,
-			byte[] comprovanteRematricula, ResultadoCiclo resultado, StatusCiclo statusProgresso) {
+	public Ciclo(Participante participante, LocalDate dataAlteracao, Remuneracao cargo, byte[] comprovanteRematricula,
+			ResultadoCiclo resultado, StatusCiclo statusProgresso) {
 		this.participante = participante;
 		this.dataAlteracao = dataAlteracao;
 		this.cargoPrograma = cargo;
@@ -122,11 +121,11 @@ public class Ciclo {
 		this.dataAlteracao = dataAltarecao;
 	}
 
-	public RemuneracaoPrograma getCargoPrograma() {
+	public Remuneracao getCargoPrograma() {
 		return cargoPrograma;
 	}
 
-	public void setCargoPrograma(RemuneracaoPrograma cargoPrograma) {
+	public void setCargoPrograma(Remuneracao cargoPrograma) {
 		this.cargoPrograma = cargoPrograma;
 	}
 

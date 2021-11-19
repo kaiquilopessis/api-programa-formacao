@@ -16,8 +16,8 @@ import javax.persistence.Table;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusFormacao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusProgramaUsuario;
 
-@Entity
-@Table(name = "TB_PROGRAMA")
+@Entity(name = "TB_PROGRAMA")
+
 public class Programa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

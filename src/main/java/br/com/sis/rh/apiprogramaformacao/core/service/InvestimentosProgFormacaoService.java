@@ -1,13 +1,20 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.InvestimentoProgFormacaoVo;
-import br.com.sis.rh.apiprogramaformacao.core.repository.*;
+import java.math.BigDecimal;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.InvestimentoProgFormacaoVo;
+import br.com.sis.rh.apiprogramaformacao.core.repository.CicloRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.InvestimentosRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoInstrutorRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
 
 /**
  * 
@@ -80,12 +87,12 @@ public class InvestimentosProgFormacaoService {
 			InvestimentoProgFormacaoVo investParticipantes) {
 		Programa programa = programaRepository.listarPrograma(nomePrograma, nomeTurma);
 		List<Participante> participantes = participantesRepository.listarParticipantes(programa.getId());
-		investParticipantes.setInvestParticipantes(0.0);
+		investParticipantes.setInvestParticipantes(BigDecimal.ZERO);
 		
 		participantes.forEach(participante ->{
 			Integer somaSalario = investimentosRepository.buscarSalarioPeloCpf(participante.getCpf());
 			investParticipantes.setInvestParticipantes(investParticipantes.getInvestParticipantes()
-			+ somaSalario);
+			.add(new BigDecimal(somaSalario)));
 		});
 		return investParticipantes;
 	}
@@ -105,10 +112,10 @@ public class InvestimentosProgFormacaoService {
 	public InvestimentoProgFormacaoVo investimentoInstrutores(String nomePrograma, String nomeTurma,
 			InvestimentoProgFormacaoVo investInstrutores) {
 		List<String> cpfInstrutores = programaRepository.listarCPFbyNomeProgramaNomeTurma(nomePrograma, nomeTurma);
-		investInstrutores.setInvestInstrutores(0.0);
+		investInstrutores.setInvestInstrutores(BigDecimal.ZERO);
 		cpfInstrutores.forEach(cpf -> {
 			Double salarioInstrutores = remuneracaoInstrutorRepository.calcularSalarioInstrutores(cpf);
-			investInstrutores.setInvestInstrutores(investInstrutores.getInvestInstrutores() + salarioInstrutores);
+			investInstrutores.setInvestInstrutores(investInstrutores.getInvestInstrutores().add(new BigDecimal(salarioInstrutores)));
 		});
 		return investInstrutores;
 	}

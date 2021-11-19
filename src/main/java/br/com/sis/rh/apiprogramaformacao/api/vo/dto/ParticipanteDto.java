@@ -1,35 +1,58 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivo;
-import lombok.Getter;
-import lombok.Setter;
-
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Getter @Setter
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivado;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusParticipante;
+
 public class ParticipanteDto {
 
 	private String cpf_participante;
 
 	@Enumerated(EnumType.STRING)
-	private StatusEfetivo status_efetivo;
+	private StatusEfetivado status_efetivo;
 
 	@Enumerated(EnumType.STRING)
-	private StatusAtivo status_ativo;
+	private StatusParticipante status_ativo;
 
 	public ParticipanteDto(Participante participante) {
 		this.cpf_participante = participante.getCpf();
 		this.status_efetivo = participante.getStatusEfetivado();
-		this.status_ativo = participante.getStatusAtivo();
+		this.status_ativo = participante.getStatus();
 	}
 
 	public static List<ParticipanteDto> converter(List<Participante> participantes) {
 		return participantes.stream().map(ParticipanteDto::new).collect(Collectors.toList());
+	}
+
+	public String getCpf_participante() {
+		return cpf_participante;
+	}
+
+	public void setCpf_participante(String cpf_participante) {
+		this.cpf_participante = cpf_participante;
+	}
+
+	public StatusEfetivado getStatus_efetivo() {
+		return status_efetivo;
+	}
+
+	public void setStatus_efetivo(StatusEfetivado status_efetivo) {
+		this.status_efetivo = status_efetivo;
+	}
+
+	public StatusParticipante getStatus_ativo() {
+		return status_ativo;
+	}
+
+	public void setStatus_ativo(StatusParticipante status_ativo) {
+		this.status_ativo = status_ativo;
 	}
 
 }

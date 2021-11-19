@@ -9,6 +9,7 @@ import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoInstrutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -68,13 +69,13 @@ public class InvestimentoFiltroPeriodoService {
 
 		Programa programa = (Programa) programaRepository.listarPrograma(nomePrograma, nomeTurma);
 		List<Participante> participantes = participantesRepository.listarParticipantes(programa.getId());
-		investimentoProgFormacaoVo.setInvestParticipantesPeriodoSelecionado(0.0);
+		investimentoProgFormacaoVo.setInvestParticipantesPeriodoSelecionado(BigDecimal.ZERO);
 
 		participantes.forEach(participante ->{
 			Integer somaSalario = investimentosRepository.buscarSalarioPeloCpfData(participante.getCpf(),
 					dataInicio, dataFim);
 			investimentoProgFormacaoVo.setInvestParticipantesPeriodoSelecionado(investimentoProgFormacaoVo.
-					getInvestParticipantesPeriodoSelecionado() + somaSalario);
+					getInvestParticipantesPeriodoSelecionado().add(new BigDecimal(somaSalario)));
 		});
 		return investimentoProgFormacaoVo;
 	}
@@ -85,12 +86,12 @@ public class InvestimentoFiltroPeriodoService {
 			String nomePrograma,String nomeTurma,InvestimentoProgFormacaoVo investimentoProgFormacaoVo) {
 
 		List<String> cpfInstrutores = programaRepository.listarCPFbyNomeProgramaNomeTurma(nomePrograma, nomeTurma);
-		investimentoProgFormacaoVo.setInvestInstrutoresPeriodoSelecionado(0.0);
+		investimentoProgFormacaoVo.setInvestInstrutoresPeriodoSelecionado(BigDecimal.ZERO);
 		cpfInstrutores.forEach(cpf -> {
 			Double salarioInstrutores = remuneracaoInstrutorRepository.calcularSalarioInstrutoresPeriodo
 					(cpf, dataInicio, dataFim);
 			investimentoProgFormacaoVo.setInvestInstrutoresPeriodoSelecionado(investimentoProgFormacaoVo.
-					getInvestInstrutoresPeriodoSelecionado() + salarioInstrutores);
+					getInvestInstrutoresPeriodoSelecionado().add(new BigDecimal(salarioInstrutores)));
 		});
 		return investimentoProgFormacaoVo;
 	}

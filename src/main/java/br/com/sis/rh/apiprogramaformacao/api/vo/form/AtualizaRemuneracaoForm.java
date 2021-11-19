@@ -28,7 +28,7 @@ public class AtualizaRemuneracaoForm {
         remuneracao.setConvenio(this.convenio);
         remuneracao.setHoraExtra(this.horaExtra);
         remuneracao.setBeneficioLegislacao(this.beneficioLegislacao);
-        remuneracao.setRemunExporadica(this.remunEsporadica);
+        remuneracao.setRemunEsporadica(this.remunEsporadica);
         remuneracao.setRemunExtra(this.remunExtra);
         remuneracao.setAlura(this.alura);
         return remuneracao;

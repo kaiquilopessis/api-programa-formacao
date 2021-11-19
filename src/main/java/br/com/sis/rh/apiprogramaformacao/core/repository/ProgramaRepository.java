@@ -13,18 +13,18 @@ import java.util.List;
 public interface ProgramaRepository extends JpaRepository<Programa, Long> {
 	
 	// Método que devolve uma lista somente com as formações com status EM_ANDAMENTO
-		@Query(value = "SELECT p FROM Programa p WHERE status = ?1 ")
+		@Query(value = "SELECT p FROM TB_PROGRAMA p WHERE status = ?1 ")
 		List<Programa> findByStatusFormacao(StatusFormacao status);
 			
 		// Método que devolve a contagem total de formações com status EM_ANDAMENTO
-		@Query(value = "SELECT COUNT(p) FROM Programa p WHERE status = 'EM_ANDAMENTO'")
+		@Query(value = "SELECT COUNT(p) FROM TB_PROGRAMA p WHERE status = 'EM_ANDAMENTO'")
 		Integer totalFormacoes();	
 
 	//Busca o dia de conclusão dos programas (tela de conclusão)
 	@Query(value = "SELECT programa.dataFim FROM TB_PROGRAMA programa " +
 			"JOIN TB_PROCESSO_SELETIVO processo ON processo = programa.processoSeletivo " +
 			"WHERE programa.nomeTurma = ?2 " +
-			"AND processo.nomePrograma = ?1")
+			"AND processo.nome = ?1")
 	LocalDate dataConclusao(String formacao, String turma);
 	
 	// busca nome do programa onde nome da turma for igual ao selecionado
@@ -41,6 +41,8 @@ public interface ProgramaRepository extends JpaRepository<Programa, Long> {
 
 	@Query(value = "select p from TB_PROGRAMA p " +
 			"JOIN TB_PROCESSO_SELETIVO tps on tps = p.processoSeletivo " +
-			"where tps.nomePrograma = ?1 order by p.nomeTurma asc")
+			"where tps.nome = ?1 order by p.nomeTurma asc")
 	List<Programa> buscarTurmasPeloNomePrograma(String nomePrograma);
+	
+	List<Programa> findByStatus(StatusFormacao emAndamento);
 }

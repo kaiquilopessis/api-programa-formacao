@@ -11,8 +11,7 @@ import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-@Entity
-@Table(name="TB_USUARIO_ACESSO")
+@Entity(name="TB_USUARIO_ACESSO")
 public class UsuarioAcesso implements UserDetails {
 
     @Id

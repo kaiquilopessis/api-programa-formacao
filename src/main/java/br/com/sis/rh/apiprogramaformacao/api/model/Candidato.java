@@ -8,10 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "TB_CANDIDATO")
+@Entity(name = "TB_CANDIDATO")
 public class Candidato {
 
 	@Id
@@ -39,6 +40,9 @@ public class Candidato {
 	private String curso;
 	@Column(name = "fonte_recrutamento")
 	private String fonteRecrutamento;
+	@ManyToOne
+	@JoinColumn(name = "processo_seletivo_fk")
+	private ProcessoSeletivo processoSeletivo;
 
 	public Candidato(String nome, String telefone, LocalDate dataAgendamento, BigDecimal testeLogico, String notaDisc, String status, String observacao, String disc, String curriculo, String curso, String fonteRecrutamento) {
 		this.nome = nome;

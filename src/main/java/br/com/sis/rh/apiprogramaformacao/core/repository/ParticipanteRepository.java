@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteProgramaDto;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivado;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusParticipante;
 
@@ -15,16 +16,16 @@ public interface ParticipanteRepository  extends JpaRepository <Participante, St
 	List<Participante> findByStatus(StatusParticipante ativo);
 	
 	// Método que devolve uma lista somente com os participantes com status EFETIVADO
-    @Query(value = "SELECT new br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteProgramaDto(c.nomeCandidato, tps.nomePrograma) " +
+    @Query(value = "SELECT new br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteProgramaDto(c.nome, tps.nome) " +
             "FROM TB_PARTICIPANTE p " +
             "JOIN TB_CANDIDATO c on c = p.candidato " +
             "JOIN TB_PROGRAMA tp on tp = p.programa " +
             "JOIN TB_PROCESSO_SELETIVO tps on tps = tp.processoSeletivo " +
             "where p.statusEfetivado = ?1")
-	List<ParticipanteProgramaDto> findByStatusEfetivo(StatusEfetivo status_efetivado);
+	List<ParticipanteProgramaDto> findByStatusEfetivo(StatusEfetivado status_efetivado);
 	
 	// Método que devolve a contagem total de participantes com status ATIVO
-	@Query(value = "SELECT COUNT(p) FROM TB_PARTICIPANTE p WHERE p.statusAtivo = 'ATIVO'")
+	@Query(value = "SELECT COUNT(p) FROM TB_PARTICIPANTE p WHERE p.status = 'ATIVO'")
 	Integer totalParticipantesAtivos();
 	
 	// Método que devolve a contagem total de participantes com status EFETIVADO
@@ -36,8 +37,8 @@ public interface ParticipanteRepository  extends JpaRepository <Participante, St
 			"JOIN TB_CANDIDATO TC ON TC = p.candidato " +
 			"JOIN TB_PROGRAMA prog ON prog = p.programa  " +
 			"JOIN TB_PROCESSO_SELETIVO processo ON processo = prog.processoSeletivo " +
-			"WHERE p.statusAtivo = 'ATIVO' " +
-			"AND processo.nomePrograma = ?1 " +
+			"WHERE p.status = 'ATIVO' " +
+			"AND processo.nome = ?1 " +
 			"AND prog.nomeTurma = ?2")
 	Integer listaParticipantesAtivos(String nome, String turma);
 
@@ -47,7 +48,7 @@ public interface ParticipanteRepository  extends JpaRepository <Participante, St
 			"JOIN TB_PROGRAMA prog ON p.programa = prog " +
 			"JOIN TB_PROCESSO_SELETIVO processo ON processo = prog.processoSeletivo " +
 			"WHERE p.statusEfetivado = 'EFETIVADO' " +
-			"AND processo.nomePrograma = ?1 " +
+			"AND processo.nome = ?1 " +
 			"AND prog.nomeTurma = ?2")
 	Integer listaParticipantesEfetivados(String nome, String turma);
 	
@@ -59,11 +60,13 @@ public interface ParticipanteRepository  extends JpaRepository <Participante, St
 	Participante findByCpf(String cpf);
 
     //Busca o nome e o programa dos participantes com status ativo
-    @Query(value = "SELECT new br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteProgramaDto(c.nomeCandidato, tps.nomePrograma) " +
+    @Query(value = "SELECT new br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteProgramaDto(c.nome, tps.nome) " +
             "FROM TB_PARTICIPANTE p " +
             "JOIN TB_CANDIDATO c on c = p.candidato " +
             "JOIN TB_PROGRAMA tp on tp = p.programa " +
             "JOIN TB_PROCESSO_SELETIVO tps on tps = tp.processoSeletivo " +
-            "where p.statusAtivo = ?1")
-    List<ParticipanteProgramaDto> buscarParticipantesProgramaAtivos(StatusAtivo statusAtivo);
+            "where p.status = ?1")
+    List<ParticipanteProgramaDto> buscarParticipantesProgramaAtivos(StatusParticipante ativo);
 }
+
+

@@ -1,6 +1,7 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -8,11 +9,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.OneToMany;
 
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusProcessoSeletivo;
-@Entity
-@Table(name = "TB_PROCESSO_SELETIVO")
+@Entity(name = "TB_PROCESSO_SELETIVO")
 public class ProcessoSeletivo {
 
 	@Id
@@ -26,6 +26,8 @@ public class ProcessoSeletivo {
 	private StatusProcessoSeletivo status;
 	private LocalDate dataInicio;
 	private LocalDate dataFim;
+	@OneToMany
+	private List<Instrutor> instrutores;
 
 	public ProcessoSeletivo(String nome, Integer qtdAprendiz, Integer qtdTrainee, Integer qtdEstagiario,
 			StatusProcessoSeletivo status, LocalDate dataInicio, LocalDate dataFim) {
