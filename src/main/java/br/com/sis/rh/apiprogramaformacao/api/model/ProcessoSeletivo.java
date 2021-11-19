@@ -6,12 +6,14 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusProcessoSeletivo;
+
 @Entity(name = "TB_PROCESSO_SELETIVO")
 public class ProcessoSeletivo {
 
@@ -26,11 +28,11 @@ public class ProcessoSeletivo {
 	private StatusProcessoSeletivo status;
 	private LocalDate dataInicio;
 	private LocalDate dataFim;
-	@OneToMany
+	@OneToMany(fetch = FetchType.LAZY)
 	private List<Instrutor> instrutores;
 
 	public ProcessoSeletivo(String nome, Integer qtdAprendiz, Integer qtdTrainee, Integer qtdEstagiario,
-			StatusProcessoSeletivo status, LocalDate dataInicio, LocalDate dataFim) {
+			StatusProcessoSeletivo status, LocalDate dataInicio, LocalDate dataFim, List<Instrutor> instrutores) {
 		this.nome = nome;
 		this.qtdAprendiz = qtdAprendiz;
 		this.qtdTrainee = qtdTrainee;
@@ -38,6 +40,7 @@ public class ProcessoSeletivo {
 		this.status = status;
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
+		this.instrutores = instrutores;
 	}
 
 	public ProcessoSeletivo() {
@@ -105,6 +108,14 @@ public class ProcessoSeletivo {
 
 	public void setDataFim(LocalDate dataFim) {
 		this.dataFim = dataFim;
+	}
+
+	public List<Instrutor> getInstrutores() {
+		return instrutores;
+	}
+
+	public void setInstrutores(List<Instrutor> instrutores) {
+		this.instrutores = instrutores;
 	}
 
 }
