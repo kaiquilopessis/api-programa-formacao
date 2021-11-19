@@ -22,16 +22,19 @@ public class ProcessoSeletivoController {
     @Autowired
     private ProcessoSeletivoService processoSeletivoService;
 
+    //Lista todos os processos seletivos
    @GetMapping
     public List<ListaDeProcessoSeletivoDto> listaTodosOsProcessos () {
         return processoSeletivoService.getExibeListaDeProcessos();
    }
 
+   //Visualiza um processo seletivo
    @GetMapping("/{id}")
     public ProcessoSeletivoDto retornaUnicoProcessoSeletivo (@PathVariable Long id){
        return processoSeletivoService.getProcessoSeletivo(id);
    }
 
+   //Cria um novo processo seletivo
    @PostMapping
    @Transactional
    public ResponseEntity<ProcessoSeletivoDto> criaNovoProcessoSeletivo (@RequestBody ProcessoSeletivoForm form, UriComponentsBuilder uriBuilder){
@@ -42,6 +45,7 @@ public class ProcessoSeletivoController {
        return ResponseEntity.created(uri).body(new ProcessoSeletivoDto(processoSeletivo));
    }
 
+   //Edita um processo seletivo que já existe
    @PutMapping("/{id}")
    @Transactional
    public ResponseEntity<ProcessoSeletivoDto> atualizaProcessoEspecifico (@RequestBody AtualizaProcessoSeletivoForm form, @PathVariable Long id){

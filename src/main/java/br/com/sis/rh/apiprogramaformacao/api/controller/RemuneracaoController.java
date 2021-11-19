@@ -24,16 +24,19 @@ public class RemuneracaoController {
     @Autowired
     private RemuneracaoService remuneracaoService;
 
+    //Lista todos os cargos cadastrados
     @GetMapping("/lista")
     public List<ListaRemuneracaoDto> listaRemuneracao(){
         return remuneracaoService.listaTodasRemuneracoes();
     }
 
+    //Visualiza um cargo presente no banco de dados
     @GetMapping("/{id}")
     public ResponseEntity<RemuneracaoDto> exibeRemuneracao(@PathVariable long id){
         return ResponseEntity.ok(remuneracaoService.exibeRemuneracao(id));
     }
 
+    //Cria um novo cargo
     @PostMapping
     @Transactional
     public ResponseEntity<RemuneracaoDto> criaRemuneracao(@RequestBody RemuneracaoForm form, UriComponentsBuilder uriBuilder){
@@ -44,6 +47,7 @@ public class RemuneracaoController {
        return ResponseEntity.created(uri).body(new RemuneracaoDto(remuneracao));
     }
 
+    //Edita um cargo
     @PutMapping("/{id}")
     @Transactional
     public ResponseEntity<RemuneracaoDto> atualizarRemuneracao(@PathVariable Long id, @RequestBody AtualizaRemuneracaoForm form){

@@ -14,8 +14,6 @@ public class CandidatoDto {
     private String curso;
     private String status;
     private BigDecimal testeLogico;
-    //private File curriculo;
-    //private File arquivoDisc;
     private String notaDisc;
     private String observacao;
     private String processoSeletivo;
@@ -34,6 +32,7 @@ public class CandidatoDto {
         this.notaDisc = candidato.getNotaDisc();
         this.processoSeletivo = candidato.getProcessoSeletivo().getNome();
         this.processoSeletivoId = candidato.getProcessoSeletivo().getId();
+
     }
 
     public CandidatoDto() {
@@ -134,4 +133,5 @@ public class CandidatoDto {
     public void setProcessoSeletivoId(Long processoSeletivoId) {
         this.processoSeletivoId = processoSeletivoId;
     }
+
 }

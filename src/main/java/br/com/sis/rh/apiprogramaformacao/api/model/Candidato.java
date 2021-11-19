@@ -26,10 +26,12 @@ public class Candidato {
 	private String status;
 	@Column(name = "observacao", length = 8000)
 	private String observacao;
-//	@Column(name = "DISC")
-//	private String disc;
-//	@Column(name = "curriculo")
-//	private String curriculo;
+	@Column(name = "DISC")
+	@Lob
+	private byte[] disc;
+	@Column(name = "curriculo")
+	@Lob
+	private byte[] curriculo;
 	@Column(name = "curso")
 	private String curso;
 	@Column(name = "fonte_recrutamento")
@@ -38,7 +40,7 @@ public class Candidato {
 	@JoinColumn(name = "processo_seletivo_fk", referencedColumnName = "id")
 	private ProcessoSeletivo processoSeletivo;
 
-	public Candidato(String nome, String telefone, LocalDate dataAgendamento, BigDecimal testeLogico, String notaDisc, String status, String observacao, String disc, String curriculo, String curso, String fonteRecrutamento, ProcessoSeletivo processoSeletivo) {
+	public Candidato(String nome, String telefone, LocalDate dataAgendamento, BigDecimal testeLogico, String notaDisc, String status, String observacao, byte[] disc, byte[] curriculo, String curso, String fonteRecrutamento, ProcessoSeletivo processoSeletivo) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.dataAgendamento = dataAgendamento;
@@ -46,8 +48,8 @@ public class Candidato {
 		this.notaDisc = notaDisc;
 		this.status = status;
 		this.observacao = observacao;
-		//this.disc = disc;
-		//this.curriculo = curriculo;
+		this.disc = disc;
+		this.curriculo = curriculo;
 		this.curso = curso;
 		this.fonteRecrutamento = fonteRecrutamento;
 		this.processoSeletivo = processoSeletivo;
@@ -133,17 +135,19 @@ public class Candidato {
 		this.processoSeletivo = processoSeletivo;
 	}
 
-	//	public String getDisc() {
-//		return disc;
-//	}
-//	public void setDisc(String disc) {
-//		this.disc = disc;
-//	}
+	public byte[] getDisc() {
+		return disc;
+	}
 
-//	public String getCurriculo() {
-//		return curriculo;
-//	}
-//	public void setCurriculo(String curriculo) {
-//		this.curriculo = curriculo;
-//	}
+	public void setDisc(byte[] disc) {
+		this.disc = disc;
+	}
+
+	public byte[] getCurriculo() {
+		return curriculo;
+	}
+
+	public void setCurriculo(byte[] curriculo) {
+		this.curriculo = curriculo;
+	}
 }

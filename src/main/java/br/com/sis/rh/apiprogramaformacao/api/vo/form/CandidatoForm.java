@@ -6,30 +6,35 @@ import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCandidato;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class CandidatoForm {
 
     private String nome;
     private String telefone;
     private String fonteRecrutamento;
-    private LocalDate dataAgendamento;
+    private String dataAgendamento;
     private String curso;
     private String observacao;
     private String status;
     private BigDecimal testeLogico;
     private String notaDisc;
-    private String curriculo;
-    private String disc;
+    private MultipartFile curriculo;
+    private MultipartFile disc;
     private Long idProcessoSeletivo;
 
-    public Candidato converter (ProcessoSeletivoRepository repository){
+    public Candidato converter (ProcessoSeletivoRepository repository) throws IOException {
 
         ProcessoSeletivo processoSeletivo = repository.getById(idProcessoSeletivo);
 
-        return new Candidato(nome, telefone, dataAgendamento, testeLogico, notaDisc, status, observacao, curriculo, disc, curso, fonteRecrutamento, processoSeletivo);
+        LocalDate data = LocalDate.parse(this.dataAgendamento, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        return new Candidato(nome, telefone, data, testeLogico, notaDisc, status, observacao, curriculo.getBytes(), disc.getBytes(), curso, fonteRecrutamento, processoSeletivo);
     }
 
     public String getNome() {
@@ -56,11 +61,11 @@ public class CandidatoForm {
         this.fonteRecrutamento = fonteRecrutamento;
     }
 
-    public LocalDate getDataAgendamento() {
+    public String getDataAgendamento() {
         return dataAgendamento;
     }
 
-    public void setDataAgendamento(LocalDate dataAgendamento) {
+    public void setDataAgendamento(String dataAgendamento) {
         this.dataAgendamento = dataAgendamento;
     }
 
@@ -104,19 +109,19 @@ public class CandidatoForm {
         this.notaDisc = notaDisc;
     }
 
-    public String getCurriculo() {
+    public MultipartFile getCurriculo() {
         return curriculo;
     }
 
-    public void setCurriculo(String curriculo) {
+    public void setCurriculo(MultipartFile curriculo) {
         this.curriculo = curriculo;
     }
 
-    public String getDisc() {
+    public MultipartFile getDisc() {
         return disc;
     }
 
-    public void setDisc(String disc) {
+    public void setDisc(MultipartFile disc) {
         this.disc = disc;
     }
 

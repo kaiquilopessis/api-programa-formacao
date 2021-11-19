@@ -8,8 +8,12 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.form.CandidatoForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.CandidatoRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +37,7 @@ public class CandidatoService {
         return ListaCandidatoDto.toListaCandidatoDto(candidatos);
     }
 
-    public Candidato atualizaCandidato(Long id, AtualizaCandidatoForm form){
+    public Candidato atualizaCandidato(Long id, AtualizaCandidatoForm form) throws IOException {
 
         Optional<Candidato> optional = candidatoRepository.findById(id);
         if(optional.isPresent()){
@@ -44,7 +48,7 @@ public class CandidatoService {
     }
 
 
-    public Candidato criaCandidato(CandidatoForm form){
+    public Candidato criaCandidato(CandidatoForm form) throws IOException {
 
         Candidato candidato = form.converter(processoSeletivoRepository);
         candidatoRepository.save(candidato);
@@ -56,5 +60,21 @@ public class CandidatoService {
         List<Candidato> candidatos = candidatoRepository.findCandidatosPorFormacao(id);
 
         return ListaCandidatoDto.toListaCandidatoDto(candidatos);
+    }
+
+    public ResponseEntity<ByteArrayResource> downloadCurriculo(Long id) {
+        Candidato curriculo = candidatoRepository.getById(id);
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType("application/pdf"))
+                .body(new ByteArrayResource(curriculo.getCurriculo()));
+    }
+
+    public ResponseEntity<ByteArrayResource> downloadDisc(Long id) {
+        Candidato disc = candidatoRepository.getById(id);
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
+                .body(new ByteArrayResource(disc.getDisc()));
     }
 }
