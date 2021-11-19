@@ -1,16 +1,15 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivo;
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter @Setter
 public class ParticipanteDto {
@@ -25,8 +24,8 @@ public class ParticipanteDto {
 
 	public ParticipanteDto(Participante participante) {
 		this.cpf_participante = participante.getCpf();
-		this.status_efetivo = participante.getStatus_efetivado();
-		this.status_ativo = participante.getStatus_ativo();
+		this.status_efetivo = participante.getStatusEfetivado();
+		this.status_ativo = participante.getStatusAtivo();
 	}
 
 	public static List<ParticipanteDto> converter(List<Participante> participantes) {

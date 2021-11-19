@@ -1,16 +1,17 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
+import br.com.sis.rh.apiprogramaformacao.api.model.Alura;
+import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RelatorioAluraVo;
+import br.com.sis.rh.apiprogramaformacao.core.repository.AluraRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
+import br.com.sis.rh.apiprogramaformacao.core.util.FormatadorDataUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Alura;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RelatorioAluraVo;
-import br.com.sis.rh.apiprogramaformacao.core.repository.AluraRepository;
-import br.com.sis.rh.apiprogramaformacao.core.util.FormatadorDataUtil;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe onde estão as regras de negócio referente a tela de relatorios
@@ -23,8 +24,8 @@ public class AluraService {
 	@Autowired
 	private AluraRepository aluraRepository;
 	
-//	@Autowired
-//	private ParticipanteRepository participanteRepository;
+	@Autowired
+	private ParticipanteRepository participanteRepository;
 
 	@Autowired
 	private FormatadorDataUtil formatador;
@@ -48,12 +49,12 @@ public class AluraService {
 		
 		relatorios = aluraRepository.buscarRegistroHoras();
 		aluraVo = calcularMediaMaxMinHoras(relatorios);
+		aluraVo = buscarParticipantesComMaiorEMenorQtdHoras(aluraVo);
 		LocalDate dataRegistro = relatorios.get(0).getDataRegistro();
 		aluraVo.setDataUltimoRegistro(formatador.formatarData(dataRegistro));
 		
 //		aluraVo = buscarParticipantesComMaiorEMenorQtdHoras(aluraVo);
 		String turmaFormatada = turma.replace("+", " ");
-		System.out.println(turmaFormatada);
 		aluraVo.setProgramaDeFormacao(formacao);
 		aluraVo.setTurma(turmaFormatada);
 		
@@ -89,19 +90,19 @@ public class AluraService {
 		return aluraVo;
 	}
 	
-//	public RelatorioAluraVo buscarParticipantesComMaiorEMenorQtdHoras(RelatorioAluraVo aluraVo) {
-//		String cpfMaiorHora = aluraRepository.buscarCpfMaiorHora();
-//		String cpfMenorHora = aluraRepository.buscarCpfMenorHora();
-//
-//		Participante participanteMaiorHora = participanteRepository.findByCpf(cpfMaiorHora);
-//		Participante participanteMenorHora = participanteRepository.findByCpf(cpfMenorHora);
-//		
-//		aluraVo.setNomeFuncionarioComMaiorQuantidadeHoras(participanteMaiorHora.getNome());
-//		aluraVo.setCargoFuncionarioComMaiorQuantidadeHoras(participanteMaiorHora.getCargo());
-//		
-//		aluraVo.setNomeFuncionarioComMenorQuantidadeHoras(participanteMenorHora.getNome());
-//		aluraVo.setCargoFuncionarioComMenorQuantidadeHoras(participanteMenorHora.getCargo());
-//		
-//		return aluraVo;
-//	}
+	public RelatorioAluraVo buscarParticipantesComMaiorEMenorQtdHoras(RelatorioAluraVo aluraVo) {
+		String cpfMaiorHora = aluraRepository.buscarCpfMaiorHora();
+		String cpfMenorHora = aluraRepository.buscarCpfMenorHora();
+
+		Participante participanteMaiorHora = participanteRepository.findByCpf(cpfMaiorHora);
+		Participante participanteMenorHora = participanteRepository.findByCpf(cpfMenorHora);
+
+		aluraVo.setNomeFuncionarioComMaiorQuantidadeHoras(participanteMaiorHora.getCandidato().getNomeCandidato());
+		aluraVo.setCargoFuncionarioComMaiorQuantidadeHoras(participanteMaiorHora.getRemuneracao().getCargo());
+
+		aluraVo.setNomeFuncionarioComMenorQuantidadeHoras(participanteMenorHora.getCandidato().getNomeCandidato());
+		aluraVo.setCargoFuncionarioComMenorQuantidadeHoras(participanteMenorHora.getRemuneracao().getCargo());
+
+		return aluraVo;
+	}
 }

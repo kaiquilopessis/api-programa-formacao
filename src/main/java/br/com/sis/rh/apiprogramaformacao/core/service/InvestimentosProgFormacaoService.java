@@ -1,18 +1,13 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
-import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.InvestimentoProgFormacaoVo;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ConclusaoRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoInstrutorRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 
@@ -38,6 +33,9 @@ public class InvestimentosProgFormacaoService {
 	private ConclusaoRepository conclusaoRepository;
 	@Autowired
 	private RemuneracaoInstrutorRepository remuneracaoInstrutorRepository;
+
+	@Autowired
+	private InvestimentosRepository investimentosRepository;
 
 	/**
 	 * Metodo chamado no controller para popular os cards superiores antes do filtro
@@ -69,7 +67,7 @@ public class InvestimentosProgFormacaoService {
 	 * Esta método processa os dados gerais e totais dos participantes de acordo com
 	 * o programa e turma selecionados
 	 * 
-	 * @param nomePrograma        rocessa o nome do programa selecionado na tela
+	 * @param nomePrograma        processa o nome do programa selecionado na tela
 	 *                            Relatórios
 	 * @param nomeTurma           processa o nome da turma selecionada na tela
 	 *                            Relatórios
@@ -80,27 +78,14 @@ public class InvestimentosProgFormacaoService {
 
 	public InvestimentoProgFormacaoVo investimentosParticipantes(String nomePrograma, String nomeTurma,
 			InvestimentoProgFormacaoVo investParticipantes) {
-
-		Programa programa = (Programa) programaRepository.listarProgramaSemData(nomePrograma, nomeTurma);
+		Programa programa = programaRepository.listarPrograma(nomePrograma, nomeTurma);
 		List<Participante> participantes = participantesRepository.listarParticipantes(programa.getId());
-
 		investParticipantes.setInvestParticipantes(0.0);
-		participantes.forEach(participante -> {
-			System.out.println(participante.getCpf());
-
-			List<Conclusao> conclusoes = conclusaoRepository.listarConclusoes(participante.getCpf());
-			System.out.println(conclusoes.size());
-
-			conclusoes.forEach(conclusao -> {
-
-				Remuneracao remuneracao = remuneracaoRepository
-						.findBySalario(conclusao.getParticipante().getRemuneracao().getId());
-
-				investParticipantes.setInvestParticipantes(investParticipantes.getInvestParticipantes()
-						+ remuneracao.getBolsaAux() + remuneracao.getBeneficios() + remuneracao.getConvenio()
-						+ remuneracao.getHoraExtra() + remuneracao.getBeneficioLegislacao()
-						+ remuneracao.getRemuExporadica() + remuneracao.getAlura());
-			});
+		
+		participantes.forEach(participante ->{
+			Integer somaSalario = investimentosRepository.buscarSalarioPeloCpf(participante.getCpf());
+			investParticipantes.setInvestParticipantes(investParticipantes.getInvestParticipantes()
+			+ somaSalario);
 		});
 		return investParticipantes;
 	}
@@ -119,10 +104,12 @@ public class InvestimentosProgFormacaoService {
 	 */
 	public InvestimentoProgFormacaoVo investimentoInstrutores(String nomePrograma, String nomeTurma,
 			InvestimentoProgFormacaoVo investInstrutores) {
-
-		Double salarioInstrutores = remuneracaoInstrutorRepository.calcularSalarioInstrutores(nomePrograma, nomeTurma);
-		investInstrutores.setInvestInstrutores(salarioInstrutores);
-			
+		List<String> cpfInstrutores = programaRepository.listarCPFbyNomeProgramaNomeTurma(nomePrograma, nomeTurma);
+		investInstrutores.setInvestInstrutores(0.0);
+		cpfInstrutores.forEach(cpf -> {
+			Double salarioInstrutores = remuneracaoInstrutorRepository.calcularSalarioInstrutores(cpf);
+			investInstrutores.setInvestInstrutores(investInstrutores.getInvestInstrutores() + salarioInstrutores);
+		});
 		return investInstrutores;
 	}
 

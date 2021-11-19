@@ -1,14 +1,9 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
-import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import lombok.Data;
+
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * 
@@ -26,6 +21,8 @@ public class Remuneracao {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
+	@Column(name = "cargo")
+	private String cargo;
 
 	@Column(name = "bolsa_aux")
 	private Double bolsaAux;
@@ -42,8 +39,8 @@ public class Remuneracao {
 	@Column(name = "beneficio_legislacao")
 	private Double beneficioLegislacao;
 
-	@Column(name = "remun_exporadica")
-	private Double remuExporadica;
+	@Column(name = "remun_esporadica")
+	private Double remuEsporadica;
 
 	@Column(name = "remun_extra")
 	private Double remuExtra;

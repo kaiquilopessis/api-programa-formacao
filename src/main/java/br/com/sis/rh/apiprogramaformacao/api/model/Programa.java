@@ -1,19 +1,14 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusFormacao;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusFormacao;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  * 
@@ -27,6 +22,8 @@ import lombok.Setter;
 @Getter
 // Gerador setters
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Programa {
 
 	@Id
@@ -34,8 +31,8 @@ public class Programa {
 	@Column(name = "id")
 	private Long id;
 
-	@Column(name = "nome")
-	private String nome;
+	@Column(name = "nome_turma")
+	private String nomeTurma;
 
 	@Column(name = "data_inicio")
 	private LocalDate dataInicio;
@@ -49,13 +46,7 @@ public class Programa {
 	@Enumerated(EnumType.STRING)
 	private StatusFormacao status;
 
-	public Programa() {
-	}
-
-	public Programa(Long id, String nome, StatusFormacao status, LocalDate dataFim) {
-		this.id = id;
-		this.nome = nome;
-		this.status = status;
-		this.dataFim = dataFim;
-	}
+	@OneToOne
+	@JoinColumn(name = "processo_seletivo_fk")
+	private ProcessoSeletivo processoSeletivo;
 }

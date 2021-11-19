@@ -1,19 +1,12 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
-import java.time.LocalDate;
-import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivo;
 import lombok.Data;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.List;
 
 /**
  * 
@@ -56,23 +49,30 @@ public class Participante {
 	private List<Conclusao> conclusao;
 
 	@Enumerated(EnumType.STRING)
-	private StatusEfetivo status_efetivado;
+	private StatusEfetivo statusEfetivado;
 
 	@Enumerated(EnumType.STRING)
-	private StatusAtivo status_ativo;
+	private StatusAtivo statusAtivo;
+
+	@OneToOne
+	@JoinColumn(name = "codigo_candidato_fk")
+	private Candidato candidato;
+
+	@OneToMany(fetch = FetchType.LAZY)
+	private List<Investimento> investimentos;
 
 	public Participante() {
 	}
 
 	public Participante(String cpf, String nomeFaculdade, String nomeCurso, LocalDate dataFimGraduacao,
-			List<Alura> alura, StatusEfetivo status_efetivado, StatusAtivo status_ativo, Remuneracao remuneracao) {
+						List<Alura> alura, StatusEfetivo statusEfetivado, StatusAtivo statusAtivo, Remuneracao remuneracao) {
 		this.cpf = cpf;
 		this.nomeFaculdade = nomeFaculdade;
 		this.nomeCurso = nomeCurso;
 		this.dataFimGraduacao = dataFimGraduacao;
 		this.alura = alura;
-		this.status_efetivado = status_efetivado;
-		this.status_ativo = status_ativo;
+		this.statusEfetivado = statusEfetivado;
+		this.statusAtivo = statusAtivo;
 		this.remuneracao = remuneracao;
 	}
 
