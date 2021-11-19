@@ -1,5 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.api.controller;
 
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CpfParticipanteNomeDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemFolhaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.FolhaForm;
 import br.com.sis.rh.apiprogramaformacao.core.service.ParticipanteService;
@@ -23,9 +24,16 @@ public class FolhaController {
         return participanteService.listagemFiltroFolha(nomePrograma, nomeTurma);
     }
 
-    @PostMapping()
+    @PostMapping
     public void salvarInvestimentos(@RequestBody FolhaForm folhaForm){
+        System.out.println(folhaForm.getCpf());
         participanteService.cadastrar(folhaForm);
+
+    }
+
+    @GetMapping("/participantes/{nomePrograma}/{nomeTurma}") //indicar que será um parametro dinamico (flexivel)
+    public List<CpfParticipanteNomeDto> mostrarParticipantes(@PathVariable String nomePrograma, @PathVariable String nomeTurma){
+        return participanteService.listagemParticipantes(nomePrograma, nomeTurma);
     }
 
 

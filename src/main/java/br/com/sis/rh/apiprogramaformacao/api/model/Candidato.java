@@ -31,10 +31,6 @@ public class Candidato {
 	private String status;
 	@Column(name = "observacao", length = 8000)
 	private String observacao;
-//	@Column(name = "DISC")
-//	private String disc;
-//	@Column(name = "curriculo")
-//	private String curriculo;
 	@Column(name = "curso")
 	private String curso;
 	@Column(name = "fonte_recrutamento")

@@ -24,7 +24,7 @@ public class Participante {
 	private Programa programa;
 	@OneToOne
 	@JoinColumn(name = "codigo_candidato_fk", referencedColumnName = "id", nullable = false)
-	private Candidato cadidato;
+	private Candidato candidato;
 	@Column(name = "nmFaculdade", length = 50)
 	private String faculdade;
 	@Column(name = "nmCurso", length = 50)
@@ -33,10 +33,8 @@ public class Participante {
 	private LocalDate dataFinal;
 	@Column(name = "TCE")
 	private File tce;
-	@Column(name = "status_ativo")
 	@Enumerated(EnumType.STRING)
-	private StatusParticipante statusParticipante;
-	@Column(name = "status_efetivado")
+	private StatusParticipante statusAtivo;
 	@Enumerated(EnumType.STRING)
 	private StatusEfetivado statusEfetivado;
 	@ManyToOne

@@ -1,5 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusInstrutor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,7 +18,8 @@ public class Instrutor {
 	@Column(name = "telefone", length = 255, nullable = false)
 	private String telefone;
 	@Column(name = "status")
-	private long status;
+	@Enumerated(EnumType.STRING)
+	private StatusInstrutor status;
 	@Column(name = "nome_instrutor", length = 50, nullable = false)
 	private String nomeInstrutor;
 	@Column(name = "email_corp")

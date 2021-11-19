@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TB_REMUNERACAO_PROGRAMA")
+@Table(name="TB_REMUNERACAO")
 @Getter
 @Setter
 public class Remuneracao {
@@ -34,7 +34,7 @@ public class Remuneracao {
 	private BigDecimal horaExtra;
 	@Column(name = "beneficio_legislacao")
 	private BigDecimal beneficioLegislacao;
-	@Column(name = "remun_exporadica")
+	@Column(name = "remun_esporadica")
 	private BigDecimal remunExporadica;
 	@Column(name = "remun_extra")
 	private BigDecimal remunExtra;

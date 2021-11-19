@@ -20,7 +20,7 @@ public class Investimentos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @OneToOne
-    @Column(name = "cpf_participante_fk")
+    @JoinColumn(name = "cpf_participante_fk")
     private Participante participante;
     @Column(name = "data_lancamento")
     private LocalDate dataLancamento;
