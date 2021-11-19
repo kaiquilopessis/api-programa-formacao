@@ -15,11 +15,7 @@ public class InvestimentoInstrutorService {
     @Autowired
     private InvestimentoInstrutorRepository investimentoInstrutorRepository;
 
-    public List<FiltragemInstrutorDto> listagemFiltroInstrutor(String nomeInstrutor, String nomeFormacao, String nomeTurma, BigDecimal valorHoraInstrutor){
-        return investimentoInstrutorRepository.findByNomeFormacaoTurmaHora(nomeInstrutor, nomeFormacao, nomeTurma, valorHoraInstrutor);
-    }
-
-    public List<FiltragemInstrutorDto> listagemFiltroInstrutorTodos(){
-        return investimentoInstrutorRepository.findByNomeFormacaoTurmaHoraTodos();
+    public List<FiltragemInstrutorDto> listagemFiltroInstrutor(String nomeFormacao, String nomeTurma){
+        return investimentoInstrutorRepository.findByNomeFormacaoTurmaHora(nomeFormacao, nomeTurma);
     }
 }

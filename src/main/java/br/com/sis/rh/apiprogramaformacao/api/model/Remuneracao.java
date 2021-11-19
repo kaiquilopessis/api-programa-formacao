@@ -1,10 +1,7 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
 import lombok.Getter;
-<<<<<<< HEAD
 import lombok.NoArgsConstructor;
-=======
->>>>>>> a92319cb5596abd73eb3d8a60511036b186bdadd
 import lombok.Setter;
 
 import java.math.BigDecimal;
@@ -20,12 +17,13 @@ import javax.persistence.Table;
 @Table(name="TB_REMUNERACAO")
 @Getter
 @Setter
+@NoArgsConstructor
 public class Remuneracao {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private Integer id;
+	private Long id;
 	@Column(name = "cargo", length = 30)
 	private String cargo;
 	@Column(name = "bolsa_aux")
@@ -39,7 +37,7 @@ public class Remuneracao {
 	@Column(name = "beneficio_legislacao")
 	private BigDecimal beneficioLegislacao;
 	@Column(name = "remun_esporadica")
-	private BigDecimal remunExporadica;
+	private BigDecimal remunEsporadica;
 	@Column(name = "remun_extra")
 	private BigDecimal remunExtra;
 	@Column(name = "alura")

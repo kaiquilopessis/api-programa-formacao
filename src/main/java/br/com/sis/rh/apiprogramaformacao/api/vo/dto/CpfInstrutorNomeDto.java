@@ -23,7 +23,7 @@ public class CpfInstrutorNomeDto {
 
     public CpfInstrutorNomeDto(Instrutor instrutor){
         this.cpfInstrutor = instrutor.getCpfInstrutor();
-        this.nomeInstrutor = instrutor.getNomeInstrutor();
+        this.nomeInstrutor = instrutor.getNome();
     }
 
     public static List<CpfInstrutorNomeDto> converter(List<Instrutor> listaInstrutores){

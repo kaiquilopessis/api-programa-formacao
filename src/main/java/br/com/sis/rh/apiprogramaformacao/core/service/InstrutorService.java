@@ -53,7 +53,7 @@ public class InstrutorService {
     }
 
     public void cadastrar(InstrutorForm instrutorForm){
-        Optional<Instrutor> optionalInstrutor = instrutorRepository.findById(instrutorForm.getCpf());
+        Optional<Instrutor> optionalInstrutor = repository.findById(instrutorForm.getCpf());
         if (optionalInstrutor.isPresent()){
             Remuneracao_Instrutor remuneracaoInstrutor = InstrutorForm.converter(instrutorForm, optionalInstrutor.get());
             remuneracaoInstrutorRepository.save(remuneracaoInstrutor);

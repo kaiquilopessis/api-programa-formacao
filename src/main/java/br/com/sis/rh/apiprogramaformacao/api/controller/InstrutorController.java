@@ -1,6 +1,8 @@
 package br.com.sis.rh.apiprogramaformacao.api.controller;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CpfInstrutorNomeDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemInstrutorDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.InstrutorForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.InstrutorVo;
 import br.com.sis.rh.apiprogramaformacao.core.service.InstrutorService;
@@ -62,18 +64,18 @@ public class InstrutorController {
     	}
     }
 
-	@PostMapping
-	@Transactional
-	public ResponseEntity cadastro(@RequestBody @Valid InstrutorForm form) {
-		try {
-			Instrutor instrutor = form.converter();
-			instrutorService.salva(instrutor);
-
-			return ResponseEntity.ok().build();
-		} catch (Exception e) {
-			return ResponseEntity.badRequest().body(e);
-		}
-	}
+//	@PostMapping
+//	@Transactional
+//	public ResponseEntity cadastro(@RequestBody @Valid InstrutorForm form) {
+//		try {
+//			Instrutor instrutor = form.converter();
+//			instrutorService.salva(instrutor);
+//
+//			return ResponseEntity.ok().build();
+//		} catch (Exception e) {
+//			return ResponseEntity.badRequest().body(e);
+//		}
+//	}
 
     @GetMapping("/buscar-instrutor/{nomePrograma}/{nomeTurma}")
     public List<FiltragemInstrutorDto> mostrarDados(@PathVariable String nomePrograma, @PathVariable String nomeTurma){

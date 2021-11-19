@@ -25,7 +25,7 @@ public class CpfParticipanteNomeDto {
 
 
     public CpfParticipanteNomeDto(Participante participante){
-        this.cpfParticipante = participante.getCpfParticipante();
+        this.cpfParticipante = participante.getCpf();
         this.nomeCandidato = participante.getCandidato().getNome();
     }
 

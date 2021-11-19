@@ -24,7 +24,7 @@ public interface InvestimentoFolhaRepository extends JpaRepository<FiltragemFolh
             "WHERE c.nome = ?1 ", nativeQuery = true)
     Participante findByNome(String nome);
 
-    @Query(value = "SELECT new br.com.sis.rh.apiprogramaformacao.api.vo.dto.CpfParticipanteNomeDto(pa.cpfParticipante, ca.nome) " +
+    @Query(value = "SELECT new br.com.sis.rh.apiprogramaformacao.api.vo.dto.CpfParticipanteNomeDto(pa.cpf, ca.nome) " +
             "FROM Participante pa INNER JOIN Programa  pr ON pr = pa.programa " +
             "INNER JOIN Candidato ca ON ca = pa.candidato " +
             "INNER JOIN ProcessoSeletivo  pro ON pro = pr.processoSeletivo " +
