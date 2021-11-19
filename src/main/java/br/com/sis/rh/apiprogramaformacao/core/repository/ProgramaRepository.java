@@ -20,18 +20,27 @@ public interface ProgramaRepository extends JpaRepository<Programa, Long> {
 		@Query(value = "SELECT COUNT(p) FROM Programa p WHERE status = 'EM_ANDAMENTO'")
 		Integer totalFormacoes();	
 
-		//Busca o dia de conclusão dos programas (tela de conclusão)
-		@Query(value = "select data_fim from TB_PROGRAMA where nome = ?1 and nome_turma = ?2", nativeQuery = true)
-		LocalDate dataConclusao(String formacao, String turma);
-
-	// busca o nome do programa com sua data 
-	@Query("select p from Programa p where dataInicio <= ?1 and dataFim >= ?2 and nome= ?3")
-	Programa ListarPrograma(LocalDate dataInicio, LocalDate dataFim, String nomePrograma);
+	//Busca o dia de conclusão dos programas (tela de conclusão)
+	@Query(value = "SELECT programa.dataFim FROM TB_PROGRAMA programa " +
+			"JOIN TB_PROCESSO_SELETIVO processo ON processo = programa.processoSeletivo " +
+			"WHERE programa.nomeTurma = ?2 " +
+			"AND processo.nomePrograma = ?1")
+	LocalDate dataConclusao(String formacao, String turma);
 	
 	// busca nome do programa onde nome da turma for igual ao selecionado
-	@Query("select p from Programa p where nome= ?1 and nomeTurma= ?2")
-	Programa listarProgramaSemData(String nomePrograma,String nomeTurma);
-	
-	List<Programa> findByStatus(StatusFormacao emAndamento);
+	@Query(value = "select p.* from TB_PROGRAMA p JOIN TB_PROCESSO_SELETIVO ps ON ps.id = p.processo_seletivo_fk " +
+			"where ps.nome = ?1 and p.nome_turma = ?2", nativeQuery = true)
+	Programa listarPrograma(String nomePrograma, String nomeTurma);
 
+	//Buscar cpf do instrutor pelo nome e turma do programa
+	@Query(value = "select ti.cpf_instrutor from TB_PROGRAMA tp " +
+			"JOIN TB_PROCESSO_SELETIVO TPS on TPS.id = tp.processo_seletivo_fk " +
+			"JOIN TB_INSTRUTOR TI on TI.cpf_instrutor = TPS.cpf_instrutor_fk " +
+			"where tps.nome = ?1 AND tp.nome_turma = ?2", nativeQuery = true)
+	List<String> listarCPFbyNomeProgramaNomeTurma(String nomePrograma, String nomeTurma);
+
+	@Query(value = "select p from TB_PROGRAMA p " +
+			"JOIN TB_PROCESSO_SELETIVO tps on tps = p.processoSeletivo " +
+			"where tps.nomePrograma = ?1 order by p.nomeTurma asc")
+	List<Programa> buscarTurmasPeloNomePrograma(String nomePrograma);
 }

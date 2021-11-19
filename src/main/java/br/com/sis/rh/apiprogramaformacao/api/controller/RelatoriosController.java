@@ -2,12 +2,10 @@ package br.com.sis.rh.apiprogramaformacao.api.controller;
 
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TurmaDto;
 import br.com.sis.rh.apiprogramaformacao.core.service.FiltroRelatorio;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,7 +27,7 @@ public class RelatoriosController {
 	// Busca o número total de participantes ativos, efetivados e formações em andamento
 	@RequestMapping
 	public List<Integer> numeroTotalParaCadaFiltro() {
-		return filtroRelatorio.numeroTotalParaCadaFiltro();	
+		return filtroRelatorio.numeroTotalParaCadaFiltro();
 	}
 	
 	@GetMapping("/participantesAtivos")
@@ -47,9 +45,15 @@ public class RelatoriosController {
 		return filtroRelatorio.listaTotalFormacoesEmAndamento();
 	}
 
-//	@GetMapping("/formacoesETurma")
-//	public List<ProgramaDto> buscarTodasFormacoesETurmas(){
-//
-//	}
+	@GetMapping("/formacoes")
+	public List<ProgramaDto> buscarTodasFormacoes(){
+		return filtroRelatorio.buscarTodasAsFormacoes();
+	}
+
+	@GetMapping("/turmas/{nomePrograma}")
+	public List<TurmaDto> buscarTodasTurmas(@PathVariable String nomePrograma){
+		System.out.println(nomePrograma);
+		return filtroRelatorio.buscarTodasAsTurmas(nomePrograma);
+	}
 	
 }

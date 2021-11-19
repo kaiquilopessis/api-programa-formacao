@@ -13,6 +13,7 @@ import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivado;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusFormacao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusParticipante;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
 
 /**
@@ -29,6 +30,9 @@ public class FiltroRelatorio {
 
 	@Autowired
 	private ProgramaRepository programaRepository;
+
+	@Autowired
+	private ProcessoSeletivoRepository processoSeletivoRepository;
 	
 	/*
 	 * Lógica para buscar a contagem total (Integer) de participantes ativos,
@@ -58,12 +62,18 @@ public class FiltroRelatorio {
 	
 	//Lógica para listar todas as formações com status EM_ANDAMENTO
 	public List<ProgramaDto> listaTotalFormacoesEmAndamento() {
-		List<Programa> programa = programaRepository.findByStatusFormacao(StatusFormacao.EM_ANDAMENTO);
-		return ProgramaDto.converter(programa);
+		return processoSeletivoRepository.buscarFormacoesEmAndamento(StatusProcessoSeletivo.EM_ANDAMENTO);
 	}
 
-//	public List<ProgramaDto> buscarTodasFormacoesETurma(){
-////		List<ProgramaDto> programas = programaRepository
-//	}
+	//Busca todas os programas de formações
+    public List<ProgramaDto> buscarTodasAsFormacoes() {
+		List<ProcessoSeletivo> processoSeletivos = processoSeletivoRepository.findAll();
+		return ProgramaDto.converter(processoSeletivos);
+    }
 
+	//Busca todas as turmas de um determinado programa
+	public List<TurmaDto> buscarTodasAsTurmas(String nomePrograma) {
+		List<Programa> programas = programaRepository.buscarTurmasPeloNomePrograma(nomePrograma);
+		return TurmaDto.converter(programas);
+	}
 }

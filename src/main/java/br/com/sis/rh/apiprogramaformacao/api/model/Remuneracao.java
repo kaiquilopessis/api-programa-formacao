@@ -109,7 +109,7 @@ public class Remuneracao {
 		return remunEsporadica;
 	}
 
-	public void setRemunExporadica(BigDecimal remunEsporadica) {
+	public void setRemunEsporadica(BigDecimal remunEsporadica) {
 		this.remunEsporadica = remunEsporadica;
 	}
 

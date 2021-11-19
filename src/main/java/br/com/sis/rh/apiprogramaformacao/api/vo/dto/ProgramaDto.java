@@ -1,5 +1,10 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
+import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,8 +30,8 @@ public class ProgramaDto {
 		this.status = programa.getStatus();
 	}
 
-	public static List<ProgramaDto> converter(List<Programa> programa) {
-		return programa.stream().map(ProgramaDto::new).collect(Collectors.toList());
+	public ProgramaDto(ProcessoSeletivo processoSeletivo) {
+		this.nomePrograma = processoSeletivo.getNomePrograma();
 	}
 
 	public Long getId() {
