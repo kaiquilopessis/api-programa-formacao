@@ -1,7 +1,13 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
+import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao_Instrutor;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CpfInstrutorNomeDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemInstrutorDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.InstrutorForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.InvestimentoInstrutorRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoInstrutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +18,12 @@ import java.util.Optional;
 public class InstrutorService {
     @Autowired
     private InstrutorRepository repository;
+
+    @Autowired
+    private RemuneracaoInstrutorRepository remuneracaoInstrutorRepository;
+
+    @Autowired
+    private InvestimentoInstrutorRepository investimentoInstrutorRepository;
 
     public List<Instrutor> todosInstrutores(){
         return repository.findAll();
@@ -35,4 +47,20 @@ public class InstrutorService {
 
     //Métodos criados por Marco Aguiar
 
+    public List<FiltragemInstrutorDto> listagemFiltroInstrutor(String nomeFormacao, String nomeTurma){
+        String nomeTurmaFormatado = nomeTurma.replace("+", " "); // pesquisa no banco
+        return investimentoInstrutorRepository.findByNomeFormacaoTurmaHora(nomeFormacao, nomeTurmaFormatado);
+    }
+
+    public void cadastrar(InstrutorForm instrutorForm){
+        Optional<Instrutor> optionalInstrutor = instrutorRepository.findById(instrutorForm.getCpf());
+        if (optionalInstrutor.isPresent()){
+            Remuneracao_Instrutor remuneracaoInstrutor = InstrutorForm.converter(instrutorForm, optionalInstrutor.get());
+            remuneracaoInstrutorRepository.save(remuneracaoInstrutor);
+        }
+    }
+
+    public List<CpfInstrutorNomeDto> listagemInstrutores(String nomeFormacao, String nomeTurma){
+        return investimentoInstrutorRepository.findByCpf(nomeFormacao, nomeTurma);
+    }
 }

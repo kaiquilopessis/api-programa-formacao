@@ -1,7 +1,8 @@
 package br.com.sis.rh.apiprogramaformacao.api.controller;
 
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CpfParticipanteNomeDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemFolhaDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.form.ParametrosFiltroFolhaForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.FolhaForm;
 import br.com.sis.rh.apiprogramaformacao.core.service.ParticipanteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,14 +17,24 @@ public class FolhaController {
     @Autowired
     private ParticipanteService participanteService;
 
-    @GetMapping()
-    public List<FiltragemFolhaDto> mostrarDados(){
-        return participanteService.listagemFiltroFolhaTodos();
+
+
+    @GetMapping("/{nomePrograma}/{nomeTurma}") //indicar que será um parametro dinamico (flexivel)
+    public List<FiltragemFolhaDto> mostrarFiltros(@PathVariable String nomePrograma, @PathVariable String nomeTurma){
+        return participanteService.listagemFiltroFolha(nomePrograma, nomeTurma);
     }
 
-    @PostMapping()
-    public List<FiltragemFolhaDto> mostrarFiltros(@RequestBody ParametrosFiltroFolhaForm form){
-        return participanteService.listagemFiltroFolha(form.getParametroNomeParticipante(), form.getParametroNomeFormacao(), form.getParametroNomeTurma(), form.getParametroBolsaAux());
+    @PostMapping
+    public void salvarInvestimentos(@RequestBody FolhaForm folhaForm){
+        System.out.println(folhaForm.getCpf());
+        participanteService.cadastrar(folhaForm);
+
     }
+
+    @GetMapping("/participantes/{nomePrograma}/{nomeTurma}") //indicar que será um parametro dinamico (flexivel)
+    public List<CpfParticipanteNomeDto> mostrarParticipantes(@PathVariable String nomePrograma, @PathVariable String nomeTurma){
+        return participanteService.listagemParticipantes(nomePrograma, nomeTurma);
+    }
+
 
 }

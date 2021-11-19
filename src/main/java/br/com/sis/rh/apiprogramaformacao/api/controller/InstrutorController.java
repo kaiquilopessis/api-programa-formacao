@@ -31,7 +31,7 @@ public class InstrutorController {
     public ResponseEntity<InstrutorVo> getByCpf(@PathVariable String cpf){
         Instrutor instrutor = instrutorService.buscaPorCpf(cpf);
         InstrutorVo instrutorVo = InstrutorVo.converterParaVo(instrutor);
-        
+
         return ResponseEntity.ok(instrutorVo);
     }
 
@@ -40,7 +40,7 @@ public class InstrutorController {
     @GetMapping("/status/{status}")
     public ResponseEntity<List<Instrutor>> getByStatus(@PathVariable String status){
         List<Instrutor> listaInstrutoresPorStatus = instrutorService.buscaPorStatus(status);
-        
+
         return ResponseEntity.ok(listaInstrutoresPorStatus);
     }
 
@@ -74,5 +74,21 @@ public class InstrutorController {
 			return ResponseEntity.badRequest().body(e);
 		}
 	}
+
+    @GetMapping("/buscar-instrutor/{nomePrograma}/{nomeTurma}")
+    public List<FiltragemInstrutorDto> mostrarDados(@PathVariable String nomePrograma, @PathVariable String nomeTurma){
+        return instrutorService.listagemFiltroInstrutor(nomePrograma, nomeTurma);
+    }
+
+    @PostMapping("/salvar-invest")
+    public void salvarInvestimentos(@RequestBody InstrutorForm instrutorForm){
+        System.out.println(instrutorForm.getCpf());
+        instrutorService.cadastrar(instrutorForm);
+    }
+
+    @GetMapping("/instrutores/{nomePrograma}/{nomeTurma}") //indicar que será um parametro dinamico (flexivel)
+    public List<CpfInstrutorNomeDto> mostrarInstrutores(@PathVariable String nomePrograma, @PathVariable String nomeTurma){
+        return instrutorService.listagemInstrutores(nomePrograma, nomeTurma);
+    }
 
 }
