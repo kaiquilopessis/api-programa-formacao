@@ -96,7 +96,7 @@ public class AluraService {
 		LocalDate dataRegistro = relatorios.get(0).getDataRegistro();
 		aluraVo.setDataUltimoRegistro(formatador.formatarData(dataRegistro));
 		
-//		aluraVo = buscarParticipantesComMaiorEMenorQtdHoras(aluraVo);
+		aluraVo = buscarParticipantesComMaiorEMenorQtdHoras(aluraVo);
 		String turmaFormatada = turma.replace("+", " ");
 		aluraVo.setProgramaDeFormacao(formacao);
 		aluraVo.setTurma(turmaFormatada);

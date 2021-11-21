@@ -8,9 +8,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 public class TurmaDto {
 
     private String nomeTurma;
@@ -22,4 +20,14 @@ public class TurmaDto {
     public static List<TurmaDto> converter (List<Programa> programas){
         return programas.stream().map(TurmaDto::new).collect(Collectors.toList());
     }
+
+	public String getNomeTurma() {
+		return nomeTurma;
+	}
+
+	public void setNomeTurma(String nomeTurma) {
+		this.nomeTurma = nomeTurma;
+	}
+    
+    
 }

@@ -1,6 +1,8 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +43,7 @@ public class AvaliacaoService {
 		String turmaFormatada = turma.replace("+", " ");
 		avaliacaoVo.setProgramaDeFormacao(formacao);
 		avaliacaoVo.setTurma(turmaFormatada);
-		avaliacaoVo = formatarNotas(avaliacaoVo);
+		//avaliacaoVo = formatarNotas(avaliacaoVo);
 		return avaliacaoVo;
 	}
 
@@ -53,8 +55,8 @@ public class AvaliacaoService {
 	 */
 
 	public RelatorioAvaliacoesVo calcularMedia() {
-		RelatorioAvaliacoesVo avaliacaoVo = new RelatorioAvaliacoesVo(BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO,
-				BigDecimal.ZERO, BigDecimal.ZERO, 2, "Java", "Turma I");
+		RelatorioAvaliacoesVo avaliacaoVo = new RelatorioAvaliacoesVo(new BigDecimal(0.0), new BigDecimal(0.0), new BigDecimal(0.0),
+				new BigDecimal(0.0), new BigDecimal(0.0), 2, "Java", "Turma I");
 		List<Avaliacoes> avaliacoes = avaliacaoRepository.buscarNotasMaisRecentes();
 
 		avaliacoes.forEach(avaliacao -> {
@@ -70,15 +72,15 @@ public class AvaliacaoService {
 					avaliacaoVo.getNotaMediaAvaliacaoPraticasAgeis().add(avaliacao.getNotaPraticasAgeis()));
 		});
 		avaliacaoVo.setNotaMediaAvaliacaoTecnica(
-				avaliacaoVo.getNotaMediaAvaliacaoTecnica().divide(new BigDecimal(avaliacoes.size())));
+				avaliacaoVo.getNotaMediaAvaliacaoTecnica().divide(new BigDecimal(avaliacoes.size()),2, RoundingMode.HALF_EVEN));
 		avaliacaoVo.setNotaMediaAvaliacaoComportamental(
-				avaliacaoVo.getNotaMediaAvaliacaoComportamental().divide(new BigDecimal(avaliacoes.size())));
+				avaliacaoVo.getNotaMediaAvaliacaoComportamental().divide(new BigDecimal(avaliacoes.size()),2, RoundingMode.HALF_EVEN));
 		avaliacaoVo.setNotaMediaAvaliacaoLideranca(
-				avaliacaoVo.getNotaMediaAvaliacaoLideranca().divide(new BigDecimal(avaliacoes.size())));
+				avaliacaoVo.getNotaMediaAvaliacaoLideranca().divide(new BigDecimal(avaliacoes.size()),2, RoundingMode.HALF_EVEN));
 		avaliacaoVo.setNotaMediaAvaliacaoNegocio(
-				avaliacaoVo.getNotaMediaAvaliacaoNegocio().divide(new BigDecimal(avaliacoes.size())));
+				avaliacaoVo.getNotaMediaAvaliacaoNegocio().divide(new BigDecimal(avaliacoes.size()),2, RoundingMode.HALF_EVEN));
 		avaliacaoVo.setNotaMediaAvaliacaoPraticasAgeis(
-				avaliacaoVo.getNotaMediaAvaliacaoPraticasAgeis().divide(new BigDecimal(avaliacoes.size())));
+				avaliacaoVo.getNotaMediaAvaliacaoPraticasAgeis().divide(new BigDecimal(avaliacoes.size()),2, RoundingMode.HALF_EVEN));
 
 		return avaliacaoVo;
 	}

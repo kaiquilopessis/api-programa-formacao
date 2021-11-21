@@ -54,7 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/auth").permitAll()
                 .antMatchers("/auth/*").permitAll()
-                .antMatchers("/api/feedback/download/*", "/api/ciclo/download/*").permitAll()
+                .antMatchers("/api/feedback/download/*", "/api/ciclo/download/*", "/api/relatorio-alura/**", "/api/relatorio-avaliacao/**",
+                		"/api/conclusoes/**", "/api/investimentos/**").permitAll()
                 .anyRequest().authenticated()
                 .and().cors().and().csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
