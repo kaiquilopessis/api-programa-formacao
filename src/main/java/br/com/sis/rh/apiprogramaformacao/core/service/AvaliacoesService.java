@@ -21,22 +21,30 @@ import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 @Service
 public class AvaliacoesService {
 
+	/** injetando o repositorio de avaliação **/
 	@Autowired
 	private AvaliacaoRepository avaliacoesRepository;
 
+	/** injetando o repositorio de participante **/
 	@Autowired
 	private ParticipanteRepository participanteRepository;
 	
+	/** injetando o repositorio de avaliação desempenho **/
 	@Autowired
 	private AvaliacaoDesempenhoRepository avaliacaoDesempenhoRepository;
 
-
+	/** lista as notas das avaliações
+	 *
+	 *@return dto que converte a lista em nota 
+	 **/
 	public List<AvaliacoesDto> listarNotas(String cpf) {
 		List<Avaliacoes> listaNotas = avaliacoesRepository.findAllByParticipanteCpf(cpf);
 		return AvaliacoesDto.converter(listaNotas);
 
 	}
-
+	
+	/** cadastra as avaliações do participante pegando ele pelo id
+	 *@return caso não achar o participante vai dar uma mensagem de erro **/
 	public ResponseEntity<AvaliacoesDto> cadastrar( String cpf,  AvaliacoesForm avaliacoesForm,
 			UriComponentsBuilder uriComponentsBuilder) {
 		Optional<Participante> participante = participanteRepository.findById(cpf);
@@ -48,7 +56,8 @@ public class AvaliacoesService {
 		}
 		return ResponseEntity.notFound().build();
 	}
-
+	
+	/** Metodo para deletar a avaliação **/
 	public ResponseEntity<AvaliacoesDto> deletar( Long id) {
 		Optional<Avaliacoes> avaliacoes = avaliacoesRepository.findById(id);
 		if (avaliacoes.isPresent()) {
@@ -57,7 +66,8 @@ public class AvaliacoesService {
 		}
 		return ResponseEntity.notFound().build();
 	}
-
+	
+	/** Metodo listar para avaliação de desempenho **/
 	public ResponseEntity<AvaliacaoDesempenhoDto> listarAvaliacaoDesempenho(Long id) {
 		AvaliacaoDesempenho avaliacaoDesempenho = avaliacaoDesempenhoRepository.getById(id);
 		return ResponseEntity.ok(new AvaliacaoDesempenhoDto(avaliacaoDesempenho));

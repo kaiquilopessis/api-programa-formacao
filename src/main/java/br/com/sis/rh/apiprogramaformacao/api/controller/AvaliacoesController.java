@@ -21,27 +21,32 @@ import br.com.sis.rh.apiprogramaformacao.core.service.AvaliacoesService;
 @RestController
 @RequestMapping("/api/avaliacao")
 public class AvaliacoesController {
-
+	
+	/** Injetando a service de Avaliações **/
 	@Autowired
 	private AvaliacoesService avaliacoesService;
-
+	
+	/** Busca a Url com o id do participante,   **/
 	@GetMapping("/{cpf}")
 	public List<AvaliacoesDto> listarNotas(@PathVariable String cpf) {
 		return avaliacoesService.listarNotas(cpf);
 
 	}
-
+	
+	/** Busca a url com o desempenho do participante a partir do id dele **/
 	@GetMapping("/desempenho/{id}")
 	public ResponseEntity<AvaliacaoDesempenhoDto> listarAvaliacaoDesempenho(@PathVariable Long id) {
 		return avaliacoesService.listarAvaliacaoDesempenho(id);
 	}
-
+	
+	/** Metodo para criar uma nova avaliação de um participante pegando o id **/
 	@PostMapping("/novo/{cpf}")
 	public ResponseEntity<AvaliacoesDto> cadastrar(@PathVariable String cpf, @RequestBody AvaliacoesForm avaliacoesForm,
 			UriComponentsBuilder uriComponentsBuilder) {
 		return avaliacoesService.cadastrar(cpf, avaliacoesForm, uriComponentsBuilder);
 	}
-
+	
+	/** Metodo para deletar participante pegando o id **/
 	@DeleteMapping("/deletar/{id}")
 	public ResponseEntity<AvaliacoesDto> deletar(@PathVariable Long id) {
 		return avaliacoesService.deletar(id);

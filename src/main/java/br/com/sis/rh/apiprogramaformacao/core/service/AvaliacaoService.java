@@ -18,12 +18,15 @@ import br.com.sis.rh.apiprogramaformacao.core.util.FormatadorDeNumeroDecimalUtil
  * avaliaçoes dos participantes de determinado programa.
  */
 
+/** sevice de avaliação **/
 @Service
 public class AvaliacaoService {
-
+	
+	/** Injetando o repositorio de avaliação **/
 	@Autowired
 	private AvaliacaoRepository avaliacaoRepository;
 
+	/** Metodo para formatar a data no formato DD/MM/YYYY**/
 	@Autowired
 	private FormatadorDeNumeroDecimalUtil formatador;
 
@@ -37,6 +40,7 @@ public class AvaliacaoService {
 	 *         de formação e a turma populados
 	 */
 
+	
 	public RelatorioAvaliacoesVo popularCards(String formacao, String turma) {
 		RelatorioAvaliacoesVo avaliacaoVo = calcularMedia();
 		avaliacaoVo.setUltimoCicloRegistrado(avaliacaoRepository.buscaNumeroCiclo());
