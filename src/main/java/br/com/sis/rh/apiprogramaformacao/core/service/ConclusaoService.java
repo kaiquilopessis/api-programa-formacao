@@ -48,7 +48,6 @@ public class ConclusaoService {
 	
 	public RelatorioConclusaoVO dataConclusao(String formacao, String turma, RelatorioConclusaoVO relatorio) {
 		LocalDate dataFim = programaRepository.dataConclusao(formacao, turma);
-		System.out.println(dataFim);
 		String data = dataConfiguration.dataFormatada(dataFim);
 		relatorio.setDataConclusao(data);
 		

@@ -52,7 +52,6 @@ public class RelatoriosController {
 
 	@GetMapping("/turmas/{nomePrograma}")
 	public List<TurmaDto> buscarTodasTurmas(@PathVariable String nomePrograma){
-		System.out.println(nomePrograma);
 		return filtroRelatorio.buscarTodasAsTurmas(nomePrograma);
 	}
 	

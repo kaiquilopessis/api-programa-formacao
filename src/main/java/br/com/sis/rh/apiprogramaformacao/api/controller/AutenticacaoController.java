@@ -40,7 +40,6 @@ public class AutenticacaoController {
         try {
             Authentication authentication = authManager.authenticate(dadosLogin);
             String token = tokenService.gerarToken(authentication);
-            System.out.println(token);
 
             return ResponseEntity.ok(new TokenVo("Bearer", token));
         }
@@ -54,7 +53,6 @@ public class AutenticacaoController {
     @GetMapping("/{token}")
     public String verificaToken(@PathVariable String token){
         if(tokenService.isTokenValido(token)){
-            System.out.println("Token válido!!!");
             return "SUCESSO";
         }
 
