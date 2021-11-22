@@ -4,6 +4,7 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
 import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao_Instrutor;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CpfInstrutorNomeDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemInstrutorDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.AttInstrutorForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.InstrutorForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.InvestimentoInstrutorForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
@@ -17,6 +18,7 @@ import java.util.Optional;
 
 @Service
 public class InstrutorService {
+
     @Autowired
     private InstrutorRepository repository;
 
@@ -63,5 +65,9 @@ public class InstrutorService {
 
     public List<CpfInstrutorNomeDto> listagemInstrutores(String nomeFormacao, String nomeTurma){
         return investimentoInstrutorRepository.findByCpf(nomeFormacao, nomeTurma);
+    }
+
+    public boolean alteraInstrutor(AttInstrutorForm attInstrutorForm, String cpf) {
+        return attInstrutorForm.atualizaInstrutor(repository, cpf);
     }
 }

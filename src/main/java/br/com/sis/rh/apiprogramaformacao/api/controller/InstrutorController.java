@@ -3,6 +3,7 @@ package br.com.sis.rh.apiprogramaformacao.api.controller;
 import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CpfInstrutorNomeDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemInstrutorDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.AttInstrutorForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.InstrutorForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.InstrutorVo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.InvestimentoInstrutorForm;
@@ -22,6 +23,8 @@ public class InstrutorController {
 	@Autowired
 	private InstrutorService instrutorService;
 
+	//Criado por Letícia Angulo
+	//Métodos utilizados pelas telas de CRUD de instrutor
     @GetMapping
     public ResponseEntity<List<InstrutorVo>> getPadrao(){
         List<Instrutor> listaInstrutores = instrutorService.todosInstrutores();
@@ -46,7 +49,6 @@ public class InstrutorController {
         return ResponseEntity.ok(listaInstrutoresPorStatusVo);
     }
 
-
     @PutMapping("/status/altera/{cpf}")
 	@Transactional
     public ResponseEntity alteraStatus(@PathVariable String cpf){
@@ -64,6 +66,17 @@ public class InstrutorController {
     	}
     }
 
+	@PutMapping("/altera/{cpf}")
+	@Transactional
+	public ResponseEntity alterarInstrutor(@PathVariable String cpf, @RequestBody AttInstrutorForm attInstrutorForm){
+		boolean altera = instrutorService.alteraInstrutor(attInstrutorForm, cpf);
+		if(altera == true){
+			return ResponseEntity.ok().build();
+		}else{
+			return ResponseEntity.badRequest().build();
+		}
+	}
+
 	@PostMapping
 	@Transactional
 	public ResponseEntity cadastro(@RequestBody @Valid InstrutorForm form) {
@@ -77,6 +90,10 @@ public class InstrutorController {
 		}
 	}
 
+	//Fim dos método utilizados nas telas de CRUD de instrutor
+
+	//Criado por Marco Aguiar
+	//Referente as telas de Inserção de remuneração por mês
 	@GetMapping("/buscar-instrutor/{nomePrograma}/{nomeTurma}")
 	public List<FiltragemInstrutorDto> mostrarDados(@PathVariable String nomePrograma, @PathVariable String nomeTurma){
 		return instrutorService.listagemFiltroInstrutor(nomePrograma, nomeTurma);
