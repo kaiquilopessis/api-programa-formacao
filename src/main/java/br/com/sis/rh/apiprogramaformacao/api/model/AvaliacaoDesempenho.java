@@ -14,7 +14,8 @@ import javax.persistence.Table;
 import br.com.sis.rh.apiprogramaformacao.core.enums.Avaliacao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.Parecer;
 
-@Entity(name = "TB_AVALIACAO_DESEMPENHO")
+@Entity
+@Table(name = "TB_AVALIACAO_DESEMPENHO")
 public class AvaliacaoDesempenho {
 
 	@Column(name = "ID")

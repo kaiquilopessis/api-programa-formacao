@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity(name = "TB_INVESTIMENTOS")
+@Entity
+@Table(name = "TB_INVESTIMENTOS")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

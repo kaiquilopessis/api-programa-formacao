@@ -1,5 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.api.controller;
 
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeProgramaEmAndamentoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TurmaDto;
@@ -46,7 +47,7 @@ public class RelatoriosController {
 	}
 
 	@GetMapping("/formacoes")
-	public List<ProgramaDto> buscarTodasFormacoes(){
+	public List<NomeProgramaEmAndamentoDto> buscarTodasFormacoes(){
 		return filtroRelatorio.buscarTodasAsFormacoes();
 	}
 

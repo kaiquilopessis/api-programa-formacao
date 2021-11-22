@@ -1,5 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -9,8 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-@Entity(name = "TB_REMUNERACAO_INSTRUTOR")
+@Entity
+@Table(name = "TB_REMUNERACAO_INSTRUTOR")
 public class RemuneracaoInstrutor {
 
 	@Id
@@ -22,7 +25,7 @@ public class RemuneracaoInstrutor {
 	@Column(name = "qtd_hora")
 	private Integer qtdHora;
 	@Column(name = "vlr_hora")
-	private Integer valorHora;
+	private BigDecimal valorHora;
 	@ManyToOne
 	@JoinColumn(name = "codigo_instrutor_fk")
 	private Instrutor instrutor;
@@ -30,11 +33,20 @@ public class RemuneracaoInstrutor {
 	public RemuneracaoInstrutor() {
 	}
 
-	public RemuneracaoInstrutor(Long id, LocalDate dataLancamento, Integer qtdHora, Integer valorHora) {
+	public RemuneracaoInstrutor(Long id, LocalDate dataLancamento, Integer qtdHora, BigDecimal valorHora,
+			Instrutor instrutor) {
 		this.id = id;
 		this.dataLancamento = dataLancamento;
 		this.qtdHora = qtdHora;
 		this.valorHora = valorHora;
+		this.instrutor = instrutor;
+	}
+
+	public RemuneracaoInstrutor(LocalDate dataLancamento, BigDecimal valorHora,Integer qtdHora,  Instrutor instrutor) {
+		this.dataLancamento = dataLancamento;
+		this.qtdHora = qtdHora;
+		this.valorHora = valorHora;
+		this.instrutor = instrutor;
 	}
 
 	public Long getId() {
@@ -61,11 +73,11 @@ public class RemuneracaoInstrutor {
 		this.qtdHora = qtdHora;
 	}
 
-	public Integer getValorHora() {
+	public BigDecimal getValorHora() {
 		return valorHora;
 	}
 
-	public void setValorHora(Integer valorHora) {
+	public void setValorHora(BigDecimal valorHora) {
 		this.valorHora = valorHora;
 	}
 

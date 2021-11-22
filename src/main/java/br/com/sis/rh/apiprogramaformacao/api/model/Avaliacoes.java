@@ -15,7 +15,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
-@Entity(name = "TB_NOTAS_AVALIACOES")
+@Entity
+@Table(name = "TB_NOTAS_AVALIACOES")
 public class Avaliacoes {
 
 	@Id

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeProgramaEmAndamentoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TurmaDto;
@@ -68,9 +69,9 @@ public class FiltroRelatorio {
 	}
 
 	//Busca todas os programas de formações
-    public List<ProgramaDto> buscarTodasAsFormacoes() {
+    public List<NomeProgramaEmAndamentoDto> buscarTodasAsFormacoes() {
 		List<ProcessoSeletivo> processoSeletivos = processoSeletivoRepository.findAll();
-		return ProgramaDto.converter(processoSeletivos);
+		return NomeProgramaEmAndamentoDto.converter(processoSeletivos);
     }
 
 	//Busca todas as turmas de um determinado programa

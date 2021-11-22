@@ -12,7 +12,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity(name = "TB_FEEDBACK")
+@Entity
+@Table(name = "TB_FEEDBACK")
 public class FeedBack {
 
 	@Id

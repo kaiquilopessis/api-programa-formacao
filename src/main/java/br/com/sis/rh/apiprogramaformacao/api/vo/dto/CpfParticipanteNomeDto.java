@@ -12,24 +12,46 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
-@Data
+
 @Entity
-@NoArgsConstructor
 public class CpfParticipanteNomeDto {
 
-    @Id
-    @Column(name = "cpf_participante")
-    private String cpfParticipante;
-    @Column(name = "nome")
-    private String nomeCandidato;
+	@Id
+	@Column(name = "cpf_participante")
+	private String cpfParticipante;
+	@Column(name = "nome")
+	private String nomeCandidato;
+
+	public CpfParticipanteNomeDto(Participante participante) {
+		this.cpfParticipante = participante.getCpf();
+		this.nomeCandidato = participante.getCandidato().getNome();
+	}
+	
+	
+	public CpfParticipanteNomeDto(String cpfParticipante, String nomeCandidato) {
+		this.cpfParticipante = cpfParticipante;
+		this.nomeCandidato = nomeCandidato;
+	}
 
 
-    public CpfParticipanteNomeDto(Participante participante){
-        this.cpfParticipante = participante.getCpf();
-        this.nomeCandidato = participante.getCandidato().getNome();
-    }
+	public static List<CpfParticipanteNomeDto> converter(List<Participante> listaParticipantes) {
+		return listaParticipantes.stream().map(CpfParticipanteNomeDto::new).collect(Collectors.toList());
+	}
 
-    public static List<CpfParticipanteNomeDto> converter(List<Participante> listaParticipantes){
-        return listaParticipantes.stream().map(CpfParticipanteNomeDto::new).collect(Collectors.toList());
-    }
+	public String getCpfParticipante() {
+		return cpfParticipante;
+	}
+
+	public void setCpfParticipante(String cpfParticipante) {
+		this.cpfParticipante = cpfParticipante;
+	}
+
+	public String getNomeCandidato() {
+		return nomeCandidato;
+	}
+
+	public void setNomeCandidato(String nomeCandidato) {
+		this.nomeCandidato = nomeCandidato;
+	}
+
 }

@@ -9,6 +9,7 @@ public class ParticipanteProgramaDto {
     private String nomeParticipante;
     @Column(name = "nomePrograma")
     private String nomePrograma;
+    
 	public String getNomeParticipante() {
 		return nomeParticipante;
 	}

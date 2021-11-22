@@ -1,8 +1,10 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
-
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 
 
 public class ProgramaDto {
@@ -27,6 +29,8 @@ public class ProgramaDto {
         // Participantes se referem a soma dos colaboradores
         this.participantesTotais = (programa.getProcessoSeletivo().getQtdAprendiz() + programa.getProcessoSeletivo().getQtdEstagiario() + programa.getProcessoSeletivo().getQtdTrainee());
     }
+    
+
 
     public String getNomeTurma() {
         return nomeTurma;
@@ -91,4 +95,8 @@ public class ProgramaDto {
     public void setParticipantesTotais(long participantesTotais) {
         this.participantesTotais = participantesTotais;
     }
+    
+    public static List<ProgramaDto> converter(List<Programa> programa){
+		return programa.stream().map(ProgramaDto::new).collect(Collectors.toList());
+	}
 }

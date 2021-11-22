@@ -12,9 +12,7 @@ import javax.persistence.Id;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@AllArgsConstructor
-@Data
-@NoArgsConstructor
+
 public class CpfInstrutorNomeDto {
 
     private String cpfInstrutor;
@@ -25,8 +23,34 @@ public class CpfInstrutorNomeDto {
         this.cpfInstrutor = instrutor.getCpfInstrutor();
         this.nomeInstrutor = instrutor.getNome();
     }
+    
+    
 
-    public static List<CpfInstrutorNomeDto> converter(List<Instrutor> listaInstrutores){
+    public CpfInstrutorNomeDto(String cpfInstrutor, String nomeInstrutor) {
+		this.cpfInstrutor = cpfInstrutor;
+		this.nomeInstrutor = nomeInstrutor;
+	}
+
+
+
+	public static List<CpfInstrutorNomeDto> converter(List<Instrutor> listaInstrutores){
         return listaInstrutores.stream().map(CpfInstrutorNomeDto::new).collect(Collectors.toList());
     }
+
+	public String getCpfInstrutor() {
+		return cpfInstrutor;
+	}
+
+	public void setCpfInstrutor(String cpfInstrutor) {
+		this.cpfInstrutor = cpfInstrutor;
+	}
+
+	public String getNomeInstrutor() {
+		return nomeInstrutor;
+	}
+
+	public void setNomeInstrutor(String nomeInstrutor) {
+		this.nomeInstrutor = nomeInstrutor;
+	}
+    
 }

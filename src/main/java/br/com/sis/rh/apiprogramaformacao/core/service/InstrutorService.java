@@ -1,20 +1,20 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
-import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao_Instrutor;
+import br.com.sis.rh.apiprogramaformacao.api.model.RemuneracaoInstrutor;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CpfInstrutorNomeDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemInstrutorDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AttInstrutorForm;
-import br.com.sis.rh.apiprogramaformacao.api.vo.form.InstrutorForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.InvestimentoInstrutorForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InvestimentoInstrutorRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoInstrutorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class InstrutorService {
@@ -58,7 +58,7 @@ public class InstrutorService {
     public void cadastrar(InvestimentoInstrutorForm investimentoInstrutorForm){
         Optional<Instrutor> optionalInstrutor = repository.findById(investimentoInstrutorForm.getCpf());
         if (optionalInstrutor.isPresent()){
-            Remuneracao_Instrutor remuneracaoInstrutor = InvestimentoInstrutorForm.converter(investimentoInstrutorForm, optionalInstrutor.get());
+            RemuneracaoInstrutor remuneracaoInstrutor = InvestimentoInstrutorForm.converter(investimentoInstrutorForm, optionalInstrutor.get());
             remuneracaoInstrutorRepository.save(remuneracaoInstrutor);
         }
     }

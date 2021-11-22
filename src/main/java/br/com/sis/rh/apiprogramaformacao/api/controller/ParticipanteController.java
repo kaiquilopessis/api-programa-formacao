@@ -19,26 +19,26 @@ import br.com.sis.rh.apiprogramaformacao.core.service.ParticipanteService;
 public class ParticipanteController {
 
 	@Autowired
-    private ParticipanteService participanteService;
+	private ParticipanteService participanteService;
 
 	@GetMapping
-    public ResponseEntity<List<ParticipanteBuscaDto>> getPadrao(){
-        List<Participante> listaParticipante = participanteService.todosParticipantes();
-        List<ParticipanteBuscaDto> participanteBuscaVos = ParticipanteBuscaDto.converter(listaParticipante);
+	public ResponseEntity<List<ParticipanteBuscaDto>> getPadrao() {
+		List<Participante> listaParticipante = participanteService.todosParticipantes();
+		List<ParticipanteBuscaDto> participanteBuscaVos = ParticipanteBuscaDto.converter(listaParticipante);
 
-        return ResponseEntity.ok(participanteBuscaVos);
-    }
+		return ResponseEntity.ok(participanteBuscaVos);
+	}
+
+	/* lista participantes na tabela - busca participantes*/
 	
-	//lista participantes na tabela - busca participantes
-		@GetMapping("/ativos")
-		public List<ParticipanteBuscaDto> listarPart() {
-			return participanteService.buscaPorStatus();
-		}
-		
-		@GetMapping("/{cpf}")
-		public ResponseEntity<ParticipanteBuscaNomeDto> mostraNome(@PathVariable String cpf){
-			return participanteService.buscaPorId(cpf);
-		}
-	
-	
+	@GetMapping("/ativos")
+	public List<ParticipanteBuscaDto> listarPart() {
+		return participanteService.buscaPorStatus();
+	}
+
+	@GetMapping("/{cpf}")
+	public ResponseEntity<ParticipanteBuscaNomeDto> mostraNome(@PathVariable String cpf) {
+		return participanteService.buscaPorId(cpf);
+	}
+
 }
