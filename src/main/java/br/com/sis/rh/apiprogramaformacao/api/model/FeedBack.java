@@ -8,11 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "TB_FEEDBACK")
+@Entity(name = "TB_FEEDBACK")
 public class FeedBack {
 
 	@Id
@@ -30,17 +30,28 @@ public class FeedBack {
 	@JoinColumn(name = "CODIGO_PARTICIPANTE_FK")
 	private Participante participante;
 
-	public FeedBack(LocalDate data, String anotacoes, Participante participante) {
+	@Column(name = "DISC")
+	@Lob
+	private byte[] disc;
+
+	public FeedBack(LocalDate data, String anotacoes, Participante participante, byte[] disc) {
 		this.data = data;
 		this.anotacoes = anotacoes;
 		this.participante = participante;
+		this.disc = disc;
 	}
 
 	public FeedBack() {
 
 	}
 
-	
+	public byte[] getDisc() {
+		return disc;
+	}
+
+	public void setDisc(byte[] disc) {
+		this.disc = disc;
+	}
 
 	public Long getId() {
 		return id;

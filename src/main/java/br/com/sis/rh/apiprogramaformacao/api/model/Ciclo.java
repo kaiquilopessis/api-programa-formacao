@@ -15,13 +15,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoConclusao;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusConclusao;
+import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoCiclo;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCiclo;
 
-@Entity
-@Table(name = "TB_CONCLUSAO")
-public class Conclusao {
-	
+@Entity(name = "TB_CONCLUSAO")
+public class Ciclo {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -46,22 +45,22 @@ public class Conclusao {
 
 	@Column(name = "RESULTADO")
 	@Enumerated(EnumType.STRING)
-	private ResultadoConclusao resultado;
+	private ResultadoCiclo resultado;
 
 	@Column(name = "STATUS_PROGRESSO")
 	@Enumerated(EnumType.STRING)
-	private StatusConclusao statusProgresso;
+	private StatusCiclo statusProgresso;
 
 	@Column(name = "OBSERVACAO")
 	private String observacao;
 
-	public Conclusao() {
+	public Ciclo() {
 
 	}
 
-	//Progressivo
-	public Conclusao(Participante participante, LocalDate dataAlteracao, Remuneracao cargo,
-			byte[] comprovanteRematricula, ResultadoConclusao resultado, StatusConclusao statusProgresso) {
+	// Progressive
+	public Ciclo(Participante participante, LocalDate dataAlteracao, Remuneracao cargo, byte[] comprovanteRematricula,
+			ResultadoCiclo resultado, StatusCiclo statusProgresso) {
 		this.participante = participante;
 		this.dataAlteracao = dataAlteracao;
 		this.cargoPrograma = cargo;
@@ -70,9 +69,9 @@ public class Conclusao {
 		this.statusProgresso = statusProgresso;
 	}
 
-	//Final
-	public Conclusao(Participante participante, LocalDate dataAlteracao, String cargo, byte[] comprovanteRematricula,
-			ResultadoConclusao resultado, StatusConclusao statusProgresso, String observacao) {
+	// Final
+	public Ciclo(Participante participante, LocalDate dataAlteracao, String cargo, byte[] comprovanteRematricula,
+			ResultadoCiclo resultado, StatusCiclo statusProgresso, String observacao) {
 		this.participante = participante;
 		this.dataAlteracao = dataAlteracao;
 		this.cargoEfetivado = cargo;
@@ -82,19 +81,19 @@ public class Conclusao {
 		this.observacao = observacao;
 	}
 
-	public ResultadoConclusao getResultado() {
+	public ResultadoCiclo getResultado() {
 		return resultado;
 	}
 
-	public void setResultado(ResultadoConclusao resultado) {
+	public void setResultado(ResultadoCiclo resultado) {
 		this.resultado = resultado;
 	}
 
-	public StatusConclusao getStatusProgresso() {
+	public StatusCiclo getStatusProgresso() {
 		return statusProgresso;
 	}
 
-	public void setStatusProgresso(StatusConclusao statusProgresso) {
+	public void setStatusProgresso(StatusCiclo statusProgresso) {
 		this.statusProgresso = statusProgresso;
 	}
 

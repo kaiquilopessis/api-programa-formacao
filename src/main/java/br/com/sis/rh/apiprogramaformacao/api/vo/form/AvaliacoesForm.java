@@ -1,60 +1,66 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
+import java.math.BigDecimal;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.AvaliacaoDesempenho;
 import br.com.sis.rh.apiprogramaformacao.api.model.Avaliacoes;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 
 public class AvaliacoesForm {
-	private Float notaTecnica;
 
-	private Float notaComportamental;
+	private BigDecimal notaTecnica;
 
-	private Float notaPraticasAgeis;
+	private AvaliacaoDesempenhoForm avaliacaoDesempenhoForm;
 
-	private Float notaLideranca;
+	private BigDecimal notaPraticasAgeis;
 
-	private Float notaNegocios;
+	private BigDecimal notaLideranca;
 
-	public Float getNotaTecnica() {
+	private BigDecimal notaNegocios;
+
+	public BigDecimal getNotaTecnica() {
 		return notaTecnica;
 	}
 
-	public void setNotaTecnica(Float notaTecnica) {
+	public void setNotaTecnica(BigDecimal notaTecnica) {
 		this.notaTecnica = notaTecnica;
 	}
 
-	public Float getNotaComportamental() {
-		return notaComportamental;
+	public AvaliacaoDesempenhoForm getAvaliacaoDesempenhoForm() {
+		return avaliacaoDesempenhoForm;
 	}
 
-	public void setNotaComportamental(Float notaComportamental) {
-		this.notaComportamental = notaComportamental;
+	public void setAvaliacaoDesempenhoForm(AvaliacaoDesempenhoForm avaliacaoDesempenhoForm) {
+		this.avaliacaoDesempenhoForm = avaliacaoDesempenhoForm;
 	}
 
-	public Float getNotaPraticasAgeis() {
+	public BigDecimal getNotaPraticasAgeis() {
 		return notaPraticasAgeis;
 	}
 
-	public void setNotaPraticasAgeis(Float notaPraticasAgeis) {
+	public void setNotaPraticasAgeis(BigDecimal notaPraticasAgeis) {
 		this.notaPraticasAgeis = notaPraticasAgeis;
 	}
 
-	public Float getNotaLideranca() {
+	public BigDecimal getNotaLideranca() {
 		return notaLideranca;
 	}
 
-	public void setNotaLideranca(Float notaLideranca) {
+	public void setNotaLideranca(BigDecimal notaLideranca) {
 		this.notaLideranca = notaLideranca;
 	}
 
-	public Float getNotaNegocios() {
+	public BigDecimal getNotaNegocios() {
 		return notaNegocios;
 	}
 
-	public void setNotaNegocios(Float notaNegocios) {
+	public void setNotaNegocios(BigDecimal notaNegocios) {
 		this.notaNegocios = notaNegocios;
 	}
 
-	public Avaliacoes converter (Participante participante) {
-		return new Avaliacoes(participante, notaTecnica, notaComportamental, notaPraticasAgeis, notaLideranca, notaNegocios);
+	public Avaliacoes converter(Participante participante) {
+		AvaliacaoDesempenho avaliacaoDesempenho = avaliacaoDesempenhoForm.converter();
+		return new Avaliacoes(participante, notaTecnica, notaPraticasAgeis, notaLideranca, notaNegocios,
+				avaliacaoDesempenho);
 	}
 }

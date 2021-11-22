@@ -1,27 +1,32 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import br.com.sis.rh.apiprogramaformacao.api.model.AvaliacaoDesempenho;
 import br.com.sis.rh.apiprogramaformacao.api.model.Avaliacoes;
 
 public class AvaliacoesDto {
 
 	private Long id;
 
-	private Float notaTecnica;
+	private BigDecimal notaTecnica;
 
-	private Float notaComportamental;
+	private AvaliacaoDesempenho notaComportamental;
 
-	private Float notaPraticasAgeis;
+	private BigDecimal notaPraticasAgeis;
 
-	private Float notaLideranca;
+	private BigDecimal notaLideranca;
 
-	private Float notaNegocios;
+	private BigDecimal notaNegocios;
+
+	private Long idAvaliacaoDesempenho;
 
 	public AvaliacoesDto(Avaliacoes avaliacao) {
 		this.id = avaliacao.getId();
-		this.notaComportamental = avaliacao.getNotaComportamental();
+		this.idAvaliacaoDesempenho = avaliacao.getAvaliacaoDesempenho().getId();
+		this.notaComportamental = avaliacao.getAvaliacaoDesempenho();
 		this.notaLideranca = avaliacao.getNotaLideranca();
 		this.notaNegocios = avaliacao.getNotaNegocios();
 		this.notaPraticasAgeis = avaliacao.getNotaPraticasAgeis();
@@ -36,47 +41,57 @@ public class AvaliacoesDto {
 		this.id = id;
 	}
 
-	public Float getNotaTecnica() {
+	public BigDecimal getNotaTecnica() {
 		return notaTecnica;
 	}
 
-	public void setNotaTecnica(Float notaTecnica) {
+	public void setNotaTecnica(BigDecimal notaTecnica) {
 		this.notaTecnica = notaTecnica;
 	}
 
-	public Float getNotaComportamental() {
+	
+
+	public AvaliacaoDesempenho getNotaComportamental() {
 		return notaComportamental;
 	}
 
-	public void setNotaComportamental(Float notaComportamental) {
+	public void setNotaComportamental(AvaliacaoDesempenho notaComportamental) {
 		this.notaComportamental = notaComportamental;
 	}
 
-	public Float getNotaPraticasAgeis() {
+	public BigDecimal getNotaPraticasAgeis() {
 		return notaPraticasAgeis;
 	}
 
-	public void setNotaPraticasAgeis(Float notaPraticasAgeis) {
+	public void setNotaPraticasAgeis(BigDecimal notaPraticasAgeis) {
 		this.notaPraticasAgeis = notaPraticasAgeis;
 	}
 
-	public Float getNotaLideranca() {
+	public BigDecimal getNotaLideranca() {
 		return notaLideranca;
 	}
 
-	public void setNotaLideranca(Float notaLideranca) {
+	public void setNotaLideranca(BigDecimal notaLideranca) {
 		this.notaLideranca = notaLideranca;
 	}
 
-	public Float getNotaNegocios() {
+	public BigDecimal getNotaNegocios() {
 		return notaNegocios;
 	}
 
-	public void setNotaNegocios(Float notaNegocios) {
+	public void setNotaNegocios(BigDecimal notaNegocios) {
 		this.notaNegocios = notaNegocios;
 	}
 
-	public static List<AvaliacoesDto> converter (List<Avaliacoes> avaliacoes){
+	public Long getIdAvaliacaoDesempenho() {
+		return idAvaliacaoDesempenho;
+	}
+
+	public void setIdAvaliacaoDesempenho(Long idAvaliacaoDesempenho) {
+		this.idAvaliacaoDesempenho = idAvaliacaoDesempenho;
+	}
+
+	public static List<AvaliacoesDto> converter(List<Avaliacoes> avaliacoes) {
 		return avaliacoes.stream().map(AvaliacoesDto::new).collect(Collectors.toList());
 	}
 

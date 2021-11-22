@@ -2,7 +2,6 @@ package br.com.sis.rh.apiprogramaformacao.api.config;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.UsuarioAcesso;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;

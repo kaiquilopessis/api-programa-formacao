@@ -8,14 +8,29 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Getter
-@Setter
+
 public class ListaRemuneracaoDto {
 
     private Long id;
     private String cargo;
 
-    public ListaRemuneracaoDto(Remuneracao remuneracao){
+    public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+
+	public ListaRemuneracaoDto(Remuneracao remuneracao){
         this.id = remuneracao.getId();
         this.cargo = remuneracao.getCargo();
     }

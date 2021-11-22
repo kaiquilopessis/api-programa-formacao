@@ -1,77 +1,57 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
-import java.net.URI;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDate;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
-import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Conclusao;
-import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ConclusaoDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.form.ConclusaoFinalForm;
-import br.com.sis.rh.apiprogramaformacao.api.vo.form.ConclusaoProgressivaForm;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RemuneracaoProgramaDto;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ConclusaoRepository;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RelatorioConclusaoVO;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
+import br.com.sis.rh.apiprogramaformacao.core.util.DataConfiguration;
 
 @Service
 public class ConclusaoService {
-
-	@Autowired
-	private ConclusaoRepository conclusaoRepository;
-
+	
 	@Autowired
 	private ParticipanteRepository participanteRepository;
-
 	@Autowired
-	private RemuneracaoRepository remuneracaoRepository;
-
-	public List<ConclusaoDto> listarConclusoes(String cpf){
-		List<Conclusao> conclusoes = conclusaoRepository.findAllByParticipanteCpf(cpf);
-		return ConclusaoDto.converter(conclusoes);
+	private ProgramaRepository programaRepository;
+	@Autowired
+	private DataConfiguration dataConfiguration;
+	
+	public RelatorioConclusaoVO popularCards(String formacao, String turma) {
+		String turmaFormatada = turma.replace("+", " ");
+		
+		RelatorioConclusaoVO relatorioConclusaoVO = new RelatorioConclusaoVO();
+		relatorioConclusaoVO = partAtivos(formacao, turmaFormatada, relatorioConclusaoVO);
+		relatorioConclusaoVO = partEfetivados(formacao, turmaFormatada, relatorioConclusaoVO);
+		relatorioConclusaoVO = dataConclusao(formacao, turmaFormatada, relatorioConclusaoVO);
+		
+		relatorioConclusaoVO.setProgramadeformacao(formacao);
+		relatorioConclusaoVO.setTurma(turmaFormatada);
+		
+		return relatorioConclusaoVO;
 	}
-
-	public ResponseEntity<ConclusaoDto> registrarCicloFinal(String cpf, ConclusaoFinalForm conclusaoFinalForm,
-			UriComponentsBuilder uriComponentsBuilder) {
-		Optional<Participante> participante = participanteRepository.findById(cpf);
-		if (participante.isPresent()) {
-			Conclusao conclusaoFinal = conclusaoFinalForm.converter(participante.get());
-			conclusaoRepository.save(conclusaoFinal);
-			URI uri = uriComponentsBuilder
-					.path("/conclusoes/registrociclofinal/{id}")
-					.buildAndExpand(conclusaoFinal.getId())
-					.toUri();
-			return ResponseEntity.created(uri).body(new ConclusaoDto(conclusaoFinal));
-		}
-		return ResponseEntity.notFound().build();
+	
+	public RelatorioConclusaoVO partAtivos(String formacao, String turma, RelatorioConclusaoVO relatorio) {
+		Integer totalAtivos = participanteRepository.listaParticipantesAtivos(formacao, turma);
+		relatorio.setParticipantesAtivos(totalAtivos);
+		return relatorio;
 	}
-
-	public ResponseEntity<ConclusaoDto> registrarCicloProgressivo(String cpf,
-			ConclusaoProgressivaForm conclusaoProgressivaForm, UriComponentsBuilder uriComponentsBuilder) {
-		Optional<Participante> participante =  participanteRepository.findById(cpf);
-		if(participante.isPresent()) {
-			Conclusao conclusaoProgressiva = conclusaoProgressivaForm
-					.converter(participante.get(), remuneracaoRepository);
-			conclusaoRepository.save(conclusaoProgressiva);
-			URI uri = uriComponentsBuilder
-					.path("/conclusoes/registrocicloprogressivo/{id}")
-					.buildAndExpand(conclusaoProgressiva.getId())
-					.toUri();
-			return ResponseEntity.created(uri).body(new ConclusaoDto(conclusaoProgressiva));
-		}
-		return ResponseEntity.notFound().build();
+	
+	public RelatorioConclusaoVO partEfetivados(String formacao, String turma, RelatorioConclusaoVO relatorio) {
+		Integer totalEfetivados = participanteRepository.listaParticipantesEfetivados(formacao, turma);
+		relatorio.setParticipantesEfetivados(totalEfetivados);
+		return relatorio;
 	}
-
-	public List<RemuneracaoProgramaDto> listarRemuneracao() {
-		List<Remuneracao> remuneracao = remuneracaoRepository.findAll();
-		return RemuneracaoProgramaDto.converter(remuneracao);
+	
+	public RelatorioConclusaoVO dataConclusao(String formacao, String turma, RelatorioConclusaoVO relatorio) {
+		LocalDate dataFim = programaRepository.dataConclusao(formacao, turma);
+		String data = dataConfiguration.dataFormatada(dataFim);
+		relatorio.setDataConclusao(data);
+		
+		return relatorio;
 	}
-
 
 }

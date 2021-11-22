@@ -1,17 +1,17 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import java.time.LocalDate;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.time.LocalDate;
-import java.util.Collection;
 
-@Entity
-@Table(name="TB_USUARIO_ACESSO")
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+@Entity(name="TB_USUARIO_ACESSO")
 public class UsuarioAcesso implements UserDetails {
 
     @Id

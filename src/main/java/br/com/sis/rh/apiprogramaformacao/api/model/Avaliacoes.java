@@ -1,5 +1,7 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,45 +9,50 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "TB_NOTAS_AVALIACOES")
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
+@Entity(name = "TB_NOTAS_AVALIACOES")
 public class Avaliacoes {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Long id;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "CODIGO_PARTICIPANTE_FK")
 	private Participante participante;
 
 	@Column(name = "NOTA_TECNICA")
-	private Float notaTecnica;
-
-	@Column(name = "NOTA_COMPORTAMENTAL")
-	private Float notaComportamental;
+	private BigDecimal notaTecnica;
 
 	@Column(name = "NOTA_PRATICAS_AGEIS")
-	private Float notaPraticasAgeis;
+	private BigDecimal notaPraticasAgeis;
 
 	@Column(name = "NOTA_LIDERANCA")
-	private Float notaLideranca;
+	private BigDecimal notaLideranca;
 
 	@Column(name = "NOTA_NEGOCIO")
-	private Float notaNegocios;
+	private BigDecimal notaNegocios;
 
-	public Avaliacoes(Participante participante, Float notaTecnica, Float notaComportamental, Float notaPraticasAgeis,
-			Float notaLideranca, Float notaNegocios) {
+	@OneToOne
+	@Cascade(CascadeType.ALL)
+	@JoinColumn(name = "NOTA_COMPORTAMENTAL_FK")
+	private AvaliacaoDesempenho avaliacaoDesempenho;
+
+	public Avaliacoes(Participante participante, BigDecimal notaTecnica, BigDecimal notaPraticasAgeis, BigDecimal notaLideranca,
+			BigDecimal notaNegocios, AvaliacaoDesempenho avaliacaoDesempenho) {
 
 		this.participante = participante;
 		this.notaTecnica = notaTecnica;
-		this.notaComportamental = notaComportamental;
 		this.notaPraticasAgeis = notaPraticasAgeis;
 		this.notaLideranca = notaLideranca;
 		this.notaNegocios = notaNegocios;
+		this.avaliacaoDesempenho = avaliacaoDesempenho;
 	}
 
 	public Avaliacoes() {
@@ -60,8 +67,6 @@ public class Avaliacoes {
 		this.id = id;
 	}
 
-	
-
 	public Participante getParticipante() {
 		return participante;
 	}
@@ -70,44 +75,43 @@ public class Avaliacoes {
 		this.participante = participante;
 	}
 
-	public Float getNotaTecnica() {
+	public BigDecimal getNotaTecnica() {
 		return notaTecnica;
 	}
 
-	public void setNotaTecnica(Float notaTecnica) {
+	public void setNotaTecnica(BigDecimal notaTecnica) {
 		this.notaTecnica = notaTecnica;
 	}
 
-	public Float getNotaComportamental() {
-		return notaComportamental;
-	}
-
-	public void setNotaComportamental(Float notaComportamental) {
-		this.notaComportamental = notaComportamental;
-	}
-
-	public Float getNotaPraticasAgeis() {
+	public BigDecimal getNotaPraticasAgeis() {
 		return notaPraticasAgeis;
 	}
 
-	public void setNotaPraticasAgeis(Float notaPraticasAgeis) {
+	public void setNotaPraticasAgeis(BigDecimal notaPraticasAgeis) {
 		this.notaPraticasAgeis = notaPraticasAgeis;
 	}
 
-	public Float getNotaLideranca() {
+	public BigDecimal getNotaLideranca() {
 		return notaLideranca;
 	}
 
-	public void setNotaLideranca(Float notaLideranca) {
+	public void setNotaLideranca(BigDecimal notaLideranca) {
 		this.notaLideranca = notaLideranca;
 	}
 
-	public Float getNotaNegocios() {
+	public BigDecimal getNotaNegocios() {
 		return notaNegocios;
 	}
 
-	public void setNotaNegocios(Float notaNegocios) {
+	public void setNotaNegocios(BigDecimal notaNegocios) {
 		this.notaNegocios = notaNegocios;
 	}
 
+	public AvaliacaoDesempenho getAvaliacaoDesempenho() {
+		return avaliacaoDesempenho;
+	}
+
+	public void setAvaliacaoDesempenho(AvaliacaoDesempenho avaliacaoDesempenho) {
+		this.avaliacaoDesempenho = avaliacaoDesempenho;
+	}
 }
