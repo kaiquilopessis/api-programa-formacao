@@ -23,18 +23,27 @@ import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 
 @Service
 public class FeedBackService {
-
+	/**
+	 Injeção do feedBackRepository
+	 */
 	@Autowired
 	private FeedBackRepository feedBackRepository;
-
+	/**
+	 Injeção do participanteRepository
+	 */
 	@Autowired
 	private ParticipanteRepository participanteRepository;
-
+	/**
+	 *Método que busca no banco os feedBacks e retorna o FeedBackDto 
+	 * o Método converter converte o objeto feedback, para feedBackDto
+	 **/
 	public List<FeedBackDto> listar(String cpf) {
 		List<FeedBack> feedbacks = feedBackRepository.findAllByParticipanteCpf(cpf);
 		return FeedBackDto.converter(feedbacks);
 	}
-
+	/**
+	 * Recebe o objeto feedbackForm, e salva no banco
+	 * */
 	public ResponseEntity<FeedBackDto> cadastrar(String cpf, @RequestBody FeedBackForm feedBackForm,
 			UriComponentsBuilder uriComponentsBuilder) {
 		Optional<Participante> participante = participanteRepository.findById(cpf);
@@ -52,7 +61,10 @@ public class FeedBackService {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-
+	/**
+	 * Recebe o id e faz a exclusão do feedBack de acordo com o ID passado.
+	 */
+	 
 	public ResponseEntity<FeedBackDto> deletar(@PathVariable Long id) {
 		Optional<FeedBack> feedBack = feedBackRepository.findById(id);
 		if (feedBack.isPresent()) {
@@ -61,7 +73,9 @@ public class FeedBackService {
 		}
 		return ResponseEntity.notFound().build();
 	}
-
+	/**
+	 *Faz a lógica do donwload, o metodo parseMediaType converte o arquivo para poder fazer donwload
+	 * */
 	public ResponseEntity<ByteArrayResource> download(Long id) {
 		FeedBack disc = feedBackRepository.getById(id);
 		return ResponseEntity.ok()
