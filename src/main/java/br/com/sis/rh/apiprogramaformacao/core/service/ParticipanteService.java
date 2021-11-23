@@ -15,7 +15,7 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteBuscaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteBuscaNomeDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaParticipanteForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.FolhaForm;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusParticipante;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InvestimentoFolhaRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InvestimentosRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
@@ -75,7 +75,7 @@ public class ParticipanteService {
 	}
 
 	public List<ParticipanteBuscaDto> buscaPorStatus() {
-		List<Participante> participantes = repository.findByStatus(StatusParticipante.ATIVO);
+		List<Participante> participantes = repository.findByStatus(StatusAtivo.ATIVO);
 		return ParticipanteBuscaDto.converter(participantes);
 	}
 

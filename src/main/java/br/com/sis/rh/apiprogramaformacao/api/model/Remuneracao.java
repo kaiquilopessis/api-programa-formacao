@@ -38,7 +38,12 @@ public class Remuneracao {
 	private BigDecimal remunExtra;
 	@Column(name = "alura")
 	private BigDecimal alura;
-
+	
+	public Remuneracao() {
+		
+	}
+	
+	
 	public Remuneracao(String cargo, BigDecimal bolsa, BigDecimal beneficio, BigDecimal convenio,
 					   BigDecimal horaExtra, BigDecimal beneficioLegislacao, BigDecimal remunEsporadica,
 					   BigDecimal remunExtra, BigDecimal alura){

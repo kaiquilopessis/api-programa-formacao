@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivado;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusParticipante;
 
 @Entity
@@ -23,29 +24,38 @@ public class Participante {
 	@Id
 	@Column(name = "cpf_participante", length = 12)
 	private String cpf;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "codigo_programa_fk", referencedColumnName = "id", nullable = false)
 	private Programa programa;
+	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "codigo_candidato_fk", referencedColumnName = "id", nullable = false)
 	private Candidato candidato;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fk_codigo_remun", referencedColumnName = "id", nullable = false)
 	private Remuneracao remuneracao;
+	
 	@Column(name = "nm_faculdade", length = 50)
 	private String faculdade;
+	
 	@Column(name = "nm_curso", length = 50)
 	private String curso;
+	
 	@Column(name = "data_fim_graduacao")
 	private LocalDate dataFinal;
+	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "status_ativo")
 	private StatusAtivo status;
 	// @Column(name = "TCE")
 	// private String tce;
+	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "status_efetivado")
-	private StatusParticipante statusEfetivado;
+	private StatusEfetivado statusEfetivado;
+	
 	@Column(name = "email_corp")
 	private String email;
 
@@ -133,13 +143,15 @@ public class Participante {
 		this.status = status;
 	}
 
-	public StatusParticipante getStatusEfetivado() {
+	public StatusEfetivado getStatusEfetivado() {
 		return statusEfetivado;
 	}
 
-	public void setStatusEfetivado(StatusParticipante statusEfetivado) {
+	public void setStatusEfetivado(StatusEfetivado statusEfetivado) {
 		this.statusEfetivado = statusEfetivado;
 	}
+
+	
 
 	// public String getTce() {
 	// return tce;
