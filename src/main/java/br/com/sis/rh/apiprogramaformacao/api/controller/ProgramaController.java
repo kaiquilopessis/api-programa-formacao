@@ -1,27 +1,29 @@
 package br.com.sis.rh.apiprogramaformacao.api.controller;
 
-import java.net.URI;
 import java.util.List;
-
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.*;
-import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaProcessoSeletivoForm;
-import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProcessoSeletivoForm;
-import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProgramaCadastroForm;
-import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
-
-import br.com.sis.rh.apiprogramaformacao.core.service.ProcessoSeletivoService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
-import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
-import br.com.sis.rh.apiprogramaformacao.core.service.ProgramaService;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProcessoSeletivoVo;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaBuscaVo;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaCompletoVo;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProgramaCadastroForm;
+import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
+import br.com.sis.rh.apiprogramaformacao.core.service.ProcessoSeletivoService;
+import br.com.sis.rh.apiprogramaformacao.core.service.ProgramaService;
 
 @RestController
 @RequestMapping("/api/programa")
@@ -40,10 +42,8 @@ public class ProgramaController {
 	private InstrutorRepository instrutorRepository;
 
 	@GetMapping
-	public ResponseEntity<List<ProgramaBuscaVo>> getPadrao(){
-		List<Programa> listaProgramas = programaService.getProgramaList();
-		List<ProgramaBuscaVo> programaBuscaVos = ProgramaBuscaVo.converterParaLista(listaProgramas);
-		return (ResponseEntity<List<ProgramaBuscaVo>>) programaService.getProgramaList();
+	public List<ProgramaBuscaVo> getPadrao(){
+		return  programaService.getProgramaList();
 	}
 	
 	

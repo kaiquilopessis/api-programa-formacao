@@ -1,6 +1,12 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaDeProcessoSeletivoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProcessoSeletivoDto;
@@ -9,11 +15,6 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaProcessoSeletivoFor
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProcessoSeletivoForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProcessoSeletivoService {

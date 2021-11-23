@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaProgramaDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaBuscaVo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaProcessoSeletivoForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProcessoSeletivoForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
@@ -23,10 +24,12 @@ public class ProgramaService  {
 	@Autowired
 	InstrutorRepository instrutorRepository;
 
-	public List<Programa> getProgramaList(){
-		return repository.findAll();
+	public List<ProgramaBuscaVo> getProgramaList(){
+		List<ProgramaBuscaVo> programaBuscaVos = ProgramaBuscaVo.converterParaLista(repository.findAll());
+		return programaBuscaVos ;
 	}
-
+	
+	
 	public Programa getProgramaPorId(Long id) {
 		Optional<Programa> programa = repository.findById(id);
 		return programa.get();

@@ -12,7 +12,6 @@ public class CicloFinalDto {
 	private ResultadoCiclo resultado;
 	private LocalDate dataRegistro;
 	private StatusCiclo status;
-	private byte[] comprovante;
 	private String cargoPrograma;
 	private String cargoEfetivado;
 	private String observacao;
@@ -49,14 +48,6 @@ public class CicloFinalDto {
 		this.status = status;
 	}
 
-	public byte[] getComprovante() {
-		return comprovante;
-	}
-
-	public void setComprovante(byte[] comprovante) {
-		this.comprovante = comprovante;
-	}
-
 	public String getCargoPrograma() {
 		return cargoPrograma;
 	}
@@ -85,7 +76,6 @@ public class CicloFinalDto {
 		this.id = conclusaoFinal.getId();
 		this.resultado = conclusaoFinal.getResultado();
 		this.dataRegistro = conclusaoFinal.getDataAlteracao();
-		this.comprovante = conclusaoFinal.getComprovanteRematricula();
 		this.cargoEfetivado = conclusaoFinal.getCargoEfetivado();
 		this.observacao = conclusaoFinal.getObservacao();
 	}

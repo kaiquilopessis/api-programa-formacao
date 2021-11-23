@@ -14,7 +14,6 @@ public class CicloDto {
 	private ResultadoCiclo resultado;
 	private LocalDate dataRegistro;
 	private StatusCiclo status;
-	private byte[] comprovante;
 	private String cargoPrograma;
 	private String cargoEfetivado;
 	private String observacao;
@@ -24,7 +23,6 @@ public class CicloDto {
 		this.resultado = conclusao.getResultado();
 		this.dataRegistro = conclusao.getDataAlteracao();
 		this.status = conclusao.getStatusProgresso();
-		this.comprovante = conclusao.getComprovanteRematricula();
 		if (conclusao.getStatusProgresso() == StatusCiclo.PROGRESSIVA) {
 			this.cargoPrograma = conclusao.getCargoPrograma().getCargo();
 		}
@@ -62,14 +60,6 @@ public class CicloDto {
 
 	public void setStatus(StatusCiclo status) {
 		this.status = status;
-	}
-
-	public byte[] getComprovante() {
-		return comprovante;
-	}
-
-	public void setComprovante(byte[] comprovante) {
-		this.comprovante = comprovante;
 	}
 
 	public String getCargoPrograma() {
