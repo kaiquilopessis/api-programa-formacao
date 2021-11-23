@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeProgramaEmAndamentoDto;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusProcessoSeletivo;
 
 public interface ProcessoSeletivoRepository extends JpaRepository<ProcessoSeletivo, Long> {
@@ -20,5 +20,5 @@ public interface ProcessoSeletivoRepository extends JpaRepository<ProcessoSeleti
     
     @Query(value = "select new br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeProgramaEmAndamentoDto(ps.nome) " +
             "from ProcessoSeletivo ps where ps.status = 'EM_ANDAMENTO'")
-    List<ProgramaDto> buscarFormacoesEmAndamento(StatusProcessoSeletivo statusEmAndamento);
+    List<NomeProgramaEmAndamentoDto> buscarFormacoesEmAndamento();
 }

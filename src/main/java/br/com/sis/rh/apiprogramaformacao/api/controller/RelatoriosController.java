@@ -42,7 +42,7 @@ public class RelatoriosController {
 	}
 
 	@GetMapping("/formacoesEmAndamento")
-	public List<ProgramaDto> listaFormacoesEmAndamento() {
+	public List<NomeProgramaEmAndamentoDto> listaFormacoesEmAndamento() {
 		return filtroRelatorio.listaTotalFormacoesEmAndamento();
 	}
 

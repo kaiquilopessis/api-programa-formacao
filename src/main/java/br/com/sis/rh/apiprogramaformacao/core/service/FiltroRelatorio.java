@@ -55,17 +55,17 @@ public class FiltroRelatorio {
 	
 	//Lógica para listar os participantes de todos os programas com status ATIVO
 	public List<ParticipanteProgramaDto> listaTotalParticipantesAtivos() {
-		return participanteRepository.buscarParticipantesProgramaAtivos(StatusParticipante.ATIVO);
+		return participanteRepository.buscarParticipantesProgramaAtivos();
 	} 
 	
 	//Lógica para listar os participantes de todos os programas com status EFETIVADO
 	public List<ParticipanteProgramaDto> listaTotalParticipantesEfetivados() {
-		return participanteRepository.findByStatusEfetivo(StatusEfetivado.EFETIVADO);
+		return participanteRepository.findByStatusEfetivo();
 	}
 	
 	//Lógica para listar todas as formações com status EM_ANDAMENTO
-	public List<ProgramaDto> listaTotalFormacoesEmAndamento() {
-		return processoSeletivoRepository.buscarFormacoesEmAndamento(StatusProcessoSeletivo.EM_ANDAMENTO);
+	public List<NomeProgramaEmAndamentoDto> listaTotalFormacoesEmAndamento() {
+		return processoSeletivoRepository.buscarFormacoesEmAndamento();
 	}
 
 	//Busca todas os programas de formações

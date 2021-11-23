@@ -7,6 +7,7 @@ public class ParticipanteProgramaDto {
 
     @Column(name = "nomeParticipante")
     private String nomeParticipante;
+   
     @Column(name = "nomePrograma")
     private String nomePrograma;
     
