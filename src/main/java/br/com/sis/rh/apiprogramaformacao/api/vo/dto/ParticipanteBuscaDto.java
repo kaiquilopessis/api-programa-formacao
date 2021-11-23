@@ -11,13 +11,13 @@ public class ParticipanteBuscaDto {
 	private String nome;
 	private String cpf;
 	private String programa;
-	private String statusAtivo;
+	private StatusAtivo statusAtivo;
 
 	public ParticipanteBuscaDto(Participante participante) {
 		this.nome = participante.getCandidato().getNome();
 		this.cpf = participante.getCpf();
 		this.programa = participante.getPrograma().getProcessoSeletivo().getNome();
-		this.statusAtivo = StatusAtivo.ATIVO.toString();
+		this.statusAtivo = participante.getStatus();
 	}
 
 	public String getNome() {
@@ -44,11 +44,11 @@ public class ParticipanteBuscaDto {
 		this.programa = programa;
 	}
 
-	public String getStatusAtivo() {
+	public StatusAtivo getStatusAtivo() {
 		return statusAtivo;
 	}
 
-	public void setStatusAtivo(String statusAtivo) {
+	public void setStatusAtivo(StatusAtivo statusAtivo) {
 		this.statusAtivo = statusAtivo;
 	}
 

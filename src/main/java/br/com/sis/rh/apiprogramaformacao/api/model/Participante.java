@@ -49,8 +49,6 @@ public class Participante {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "status_ativo")
 	private StatusAtivo status;
-	// @Column(name = "TCE")
-	// private String tce;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "status_efetivado")

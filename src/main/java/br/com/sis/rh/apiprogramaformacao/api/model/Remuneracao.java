@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="TB_REMUNERACAO")
-@NoArgsConstructor
 public class Remuneracao {
 
 	@Id
