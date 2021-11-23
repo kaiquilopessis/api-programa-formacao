@@ -1,5 +1,7 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
+import org.apache.tomcat.jni.Local;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -11,18 +13,20 @@ public class FiltragemInstrutorDto {
     private String nomeTurma;
     private Integer qtdHora;
     private BigDecimal vlrHora;
+	private LocalDate dataLancamento;
     private LocalDate dataFim;
     
     
     
 	public FiltragemInstrutorDto(String cpfInstrutor, String nomeInstrutor, String nomePrograma, String nomeTurma,
-			Integer qtdHora, BigDecimal vlrHora, LocalDate dataFim) {
+			Integer qtdHora, BigDecimal vlrHora, LocalDate dataLancamento, LocalDate dataFim) {
 		this.cpfInstrutor = cpfInstrutor;
 		this.nomeInstrutor = nomeInstrutor;
 		this.nomePrograma = nomePrograma;
 		this.nomeTurma = nomeTurma;
 		this.qtdHora = qtdHora;
 		this.vlrHora = vlrHora;
+		this.dataLancamento = dataLancamento;
 		this.dataFim = dataFim;
 	}
 	

@@ -12,20 +12,12 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemInstrutorDto;
 
 public interface InvestimentoInstrutorRepository extends JpaRepository<RemuneracaoInstrutor, Integer> {
 
-//    @Query(value = "SELECT i.cpf_instrutor , i.nome_instrutor, pro.nome as nomePrograma, p.nome_turma as nomeTurma, rei.qtd_hora, rei.vlr_hora, p.data_fim " +
-//            "FROM TB_INSTRUTOR as i INNER JOIN TB_PROCESSO_SELETIVO as pro ON pro.cpf_instrutor_fk = i.cpf_instrutor " +
-//            "INNER JOIN TB_REMUNERACAO_INSTRUTOR AS rei ON rei.codigo_instrutor_fk = i.cpf_instrutor " +
-//            "INNER JOIN TB_PROGRAMA AS p ON p.processo_seletivo_fk = pro.id " +
-//            "where pro.nome = ?1 and p.nome_turma = ?2 " +
-//            "group by i.nome_instrutor, pro.nome, p.nome_turma, i.cpf_instrutor, rei.qtd_hora, rei.vlr_hora, p.data_fim ", nativeQuery = true)
-//    List<FiltragemInstrutorDto> findByNomeFormacaoTurmaHora(String nomeFormacao, String nomeTurma);
-
-    @Query(value = "SELECT new br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemInstrutorDto(i.cpfInstrutor, i.nome, pro.nome, p.nomeTurma, rei.qtdHora, rei.valorHora, p.dataFim)  " +
+    @Query(value = "SELECT new br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemInstrutorDto(i.cpfInstrutor, i.nome, pro.nome, p.nomeTurma, rei.qtdHora, rei.valorHora, rei.dataLancamento, p.dataFim)  " +
             "FROM Instrutor i INNER JOIN ProcessoSeletivo as pro ON pro.instrutor = i " +
             "INNER JOIN RemuneracaoInstrutor rei ON rei.instrutor = i " +
             "INNER JOIN Programa p ON p.processoSeletivo = pro " +
             "where pro.nome = ?1 and p.nomeTurma = ?2 " +
-            "group by i.nome, pro.nome, p.nomeTurma, i.cpfInstrutor, rei.qtdHora, rei.valorHora, p.dataFim ")
+            "group by i.nome, pro.nome, p.nomeTurma, i.cpfInstrutor, rei.qtdHora, rei.valorHora, rei.dataLancamento, p.dataFim ")
     List<FiltragemInstrutorDto> findByNomeFormacaoTurmaHora(String nomeFormacao, String nomeTurma);
 
 

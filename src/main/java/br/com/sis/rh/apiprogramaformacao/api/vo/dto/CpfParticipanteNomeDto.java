@@ -1,17 +1,12 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@AllArgsConstructor
 
 @Entity
 public class CpfParticipanteNomeDto {
@@ -25,6 +20,10 @@ public class CpfParticipanteNomeDto {
 	public CpfParticipanteNomeDto(Participante participante) {
 		this.cpfParticipante = participante.getCpf();
 		this.nomeCandidato = participante.getCandidato().getNome();
+	}
+
+	public CpfParticipanteNomeDto(){
+
 	}
 	
 	
