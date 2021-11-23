@@ -41,4 +41,6 @@ public class FiltragemFolhaDto {
     private BigDecimal alura;
     @Column(name = "data_fim_programa")
     private LocalDate dataFim;
+    @Column(name = "data_inicio_programa")
+    private LocalDate dataInicio;
 }

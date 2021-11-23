@@ -11,7 +11,7 @@ import java.util.List;
 public interface InvestimentoFolhaRepository extends JpaRepository<FiltragemFolhaDto, String> {
     
     @Query(value = "SELECT pa.cpf_participante ,ca.nome AS nome_participante, pro.nome AS nome_programa, pr.nome_turma, re.bolsa_aux, re.beneficios, " +
-            "re.convenio, re.hr_extra, re.beneficio_legislacao, re.remun_esporadica, re.remun_extra, re.alura, pr.data_fim AS data_fim_programa " +
+            "re.convenio, re.hr_extra, re.beneficio_legislacao, re.remun_esporadica, re.remun_extra, re.alura, pr.data_fim AS data_fim_programa, pr.data_inicio AS data_inicio_programa " +
             "FROM TB_PARTICIPANTE AS pa INNER JOIN TB_PROGRAMA AS pr ON pr.id = pa.codigo_programa_fk " +
             "INNER JOIN TB_CANDIDATO AS ca ON ca.id = pa.codigo_candidato_fk " +
             "INNER JOIN TB_PROCESSO_SELETIVO AS pro ON pro.id = pr.processo_seletivo_fk " +
