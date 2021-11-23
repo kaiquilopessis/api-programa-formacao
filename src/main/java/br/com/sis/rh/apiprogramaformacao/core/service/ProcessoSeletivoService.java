@@ -4,6 +4,7 @@ package br.com.sis.rh.apiprogramaformacao.core.service;
 import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaDeProcessoSeletivoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProcessoSeletivoDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProcessoSeletivoVo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaProcessoSeletivoForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProcessoSeletivoForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
@@ -27,6 +28,11 @@ public class ProcessoSeletivoService {
         List<ProcessoSeletivo> listaDeProcessos = repository.findTodosEmAndamento();
 
         return ListaDeProcessoSeletivoDto.gerarLista(listaDeProcessos);
+    }
+
+    public List<ProcessoSeletivoVo> listarProcesso(){
+        List<ProcessoSeletivo> lista = repository.findAllByStatus("FINALIZADA");
+        return ProcessoSeletivoVo.converter(lista);
     }
 
     public ProcessoSeletivoDto getProcessoSeletivo(Long id) {

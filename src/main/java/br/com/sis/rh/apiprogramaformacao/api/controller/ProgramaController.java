@@ -3,16 +3,14 @@ package br.com.sis.rh.apiprogramaformacao.api.controller;
 import java.net.URI;
 import java.util.List;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaProgramaDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaBuscaVo;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaCompletoVo;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.*;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaProcessoSeletivoForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProcessoSeletivoForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProgramaCadastroForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
 
+import br.com.sis.rh.apiprogramaformacao.core.service.ProcessoSeletivoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +31,9 @@ public class ProgramaController {
 	private ProgramaService programaService;
 
 	@Autowired
+	private ProcessoSeletivoService processoSeletivoService;
+
+	@Autowired
 	private ProcessoSeletivoRepository processoSeletivoRepository;
 
 	@Autowired
@@ -42,8 +43,13 @@ public class ProgramaController {
 	public ResponseEntity<List<ProgramaBuscaVo>> getPadrao(){
 		List<Programa> listaProgramas = programaService.getProgramaList();
 		List<ProgramaBuscaVo> programaBuscaVos = ProgramaBuscaVo.converterParaLista(listaProgramas);
-
-		return ResponseEntity.ok(programaBuscaVos);
+		return (ResponseEntity<List<ProgramaBuscaVo>>) programaService.getProgramaList();
+	}
+	
+	
+	@GetMapping("/processo-seletivo/finalizados")
+	public List<ProcessoSeletivoVo> getProcesso(){
+		return processoSeletivoService.listarProcesso();
 	}
 
 	@GetMapping("/{id}")

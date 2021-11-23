@@ -12,6 +12,8 @@ import br.com.sis.rh.apiprogramaformacao.core.enums.StatusProcessoSeletivo;
 
 public interface ProcessoSeletivoRepository extends JpaRepository<ProcessoSeletivo, Long> {
 
+    List<ProcessoSeletivo> findAllByStatus(String status);
+
     @Query(value = "SELECT * FROM TB_PROCESSO_SELETIVO AS p WHERE p.nome = :nome", nativeQuery = true)
     ProcessoSeletivo findByNome(@Param("nome") String nome);
 
