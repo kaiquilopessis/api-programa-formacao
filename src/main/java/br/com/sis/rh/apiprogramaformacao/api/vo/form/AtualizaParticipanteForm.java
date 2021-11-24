@@ -26,7 +26,7 @@ public class AtualizaParticipanteForm {
 		Participante participante = participanteRepository.getById(cpf);
 		Programa programa = programaRepository.findByNomeTurma(turma);
 		
-		participante.getCandidato().getNome();
+		participante.getCandidato().setNome(this.nome);
 		participante.getCpf();
 		participante.getCandidato().getTelefone();
 		participante.getCandidato().setFonteRecrutamento(this.fonteRecrutamento);

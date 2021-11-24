@@ -1,17 +1,15 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
-import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCandidato;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
+import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
+import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
 
 public class CandidatoForm {
 

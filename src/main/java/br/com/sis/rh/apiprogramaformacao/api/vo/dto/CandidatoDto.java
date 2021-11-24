@@ -1,9 +1,11 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
 
 public class CandidatoDto {
     private Long id;
@@ -133,5 +135,9 @@ public class CandidatoDto {
     public void setProcessoSeletivoId(Long processoSeletivoId) {
         this.processoSeletivoId = processoSeletivoId;
     }
+
+    public static List<CandidatoDto> converter(List<Candidato> candidato){
+		return candidato.stream().map(CandidatoDto::new).collect(Collectors.toList());
+	}
 
 }

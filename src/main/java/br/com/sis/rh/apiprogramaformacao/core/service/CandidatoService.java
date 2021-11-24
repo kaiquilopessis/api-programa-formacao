@@ -1,5 +1,15 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
 import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CandidatoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaCandidatoDto;
@@ -7,15 +17,6 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaCandidatoForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.CandidatoForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.CandidatoRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CandidatoService {
@@ -30,6 +31,11 @@ public class CandidatoService {
         Optional<Candidato> optionalCandidato = candidatoRepository.findById(id);
 
         return optionalCandidato.get();
+    }
+    
+    public List<CandidatoDto> buscaCandidatoAprovado() {
+    	List<Candidato> candidatos = candidatoRepository.findCandidatoPorStatus();
+    	return CandidatoDto.converter(candidatos);
     }
 
     public List<ListaCandidatoDto> listaTodosDeUmaVaga () {
