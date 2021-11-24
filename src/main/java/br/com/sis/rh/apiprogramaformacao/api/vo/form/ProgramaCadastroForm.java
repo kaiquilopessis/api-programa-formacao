@@ -17,7 +17,7 @@ public class ProgramaCadastroForm {
     @NotNull
     private LocalDate termino;
     @NotNull @NotEmpty
-    private String instrutorCpf;
+    private Instrutor instrutor;
     @NotNull @NotEmpty
     private String turma;
 
@@ -42,11 +42,12 @@ public class ProgramaCadastroForm {
         this.termino = termino;
     }
 
-    public String getInstrutorCpf() {
-        return instrutorCpf;
+    public Instrutor getInstrutor() {
+        return instrutor;
     }
-    public void setInstrutorCpf(String instrutorCpf) {
-        this.instrutorCpf = instrutorCpf;
+
+    public void setInstrutor(Instrutor instrutor) {
+        this.instrutor = instrutor;
     }
 
     public String getTurma() {
@@ -58,7 +59,8 @@ public class ProgramaCadastroForm {
 
     public Programa converter(InstrutorRepository repository){
         Programa programa = new Programa();
-        Optional<Instrutor> optInstrutor = repository.findById(this.instrutorCpf);
+        System.out.println(this.instrutor.getCpfInstrutor());
+        Optional<Instrutor> optInstrutor = repository.findById(this.instrutor.getCpfInstrutor());
 
         programa.getProcessoSeletivo().setNome(this.nome);
         programa.setDataInicio(this.inicio);

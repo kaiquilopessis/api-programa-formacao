@@ -28,7 +28,6 @@ public class FolhaController {
     public void salvarInvestimentos(@RequestBody FolhaForm folhaForm){
         System.out.println(folhaForm.getCpf());
         participanteService.cadastrar(folhaForm);
-
     }
 
     @GetMapping("/participantes/{nomePrograma}/{nomeTurma}") //indicar que será um parametro dinamico (flexivel)

@@ -6,8 +6,17 @@ import java.util.stream.Collectors;
 import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
 
 public class ProcessoSeletivoVo {
+    private Long id;
     private String nome;
     private String status;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -23,6 +32,7 @@ public class ProcessoSeletivoVo {
     }
 
     public ProcessoSeletivoVo(ProcessoSeletivo processoSeletivo) {
+        this.id = processoSeletivo.getId();
         this.nome = processoSeletivo.getNome();
         this.status = processoSeletivo.getStatus();
     }
