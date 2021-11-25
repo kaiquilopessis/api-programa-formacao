@@ -3,6 +3,7 @@ package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
@@ -28,7 +29,7 @@ public class CandidatoDto {
         this.telefone = candidato.getTelefone();
         this.dataAgendamento = candidato.getDataAgendamento();
         this.curso = candidato.getCurso();
-        this.status = candidato.getStatus();
+        this.status = candidato.getStatus().replace("_", " ");
         this.testeLogico = candidato.getTesteLogico();
         this.observacao = candidato.getObservacao();
         this.notaDisc = candidato.getNotaDisc();

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CandidatoCompletoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.MediaType;
@@ -82,5 +84,13 @@ public class CandidatoService {
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
                 .body(new ByteArrayResource(disc.getDisc()));
+    }
+
+    public Candidato candidatoId(Long id) {
+        return candidatoRepository.getById(id);
+    }
+
+    public ProcessoSeletivo buscarNomePrograma(Long id) {
+        return processoSeletivoRepository.findByIdCandidato(id);
     }
 }

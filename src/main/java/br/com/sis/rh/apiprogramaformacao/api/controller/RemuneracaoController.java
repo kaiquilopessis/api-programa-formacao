@@ -2,6 +2,7 @@ package br.com.sis.rh.apiprogramaformacao.api.controller;
 
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CargosDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaRemuneracaoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RemuneracaoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaRemuneracaoForm;
@@ -45,6 +46,11 @@ public class RemuneracaoController {
         URI uri = uriBuilder.path("/api/remuneracao/{id}").buildAndExpand(remuneracao.getId()).toUri();
 
        return ResponseEntity.created(uri).body(new RemuneracaoDto(remuneracao));
+    }
+
+    @GetMapping("/cargos")
+    public List<CargosDto> mostrarCargos(){
+        return remuneracaoService.buscarCargos();
     }
 
     //Edita um cargo

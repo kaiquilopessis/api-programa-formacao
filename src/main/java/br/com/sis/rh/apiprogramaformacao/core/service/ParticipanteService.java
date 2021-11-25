@@ -3,6 +3,7 @@ package br.com.sis.rh.apiprogramaformacao.core.service;
 import java.util.List;
 import java.util.Optional;
 
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.CadastroParticipanteForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -59,10 +60,8 @@ public class ParticipanteService {
 	}
 
 	public void cadastrar(FolhaForm folhaForm) {
-		System.out.println(folhaForm.getCpf());
 		Optional<Participante> optionalParticipante = repository.findById(folhaForm.getCpf());
 		if (optionalParticipante.isPresent()) {
-			System.out.println("entrei aqui");
 			Investimentos investimento = FolhaForm.converter(folhaForm, optionalParticipante.get());
 			investimentosRepository.save(investimento);
 		}
@@ -87,4 +86,7 @@ public class ParticipanteService {
 		return ResponseEntity.notFound().build();
 	}
 
+    public void cadastrarParticipante(CadastroParticipanteForm cadastroParticipanteForm) {
+
+    }
 }

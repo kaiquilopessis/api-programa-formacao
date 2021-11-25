@@ -4,20 +4,13 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.*;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.CadastroParticipanteForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CandidatoDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteBuscaDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteBuscaNomeDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteExibeDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaParticipanteForm;
 import br.com.sis.rh.apiprogramaformacao.core.service.CandidatoService;
 import br.com.sis.rh.apiprogramaformacao.core.service.ParticipanteService;
@@ -57,6 +50,17 @@ public class ParticipanteController {
 		return new ParticipanteExibeDto(participanteService.participanteCpf(cpf));
 	}
 
+	@GetMapping("/completo/{id}")
+	public CandidatoCompletoDto candidatoExibe(@PathVariable Long id){
+		return new CandidatoCompletoDto(candidatoService.candidatoId(id));
+
+	}
+
+	@GetMapping("/nomePrograma/{id}")
+	public NomeProcessoSeletivoDto exibeNomeProcesso(@PathVariable Long id){
+		return new NomeProcessoSeletivoDto(candidatoService.buscarNomePrograma(id));
+	}
+
 	@PutMapping("/{cpf}")
 	@Transactional
 	public ResponseEntity<ParticipanteExibeDto> atualizaParticipante(@PathVariable String cpf,
@@ -65,9 +69,13 @@ public class ParticipanteController {
 		return ResponseEntity.ok().body(new ParticipanteExibeDto(participante));
 	}
 
+	@PostMapping("/salvarParticipante")
+	public void cadastraParticipante(@RequestBody CadastroParticipanteForm cadastroParticipanteForm){
+		participanteService.cadastrarParticipante(cadastroParticipanteForm);
+	}
+
 	@GetMapping("/status")
 	public List<CandidatoDto> buscarCandidatosAprovados() {
 		return candidatoService.buscaCandidatoAprovado();
 	}
-
 }
