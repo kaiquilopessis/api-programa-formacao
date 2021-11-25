@@ -24,7 +24,7 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.form.UsuarioForm;
 
 // Essa classe é o controller que recebe requisições para o retorno do Token JWT
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 public class AutenticacaoController {
 
     @Autowired

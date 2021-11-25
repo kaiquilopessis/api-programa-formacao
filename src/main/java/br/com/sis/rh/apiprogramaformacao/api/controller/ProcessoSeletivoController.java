@@ -38,8 +38,9 @@ public class ProcessoSeletivoController {
    @PostMapping
    @Transactional
    public ResponseEntity<ProcessoSeletivoDto> criaNovoProcessoSeletivo (@RequestBody ProcessoSeletivoForm form, UriComponentsBuilder uriBuilder){
-        ProcessoSeletivo processoSeletivo = processoSeletivoService.criaNovoProcessoSeletivo(form);
-
+       System.out.println(form.getDataFim().getClass()); 
+	   ProcessoSeletivo processoSeletivo = processoSeletivoService.criaNovoProcessoSeletivo(form);
+        
        URI uri = uriBuilder.path("/api/processo-seletivo/{id}").buildAndExpand(processoSeletivo.getId()).toUri();
 
        return ResponseEntity.created(uri).body(new ProcessoSeletivoDto(processoSeletivo));
