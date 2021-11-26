@@ -1,6 +1,7 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CargosDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaRemuneracaoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RemuneracaoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaRemuneracaoForm;
@@ -51,5 +52,9 @@ public class RemuneracaoService {
             return remuneracao;
         }
         return null;
+    }
+
+    public List<CargosDto> buscarCargos() {
+        return CargosDto.converter(remuneracaoRepository.findAll());
     }
 }
