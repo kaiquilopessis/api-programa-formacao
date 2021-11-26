@@ -29,7 +29,7 @@ public class ProgramaService  {
 		return programaBuscaVos ;
 	}
 	
-	
+		
 	public Programa getProgramaPorId(Long id) {
 		Optional<Programa> programa = repository.findById(id);
 		return programa.get();

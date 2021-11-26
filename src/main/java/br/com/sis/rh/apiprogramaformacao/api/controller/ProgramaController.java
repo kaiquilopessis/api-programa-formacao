@@ -46,7 +46,6 @@ public class ProgramaController {
 		return  programaService.getProgramaList();
 	}
 	
-	
 	@GetMapping("/processo-seletivo/finalizados")
 	public List<ProcessoSeletivoVo> getProcesso(){
 		return processoSeletivoService.listarProcesso();
@@ -59,7 +58,7 @@ public class ProgramaController {
 
 		return ResponseEntity.ok(programaVo);
 	}
-
+	
 	@PostMapping
 	@Transactional
 	public ResponseEntity cadastra(@RequestBody @Valid ProgramaCadastroForm programaCadastroForm){
