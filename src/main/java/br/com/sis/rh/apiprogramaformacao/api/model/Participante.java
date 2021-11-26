@@ -65,10 +65,6 @@ public class Participante {
 		this.email = email;
 	}
 
-	public void setCandidato(Candidato candidato) {
-		this.candidato = candidato;
-	}
-
 	public String getCpf() {
 		return cpf;
 	}
@@ -89,7 +85,7 @@ public class Participante {
 		return candidato;
 	}
 
-	public void setCadidato(Candidato candidato) {
+	public void setCandidato(Candidato candidato) {
 		this.candidato = candidato;
 	}
 

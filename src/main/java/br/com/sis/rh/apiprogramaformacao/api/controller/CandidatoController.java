@@ -1,21 +1,31 @@
 package br.com.sis.rh.apiprogramaformacao.api.controller;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CandidatoDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaCandidatoDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaCandidatoForm;
-import br.com.sis.rh.apiprogramaformacao.api.vo.form.CandidatoForm;
-import br.com.sis.rh.apiprogramaformacao.core.service.CandidatoService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
-
-import javax.transaction.Transactional;
 import java.io.IOException;
 import java.net.URI;
 import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CandidatoDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaCandidatoDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeProgramaCandidatoDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeTurmaCandidatoDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaCandidatoForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.CandidatoForm;
+import br.com.sis.rh.apiprogramaformacao.core.service.CandidatoService;
 
 @RestController
 @RequestMapping("/api/candidato")
@@ -75,5 +85,16 @@ public class CandidatoController {
     @GetMapping("/download-disc/{id}")
     public ResponseEntity<ByteArrayResource> downloadDisc(@PathVariable Long id){
         return candidatoService.downloadDisc(id);
+    }
+    
+    //Faz uma busca no programa de acordo com o ID do candidato, e retorna nome do programa 
+    @GetMapping("/programa-candidato-nome/{id}")
+    public NomeProgramaCandidatoDto listaTurmasEProgramaCandidato (@PathVariable Long id) {
+    	return candidatoService.buscarTurmaEPrograma(id);
+    	
+    }
+    @GetMapping("/programa-candidato-turmas/{nomePrograma}")
+    public List<NomeTurmaCandidatoDto> listarTurmasPorPrograma(@PathVariable String nomePrograma) {
+    	return candidatoService.buscarTurmas(nomePrograma);
     }
 }

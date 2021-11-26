@@ -50,10 +50,9 @@ public class ParticipanteController {
 		return new ParticipanteExibeDto(participanteService.participanteCpf(cpf));
 	}
 
-	@GetMapping("/completo/{id}")
+	@GetMapping("/candidato/{id}")
 	public CandidatoCompletoDto candidatoExibe(@PathVariable Long id){
 		return new CandidatoCompletoDto(candidatoService.candidatoId(id));
-
 	}
 
 	@GetMapping("/nomePrograma/{id}")

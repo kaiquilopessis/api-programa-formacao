@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 
 @Repository
@@ -45,4 +46,10 @@ public interface ProgramaRepository extends JpaRepository<Programa, Long> {
 			+ "JOIN TB_INSTRUTOR TI on TI.cpf_instrutor = TPS.cpf_instrutor_fk "
 			+ "where tps.nome = ?1 AND tp.nome_turma = ?2", nativeQuery = true)
 	List<String> listarCPFbyNomeProgramaNomeTurma(String nomePrograma, String nomeTurma);
+
+	@Query(value="SELECT * FROM TB_CANDIDATO c INNER JOIN TB_PROCESSO_SELETIVO ps "
+			+ "ON c.processo_seletivo_fk = ps.id  where c.id = ?1", nativeQuery = true)
+	public ProcessoSeletivo buscarProgramaPorCandidato(Long id);
+
+	
 }
