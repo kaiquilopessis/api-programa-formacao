@@ -4,6 +4,7 @@ package br.com.sis.rh.apiprogramaformacao.core.service;
 import java.util.List;
 import java.util.Optional;
 
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusProcessoSeletivo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,5 +61,11 @@ public class ProcessoSeletivoService {
             return processoSeletivo;
         }
         return null;
+    }
+
+    public List<ProcessoSeletivoVo> buscaProgramas() {
+
+        List<ProcessoSeletivo> processosFinalizados =  repository.findAllByStatus("FINALIZADA");
+        return ProcessoSeletivoVo.converter(processosFinalizados);
     }
 }

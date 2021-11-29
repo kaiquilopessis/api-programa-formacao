@@ -58,6 +58,11 @@ public class ProgramaController {
 
 		return ResponseEntity.ok(programaVo);
 	}
+
+	@GetMapping("buscar-processo")
+	public List<ProcessoSeletivoVo> programasEmAndamento(){
+		return processoSeletivoService.buscaProgramas();
+	}
 	
 	@PostMapping
 	@Transactional

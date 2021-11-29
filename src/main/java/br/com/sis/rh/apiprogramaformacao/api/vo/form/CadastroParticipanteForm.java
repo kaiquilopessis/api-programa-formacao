@@ -6,32 +6,33 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
 
 public class CadastroParticipanteForm {
 	private String cpf;
 	private String instituicaoEnsino;
 	private String curso;
 	private LocalDate terminoGraduacao;
-	private Long idRemunaracao;
-	private Long idProcessoSeletivo;
+	private Long idRemuneracao;
 	private Long idCandidato;
 	private Long idPrograma;
+	private String email;
 
 	public CadastroParticipanteForm() {
 
 	}
 
 	public CadastroParticipanteForm(String cpf, String instituicaoEnsino, String curso, LocalDate terminoGraduacao,
-			Long idRemunaracao, Long idProcessoSeletivo, Long idCandidato, Long idPrograma) {
+			Long idRemunaracao, Long idCandidato, Long idPrograma, String email) {
 		super();
 		this.cpf = cpf;
 		this.instituicaoEnsino = instituicaoEnsino;
 		this.curso = curso;
 		this.terminoGraduacao = terminoGraduacao;
-		this.idRemunaracao = idRemunaracao;
-		this.idProcessoSeletivo = idProcessoSeletivo;
+		this.idRemuneracao = idRemunaracao;
 		this.idCandidato = idCandidato;
 		this.idPrograma = idPrograma;
+		this.email = email;
 	}
 
 	public String getCpf() {
@@ -66,20 +67,12 @@ public class CadastroParticipanteForm {
 		this.terminoGraduacao = terminoGraduacao;
 	}
 
-	public Long getIdRemunaracao() {
-		return idRemunaracao;
+	public Long getIdRemuneracao() {
+		return idRemuneracao;
 	}
 
-	public void setIdRemunaracao(Long idRemunaracao) {
-		this.idRemunaracao = idRemunaracao;
-	}
-
-	public Long getIdProcessoSeletivo() {
-		return idProcessoSeletivo;
-	}
-
-	public void setIdProcessoSeletivo(Long idProcessoSeletivo) {
-		this.idProcessoSeletivo = idProcessoSeletivo;
+	public void setIdRemuneracao(Long idRemuneracao) {
+		this.idRemuneracao = idRemuneracao;
 	}
 
 	public Long getIdCandidato() {
@@ -98,6 +91,14 @@ public class CadastroParticipanteForm {
 		this.idPrograma = idPrograma;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public static Participante converter(CadastroParticipanteForm cadastroParticipanteForm, Remuneracao remuneracao, Programa programa, Candidato candidato) {
 		Participante participante = new Participante();
 		participante.setCpf(cadastroParticipanteForm.getCpf());
@@ -108,6 +109,8 @@ public class CadastroParticipanteForm {
 		participante.setPrograma(programa);
 		participante.setCandidato(candidato);
 		participante.getPrograma().setProcessoSeletivo(participante.getCandidato().getProcessoSeletivo());
+		participante.setEmail(cadastroParticipanteForm.getEmail());
+		participante.setStatus(StatusAtivo.ATIVO);
 
 		return participante;
 	}

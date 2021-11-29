@@ -102,8 +102,9 @@ public class ParticipanteService {
 	}
 
 	public void cadastrarParticipante(CadastroParticipanteForm cadastroParticipanteForm) {
+		System.out.println(cadastroParticipanteForm.toString());
 		Candidato candidato = candidatoRepository.getById(cadastroParticipanteForm.getIdCandidato());
-		Remuneracao remuneracao = remuneracaoRepository.getById(cadastroParticipanteForm.getIdRemunaracao());
+		Remuneracao remuneracao = remuneracaoRepository.getById(cadastroParticipanteForm.getIdRemuneracao());
 		Programa programa = programaRepository.getById(cadastroParticipanteForm.getIdPrograma());
 
 		Participante participante = CadastroParticipanteForm.converter(cadastroParticipanteForm, remuneracao, programa, candidato);
