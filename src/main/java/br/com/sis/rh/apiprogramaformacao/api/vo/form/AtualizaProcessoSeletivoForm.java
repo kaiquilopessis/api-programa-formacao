@@ -14,9 +14,9 @@ public class AtualizaProcessoSeletivoForm {
     private String nomeInstrutor;
     private LocalDate dataInicio;
     private LocalDate dataFim;
-    private Long qtdEstagiario;
-    private Long qtdTrainees;
-    private Long qtdAprendizes;
+    private Integer qtdEstagiario;
+    private Integer qtdTrainees;
+    private Integer qtdAprendizes;
     private String status;
 
     public ProcessoSeletivo atualiza(Long id , ProcessoSeletivoRepository repository, InstrutorRepository instrutorRepository){
@@ -73,27 +73,27 @@ public class AtualizaProcessoSeletivoForm {
         this.status = status;
     }
 
-    public Long getQtdEstagiario() {
+    public Integer getQtdEstagiario() {
         return qtdEstagiario;
     }
 
-    public void setQtdEstagiario(Long qtdEstagiario) {
+    public void setQtdEstagiario(Integer qtdEstagiario) {
         this.qtdEstagiario = qtdEstagiario;
     }
 
-    public Long getQtdTrainees() {
+    public Integer getQtdTrainees() {
         return qtdTrainees;
     }
 
-    public void setQtdTrainees(Long qtdTrainees) {
+    public void setQtdTrainees(Integer qtdTrainees) {
         this.qtdTrainees = qtdTrainees;
     }
 
-    public Long getQtdAprendizes() {
+    public Integer getQtdAprendizes() {
         return qtdAprendizes;
     }
 
-    public void setQtdAprendizes(Long qtdAprendizes) {
+    public void setQtdAprendizes(Integer qtdAprendizes) {
         this.qtdAprendizes = qtdAprendizes;
     }
 }

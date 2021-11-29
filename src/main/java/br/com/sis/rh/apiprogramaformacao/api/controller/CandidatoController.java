@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CandidatoDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaCandidatoDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeProgramaCandidatoDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeTurmaCandidatoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaCandidatoForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.CandidatoForm;
 import br.com.sis.rh.apiprogramaformacao.core.service.CandidatoService;
@@ -87,14 +84,30 @@ public class CandidatoController {
         return candidatoService.downloadDisc(id);
     }
     
-    //Faz uma busca no programa de acordo com o ID do candidato, e retorna nome do programa 
+    //Faz uma busca no programa de acordo com o ID do candidato, e retorna nome do programa
     @GetMapping("/programa-candidato-nome/{id}")
     public NomeProgramaCandidatoDto listaTurmasEProgramaCandidato (@PathVariable Long id) {
-    	return candidatoService.buscarTurmaEPrograma(id);
-    	
+    	return candidatoService.buscarPrograma(id);
+
     }
     @GetMapping("/programa-candidato-turmas/{nomePrograma}")
     public List<NomeTurmaCandidatoDto> listarTurmasPorPrograma(@PathVariable String nomePrograma) {
     	return candidatoService.buscarTurmas(nomePrograma);
+    }
+
+    @GetMapping("/buscar-instrutor")
+    public List<NomeInstrutorDto> listarInstrutoresAtivos(){
+        return candidatoService.buscarInstrutoresAtivos();
+    }
+
+    @GetMapping("/mostrar-cargo/{id}")
+    public CargoModalDto mostrarCargo(@PathVariable Long id) {
+        System.out.println();
+        return candidatoService.mostrarCargoModal(id);
+    }
+
+    @GetMapping("/mostrar-turma/{id}")
+    public TurmaModalDto mostrarTurma(@PathVariable Long id){
+        return candidatoService.mostrarTurmaModal(id);
     }
 }

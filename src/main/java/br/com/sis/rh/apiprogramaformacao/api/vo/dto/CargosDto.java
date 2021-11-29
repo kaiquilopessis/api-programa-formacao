@@ -7,10 +7,16 @@ import java.util.stream.Collectors;
 
 public class CargosDto {
 
+    private Long id;
     private String nome;
 
     public CargosDto(){
 
+    }
+
+    public CargosDto (Remuneracao remuneracao){
+        this.nome = remuneracao.getCargo();
+        this.id = remuneracao.getId();
     }
 
     public String getNome() {
@@ -21,8 +27,12 @@ public class CargosDto {
         this.nome = nome;
     }
 
-    public CargosDto (Remuneracao remuneracao){
-        this.nome = remuneracao.getCargo();
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public static List<CargosDto> converter(List<Remuneracao> remuneracoes) {

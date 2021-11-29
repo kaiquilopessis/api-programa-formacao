@@ -7,10 +7,9 @@ public class NomeProgramaCandidatoDto {
 	private String nome;
 	private Long id;
 
-	public NomeProgramaCandidatoDto(ProcessoSeletivo processoSeletivo) {
-		this.nome = processoSeletivo.getNome();
-		this.id = processoSeletivo.getId();
-
+	public NomeProgramaCandidatoDto(String nome, Long id) {
+		this.nome = nome;
+		this.id = id;
 	}
 
 	public String getNome() {

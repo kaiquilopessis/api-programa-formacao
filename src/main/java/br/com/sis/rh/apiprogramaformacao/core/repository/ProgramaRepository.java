@@ -3,6 +3,8 @@ package br.com.sis.rh.apiprogramaformacao.core.repository;
 import java.time.LocalDate;
 import java.util.List;
 
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeProgramaCandidatoDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TurmaModalDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -47,9 +49,12 @@ public interface ProgramaRepository extends JpaRepository<Programa, Long> {
 			+ "where tps.nome = ?1 AND tp.nome_turma = ?2", nativeQuery = true)
 	List<String> listarCPFbyNomeProgramaNomeTurma(String nomePrograma, String nomeTurma);
 
-	@Query(value="SELECT * FROM TB_CANDIDATO c INNER JOIN TB_PROCESSO_SELETIVO ps "
-			+ "ON c.processo_seletivo_fk = ps.id  where c.id = ?1", nativeQuery = true)
-	public ProcessoSeletivo buscarProgramaPorCandidato(Long id);
+	@Query(value="SELECT NEW br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeProgramaCandidatoDto(ps.nome, ps.id)  " +
+			"FROM Candidato c INNER JOIN ProcessoSeletivo ps "
+			+ "ON c.processoSeletivo = ps where c.id = ?1")
+	NomeProgramaCandidatoDto buscarProgramaPorCandidato(Long id);
 
-	
+    @Query(value = "SELECT NEW br.com.sis.rh.apiprogramaformacao.api.vo.dto.TurmaModalDto(p.nomeTurma, p.id)" +
+			" FROM Programa p where p.id = ?1")
+	TurmaModalDto buscarPeloId(Long id);
 }

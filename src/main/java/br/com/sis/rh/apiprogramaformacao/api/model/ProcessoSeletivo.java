@@ -14,11 +14,11 @@ public class ProcessoSeletivo {
     @JoinColumn(name = "cpf_instrutor_fk", referencedColumnName = "cpf_instrutor", nullable = false)
     private Instrutor instrutor;
     @Column(name = "qtd_aprendiz")
-    private Long qtdAprendiz;
+    private Integer qtdAprendiz;
     @Column(name = "qtd_trainee")
-    private Long qtdTrainee;
+    private Integer qtdTrainee;
     @Column(name = "qtd_estagiario")
-    private Long qtdEstagiario;
+    private Integer qtdEstagiario;
     @Column(name = "nome")
     private String nome;
     @Column(name = "status")
@@ -44,27 +44,27 @@ public class ProcessoSeletivo {
         this.instrutor = instrutor;
     }
 
-    public Long getQtdAprendiz() {
+    public Integer getQtdAprendiz() {
         return qtdAprendiz;
     }
 
-    public void setQtdAprendiz(Long qtdAprendiz) {
+    public void setQtdAprendiz(Integer qtdAprendiz) {
         this.qtdAprendiz = qtdAprendiz;
     }
 
-    public Long getQtdTrainee() {
+    public Integer getQtdTrainee() {
         return qtdTrainee;
     }
 
-    public void setQtdTrainee(Long qtdTrainee) {
+    public void setQtdTrainee(Integer qtdTrainee) {
         this.qtdTrainee = qtdTrainee;
     }
 
-    public Long getQtdEstagiario() {
+    public Integer getQtdEstagiario() {
         return qtdEstagiario;
     }
 
-    public void setQtdEstagiario(Long qtdEstagiario) {
+    public void setQtdEstagiario(Integer qtdEstagiario) {
         this.qtdEstagiario = qtdEstagiario;
     }
 

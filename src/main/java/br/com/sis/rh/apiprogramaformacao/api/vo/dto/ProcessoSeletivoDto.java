@@ -9,9 +9,9 @@ public class ProcessoSeletivoDto {
 
     private Long id;
     private String nome;
-    private Long qtdAprendiz;
-    private Long qtdTrainee;
-    private Long qtdEstagiario;
+    private Integer qtdAprendiz;
+    private Integer qtdTrainee;
+    private Integer qtdEstagiario;
     private String status;
     private LocalDate dataInicio;
     private LocalDate dataFim;
@@ -37,27 +37,27 @@ public class ProcessoSeletivoDto {
         this.nome = nome;
     }
 
-    public Long getQtdAprendiz() {
+    public Integer getQtdAprendiz() {
         return qtdAprendiz;
     }
 
-    public void setQtdAprendiz(Long qtdAprendiz) {
+    public void setQtdAprendiz(Integer qtdAprendiz) {
         this.qtdAprendiz = qtdAprendiz;
     }
 
-    public Long getQtdTrainee() {
+    public Integer getQtdTrainee() {
         return qtdTrainee;
     }
 
-    public void setQtdTrainee(Long qtdTrainee) {
+    public void setQtdTrainee(Integer qtdTrainee) {
         this.qtdTrainee = qtdTrainee;
     }
 
-    public Long getQtdEstagiario() {
+    public Integer getQtdEstagiario() {
         return qtdEstagiario;
     }
 
-    public void setQtdEstagiario(Long qtdEstagiario) {
+    public void setQtdEstagiario(Integer qtdEstagiario) {
         this.qtdEstagiario = qtdEstagiario;
     }
 

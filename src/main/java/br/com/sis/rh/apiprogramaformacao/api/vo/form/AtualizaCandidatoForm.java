@@ -43,6 +43,7 @@ public class AtualizaCandidatoForm {
         candidato.setDisc(this.disc.getBytes());
         candidato.setCurriculo(this.curriculo.getBytes());
         candidato.setProcessoSeletivo(processoSeletivoRepository.getById(idProcessoSeletivo));
+
         return candidato;
     }
 
@@ -141,4 +142,5 @@ public class AtualizaCandidatoForm {
     public void setCurriculo(MultipartFile curriculo) {
         this.curriculo = curriculo;
     }
+
 }

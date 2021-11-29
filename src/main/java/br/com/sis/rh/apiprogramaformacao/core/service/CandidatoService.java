@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.*;
+import br.com.sis.rh.apiprogramaformacao.core.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.MediaType;
@@ -13,15 +15,8 @@ import org.springframework.stereotype.Service;
 import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
 import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CandidatoDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaCandidatoDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeProgramaCandidatoDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeTurmaCandidatoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaCandidatoForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.CandidatoForm;
-import br.com.sis.rh.apiprogramaformacao.core.repository.CandidatoRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
 
 @Service
 public class CandidatoService {
@@ -34,6 +29,12 @@ public class CandidatoService {
     
     @Autowired
     private ProgramaRepository programaRepository;
+
+    @Autowired
+    private InstrutorRepository instrutorRepository;
+
+    @Autowired
+    private RemuneracaoRepository remuneracao;
 
     public Candidato buscaPorId(Long id){
         Optional<Candidato> optionalCandidato = candidatoRepository.findById(id);
@@ -100,9 +101,8 @@ public class CandidatoService {
         return processoSeletivoRepository.findByIdCandidato(id);
     }
 
-	public NomeProgramaCandidatoDto buscarTurmaEPrograma(Long id) {
-		ProcessoSeletivo processoSeletivo = programaRepository.buscarProgramaPorCandidato(id);
-		return  new NomeProgramaCandidatoDto(processoSeletivo);
+	public NomeProgramaCandidatoDto buscarPrograma(Long id) {
+		return programaRepository.buscarProgramaPorCandidato(id);
 	}
 
 	public List<NomeTurmaCandidatoDto> buscarTurmas(String nomePrograma) {
@@ -110,5 +110,16 @@ public class CandidatoService {
 		List<Programa> programas = programaRepository.buscarTurmasPeloNomePrograma(nomePrograma);
 		return NomeTurmaCandidatoDto.converter(programas);
 	}
-    
+
+    public List<NomeInstrutorDto> buscarInstrutoresAtivos() {
+        return instrutorRepository.listarInstrutoresAtivos();
+    }
+
+    public CargoModalDto mostrarCargoModal(Long id) {
+        return remuneracao.buscarPeloId(id);
+    }
+
+    public TurmaModalDto mostrarTurmaModal(Long id) {
+        return programaRepository.buscarPeloId(id);
+    }
 }

@@ -12,9 +12,6 @@ public class CadastroParticipanteForm {
 	private String instituicaoEnsino;
 	private String curso;
 	private LocalDate terminoGraduacao;
-	private Remuneracao remuneracao;
-	private Programa nomeTurma;
-	private Candidato candidato;
 	private Long idRemunaracao;
 	private Long idProcessoSeletivo;
 	private Long idCandidato;
@@ -69,30 +66,6 @@ public class CadastroParticipanteForm {
 		this.terminoGraduacao = terminoGraduacao;
 	}
 
-	public Remuneracao getRemuneracao() {
-		return remuneracao;
-	}
-
-	public void setRemuneracao(Remuneracao remuneracao) {
-		this.remuneracao = remuneracao;
-	}
-
-	public Programa getNomeTurma() {
-		return nomeTurma;
-	}
-
-	public void setNomeTurma(Programa nomeTurma) {
-		this.nomeTurma = nomeTurma;
-	}
-
-	public Candidato getCandidato() {
-		return candidato;
-	}
-
-	public void setCandidato(Candidato candidato) {
-		this.candidato = candidato;
-	}
-
 	public Long getIdRemunaracao() {
 		return idRemunaracao;
 	}
@@ -125,15 +98,15 @@ public class CadastroParticipanteForm {
 		this.idPrograma = idPrograma;
 	}
 
-	public static Participante converter(CadastroParticipanteForm cadastroParticipanteForm) {
+	public static Participante converter(CadastroParticipanteForm cadastroParticipanteForm, Remuneracao remuneracao, Programa programa, Candidato candidato) {
 		Participante participante = new Participante();
 		participante.setCpf(cadastroParticipanteForm.getCpf());
 		participante.setFaculdade(cadastroParticipanteForm.getInstituicaoEnsino());
 		participante.setCurso(cadastroParticipanteForm.getCurso());
 		participante.setDataFinal(cadastroParticipanteForm.getTerminoGraduacao());
-		participante.setRemuneracao(cadastroParticipanteForm.getRemuneracao());
-		participante.setPrograma(cadastroParticipanteForm.getNomeTurma());
-		participante.setCandidato(cadastroParticipanteForm.getCandidato());
+		participante.setRemuneracao(remuneracao);
+		participante.setPrograma(programa);
+		participante.setCandidato(candidato);
 		participante.getPrograma().setProcessoSeletivo(participante.getCandidato().getProcessoSeletivo());
 
 		return participante;
