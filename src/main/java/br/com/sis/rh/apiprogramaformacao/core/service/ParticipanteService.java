@@ -17,6 +17,7 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemFolhaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteBuscaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteBuscaNomeDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaParticipanteForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaStatusParticipanteForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.CadastroParticipanteForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.FolhaForm;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
@@ -108,6 +109,13 @@ public class ParticipanteService {
 		Programa programa = programaRepository.getById(cadastroParticipanteForm.getIdPrograma());
 
 		Participante participante = CadastroParticipanteForm.converter(cadastroParticipanteForm, remuneracao, programa, candidato);
+		repository.save(participante);
+	}
+
+	public void atualizarStatus(AtualizaStatusParticipanteForm atualizaStatusParticipanteForm) {
+		System.out.println(atualizaStatusParticipanteForm.getStatusAtivo());
+		Participante participante = repository.findByCpf(atualizaStatusParticipanteForm.getCpf());
+		participante.setStatus(atualizaStatusParticipanteForm.getStatusAtivo()); 
 		repository.save(participante);
 	}
 

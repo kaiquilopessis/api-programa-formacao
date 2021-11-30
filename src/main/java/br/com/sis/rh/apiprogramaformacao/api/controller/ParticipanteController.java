@@ -4,14 +4,26 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.*;
-import br.com.sis.rh.apiprogramaformacao.api.vo.form.CadastroParticipanteForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CandidatoCompletoDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CandidatoDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeProcessoSeletivoDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteBuscaDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteBuscaNomeDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteExibeDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaParticipanteForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaStatusParticipanteForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.CadastroParticipanteForm;
 import br.com.sis.rh.apiprogramaformacao.core.service.CandidatoService;
 import br.com.sis.rh.apiprogramaformacao.core.service.ParticipanteService;
 
@@ -77,4 +89,11 @@ public class ParticipanteController {
 	public List<CandidatoDto> buscarCandidatosAprovados() {
 		return candidatoService.buscaCandidatoAprovado();
 	}
+	
+	@PutMapping("/atualizaStatus")
+	public void atualizaStatusParticipante(@RequestBody AtualizaStatusParticipanteForm atualizaStatusParticipanteForm) {
+		participanteService.atualizarStatus(atualizaStatusParticipanteForm);
+	}
+	
+	
 }

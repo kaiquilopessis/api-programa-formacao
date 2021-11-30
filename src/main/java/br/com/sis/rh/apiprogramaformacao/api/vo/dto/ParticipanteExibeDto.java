@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
 
 public class ParticipanteExibeDto {
 	private String nome;
@@ -21,6 +22,7 @@ public class ParticipanteExibeDto {
 	private LocalDate iniPrograma;
 	private LocalDate fimPrograma;
 	private String observacao;
+	private StatusAtivo statusAtivo;
 	
 	
 	public ParticipanteExibeDto() {
@@ -43,6 +45,7 @@ public class ParticipanteExibeDto {
 		this.iniPrograma = participante.getPrograma().getDataInicio();
 		this.fimPrograma = participante.getPrograma().getDataFim();
 		this.observacao = participante.getCandidato().getObservacao();
+		this.statusAtivo = participante.getStatus();
 	}
 
 
@@ -193,6 +196,16 @@ public class ParticipanteExibeDto {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+
+
+	public StatusAtivo getStatusAtivo() {
+		return statusAtivo;
+	}
+
+
+	public void setStatusAtivo(StatusAtivo statusAtivo) {
+		this.statusAtivo = statusAtivo;
 	}
 	
 	

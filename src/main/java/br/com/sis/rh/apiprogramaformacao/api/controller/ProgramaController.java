@@ -50,18 +50,15 @@ public class ProgramaController {
 	public List<ProcessoSeletivoVo> getProcesso(){
 		return processoSeletivoService.listarProcesso();
 	}
-
+	
+	
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<ProgramaCompletoVo> getProgramaById(@PathVariable long id){
 		Programa programa  = programaService.getProgramaPorId(id);
 		ProgramaCompletoVo programaVo = ProgramaCompletoVo.converter(programa);
 
 		return ResponseEntity.ok(programaVo);
-	}
-
-	@GetMapping("buscar-processo")
-	public List<ProcessoSeletivoVo> programasEmAndamento(){
-		return processoSeletivoService.buscaProgramas();
 	}
 	
 	@PostMapping
@@ -77,6 +74,8 @@ public class ProgramaController {
 			return ResponseEntity.badRequest().body(e);
 		}
 	}
+	
+	
 
 	@PutMapping("/altera-status/{id}")
 	public ResponseEntity alteraStatus(@PathVariable Long id){
@@ -95,6 +94,11 @@ public class ProgramaController {
 		catch (Exception e) {
 			return ResponseEntity.badRequest().body(e);
 		}
+	}
+	
+	@GetMapping("buscar-processo")
+	public List<ProcessoSeletivoVo> programasEmAndamento(){
+		return processoSeletivoService.buscaProgramas();
 	}
 
 }
