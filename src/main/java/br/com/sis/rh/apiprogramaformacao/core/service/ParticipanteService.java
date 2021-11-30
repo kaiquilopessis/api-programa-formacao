@@ -1,8 +1,10 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -12,10 +14,6 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Investimentos;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CpfParticipanteNomeDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemFolhaDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteBuscaDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteBuscaNomeDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaParticipanteForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaStatusParticipanteForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.CadastroParticipanteForm;
@@ -113,10 +111,21 @@ public class ParticipanteService {
 	}
 
 	public void atualizarStatus(AtualizaStatusParticipanteForm atualizaStatusParticipanteForm) {
-		System.out.println(atualizaStatusParticipanteForm.getStatusAtivo());
 		Participante participante = repository.findByCpf(atualizaStatusParticipanteForm.getCpf());
 		participante.setStatus(atualizaStatusParticipanteForm.getStatusAtivo()); 
 		repository.save(participante);
 	}
 
+	public List<ParticipanteBuscaDto> filtrarParticipantes(String nome, String nomePrograma, String nomeTurma) {
+		List<Participante> participante = new ArrayList<>();
+		String nomeTurmaFormatada = nomeTurma.replace("%20 ", " ");
+		if (nomePrograma.equals("0") || nomeTurmaFormatada.equals("0")){
+			participante = repository.findByNome(nome);
+		} else if(nome.equals("0")){
+			participante = repository.findByProgramaTurma(nomePrograma, nomeTurmaFormatada);
+		} else {
+			participante = repository.findByNomeProgramaTurma(nome, nomePrograma, nomeTurmaFormatada);
+		}
+		return ParticipanteBuscaDto.converter(participante);
+	}
 }

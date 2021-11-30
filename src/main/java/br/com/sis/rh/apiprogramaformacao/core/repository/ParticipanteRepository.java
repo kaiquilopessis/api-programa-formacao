@@ -62,4 +62,19 @@ public interface ParticipanteRepository extends JpaRepository<Participante, Stri
 		@Query(value = "select * from TB_PARTICIPANTE p JOIN TB_PROGRAMA pr ON pr.id = p.codigo_programa_fk " +
 				"where pr.id = ?1", nativeQuery = true)
 		List<Participante> listarParticipantes(Long codPrograma);
+
+    	@Query(value = "SELECT * FROM TB_PARTICIPANTE p INNER JOIN TB_CANDIDATO c ON c.id = p.codigo_candidato_fk " +
+				"WHERE c.nome LIKE %?1%", nativeQuery = true)
+		List<Participante> findByNome(String nome);
+
+		@Query(value = "SELECT * FROM TB_PARTICIPANTE p INNER JOIN TB_CANDIDATO c ON c.id = p.codigo_candidato_fk " +
+				"INNER JOIN TB_PROGRAMA pr ON pr.id = p.codigo_programa_fk INNER JOIN TB_PROCESSO_SELETIVO " +
+				"ps ON ps.id = pr.processo_seletivo_fk WHERE ps.nome = ?1 and pr.nome_turma = ?2", nativeQuery = true)
+		List<Participante> findByProgramaTurma(String nomePrograma, String nomeTurma);
+
+		@Query(value = "SELECT * FROM TB_PARTICIPANTE p INNER JOIN TB_CANDIDATO c ON c.id = p.codigo_candidato_fk " +
+				"INNER JOIN TB_PROGRAMA pr ON pr.id = p.codigo_programa_fk INNER JOIN TB_PROCESSO_SELETIVO " +
+				"ps ON ps.id = pr.processo_seletivo_fk WHERE c.nome LIKE %?1% and ps.nome = ?2 " +
+				"and pr.nome_turma = ?3", nativeQuery = true)
+		List<Participante> findByNomeProgramaTurma(String nome, String nomePrograma, String nomeTurma);
 }
