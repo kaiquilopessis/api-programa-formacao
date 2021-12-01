@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CandidatoCompletoDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CandidatoDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeProcessoSeletivoDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteBuscaDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteBuscaNomeDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteExibeDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaParticipanteForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaStatusParticipanteForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.CadastroParticipanteForm;
@@ -76,13 +81,13 @@ public class ParticipanteController {
 		return new NomeProcessoSeletivoDto(candidatoService.buscarNomePrograma(id));
 	}
 
-	@PutMapping("/{cpf}")
-	@Transactional
-	public ResponseEntity<ParticipanteExibeDto> atualizaParticipante(@PathVariable String cpf,
-			@RequestBody AtualizaParticipanteForm form) {
-		Participante participante = participanteService.atualizaParticipante(cpf, form);
-		return ResponseEntity.ok().body(new ParticipanteExibeDto(participante));
-	}
+//	@PutMapping("/{cpf}")
+//	@Transactional
+//	public ResponseEntity<ParticipanteExibeDto> atualizaParticipante(@PathVariable String cpf,
+//			@RequestBody AtualizaParticipanteForm form) {
+//		Participante participante = participanteService.atualizaParticipante(cpf, form);
+//		return ResponseEntity.ok().body(new ParticipanteExibeDto(participante));
+//	}
 
 	@PostMapping("/salvarParticipante")
 	public void cadastraParticipante(@RequestBody CadastroParticipanteForm cadastroParticipanteForm){
@@ -99,5 +104,8 @@ public class ParticipanteController {
 		participanteService.atualizarStatus(atualizaStatusParticipanteForm);
 	}
 	
-	
+	@PutMapping("/atualizaParticipante")
+	public void atualizaParticipante(@RequestBody AtualizaParticipanteForm atualizaParticipanteForm ) {
+	participanteService.atualizarParticipante(atualizaParticipanteForm);
 }
+	}

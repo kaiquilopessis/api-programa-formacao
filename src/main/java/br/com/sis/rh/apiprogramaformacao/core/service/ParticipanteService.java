@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -12,8 +11,13 @@ import org.springframework.stereotype.Service;
 import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
 import br.com.sis.rh.apiprogramaformacao.api.model.Investimentos;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CpfParticipanteNomeDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemFolhaDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteBuscaDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteBuscaNomeDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaParticipanteForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaStatusParticipanteForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.CadastroParticipanteForm;
@@ -41,8 +45,6 @@ public class ParticipanteService {
 	@Autowired
 	private InvestimentosRepository investimentosRepository;
 
-	@Autowired
-	private ProcessoSeletivoRepository processoSeletivoRepository;
 
 	@Autowired
 	private CandidatoRepository candidatoRepository;
@@ -59,14 +61,14 @@ public class ParticipanteService {
 		return optional.get();
 	}
 
-	public Participante atualizaParticipante(String cpf, AtualizaParticipanteForm form) {
-		Optional<Participante> optionalParticipante = repository.findById(cpf);
-		if (optionalParticipante.isPresent()) {
-			Participante participante = form.atualizar(cpf, repository, programaRepository);
-			return participante;
-		}
-		return null;
-	}
+//	public Participante atualizaParticipante(String cpf, AtualizaParticipanteForm form) {
+//		Optional<Participante> optionalParticipante = repository.findById(cpf);
+//		if (optionalParticipante.isPresent()) {
+//			Participante participante = form.atualizar(cpf, repository, programaRepository);
+//			return participante;
+//		}
+//		return null;
+//	}
 
 	public List<FiltragemFolhaDto> listagemFiltroFolha(String nomeFormacao, String nomeTurma) {
 		String nomeTurmaFormatado = nomeTurma.replace("+", " "); // pesquisa no banco
@@ -106,26 +108,45 @@ public class ParticipanteService {
 		Remuneracao remuneracao = remuneracaoRepository.getById(cadastroParticipanteForm.getIdRemuneracao());
 		Programa programa = programaRepository.getById(cadastroParticipanteForm.getIdPrograma());
 
-		Participante participante = CadastroParticipanteForm.converter(cadastroParticipanteForm, remuneracao, programa, candidato);
+		Participante participante = CadastroParticipanteForm.converter(cadastroParticipanteForm, remuneracao, programa,
+				candidato);
 		repository.save(participante);
 	}
 
 	public void atualizarStatus(AtualizaStatusParticipanteForm atualizaStatusParticipanteForm) {
 		Participante participante = repository.findByCpf(atualizaStatusParticipanteForm.getCpf());
-		participante.setStatus(atualizaStatusParticipanteForm.getStatusAtivo()); 
+		participante.setStatus(atualizaStatusParticipanteForm.getStatusAtivo());
 		repository.save(participante);
 	}
 
 	public List<ParticipanteBuscaDto> filtrarParticipantes(String nome, String nomePrograma, String nomeTurma) {
 		List<Participante> participante = new ArrayList<>();
 		String nomeTurmaFormatada = nomeTurma.replace("%20 ", " ");
-		if (nomePrograma.equals("0") || nomeTurmaFormatada.equals("0")){
+		if (nomePrograma.equals("0") || nomeTurmaFormatada.equals("0")) {
 			participante = repository.findByNome(nome);
-		} else if(nome.equals("0")){
+		} else if (nome.equals("0")) {
 			participante = repository.findByProgramaTurma(nomePrograma, nomeTurmaFormatada);
 		} else {
 			participante = repository.findByNomeProgramaTurma(nome, nomePrograma, nomeTurmaFormatada);
 		}
 		return ParticipanteBuscaDto.converter(participante);
+	}
+
+	public void atualizarParticipante(AtualizaParticipanteForm atualizaStatusParticipanteForm) {
+		Participante participante = repository.findByCpf(atualizaStatusParticipanteForm.getCpf());
+		System.out.println(atualizaStatusParticipanteForm.getDataFimGraduacao());
+		
+		participante.getCandidato().setNome(atualizaStatusParticipanteForm.getNome());
+		participante.setCpf(atualizaStatusParticipanteForm.getCpf());
+		participante.getCandidato().setTelefone(atualizaStatusParticipanteForm.getTelefone());
+		participante.getCandidato().setFonteRecrutamento(atualizaStatusParticipanteForm.getFonteRecrutamento());
+		participante.setFaculdade(atualizaStatusParticipanteForm.getNmFaculdade());
+		participante.setCurso(atualizaStatusParticipanteForm.getCurso());
+		participante.setDataFinal(atualizaStatusParticipanteForm.getDataFimGraduacao());
+		participante.getCandidato().setObservacao(atualizaStatusParticipanteForm.getObservacao());
+		participante.setEmail(atualizaStatusParticipanteForm.getEmail());
+		
+		repository.save(participante);
+
 	}
 }

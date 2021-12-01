@@ -20,8 +20,9 @@ public interface ProgramaRepository extends JpaRepository<Programa, Long> {
 
 	@Query(value = "SELECT * FROM TB_PROGRAMA AS P WHERE p.status = 'PROCESSO_SELETIVO'", nativeQuery = true)
 	public List<Programa> findAllOrdenado();
-
-	public Programa findByNomeTurma(String nome);
+	@Query(value=" SELECT * FROM TB_PROGRAMA p JOIN TB_PROCESSO_SELETIVO ps ON ps.id = p.processo_seletivo_fk "
+			+ "WHERE p.nome_turma = ?1 AND ps.id = ?2", nativeQuery= true)
+	public Programa findByNomeTurmaIdProcesso(String nome, Long id);
 
 	// Busca o dia de conclusão dos programas (tela de conclusão)
 	@Query(value = "SELECT programa.dataFim FROM Programa programa "

@@ -22,6 +22,7 @@ public class ParticipanteExibeDto {
 	private LocalDate iniPrograma;
 	private LocalDate fimPrograma;
 	private String observacao;
+	private String email;
 	private StatusAtivo statusAtivo;
 	
 	
@@ -46,6 +47,7 @@ public class ParticipanteExibeDto {
 		this.fimPrograma = participante.getPrograma().getDataFim();
 		this.observacao = participante.getCandidato().getObservacao();
 		this.statusAtivo = participante.getStatus();
+		this.email = participante.getEmail();
 	}
 
 
@@ -206,6 +208,16 @@ public class ParticipanteExibeDto {
 
 	public void setStatusAtivo(StatusAtivo statusAtivo) {
 		this.statusAtivo = statusAtivo;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	
