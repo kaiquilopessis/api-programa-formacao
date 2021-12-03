@@ -9,8 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivado;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusParticipante;
 
 public interface ParticipanteRepository extends JpaRepository<Participante, String> {
 

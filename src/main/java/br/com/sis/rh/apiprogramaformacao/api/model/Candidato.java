@@ -12,30 +12,42 @@ public class Candidato {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
 	@Column(name = "nome", nullable = false, length = 50)
 	private String nome;
+	
 	@Column(name = "telefone", nullable = false, length = 255)
 	private String telefone;
+	
 	@Column(name = "data_agendamento", nullable = false)
 	private LocalDate dataAgendamento;
+	
 	@Column(name = "teste_logico", nullable = false)
 	private BigDecimal testeLogico;
+	
 	@Column(name = "nota_disc", length = 15, nullable = false)
 	private String notaDisc;
+	
 	@Column(name = "status", nullable = false)
 	private String status;
+	
 	@Column(name = "observacao", length = 8000)
 	private String observacao;
+	
 	@Column(name = "DISC")
 	@Lob
 	private byte[] disc;
+	
 	@Column(name = "curriculo")
 	@Lob
 	private byte[] curriculo;
+	
 	@Column(name = "curso")
 	private String curso;
+	
 	@Column(name = "fonte_recrutamento")
 	private String fonteRecrutamento;
+	
 	@ManyToOne
 	@JoinColumn(name = "processo_seletivo_fk", referencedColumnName = "id")
 	private ProcessoSeletivo processoSeletivo;

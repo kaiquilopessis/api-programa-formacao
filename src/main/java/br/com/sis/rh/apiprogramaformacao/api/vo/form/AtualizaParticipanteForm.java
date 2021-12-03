@@ -1,13 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
-import java.time.LocalDate;
-
-import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
-import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
+import org.springframework.web.multipart.MultipartFile;
 
 public class AtualizaParticipanteForm {
 
@@ -17,13 +10,14 @@ public class AtualizaParticipanteForm {
 	private String fonteRecrutamento;
 	private String nmFaculdade;
 	private String curso;
-	private LocalDate dataFimGraduacao;
+	private String dataFimGraduacao;
 	private String cargo;
 	private String turma;
 	private String observacao;
 	private String email;
 	private String nomeTurma;
 	private String nomePrograma;
+	private MultipartFile tce;
 
 //	public Participante atualizar(String cpf, ParticipanteRepository participanteRepository,
 //			ProgramaRepository programaRepository, ProcessoSeletivoRepository processoSeletivoRepository) {
@@ -94,11 +88,11 @@ public class AtualizaParticipanteForm {
 		this.curso = curso;
 	}
 
-	public LocalDate getDataFimGraduacao() {
+	public String getDataFimGraduacao() {
 		return dataFimGraduacao;
 	}
 
-	public void setDataFimGraduacao(LocalDate dataFimGraduacao) {
+	public void setDataFimGraduacao(String dataFimGraduacao) {
 		this.dataFimGraduacao = dataFimGraduacao;
 	}
 
@@ -136,6 +130,14 @@ public class AtualizaParticipanteForm {
 
 	public String getNomeTurma() {
 		return nomeTurma;
+	}
+
+	public MultipartFile getTce() {
+		return tce;
+	}
+
+	public void setTce(MultipartFile tce) {
+		this.tce = tce;
 	}
 
 	public void setNomeTurma(String nomeTurma) {

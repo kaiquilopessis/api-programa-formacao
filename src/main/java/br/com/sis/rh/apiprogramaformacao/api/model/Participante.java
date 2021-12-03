@@ -56,6 +56,9 @@ public class Participante {
 	
 	@Column(name = "email_corp")
 	private String email;
+	
+	@Column(name= "TCE")
+	private  byte[] tce;
 
 	public String getEmail() {
 		return email;
@@ -143,6 +146,14 @@ public class Participante {
 
 	public void setStatusEfetivado(StatusEfetivado statusEfetivado) {
 		this.statusEfetivado = statusEfetivado;
+	}
+
+	public byte[] getTce() {
+		return tce;
+	}
+
+	public void setTce(byte[] tce) {
+		this.tce = tce;
 	}
 
 	

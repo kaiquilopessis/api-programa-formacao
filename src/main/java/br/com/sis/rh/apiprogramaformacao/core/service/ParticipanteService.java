@@ -1,17 +1,22 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
+import br.com.sis.rh.apiprogramaformacao.api.model.FeedBack;
 import br.com.sis.rh.apiprogramaformacao.api.model.Investimentos;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CpfParticipanteNomeDto;
@@ -27,7 +32,6 @@ import br.com.sis.rh.apiprogramaformacao.core.repository.CandidatoRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InvestimentoFolhaRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InvestimentosRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
 
@@ -45,7 +49,6 @@ public class ParticipanteService {
 	@Autowired
 	private InvestimentosRepository investimentosRepository;
 
-
 	@Autowired
 	private CandidatoRepository candidatoRepository;
 
@@ -58,6 +61,8 @@ public class ParticipanteService {
 
 	public Participante participanteCpf(String cpf) {
 		Optional<Participante> optional = repository.findById(cpf);
+		System.out.println(optional.get().getCpf());
+
 		return optional.get();
 	}
 
@@ -132,9 +137,11 @@ public class ParticipanteService {
 		return ParticipanteBuscaDto.converter(participante);
 	}
 
-	public void atualizarParticipante(AtualizaParticipanteForm atualizaStatusParticipanteForm) {
+	public void atualizarParticipante(AtualizaParticipanteForm atualizaStatusParticipanteForm) throws IOException {
+
 		Participante participante = repository.findByCpf(atualizaStatusParticipanteForm.getCpf());
-		System.out.println(atualizaStatusParticipanteForm.getDataFimGraduacao());
+		System.out.println("chegou até aqui!!!\n\n\n\n\n\n\n\n\n\n\n");
+		LocalDate dataFormatadaBanco =  LocalDate.parse(atualizaStatusParticipanteForm.getDataFimGraduacao(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		
 		participante.getCandidato().setNome(atualizaStatusParticipanteForm.getNome());
 		participante.setCpf(atualizaStatusParticipanteForm.getCpf());
@@ -142,11 +149,23 @@ public class ParticipanteService {
 		participante.getCandidato().setFonteRecrutamento(atualizaStatusParticipanteForm.getFonteRecrutamento());
 		participante.setFaculdade(atualizaStatusParticipanteForm.getNmFaculdade());
 		participante.setCurso(atualizaStatusParticipanteForm.getCurso());
-		participante.setDataFinal(atualizaStatusParticipanteForm.getDataFimGraduacao());
+		participante.setDataFinal(dataFormatadaBanco);
 		participante.getCandidato().setObservacao(atualizaStatusParticipanteForm.getObservacao());
 		participante.setEmail(atualizaStatusParticipanteForm.getEmail());
-		
+		participante.setTce(atualizaStatusParticipanteForm.getTce().getBytes());
+
 		repository.save(participante);
 
 	}
+
+//	public ResponseEntity<ByteArrayResource> download(Long id) {
+//		Participante tce = repository.getById(id);
+//		return ResponseEntity.ok()
+//				.contentType(
+//						MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
+//				.body(new ByteArrayResource(disc.getDisc()));
+//
+//	}
+		
 }
+

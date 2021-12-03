@@ -1,12 +1,15 @@
 package br.com.sis.rh.apiprogramaformacao.api.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -105,7 +108,13 @@ public class ParticipanteController {
 	}
 	
 	@PutMapping("/atualizaParticipante")
-	public void atualizaParticipante(@RequestBody AtualizaParticipanteForm atualizaParticipanteForm ) {
-	participanteService.atualizarParticipante(atualizaParticipanteForm);
-}
+	public void atualizaParticipante(@ModelAttribute AtualizaParticipanteForm atualizaParticipanteForm ) throws IOException {
+		System.out.println("cheguei até a controller \n\n\n\n\n");
+		participanteService.atualizarParticipante(atualizaParticipanteForm);
 	}
+	
+//	@GetMapping("donwload/{id}")
+//	public ResponseEntity<ByteArrayResource> downloadTce(@PathVariable Long id) {
+//		return participanteService.download(id);
+//}
+}
