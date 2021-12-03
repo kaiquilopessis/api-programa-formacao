@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
+import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaBuscaVo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaProcessoSeletivoForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProcessoSeletivoForm;
+import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProgramaAtualizaForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +39,13 @@ public class ProgramaService  {
 	}
 
 	public void salva(Programa programa) {
+		repository.save(programa);
+	}
+
+	public void atualizaPrograma(ProgramaAtualizaForm programaAtualizaForm) {
+		Instrutor instrutor = instrutorRepository.getById(programaAtualizaForm.getInstrutor());
+		Programa programa = repository.getById(programaAtualizaForm.getId());
+		programa = ProgramaAtualizaForm.atualizar(programa, instrutor, programaAtualizaForm);
 		repository.save(programa);
 	}
 

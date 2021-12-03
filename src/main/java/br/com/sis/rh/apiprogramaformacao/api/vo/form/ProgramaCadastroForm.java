@@ -1,72 +1,72 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
+import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
-import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+
 import java.time.LocalDate;
-import java.util.Optional;
+import java.time.format.DateTimeFormatter;
 
 public class ProgramaCadastroForm {
 
-    @NotNull @NotEmpty
     private String nome;
-    @NotNull
-    private LocalDate inicio;
-    @NotNull
-    private LocalDate termino;
-    @NotNull @NotEmpty
-    private Instrutor instrutor;
-    @NotNull @NotEmpty
+    private String inicio;
+    private String termino;
+    private String instrutor;
     private String turma;
 
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public LocalDate getInicio() {
+    public String getInicio() {
         return inicio;
     }
-    public void setInicio(LocalDate inicio) {
+
+    public void setInicio(String inicio) {
         this.inicio = inicio;
     }
 
-    public LocalDate getTermino() {
+    public String getTermino() {
         return termino;
     }
-    public void setTermino(LocalDate termino) {
+
+    public void setTermino(String termino) {
         this.termino = termino;
     }
 
-    public Instrutor getInstrutor() {
+    public String getInstrutor() {
         return instrutor;
     }
 
-    public void setInstrutor(Instrutor instrutor) {
+    public void setInstrutor(String instrutor) {
         this.instrutor = instrutor;
     }
 
     public String getTurma() {
         return turma;
     }
+
     public void setTurma(String turma) {
         this.turma = turma;
     }
 
-    public Programa converter(InstrutorRepository repository){
+    public Programa converter(ProcessoSeletivo processoSeletivo, Instrutor instrutor,
+                              ProgramaCadastroForm programaCadastroForm){
         Programa programa = new Programa();
-        System.out.println(this.instrutor.getCpfInstrutor());
-        Optional<Instrutor> optInstrutor = repository.findById(this.instrutor.getCpfInstrutor());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate dataInicio = LocalDate.parse((CharSequence) programaCadastroForm.getInicio(), formatter);
+        LocalDate dataFim = LocalDate.parse((CharSequence) programaCadastroForm.getTermino(), formatter);
 
-        programa.getProcessoSeletivo().setNome(this.nome);
-        programa.setDataInicio(this.inicio);
-        programa.setDataFim(this.termino);
-        programa.getProcessoSeletivo().setInstrutor(optInstrutor.get());
-        programa.setNomeTurma(this.turma);
+        programa.setProcessoSeletivo(processoSeletivo);
+        programa.setDataInicio(dataInicio);
+        programa.setDataFim(dataFim);
+        programa.getProcessoSeletivo().setInstrutor(instrutor);
+        programa.setNomeTurma(programaCadastroForm.getTurma());
         programa.setStatus("EM_ANDAMENTO");
 
         return programa;

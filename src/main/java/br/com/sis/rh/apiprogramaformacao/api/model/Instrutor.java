@@ -1,5 +1,7 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity

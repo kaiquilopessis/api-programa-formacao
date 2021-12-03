@@ -9,26 +9,28 @@ import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
 
 public class ProgramaAtualizaForm {
 	
-	
+	private Long id;
 	private LocalDate dataInicio;
 	private LocalDate dataFim;
-	private String cpfInstrutor;
+	private String instrutor;
 	private String turma;
 	
-	public Programa atualizar(Long id, ProgramaRepository programaRepository, InstrutorRepository instrutorRepository ) {
-		Programa programa = programaRepository.getById(id);
-		Instrutor instrutor = instrutorRepository.getById(this.cpfInstrutor);
-		
-		programa.setNomeTurma(this.turma);
-		programa.setDataInicio(this.dataInicio);
-		programa.setDataFim(this.dataFim);
+	public static Programa atualizar(Programa programa, Instrutor instrutor, ProgramaAtualizaForm programaAtualizaForm) {
+		programa.setNomeTurma(programaAtualizaForm.getTurma());
+		programa.setDataInicio(programaAtualizaForm.getDataInicio());
+		programa.setDataFim(programaAtualizaForm.getDataFim());
 		programa.getProcessoSeletivo().setInstrutor(instrutor);
-		programaRepository.save(programa);
 		return programa;
 	}
-	
-	
-	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public LocalDate getDataInicio() {
 		return dataInicio;
 	}
@@ -42,12 +44,12 @@ public class ProgramaAtualizaForm {
 		this.dataFim = dataFim;
 	}
 	
-	public String getCpfInstrutor() {
-		return cpfInstrutor;
+	public String getInstrutor() {
+		return instrutor;
 	}
 
-	public void setCpfInstrutor(String cpfInstrutor) {
-		this.cpfInstrutor = cpfInstrutor;
+	public void setInstrutor(String instrutor) {
+		this.instrutor = instrutor;
 	}
 
 	public String getTurma() {
