@@ -70,6 +70,7 @@ public class InstrutorForm {
 	}
 
     public Instrutor converter(){
+        cpf = cpf.replace(".", "").replace("-", "");
         return new Instrutor(cpf, telefone,status,nome,email);
     }
 
