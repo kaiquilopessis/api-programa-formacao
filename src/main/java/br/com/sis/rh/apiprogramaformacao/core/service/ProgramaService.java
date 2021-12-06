@@ -43,7 +43,7 @@ public class ProgramaService  {
 	}
 
 	public void atualizaPrograma(ProgramaAtualizaForm programaAtualizaForm) {
-		Instrutor instrutor = instrutorRepository.getById(programaAtualizaForm.getInstrutor());
+		Instrutor instrutor = instrutorRepository.findInstrutorByNome(programaAtualizaForm.getInstrutor());
 		Programa programa = repository.getById(programaAtualizaForm.getId());
 		programa = ProgramaAtualizaForm.atualizar(programa, instrutor, programaAtualizaForm);
 		repository.save(programa);
