@@ -113,8 +113,16 @@ public class ParticipanteController {
 		participanteService.atualizarParticipante(atualizaParticipanteForm);
 	}
 	
-//	@GetMapping("donwload/{id}")
-//	public ResponseEntity<ByteArrayResource> downloadTce(@PathVariable Long id) {
-//		return participanteService.download(id);
-//}
+	 /* Endereço da api para baixar o arquivo direto do banco*/
+   	@GetMapping("/downloadTce/{id}")
+   	public ResponseEntity<ByteArrayResource> downloadTceDoCandidato(@PathVariable String id) {
+   		return participanteService.downloadTce(id);
+   		
+   	}
+   	
+ 	@GetMapping("/downloadDisc/{id}")
+   	public ResponseEntity<ByteArrayResource> downloadDiscDoCandidato(@PathVariable String id) {
+   		return participanteService.downloadDisc(id);
+   		
+   	}
 }

@@ -80,7 +80,7 @@ public class CandidatoController {
 
     //Faz o donwload do disc de um usuario registrado previamente no banco de dados
     @GetMapping("/download-disc/{id}")
-    public ResponseEntity<ByteArrayResource> downloadDisc(@PathVariable Long id){
+    public ResponseEntity<ByteArrayResource> downloadDisc(@PathVariable String id){
         return candidatoService.downloadDisc(id);
     }
     
@@ -110,4 +110,6 @@ public class CandidatoController {
     public TurmaModalDto mostrarTurma(@PathVariable Long id){
         return candidatoService.mostrarTurmaModal(id);
     }
+    
+   
 }

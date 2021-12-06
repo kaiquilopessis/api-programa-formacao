@@ -158,14 +158,23 @@ public class ParticipanteService {
 
 	}
 
-//	public ResponseEntity<ByteArrayResource> download(Long id) {
-//		Participante tce = repository.getById(id);
-//		return ResponseEntity.ok()
-//				.contentType(
-//						MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
-//				.body(new ByteArrayResource(disc.getDisc()));
-//
-//	}
+	public ResponseEntity<ByteArrayResource> downloadTce(String id) {
+			Participante tce = repository.getById(id);
+				return ResponseEntity.ok()
+				.contentType(
+						MediaType.parseMediaType("application/pdf"))
+				.body(new ByteArrayResource(tce.getTce()));
+		
+	}
+
+	public ResponseEntity<ByteArrayResource> downloadDisc(String id) {
+		Participante tce = repository.getById(id);
+		return ResponseEntity.ok()
+				.contentType(
+						MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
+				.body(new ByteArrayResource(tce.getCandidato().getDisc()));
+
+	}
 		
 }
 

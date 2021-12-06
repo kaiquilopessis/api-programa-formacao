@@ -17,5 +17,7 @@ public interface CandidatoRepository extends JpaRepository<Candidato, Long> {
     @Query(value = "SELECT * FROM TB_CANDIDATO AS c WHERE c.status = 'APROVADO_2_FASE'", nativeQuery = true)
     List<Candidato> findCandidatoPorStatus();
 
+	
+
 
 }
