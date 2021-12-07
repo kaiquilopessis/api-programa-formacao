@@ -8,6 +8,7 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaBuscaVo;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TurmaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaProcessoSeletivoForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProcessoSeletivoForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProgramaAtualizaForm;
@@ -47,6 +48,16 @@ public class ProgramaService  {
 		Programa programa = repository.getById(programaAtualizaForm.getId());
 		programa = ProgramaAtualizaForm.atualizar(programa, instrutor, programaAtualizaForm);
 		repository.save(programa);
+	}
+
+	public List<TurmaDto> buscarTurmasbyProcesso(Long id) {
+		List<Programa> programas = repository.findByIdProcesso(id);
+		return TurmaDto.converter(programas);
+	}
+
+	public List<TurmaDto> buscarTurmasbyNomeProcesso(String nome) {
+		List<Programa> programas = repository.findByNomeProcesso(nome);
+		return TurmaDto.converter(programas);
 	}
 
 	//Métodos criados pelo Gustavo Rosa

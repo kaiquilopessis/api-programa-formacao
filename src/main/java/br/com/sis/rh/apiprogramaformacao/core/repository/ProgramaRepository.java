@@ -58,4 +58,11 @@ public interface ProgramaRepository extends JpaRepository<Programa, Long> {
     @Query(value = "SELECT NEW br.com.sis.rh.apiprogramaformacao.api.vo.dto.TurmaModalDto(p.nomeTurma, p.id)" +
 			" FROM Programa p where p.id = ?1")
 	TurmaModalDto buscarPeloId(Long id);
+
+	@Query(value = "select p.* from TB_PROGRAMA p where p.processo_seletivo_fk = ?1", nativeQuery = true)
+	List<Programa> findByIdProcesso(Long id);
+
+	@Query(value = "select p.* from TB_PROGRAMA p JOIN TB_PROCESSO_SELETIVO TPS on " +
+			"TPS.id = p.processo_seletivo_fk where TPS.nome = ?1", nativeQuery = true)
+	List<Programa> findByNomeProcesso(String nome);
 }

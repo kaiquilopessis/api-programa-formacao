@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
 import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TurmaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProgramaAtualizaForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -101,6 +102,16 @@ public class ProgramaController {
 	@GetMapping("buscar-processo")
 	public List<ProcessoSeletivoVo> programasEmAndamento(){
 		return processoSeletivoService.buscaProgramas();
+	}
+
+	@GetMapping("/buscar-programas-por-processo/{id}")
+	public List<TurmaDto> buscarTurmasPeloProcesso(@PathVariable Long id) {
+		return programaService.buscarTurmasbyProcesso(id);
+	}
+
+	@GetMapping("/buscar-programas-por-nome/{nome}")
+	public List<TurmaDto> buscarProgramaPeloNome(@PathVariable String nome) {
+		return programaService.buscarTurmasbyNomeProcesso(nome);
 	}
 
 }
