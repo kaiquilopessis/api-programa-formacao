@@ -109,7 +109,6 @@ public class ParticipanteController {
 	
 	@PutMapping("/atualizaParticipante")
 	public void atualizaParticipante(@ModelAttribute AtualizaParticipanteForm atualizaParticipanteForm ) throws IOException {
-		System.out.println("cheguei até a controller \n\n\n\n\n");
 		participanteService.atualizarParticipante(atualizaParticipanteForm);
 	}
 	
