@@ -2,6 +2,7 @@ package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,12 +11,13 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
+import lombok.ToString;
 
 public class CadastroParticipanteForm {
 	private String cpf;
 	private String instituicaoEnsino;
 	private String curso;
-	private LocalDate terminoGraduacao;
+	private String terminoGraduacao;
 	private Long idRemuneracao;
 	private Long idCandidato;
 	private Long idPrograma;
@@ -34,9 +36,10 @@ public class CadastroParticipanteForm {
 		this.cpf = cpf;
 	}
 
-	public CadastroParticipanteForm(String cpf, String instituicaoEnsino, String curso, LocalDate terminoGraduacao,
+	
+
+	public CadastroParticipanteForm(String cpf, String instituicaoEnsino, String curso, String terminoGraduacao,
 			Long idRemuneracao, Long idCandidato, Long idPrograma, String email, MultipartFile tce) {
-		super();
 		this.cpf = cpf;
 		this.instituicaoEnsino = instituicaoEnsino;
 		this.curso = curso;
@@ -64,11 +67,12 @@ public class CadastroParticipanteForm {
 		this.curso = curso;
 	}
 
-	public LocalDate getTerminoGraduacao() {
+
+	public String getTerminoGraduacao() {
 		return terminoGraduacao;
 	}
 
-	public void setTerminoGraduacao(LocalDate terminoGraduacao) {
+	public void setTerminoGraduacao(String terminoGraduacao) {
 		this.terminoGraduacao = terminoGraduacao;
 	}
 
@@ -114,10 +118,13 @@ public class CadastroParticipanteForm {
 
 	public static Participante converter(CadastroParticipanteForm cadastroParticipanteForm, Remuneracao remuneracao, Programa programa, Candidato candidato) throws IOException {
 		Participante participante = new Participante();
+		
+		DateTimeFormatter  formatador = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate dataFormatada = LocalDate.parse(cadastroParticipanteForm.getTerminoGraduacao(), formatador);
 		participante.setCpf(cadastroParticipanteForm.getCpf());
 		participante.setFaculdade(cadastroParticipanteForm.getInstituicaoEnsino());
 		participante.setCurso(cadastroParticipanteForm.getCurso());
-		participante.setDataFinal(cadastroParticipanteForm.getTerminoGraduacao());
+		participante.setDataFinal(dataFormatada);
 		participante.setRemuneracao(remuneracao);
 		participante.setPrograma(programa);
 		participante.setCandidato(candidato);
@@ -128,5 +135,11 @@ public class CadastroParticipanteForm {
 
 		return participante;
 	}
-
+	
+	 @Override
+	public String toString() {
+		return super.toString();
+	}
+	
+	
 }

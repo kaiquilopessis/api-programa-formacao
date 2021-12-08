@@ -94,6 +94,7 @@ public class ParticipanteController {
 
 	@PostMapping("/salvarParticipante")
 	public void cadastraParticipante(@ModelAttribute CadastroParticipanteForm cadastroParticipanteForm) throws IOException{
+		System.out.println(cadastroParticipanteForm);
 		participanteService.cadastrarParticipante(cadastroParticipanteForm);
 	}
 
