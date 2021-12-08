@@ -107,8 +107,7 @@ public class ParticipanteService {
 		return ResponseEntity.notFound().build();
 	}
 
-	public void cadastrarParticipante(CadastroParticipanteForm cadastroParticipanteForm) {
-		System.out.println(cadastroParticipanteForm.toString());
+	public void cadastrarParticipante(CadastroParticipanteForm cadastroParticipanteForm) throws IOException {
 		Candidato candidato = candidatoRepository.getById(cadastroParticipanteForm.getIdCandidato());
 		Remuneracao remuneracao = remuneracaoRepository.getById(cadastroParticipanteForm.getIdRemuneracao());
 		Programa programa = programaRepository.getById(cadastroParticipanteForm.getIdPrograma());
@@ -140,7 +139,6 @@ public class ParticipanteService {
 	public void atualizarParticipante(AtualizaParticipanteForm atualizaStatusParticipanteForm) throws IOException {
 
 		Participante participante = repository.findByCpf(atualizaStatusParticipanteForm.getCpf());
-		System.out.println("chegou até aqui!!!\n\n\n\n\n\n\n\n\n\n\n");
 		LocalDate dataFormatadaBanco =  LocalDate.parse(atualizaStatusParticipanteForm.getDataFimGraduacao(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		
 		participante.getCandidato().setNome(atualizaStatusParticipanteForm.getNome());

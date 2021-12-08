@@ -1,6 +1,9 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
+import java.io.IOException;
 import java.time.LocalDate;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
@@ -17,22 +20,10 @@ public class CadastroParticipanteForm {
 	private Long idCandidato;
 	private Long idPrograma;
 	private String email;
+	private MultipartFile tce;
 
 	public CadastroParticipanteForm() {
 
-	}
-
-	public CadastroParticipanteForm(String cpf, String instituicaoEnsino, String curso, LocalDate terminoGraduacao,
-			Long idRemunaracao, Long idCandidato, Long idPrograma, String email) {
-		super();
-		this.cpf = cpf;
-		this.instituicaoEnsino = instituicaoEnsino;
-		this.curso = curso;
-		this.terminoGraduacao = terminoGraduacao;
-		this.idRemuneracao = idRemunaracao;
-		this.idCandidato = idCandidato;
-		this.idPrograma = idPrograma;
-		this.email = email;
 	}
 
 	public String getCpf() {
@@ -41,6 +32,20 @@ public class CadastroParticipanteForm {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public CadastroParticipanteForm(String cpf, String instituicaoEnsino, String curso, LocalDate terminoGraduacao,
+			Long idRemuneracao, Long idCandidato, Long idPrograma, String email, MultipartFile tce) {
+		super();
+		this.cpf = cpf;
+		this.instituicaoEnsino = instituicaoEnsino;
+		this.curso = curso;
+		this.terminoGraduacao = terminoGraduacao;
+		this.idRemuneracao = idRemuneracao;
+		this.idCandidato = idCandidato;
+		this.idPrograma = idPrograma;
+		this.email = email;
+		this.tce = tce;
 	}
 
 	public String getInstituicaoEnsino() {
@@ -99,7 +104,15 @@ public class CadastroParticipanteForm {
 		this.email = email;
 	}
 
-	public static Participante converter(CadastroParticipanteForm cadastroParticipanteForm, Remuneracao remuneracao, Programa programa, Candidato candidato) {
+	public MultipartFile getTce() {
+		return tce;
+	}
+
+	public void setTce(MultipartFile tce) {
+		this.tce = tce;
+	}
+
+	public static Participante converter(CadastroParticipanteForm cadastroParticipanteForm, Remuneracao remuneracao, Programa programa, Candidato candidato) throws IOException {
 		Participante participante = new Participante();
 		participante.setCpf(cadastroParticipanteForm.getCpf());
 		participante.setFaculdade(cadastroParticipanteForm.getInstituicaoEnsino());
@@ -111,6 +124,7 @@ public class CadastroParticipanteForm {
 		participante.getPrograma().setProcessoSeletivo(participante.getCandidato().getProcessoSeletivo());
 		participante.setEmail(cadastroParticipanteForm.getEmail());
 		participante.setStatus(StatusAtivo.ATIVO);
+		participante.setTce(cadastroParticipanteForm.getTce().getBytes());
 
 		return participante;
 	}
