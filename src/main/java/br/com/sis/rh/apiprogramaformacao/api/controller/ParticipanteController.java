@@ -93,7 +93,7 @@ public class ParticipanteController {
 //	}
 
 	@PostMapping("/salvarParticipante")
-	public void cadastraParticipante(@RequestBody CadastroParticipanteForm cadastroParticipanteForm){
+	public void cadastraParticipante(@ModelAttribute CadastroParticipanteForm cadastroParticipanteForm) throws IOException{
 		participanteService.cadastrarParticipante(cadastroParticipanteForm);
 	}
 
