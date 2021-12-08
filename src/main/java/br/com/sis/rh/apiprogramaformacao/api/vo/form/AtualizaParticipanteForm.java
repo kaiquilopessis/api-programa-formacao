@@ -19,26 +19,6 @@ public class AtualizaParticipanteForm {
 	private String nomePrograma;
 	private MultipartFile tce;
 
-//	public Participante atualizar(String cpf, ParticipanteRepository participanteRepository,
-//			ProgramaRepository programaRepository, ProcessoSeletivoRepository processoSeletivoRepository) {
-//
-//		Participante participante = participanteRepository.getById(cpf);
-//
-//		participante.getCandidato().setNome(this.nome);
-//		participante.getCpf();
-//		participante.getCandidato().getTelefone();
-//		participante.getCandidato().setFonteRecrutamento(this.fonteRecrutamento);
-//		participante.setFaculdade(this.nmFaculdade);
-//		participante.setCurso(this.curso);
-//		participante.setDataFinal(this.dataFimGraduacao);
-//		participante.getRemuneracaoPrograma().setCargo(this.cargo);
-//		participante.setPrograma(programa);
-//		participante.getCandidato().setObservacao(this.observacao);
-//		participante.setEmail(this.email);
-//		participante.getPrograma().setProcessoSeletivo(processoSeletivo);
-//
-//		return participante;
-//	}
 
 	public String getNome() {
 		return nome;

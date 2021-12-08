@@ -4,6 +4,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
+import br.com.sis.rh.apiprogramaformacao.core.util.FormatterUtil;
 
 public class InstrutorForm {
 
@@ -70,8 +71,7 @@ public class InstrutorForm {
 	}
 
     public Instrutor converter(){
-        cpf = cpf.replace(".", "").replace("-", "");
-        return new Instrutor(cpf, telefone,status,nome,email);
+        return new Instrutor(FormatterUtil.removerMascara(cpf), telefone,status,nome,email);
     }
 
 }

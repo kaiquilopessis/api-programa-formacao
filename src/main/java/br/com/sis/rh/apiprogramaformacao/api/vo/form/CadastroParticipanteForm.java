@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import br.com.sis.rh.apiprogramaformacao.core.util.FormatterUtil;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
@@ -121,7 +122,7 @@ public class CadastroParticipanteForm {
 		
 		DateTimeFormatter  formatador = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate dataFormatada = LocalDate.parse(cadastroParticipanteForm.getTerminoGraduacao(), formatador);
-		participante.setCpf(cadastroParticipanteForm.getCpf());
+		participante.setCpf(FormatterUtil.removerMascara(cadastroParticipanteForm.getCpf()));
 		participante.setFaculdade(cadastroParticipanteForm.getInstituicaoEnsino());
 		participante.setCurso(cadastroParticipanteForm.getCurso());
 		participante.setDataFinal(dataFormatada);
@@ -132,14 +133,6 @@ public class CadastroParticipanteForm {
 		participante.setEmail(cadastroParticipanteForm.getEmail());
 		participante.setStatus(StatusAtivo.ATIVO);
 		participante.setTce(cadastroParticipanteForm.getTce().getBytes());
-
 		return participante;
 	}
-	
-	 @Override
-	public String toString() {
-		return super.toString();
-	}
-	
-	
 }
