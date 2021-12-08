@@ -7,6 +7,7 @@ import java.util.Optional;
 import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaProgramaDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeTurmaCandidatoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaBuscaVo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TurmaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaProcessoSeletivoForm;
@@ -60,6 +61,8 @@ public class ProgramaService  {
 		return TurmaDto.converter(programas);
 	}
 
-	//Métodos criados pelo Gustavo Rosa
-
+	public NomeTurmaCandidatoDto getTurmaPorId(Long id) {
+		Programa programa = repository.getById(id);
+		return new NomeTurmaCandidatoDto(programa);
+	}
 }

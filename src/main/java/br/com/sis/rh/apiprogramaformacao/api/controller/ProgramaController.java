@@ -6,16 +6,13 @@ import javax.transaction.Transactional;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
 import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TurmaDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.*;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProgramaAtualizaForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProcessoSeletivoVo;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaBuscaVo;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaCompletoVo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProgramaCadastroForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
@@ -42,6 +39,9 @@ public class ProgramaController {
 	public List<ProgramaBuscaVo> getPadrao(){
 		return  programaService.getProgramaList();
 	}
+
+	@GetMapping("/buscarFormacaoPorId/{id}")
+	public NomeTurmaCandidatoDto mostrarTurma(@PathVariable Long id) {return programaService.getTurmaPorId(id);}
 	
 	@GetMapping("/processo-seletivo/finalizados")
 	public List<ProcessoSeletivoVo> getProcesso(){
