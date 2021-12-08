@@ -35,7 +35,6 @@ public class CandidatoCompletoDto {
         this.observacao = candidato.getObservacao();
         this.disc = candidato.getDisc();
         this.curriculo = candidato.getCurriculo();
-        this.curso = candidato.getCurso();
         this.fonteRecrutamento = candidato.getFonteRecrutamento();
         this.processoSeletivo = candidato.getProcessoSeletivo();
     }

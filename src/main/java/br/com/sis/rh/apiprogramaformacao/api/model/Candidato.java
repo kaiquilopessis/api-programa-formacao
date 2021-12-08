@@ -42,9 +42,6 @@ public class Candidato {
 	@Lob
 	private byte[] curriculo;
 	
-	@Column(name = "curso")
-	private String curso;
-	
 	@Column(name = "fonte_recrutamento")
 	private String fonteRecrutamento;
 	
@@ -62,7 +59,6 @@ public class Candidato {
 		this.observacao = observacao;
 		this.disc = disc;
 		this.curriculo = curriculo;
-		this.curso = curso;
 		this.fonteRecrutamento = fonteRecrutamento;
 		this.processoSeletivo = processoSeletivo;
 	}
@@ -74,13 +70,6 @@ public class Candidato {
 	}
 	public void setFonteRecrutamento(String fonteRecrutamento) {
 		this.fonteRecrutamento = fonteRecrutamento;
-	}
-
-	public String getCurso() {
-		return curso;
-	}
-	public void setCurso(String curso) {
-		this.curso = curso;
 	}
 
 	public long getId() {

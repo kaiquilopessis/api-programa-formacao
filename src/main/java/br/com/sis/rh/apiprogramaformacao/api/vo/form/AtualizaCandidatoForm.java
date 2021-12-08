@@ -35,7 +35,6 @@ public class AtualizaCandidatoForm {
         candidato.setTelefone(this.telefone);
         candidato.setFonteRecrutamento(this.fonteRecrutamento);
         candidato.setDataAgendamento(data);
-        candidato.setCurso(this.curso);
         candidato.setObservacao(this.observacao);
         candidato.setStatus(this.status);
         candidato.setTesteLogico(this.testeLogico);

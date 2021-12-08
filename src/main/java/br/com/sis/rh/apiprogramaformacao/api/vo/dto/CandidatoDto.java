@@ -14,7 +14,6 @@ public class CandidatoDto {
     private String telefone;
     private String fonteRecrutamento;
     private LocalDate dataAgendamento;
-    private String curso;
     private String status;
     private BigDecimal testeLogico;
     private String notaDisc;
@@ -28,7 +27,6 @@ public class CandidatoDto {
         this.fonteRecrutamento = candidato.getFonteRecrutamento();
         this.telefone = candidato.getTelefone();
         this.dataAgendamento = candidato.getDataAgendamento();
-        this.curso = candidato.getCurso();
         this.status = candidato.getStatus().replace("_", " ");
         this.testeLogico = candidato.getTesteLogico();
         this.observacao = candidato.getObservacao();
@@ -79,14 +77,6 @@ public class CandidatoDto {
 
     public void setDataAgendamento(LocalDate dataAgendamento) {
         this.dataAgendamento = dataAgendamento;
-    }
-
-    public String getCurso() {
-        return curso;
-    }
-
-    public void setCurso(String curso) {
-        this.curso = curso;
     }
 
     public String getStatus() {
