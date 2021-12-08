@@ -42,9 +42,6 @@ public class Candidato {
 	@Lob
 	private byte[] curriculo;
 	
-	@Column(name = "curso")
-	private String curso;
-	
 	@Column(name = "fonte_recrutamento")
 	private String fonteRecrutamento;
 	
@@ -52,7 +49,9 @@ public class Candidato {
 	@JoinColumn(name = "processo_seletivo_fk", referencedColumnName = "id")
 	private ProcessoSeletivo processoSeletivo;
 
-	public Candidato(String nome, String telefone, LocalDate dataAgendamento, BigDecimal testeLogico, String notaDisc, String status, String observacao, byte[] disc, byte[] curriculo, String curso, String fonteRecrutamento, ProcessoSeletivo processoSeletivo) {
+	public Candidato(String nome, String telefone, LocalDate dataAgendamento, BigDecimal testeLogico, String notaDisc,
+					 String status, String observacao, byte[] disc, byte[] curriculo,  String fonteRecrutamento,
+					 ProcessoSeletivo processoSeletivo) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.dataAgendamento = dataAgendamento;
@@ -62,7 +61,6 @@ public class Candidato {
 		this.observacao = observacao;
 		this.disc = disc;
 		this.curriculo = curriculo;
-		this.curso = curso;
 		this.fonteRecrutamento = fonteRecrutamento;
 		this.processoSeletivo = processoSeletivo;
 	}
@@ -74,13 +72,6 @@ public class Candidato {
 	}
 	public void setFonteRecrutamento(String fonteRecrutamento) {
 		this.fonteRecrutamento = fonteRecrutamento;
-	}
-
-	public String getCurso() {
-		return curso;
-	}
-	public void setCurso(String curso) {
-		this.curso = curso;
 	}
 
 	public long getId() {

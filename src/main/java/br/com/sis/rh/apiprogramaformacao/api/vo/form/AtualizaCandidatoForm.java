@@ -17,7 +17,6 @@ public class AtualizaCandidatoForm {
     private String telefone;
     private String fonteRecrutamento;
     private String dataAgendamento;
-    private String curso;
     private String observacao;
     private String status;
     private BigDecimal testeLogico;
@@ -35,7 +34,6 @@ public class AtualizaCandidatoForm {
         candidato.setTelefone(this.telefone);
         candidato.setFonteRecrutamento(this.fonteRecrutamento);
         candidato.setDataAgendamento(data);
-        candidato.setCurso(this.curso);
         candidato.setObservacao(this.observacao);
         candidato.setStatus(this.status);
         candidato.setTesteLogico(this.testeLogico);
@@ -77,14 +75,6 @@ public class AtualizaCandidatoForm {
 
     public void setDataAgendamento(String dataAgendamento) {
         this.dataAgendamento = dataAgendamento;
-    }
-
-    public String getCurso() {
-        return curso;
-    }
-
-    public void setCurso(String curso) {
-        this.curso = curso;
     }
 
     public String getObservacao() {
