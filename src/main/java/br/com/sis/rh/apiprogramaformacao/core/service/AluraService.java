@@ -89,15 +89,15 @@ public class AluraService {
 	public RelatorioAluraVo popularCards(String formacao, String turma) {
 		RelatorioAluraVo aluraVo = new RelatorioAluraVo();
 		List<Alura> relatorios = new ArrayList<Alura>();
+
+		String turmaFormatada = turma.replace("+", " ");
+		System.out.println(formacao + ", " + turmaFormatada);
 		
-		relatorios = aluraRepository.buscarRegistroHoras();
+		relatorios = aluraRepository.buscarRegistroHoras(turmaFormatada, formacao);
 		aluraVo = calcularMediaMaxMinHoras(relatorios);
-		aluraVo = buscarParticipantesComMaiorEMenorQtdHoras(aluraVo);
+		aluraVo = buscarParticipantesComMaiorEMenorQtdHoras(aluraVo, turmaFormatada, formacao);
 		LocalDate dataRegistro = relatorios.get(0).getDataRegistro();
 		aluraVo.setDataUltimoRegistro(formatador.formatarData(dataRegistro));
-		
-		aluraVo = buscarParticipantesComMaiorEMenorQtdHoras(aluraVo);
-		String turmaFormatada = turma.replace("+", " ");
 		aluraVo.setProgramaDeFormacao(formacao);
 		aluraVo.setTurma(turmaFormatada);
 		
@@ -133,9 +133,10 @@ public class AluraService {
 		return aluraVo;
 	}
 	
-	public RelatorioAluraVo buscarParticipantesComMaiorEMenorQtdHoras(RelatorioAluraVo aluraVo) {
-		String cpfMaiorHora = aluraRepository.buscarCpfMaiorHora();
-		String cpfMenorHora = aluraRepository.buscarCpfMenorHora();
+	public RelatorioAluraVo buscarParticipantesComMaiorEMenorQtdHoras(RelatorioAluraVo aluraVo, String nomeTurma,
+																	  String nomePrograma) {
+		String cpfMaiorHora = aluraRepository.buscarCpfMaiorHora(nomeTurma, nomePrograma);
+		String cpfMenorHora = aluraRepository.buscarCpfMenorHora(nomeTurma, nomePrograma);
 
 		Participante participanteMaiorHora = participanteRepository.findByCpf(cpfMaiorHora);
 		Participante participanteMenorHora = participanteRepository.findByCpf(cpfMenorHora);

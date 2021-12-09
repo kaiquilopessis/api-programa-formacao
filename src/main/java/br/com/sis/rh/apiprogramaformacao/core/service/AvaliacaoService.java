@@ -42,9 +42,9 @@ public class AvaliacaoService {
 
 	
 	public RelatorioAvaliacoesVo popularCards(String formacao, String turma) {
-		RelatorioAvaliacoesVo avaliacaoVo = calcularMedia();
-		avaliacaoVo.setUltimoCicloRegistrado(avaliacaoRepository.buscaNumeroCiclo());
 		String turmaFormatada = turma.replace("+", " ");
+		RelatorioAvaliacoesVo avaliacaoVo = calcularMedia(turmaFormatada, formacao);
+		avaliacaoVo.setUltimoCicloRegistrado(avaliacaoRepository.buscaNumeroCiclo(turmaFormatada, formacao));
 		avaliacaoVo.setProgramaDeFormacao(formacao);
 		avaliacaoVo.setTurma(turmaFormatada);
 		//avaliacaoVo = formatarNotas(avaliacaoVo);
@@ -58,10 +58,10 @@ public class AvaliacaoService {
 	 *         participantes
 	 */
 
-	public RelatorioAvaliacoesVo calcularMedia() {
+	public RelatorioAvaliacoesVo calcularMedia(String nomeTurma, String nomePrograma) {
 		RelatorioAvaliacoesVo avaliacaoVo = new RelatorioAvaliacoesVo(new BigDecimal(0.0), new BigDecimal(0.0), new BigDecimal(0.0),
 				new BigDecimal(0.0), new BigDecimal(0.0), 2, "Java", "Turma I");
-		List<Avaliacoes> avaliacoes = avaliacaoRepository.buscarNotasMaisRecentes();
+		List<Avaliacoes> avaliacoes = avaliacaoRepository.buscarNotasMaisRecentes(nomeTurma, nomePrograma);
 
 		avaliacoes.forEach(avaliacao -> {
 			avaliacaoVo.setNotaMediaAvaliacaoTecnica(
