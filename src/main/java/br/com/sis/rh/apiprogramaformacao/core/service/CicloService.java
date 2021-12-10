@@ -100,6 +100,7 @@ public class CicloService {
 	public ResponseEntity<ByteArrayResource> download(Long id) {
 		Ciclo comprovante = conclusaoRepository.getById(id);
 		return ResponseEntity.ok().contentType(MediaType.parseMediaType("application/pdf"))
+				.header("Content-Disposition", "attachment; filename=\"Comprovante-" + comprovante.getParticipante().getCandidato().getNome() + "-"  + id + ".pdf\"")
 				.body(new ByteArrayResource(comprovante.getComprovanteRematricula()));
 	}
 	

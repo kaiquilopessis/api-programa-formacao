@@ -161,16 +161,18 @@ public class ParticipanteService {
 				return ResponseEntity.ok()
 				.contentType(
 						MediaType.parseMediaType("application/pdf"))
+				.header("Content-Disposition", "attachment; filename=\"TCE-" + tce.getCandidato().getNome() + "-.pdf\"")
 				.body(new ByteArrayResource(tce.getTce()));
 		
 	}
 
 	public ResponseEntity<ByteArrayResource> downloadDisc(String id) {
-		Participante tce = repository.getById(id);
+		Participante disc = repository.getById(id);
 		return ResponseEntity.ok()
 				.contentType(
 						MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
-				.body(new ByteArrayResource(tce.getCandidato().getDisc()));
+				.header("Content-Disposition", "attachment; filename=\"DISC-" + disc.getCandidato().getNome() + "-.xlsx\"")
+				.body(new ByteArrayResource(disc.getCandidato().getDisc()));
 
 	}
 		

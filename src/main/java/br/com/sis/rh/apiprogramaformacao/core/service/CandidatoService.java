@@ -97,14 +97,16 @@ public class CandidatoService {
 
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType("application/pdf"))
+                .header("Content-Disposition", "attachment; filename=\"Currículo-" + curriculo.getNome() + "-.pdf\"")
                 .body(new ByteArrayResource(curriculo.getCurriculo()));
     }
 
-    public ResponseEntity<ByteArrayResource> downloadDisc(String id ) {
-           Participante disc = participanteRepository.findByCpf(id);
+    public ResponseEntity<ByteArrayResource> downloadDisc(Long id) {
+        Candidato disc = candidatoRepository.getById(id);
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
-                .body(new ByteArrayResource(disc.getCandidato().getDisc()));
+                .header("Content-Disposition", "attachment; filename=\"DISC-" + disc.getNome() + "-.xlsx\"")
+                .body(new ByteArrayResource(disc.getDisc()));
     }
 
     public Candidato candidatoId(Long id) {

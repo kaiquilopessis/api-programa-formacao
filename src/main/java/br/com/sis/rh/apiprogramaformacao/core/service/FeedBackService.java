@@ -81,6 +81,7 @@ public class FeedBackService {
 		return ResponseEntity.ok()
 				.contentType(
 						MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
+				.header("Content-Disposition", "attachment; filename=\"DISC-" + disc.getParticipante().getCandidato().getNome() + "-" + id + "-.xlsx\"")
 				.body(new ByteArrayResource(disc.getDisc()));
 
 	}

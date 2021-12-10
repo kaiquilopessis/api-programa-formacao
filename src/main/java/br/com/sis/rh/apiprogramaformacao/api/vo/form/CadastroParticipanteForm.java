@@ -37,8 +37,6 @@ public class CadastroParticipanteForm {
 		this.cpf = cpf;
 	}
 
-	
-
 	public CadastroParticipanteForm(String cpf, String instituicaoEnsino, String curso, String terminoGraduacao,
 			Long idRemuneracao, Long idCandidato, Long idPrograma, String email, MultipartFile tce) {
 		this.cpf = cpf;
