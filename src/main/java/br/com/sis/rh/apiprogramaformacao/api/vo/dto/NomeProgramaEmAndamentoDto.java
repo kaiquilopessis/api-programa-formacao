@@ -7,9 +7,13 @@ import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
 public class NomeProgramaEmAndamentoDto {
 
 	private String nomePrograma;
+	private String nomeTurma;
 
-	public NomeProgramaEmAndamentoDto(String nomePrograma) {
+	
+
+	public NomeProgramaEmAndamentoDto(String nomePrograma, String nomeTurma) {
 		this.nomePrograma = nomePrograma;
+		this.nomeTurma = nomeTurma;
 	}
 
 	public NomeProgramaEmAndamentoDto(ProcessoSeletivo processoSeletivo) {
@@ -27,5 +31,14 @@ public class NomeProgramaEmAndamentoDto {
 	public void setNomePrograma(String nomePrograma) {
 		this.nomePrograma = nomePrograma;
 	}
+
+	public String getNomeTurma() {
+		return nomeTurma;
+	}
+
+	public void setNomeTurma(String nomeTurma) {
+		this.nomeTurma = nomeTurma;
+	}
+	
 
 }

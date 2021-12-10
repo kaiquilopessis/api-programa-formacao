@@ -14,7 +14,8 @@ public interface CandidatoRepository extends JpaRepository<Candidato, Long> {
 
     List<Candidato> findAll();
     
-    @Query(value = "SELECT * FROM TB_CANDIDATO AS c WHERE c.status = 'APROVADO_2_FASE'", nativeQuery = true)
+    @Query(value = "select * from TB_CANDIDATO c where c.id NOT IN (select p.codigo_candidato_fk from TB_PARTICIPANTE p) "
+    		+ "and c.status = 'APROVADO_2_FASE'", nativeQuery = true)
     List<Candidato> findCandidatoPorStatus();
 
 	
