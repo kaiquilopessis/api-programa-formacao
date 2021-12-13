@@ -11,13 +11,16 @@ public class FeedBackDto {
 	private Long id;
 	private LocalDate data;
 	private String anotacao;
-	
+	private boolean download;
 
 	public FeedBackDto(FeedBack feedBack) {
 		this.id = feedBack.getId();
 		this.data = feedBack.getData();
 		this.anotacao = feedBack.getAnotacoes();
-	
+	}
+
+	public FeedBackDto() {
+
 	}
 
 	public Long getId() {
@@ -44,9 +47,25 @@ public class FeedBackDto {
 		this.anotacao = anotacao;
 	}
 
-	
+	public boolean isDownload() {
+		return download;
+	}
+
+	public void setDownload(boolean download) {
+		this.download = download;
+	}
+
 	public static List<FeedBackDto> converter(List<FeedBack> feedBacks) {
-		return feedBacks.stream().map(FeedBackDto::new).collect(Collectors.toList());
+
+		return feedBacks.stream().map(f -> {
+			FeedBackDto feedBackDto = new FeedBackDto(f);
+			if (f.getDisc() == null) {
+				feedBackDto.setDownload(false);
+			} else {
+				feedBackDto.setDownload(true);
+			}
+			return feedBackDto;
+		}).collect(Collectors.toList());
 	}
 
 }
