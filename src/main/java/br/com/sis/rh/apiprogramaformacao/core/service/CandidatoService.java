@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
-import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CandidatoDto;
