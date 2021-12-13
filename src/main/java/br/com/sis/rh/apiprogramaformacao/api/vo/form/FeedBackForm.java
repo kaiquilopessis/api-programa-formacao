@@ -32,7 +32,6 @@ public class FeedBackForm {
 		this.anotacoes = anotacoes;
 	}
 
-
 	public MultipartFile getDisc() {
 		return disc;
 	}
@@ -43,6 +42,9 @@ public class FeedBackForm {
 
 	public FeedBack converter(Participante participante) throws IOException {
 		LocalDate data = LocalDate.parse(this.data, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		if(disc == null){
+			return new FeedBack(data, anotacoes, participante);
+		}
 		return new FeedBack(data, anotacoes, participante, disc.getBytes());
 	}
 	

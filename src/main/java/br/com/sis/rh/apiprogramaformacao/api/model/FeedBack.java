@@ -42,6 +42,12 @@ public class FeedBack {
 		this.disc = disc;
 	}
 
+	public FeedBack(LocalDate data, String anotacoes, Participante participante) {
+		this.data = data;
+		this.anotacoes = anotacoes;
+		this.participante = participante;
+	}
+
 	public FeedBack() {
 
 	}
