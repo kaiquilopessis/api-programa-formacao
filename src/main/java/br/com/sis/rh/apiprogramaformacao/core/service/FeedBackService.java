@@ -11,7 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.FeedBack;
@@ -44,9 +43,10 @@ public class FeedBackService {
 	/**
 	 * Recebe o objeto feedbackForm, e salva no banco
 	 * */
-	public ResponseEntity<FeedBackDto> cadastrar(String cpf, @RequestBody FeedBackForm feedBackForm,
+	public ResponseEntity<FeedBackDto> cadastrar(String cpf, FeedBackForm feedBackForm,
 			UriComponentsBuilder uriComponentsBuilder) {
 		Optional<Participante> participante = participanteRepository.findById(cpf);
+		
 		try {
 			if (participante.isPresent()) {
 				FeedBack feedback = feedBackForm.converter(participante.get());
@@ -79,11 +79,9 @@ public class FeedBackService {
 	public ResponseEntity<ByteArrayResource> download(Long id) {
 		FeedBack disc = feedBackRepository.getById(id);
 		return ResponseEntity.ok()
-				.contentType(
-						MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
-				.header("Content-Disposition", "attachment; filename=\"DISC-" + disc.getParticipante().getCandidato().getNome() + "-" + id + "-.xlsx\"")
+				.contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
+				.header("Content-Disposition", "attachment; filename=\"Arquivo-" + disc.getParticipante().getCandidato().getNome() + "-"  + id + ".xlsx\"")
 				.body(new ByteArrayResource(disc.getDisc()));
 
 	}
-
 }
