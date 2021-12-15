@@ -5,7 +5,7 @@ import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ListaDeProcessoSeletivoDto {
+public class  ListaDeProcessoSeletivoDto {
 
     private Long id;
     private String nome;

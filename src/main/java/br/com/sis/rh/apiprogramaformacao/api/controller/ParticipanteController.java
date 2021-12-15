@@ -1,12 +1,15 @@
 package br.com.sis.rh.apiprogramaformacao.api.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -90,7 +93,8 @@ public class ParticipanteController {
 //	}
 
 	@PostMapping("/salvarParticipante")
-	public void cadastraParticipante(@RequestBody CadastroParticipanteForm cadastroParticipanteForm){
+	public void cadastraParticipante(@ModelAttribute CadastroParticipanteForm cadastroParticipanteForm) throws IOException{
+		System.out.println(cadastroParticipanteForm);
 		participanteService.cadastrarParticipante(cadastroParticipanteForm);
 	}
 
@@ -105,7 +109,20 @@ public class ParticipanteController {
 	}
 	
 	@PutMapping("/atualizaParticipante")
-	public void atualizaParticipante(@RequestBody AtualizaParticipanteForm atualizaParticipanteForm ) {
-	participanteService.atualizarParticipante(atualizaParticipanteForm);
-}
+	public void atualizaParticipante(@ModelAttribute AtualizaParticipanteForm atualizaParticipanteForm ) throws IOException {
+		participanteService.atualizarParticipante(atualizaParticipanteForm);
 	}
+	
+	 /* Endereço da api para baixar o arquivo direto do banco*/
+   	@GetMapping("/downloadTce/{id}")
+   	public ResponseEntity<ByteArrayResource> downloadTceDoCandidato(@PathVariable String id) {
+   		return participanteService.downloadTce(id);
+   		
+   	}
+   	
+ 	@GetMapping("/downloadDisc/{id}")
+   	public ResponseEntity<ByteArrayResource> downloadDiscDoCandidato(@PathVariable String id) {
+   		return participanteService.downloadDisc(id);
+   		
+   	}
+}

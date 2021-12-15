@@ -110,4 +110,6 @@ public class CandidatoController {
     public TurmaModalDto mostrarTurma(@PathVariable Long id){
         return candidatoService.mostrarTurmaModal(id);
     }
+    
+   
 }

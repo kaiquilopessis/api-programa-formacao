@@ -16,7 +16,6 @@ public class CandidatoCompletoDto {
     private String observacao;
     private byte[] disc;
     private byte[] curriculo;
-    private String curso;
     private String fonteRecrutamento;
     private ProcessoSeletivo processoSeletivo;
 
@@ -35,7 +34,6 @@ public class CandidatoCompletoDto {
         this.observacao = candidato.getObservacao();
         this.disc = candidato.getDisc();
         this.curriculo = candidato.getCurriculo();
-        this.curso = candidato.getCurso();
         this.fonteRecrutamento = candidato.getFonteRecrutamento();
         this.processoSeletivo = candidato.getProcessoSeletivo();
     }
@@ -118,14 +116,6 @@ public class CandidatoCompletoDto {
 
     public void setCurriculo(byte[] curriculo) {
         this.curriculo = curriculo;
-    }
-
-    public String getCurso() {
-        return curso;
-    }
-
-    public void setCurso(String curso) {
-        this.curso = curso;
     }
 
     public String getFonteRecrutamento() {

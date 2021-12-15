@@ -1,5 +1,7 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
@@ -39,6 +41,7 @@ public class Instrutor {
 	public String getCpfInstrutor() {
 		return cpfInstrutor;
 	}
+
 	public void setCpfInstrutor(String cpfInstrutor) {
 		this.cpfInstrutor = cpfInstrutor;
 	}

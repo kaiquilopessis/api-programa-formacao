@@ -90,7 +90,9 @@ public class InvestimentosProgFormacaoService {
 		investParticipantes.setInvestParticipantes(BigDecimal.ZERO);
 		
 		participantes.forEach(participante ->{
+			System.out.println(participante.getCpf());
 			Integer somaSalario = investimentosRepository.buscarSalarioPeloCpf(participante.getCpf());
+			System.out.println(somaSalario);
 			investParticipantes.setInvestParticipantes(investParticipantes.getInvestParticipantes()
 			.add(new BigDecimal(somaSalario)));
 		});

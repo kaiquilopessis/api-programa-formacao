@@ -37,7 +37,7 @@ public class ParticipanteExibeDto {
 		this.fonteRecrutamento = participante.getCandidato().getFonteRecrutamento();
 		this.testeLogico = participante.getCandidato().getTesteLogico();
 		this.nmFaculdade = participante.getFaculdade();
-		this.curso = participante.getCandidato().getCurso();
+		this.curso = participante.getCurso();
 		this.dataFimGraduacao = participante.getDataFinal();
 		this.cargo = participante.getRemuneracaoPrograma().getCargo();
 		this.bolsa = participante.getRemuneracaoPrograma().getBolsa();

@@ -32,7 +32,7 @@ public class CandidatoForm {
 
         LocalDate data = LocalDate.parse(this.dataAgendamento, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-        return new Candidato(nome, telefone, data, testeLogico, notaDisc, status, observacao, curriculo.getBytes(), disc.getBytes(), curso, fonteRecrutamento, processoSeletivo);
+        return new Candidato(nome, telefone, data, testeLogico, notaDisc, status, observacao, curriculo.getBytes(), disc.getBytes(), fonteRecrutamento, processoSeletivo);
     }
 
     public String getNome() {
