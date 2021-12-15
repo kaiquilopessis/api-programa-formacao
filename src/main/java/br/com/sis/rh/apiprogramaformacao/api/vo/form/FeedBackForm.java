@@ -1,7 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
