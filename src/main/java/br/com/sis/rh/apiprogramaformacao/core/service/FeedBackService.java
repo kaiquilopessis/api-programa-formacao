@@ -77,11 +77,11 @@ public class FeedBackService {
 	 *Faz a lógica do donwload, o metodo parseMediaType converte o arquivo para poder fazer donwload
 	 * */
 	public ResponseEntity<ByteArrayResource> download(Long id) {
-		FeedBack disc = feedBackRepository.getById(id);
+		FeedBack arquivo = feedBackRepository.getById(id);
 		return ResponseEntity.ok()
-				.contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
-				.header("Content-Disposition", "attachment; filename=\"Arquivo-" + disc.getParticipante().getCandidato().getNome() + "-"  + id + ".xlsx\"")
-				.body(new ByteArrayResource(disc.getDisc()));
+				.contentType(MediaType.parseMediaType("application/pdf"))
+				.header("Content-Disposition", "attachment; filename=\"Arquivo-" + arquivo.getParticipante().getCandidato().getNome() + "-"  + id + ".pdf\"")
+				.body(new ByteArrayResource(arquivo.getDisc()));
 
 	}
 }
