@@ -4,13 +4,13 @@ package br.com.sis.rh.apiprogramaformacao.core.service;
 import java.util.List;
 import java.util.Optional;
 
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusProcessoSeletivo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaDeProcessoSeletivoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProcessoSeletivoDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProcessoSeletivoNomeDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProcessoSeletivoVo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaProcessoSeletivoForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProcessoSeletivoForm;
@@ -45,7 +45,14 @@ public class ProcessoSeletivoService {
         }
         return null;
     }
-
+    public ProcessoSeletivoNomeDto getNomeProcessoSeletivo(Long id) {
+        Optional<ProcessoSeletivo> optional = repository.findById(id);
+        if (optional.isPresent()){
+            ProcessoSeletivo processoSeletivo = optional.get();
+            return new ProcessoSeletivoNomeDto(processoSeletivo);
+        }
+        return null;
+    }
     public ProcessoSeletivo criaNovoProcessoSeletivo(ProcessoSeletivoForm form) {
         ProcessoSeletivo processoSeletivo = form.converter(instrutorRepository);
         repository.save(processoSeletivo);
