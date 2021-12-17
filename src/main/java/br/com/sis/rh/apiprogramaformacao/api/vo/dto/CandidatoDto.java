@@ -30,7 +30,6 @@ public class CandidatoDto {
         this.status = candidato.getStatus().replace("_", " ");
         this.testeLogico = candidato.getTesteLogico();
         this.observacao = candidato.getObservacao();
-        this.notaDisc = candidato.getNotaDisc();
         this.processoSeletivo = candidato.getProcessoSeletivo().getNome();
         this.processoSeletivoId = candidato.getProcessoSeletivo().getId();
 
@@ -93,14 +92,6 @@ public class CandidatoDto {
 
     public void setTesteLogico(BigDecimal testeLogico) {
         this.testeLogico = testeLogico;
-    }
-
-    public String getNotaDisc() {
-        return notaDisc;
-    }
-
-    public void setNotaDisc(String notaDisc) {
-        this.notaDisc = notaDisc;
     }
 
     public String getObservacao() {

@@ -18,7 +18,6 @@ public class AtualizaCandidatoForm {
 	private String observacao;
 	private String status;
 	private BigDecimal testeLogico;
-	private String notaDisc;
 	private MultipartFile disc;
 	private MultipartFile curriculo;
 	private Long idProcessoSeletivo;
@@ -38,7 +37,6 @@ public class AtualizaCandidatoForm {
 			candidato.setObservacao(this.observacao);
 			candidato.setStatus(this.status);
 			candidato.setTesteLogico(this.testeLogico);
-			candidato.setNotaDisc(this.notaDisc);
 			candidato.setProcessoSeletivo(processoSeletivoRepository.getById(idProcessoSeletivo));
 		
 		} else if (disc != null && curriculo == null) {
@@ -50,7 +48,6 @@ public class AtualizaCandidatoForm {
 			candidato.setObservacao(this.observacao);
 			candidato.setStatus(this.status);
 			candidato.setTesteLogico(this.testeLogico);
-			candidato.setNotaDisc(this.notaDisc);
 		
 		} else if (disc == null && curriculo != null) {
 			candidato.setNome(this.nome);
@@ -70,7 +67,6 @@ public class AtualizaCandidatoForm {
 			candidato.setObservacao(this.observacao);
 			candidato.setStatus(this.status);
 			candidato.setTesteLogico(this.testeLogico);
-			candidato.setNotaDisc(this.notaDisc);
 			candidato.setProcessoSeletivo(processoSeletivoRepository.getById(idProcessoSeletivo));
 			candidato.setDisc(this.disc.getBytes()); 
 			candidato.setCurriculo(this.curriculo.getBytes());
@@ -133,14 +129,6 @@ public class AtualizaCandidatoForm {
 
 	public void setTesteLogico(BigDecimal testeLogico) {
 		this.testeLogico = testeLogico;
-	}
-
-	public String getNotaDisc() {
-		return notaDisc;
-	}
-
-	public void setNotaDisc(String notaDisc) {
-		this.notaDisc = notaDisc;
 	}
 
 	public Long getIdProcessoSeletivo() {

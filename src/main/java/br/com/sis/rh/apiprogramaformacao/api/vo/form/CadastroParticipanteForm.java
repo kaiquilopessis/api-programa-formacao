@@ -1,10 +1,7 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
-import br.com.sis.rh.apiprogramaformacao.core.util.FormatterUtil;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
@@ -12,18 +9,19 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
-import lombok.ToString;
+import br.com.sis.rh.apiprogramaformacao.core.util.FormatterUtil;
 
 public class CadastroParticipanteForm {
 	private String cpf;
 	private String instituicaoEnsino;
 	private String curso;
-	private String terminoGraduacao;
 	private Long idRemuneracao;
 	private Long idCandidato;
 	private Long idPrograma;
 	private String email;
 	private MultipartFile tce;
+	private String dataEntrega;
+	private String dataInicio;
 
 	public CadastroParticipanteForm() {
 
@@ -37,12 +35,11 @@ public class CadastroParticipanteForm {
 		this.cpf = cpf;
 	}
 
-	public CadastroParticipanteForm(String cpf, String instituicaoEnsino, String curso, String terminoGraduacao,
+	public CadastroParticipanteForm(String cpf, String instituicaoEnsino, String curso,
 			Long idRemuneracao, Long idCandidato, Long idPrograma, String email, MultipartFile tce) {
 		this.cpf = cpf;
 		this.instituicaoEnsino = instituicaoEnsino;
 		this.curso = curso;
-		this.terminoGraduacao = terminoGraduacao;
 		this.idRemuneracao = idRemuneracao;
 		this.idCandidato = idCandidato;
 		this.idPrograma = idPrograma;
@@ -64,15 +61,6 @@ public class CadastroParticipanteForm {
 
 	public void setCurso(String curso) {
 		this.curso = curso;
-	}
-
-
-	public String getTerminoGraduacao() {
-		return terminoGraduacao;
-	}
-
-	public void setTerminoGraduacao(String terminoGraduacao) {
-		this.terminoGraduacao = terminoGraduacao;
 	}
 
 	public Long getIdRemuneracao() {
@@ -115,15 +103,29 @@ public class CadastroParticipanteForm {
 		this.tce = tce;
 	}
 
-	public static Participante converter(CadastroParticipanteForm cadastroParticipanteForm, Remuneracao remuneracao, Programa programa, Candidato candidato) throws IOException {
+	public String getDataEntrega() {
+		return dataEntrega;
+	}
+
+	public void setDataEntrega(String dataEntrega) {
+		this.dataEntrega = dataEntrega;
+	}
+
+	public String getDataInicio() {
+		return dataInicio;
+	}
+
+	public void setDataInicio(String dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
+	public static Participante converter(CadastroParticipanteForm cadastroParticipanteForm, Remuneracao remuneracao,
+			Programa programa, Candidato candidato) throws IOException {
 		Participante participante = new Participante();
-		
-		DateTimeFormatter  formatador = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		LocalDate dataFormatada = LocalDate.parse(cadastroParticipanteForm.getTerminoGraduacao(), formatador);
+
 		participante.setCpf(FormatterUtil.removerMascara(cadastroParticipanteForm.getCpf()));
 		participante.setFaculdade(cadastroParticipanteForm.getInstituicaoEnsino());
 		participante.setCurso(cadastroParticipanteForm.getCurso());
-		participante.setDataFinal(dataFormatada);
 		participante.setRemuneracao(remuneracao);
 		participante.setPrograma(programa);
 		participante.setCandidato(candidato);

@@ -21,18 +21,30 @@ public class CandidatoForm {
     private String observacao;
     private String status;
     private BigDecimal testeLogico;
-    private String notaDisc;
     private MultipartFile curriculo;
     private MultipartFile disc;
     private Long idProcessoSeletivo;
+    private String email;
+    private String semestreFaculdade;
+    private String periodoCurso;
+    private String dataConclusao;
+    private String duracaoCurso;
+    private String endereco;
+    private String indicacaoVaga;
+    
 
     public Candidato converter (ProcessoSeletivoRepository repository) throws IOException {
 
         ProcessoSeletivo processoSeletivo = repository.getById(idProcessoSeletivo);
 
         LocalDate data = LocalDate.parse(this.dataAgendamento, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
-        return new Candidato(nome, telefone, data, testeLogico, notaDisc, status, observacao, curriculo.getBytes(), disc.getBytes(), fonteRecrutamento, processoSeletivo);
+        LocalDate dataConclusao = LocalDate.parse(this.dataConclusao, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        if (this.semestreFaculdade.equals(null)) {
+        	
+			return new Candidato(nome, telefone, data, testeLogico, status, observacao, curriculo.getBytes(), disc.getBytes(), fonteRecrutamento, processoSeletivo, email, endereco, indicacaoVaga);
+		}
+        
+        return new Candidato(nome, telefone, data, testeLogico, status, observacao, curriculo.getBytes(), disc.getBytes(), fonteRecrutamento, processoSeletivo, email, semestreFaculdade, periodoCurso, dataConclusao, duracaoCurso, endereco, indicacaoVaga);
     }
 
     public String getNome() {
@@ -99,14 +111,6 @@ public class CandidatoForm {
         this.testeLogico = testeLogico;
     }
 
-    public String getNotaDisc() {
-        return notaDisc;
-    }
-
-    public void setNotaDisc(String notaDisc) {
-        this.notaDisc = notaDisc;
-    }
-
     public MultipartFile getCurriculo() {
         return curriculo;
     }
@@ -130,4 +134,60 @@ public class CandidatoForm {
     public void setIdProcessoSeletivo(Long idProcessoSeletivo) {
         this.idProcessoSeletivo = idProcessoSeletivo;
     }
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSemestreFaculdade() {
+		return semestreFaculdade;
+	}
+
+	public void setSemestreFaculdade(String semestreFaculdade) {
+		this.semestreFaculdade = semestreFaculdade;
+	}
+
+	public String getPeriodoCurso() {
+		return periodoCurso;
+	}
+
+	public void setPeriodoCurso(String periodoCurso) {
+		this.periodoCurso = periodoCurso;
+	}
+
+	public String getDataConclusao() {
+		return dataConclusao;
+	}
+
+	public void setDataConclusao(String dataConclusao) {
+		this.dataConclusao = dataConclusao;
+	}
+
+	public String getDuracaoCurso() {
+		return duracaoCurso;
+	}
+
+	public void setDuracaoCurso(String duracaoCurso) {
+		this.duracaoCurso = duracaoCurso;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public String getIndicacaoVaga() {
+		return indicacaoVaga;
+	}
+
+	public void setIndicacaoVaga(String indicacaoVaga) {
+		this.indicacaoVaga = indicacaoVaga;
+	}
 }

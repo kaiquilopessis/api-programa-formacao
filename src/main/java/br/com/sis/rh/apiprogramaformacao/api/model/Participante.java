@@ -15,7 +15,6 @@ import javax.persistence.Table;
 
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivado;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusParticipante;
 
 @Entity
 @Table(name = "TB_PARTICIPANTE")
@@ -24,41 +23,47 @@ public class Participante {
 	@Id
 	@Column(name = "cpf_participante", length = 12)
 	private String cpf;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "codigo_programa_fk", referencedColumnName = "id", nullable = false)
 	private Programa programa;
-	
+
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "codigo_candidato_fk", referencedColumnName = "id", nullable = false)
 	private Candidato candidato;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fk_codigo_remun", referencedColumnName = "id", nullable = false)
 	private Remuneracao remuneracao;
-	
+
 	@Column(name = "nm_faculdade", length = 50)
 	private String faculdade;
-	
+
 	@Column(name = "nm_curso", length = 50)
 	private String curso;
-	
+
 	@Column(name = "data_fim_graduacao")
 	private LocalDate dataFinal;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "status_ativo")
 	private StatusAtivo status;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "status_efetivado")
 	private StatusEfetivado statusEfetivado;
-	
+
 	@Column(name = "email_corp")
 	private String email;
-	
-	@Column(name= "TCE")
-	private  byte[] tce;
+
+	@Column(name = "TCE")
+	private byte[] tce;
+
+	@Column(name = "data_entrega_documentos")
+	private LocalDate dataEntrega;
+
+	@Column(name = "data_inicio")
+	private LocalDate dataInicio;
 
 	public String getEmail() {
 		return email;
@@ -156,7 +161,21 @@ public class Participante {
 		this.tce = tce;
 	}
 
-	
+	public LocalDate getDataEntrega() {
+		return dataEntrega;
+	}
+
+	public void setDataEntrega(LocalDate dataEntrega) {
+		this.dataEntrega = dataEntrega;
+	}
+
+	public LocalDate getDataInicio() {
+		return dataInicio;
+	}
+
+	public void setDataInicio(LocalDate dataInicio) {
+		this.dataInicio = dataInicio;
+	}
 
 	// public String getTce() {
 	// return tce;
