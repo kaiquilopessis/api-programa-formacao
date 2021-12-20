@@ -43,7 +43,7 @@ public class CandidatoDto {
 		this.periodoCurso = candidato.getPeriodoCurso();
 		this.dataConclusao = candidato.getDataConclusao();
 		this.duracaoCurso = candidato.getDuracaoCurso();
-		this.email = candidato.getEndereco();
+		this.endereco = candidato.getEndereco();
 		this.IndicacaoVaga = candidato.getIndicacaoVaga();
 	}
 
