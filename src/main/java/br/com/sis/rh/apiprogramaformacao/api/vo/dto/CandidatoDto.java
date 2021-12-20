@@ -28,25 +28,6 @@ public class CandidatoDto {
 	private String IndicacaoVaga;
 
 	public CandidatoDto(Candidato candidato) {
-		if (this.dataConclusao != null) {
-			this.id = candidato.getId();
-			this.nome = candidato.getNome();
-			this.fonteRecrutamento = candidato.getFonteRecrutamento();
-			this.telefone = candidato.getTelefone();
-			this.dataAgendamento = candidato.getDataAgendamento();
-			this.status = candidato.getStatus().replace("_", " ");
-			this.testeLogico = candidato.getTesteLogico();
-			this.observacao = candidato.getObservacao();
-			this.processoSeletivo = candidato.getProcessoSeletivo().getNome();
-			this.processoSeletivoId = candidato.getProcessoSeletivo().getId();
-			this.email = candidato.getEmail();
-			this.semestre = candidato.getSemestreFaculdade();
-			this.periodoCurso = candidato.getPeriodoCurso();			
-			this.dataConclusao = candidato.getDataConclusao();
-			this.duracaoCurso = candidato.getDuracaoCurso();
-			this.endereco = candidato.getEndereco();
-			this.IndicacaoVaga = candidato.getIndicacaoVaga();
-		}else {
 			this.id = candidato.getId();
 			this.nome = candidato.getNome();
 			this.fonteRecrutamento = candidato.getFonteRecrutamento();
@@ -60,11 +41,11 @@ public class CandidatoDto {
 			this.email = candidato.getEmail();
 			this.semestre = candidato.getSemestreFaculdade();
 			this.periodoCurso = candidato.getPeriodoCurso();
+			this.dataConclusao = candidato.getDataConclusao();
 			this.duracaoCurso = candidato.getDuracaoCurso();
 			this.endereco = candidato.getEndereco();
 			this.IndicacaoVaga = candidato.getIndicacaoVaga();
-		}
-			
+			System.out.println("oi");
 	}
 	
 
