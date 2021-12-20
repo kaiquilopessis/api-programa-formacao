@@ -21,11 +21,20 @@ public class AtualizaCandidatoForm {
 	private MultipartFile disc;
 	private MultipartFile curriculo;
 	private Long idProcessoSeletivo;
+	private String email;
+	private String semestreFaculdade;
+	private String periodoCurso;
+	private String dataConclusao;
+	private String duracaoCurso;
+	private String endereco;
+	private String indicacaoVaga;
 
 	public Candidato atualizar(Long id, CandidatoRepository candidatoRepository,
 			ProcessoSeletivoRepository processoSeletivoRepository) throws IOException {
 
 		LocalDate data = LocalDate.parse(this.dataAgendamento, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		LocalDate dataConclusaoFormatada = LocalDate.parse(this.dataConclusao,
+				DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
 		Candidato candidato = candidatoRepository.getById(id);
 
@@ -38,7 +47,14 @@ public class AtualizaCandidatoForm {
 			candidato.setStatus(this.status);
 			candidato.setTesteLogico(this.testeLogico);
 			candidato.setProcessoSeletivo(processoSeletivoRepository.getById(idProcessoSeletivo));
-		
+			candidato.setEmail(this.email);
+			candidato.setSemestreFaculdade(this.semestreFaculdade);
+			candidato.setPeriodoCurso(this.periodoCurso);
+			candidato.setDataConclusao(dataConclusaoFormatada);
+			candidato.setDuracaoCurso(this.duracaoCurso);
+			candidato.setEndereco(this.endereco);
+			candidato.setIndicacaoVaga(this.indicacaoVaga);
+
 		} else if (disc != null && curriculo == null) {
 			candidato.setDisc(this.disc.getBytes());
 			candidato.setNome(this.nome);
@@ -48,7 +64,14 @@ public class AtualizaCandidatoForm {
 			candidato.setObservacao(this.observacao);
 			candidato.setStatus(this.status);
 			candidato.setTesteLogico(this.testeLogico);
-		
+			candidato.setEmail(this.email);
+			candidato.setSemestreFaculdade(this.semestreFaculdade);
+			candidato.setPeriodoCurso(this.periodoCurso);
+			candidato.setDataConclusao(dataConclusaoFormatada);
+			candidato.setDuracaoCurso(this.duracaoCurso);
+			candidato.setEndereco(this.endereco);
+			candidato.setIndicacaoVaga(this.indicacaoVaga);
+
 		} else if (disc == null && curriculo != null) {
 			candidato.setNome(this.nome);
 			candidato.setTelefone(this.telefone);
@@ -58,7 +81,14 @@ public class AtualizaCandidatoForm {
 			candidato.setStatus(this.status);
 			candidato.setTesteLogico(this.testeLogico);
 			candidato.setCurriculo(this.curriculo.getBytes());
-		
+			candidato.setEmail(this.email);
+			candidato.setSemestreFaculdade(this.semestreFaculdade);
+			candidato.setPeriodoCurso(this.periodoCurso);
+			candidato.setDataConclusao(dataConclusaoFormatada);
+			candidato.setDuracaoCurso(this.duracaoCurso);
+			candidato.setEndereco(this.endereco);
+			candidato.setIndicacaoVaga(this.indicacaoVaga);
+
 		} else if (disc != null && curriculo != null) {
 			candidato.setNome(this.nome);
 			candidato.setTelefone(this.telefone);
@@ -68,8 +98,15 @@ public class AtualizaCandidatoForm {
 			candidato.setStatus(this.status);
 			candidato.setTesteLogico(this.testeLogico);
 			candidato.setProcessoSeletivo(processoSeletivoRepository.getById(idProcessoSeletivo));
-			candidato.setDisc(this.disc.getBytes()); 
+			candidato.setDisc(this.disc.getBytes());
 			candidato.setCurriculo(this.curriculo.getBytes());
+			candidato.setEmail(this.email);
+			candidato.setSemestreFaculdade(this.semestreFaculdade);
+			candidato.setPeriodoCurso(this.periodoCurso);
+			candidato.setDataConclusao(dataConclusaoFormatada);
+			candidato.setDuracaoCurso(this.duracaoCurso);
+			candidato.setEndereco(this.endereco);
+			candidato.setIndicacaoVaga(this.indicacaoVaga);
 		}
 		return candidato;
 
@@ -153,6 +190,62 @@ public class AtualizaCandidatoForm {
 
 	public void setCurriculo(MultipartFile curriculo) {
 		this.curriculo = curriculo;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSemestreFaculdade() {
+		return semestreFaculdade;
+	}
+
+	public void setSemestreFaculdade(String semestreFaculdade) {
+		this.semestreFaculdade = semestreFaculdade;
+	}
+
+	public String getPeriodoCurso() {
+		return periodoCurso;
+	}
+
+	public void setPeriodoCurso(String periodoCurso) {
+		this.periodoCurso = periodoCurso;
+	}
+
+	public String getDataConclusao() {
+		return dataConclusao;
+	}
+
+	public void setDataConclusao(String dataConclusao) {
+		this.dataConclusao = dataConclusao;
+	}
+
+	public String getDuracaoCurso() {
+		return duracaoCurso;
+	}
+
+	public void setDuracaoCurso(String duracaoCurso) {
+		this.duracaoCurso = duracaoCurso;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public String getIndicacaoVaga() {
+		return indicacaoVaga;
+	}
+
+	public void setIndicacaoVaga(String indicacaoVaga) {
+		this.indicacaoVaga = indicacaoVaga;
 	}
 
 }
