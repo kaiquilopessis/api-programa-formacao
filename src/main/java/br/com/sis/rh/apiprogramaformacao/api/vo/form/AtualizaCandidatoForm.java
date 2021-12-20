@@ -33,12 +33,12 @@ public class AtualizaCandidatoForm {
 			ProcessoSeletivoRepository processoSeletivoRepository) throws IOException {
 
 		LocalDate data = LocalDate.parse(this.dataAgendamento, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		LocalDate dataConclusaoFormatada = LocalDate.parse(this.dataConclusao,
-				DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
 		Candidato candidato = candidatoRepository.getById(id);
 
-		if (disc == null && curriculo == null) {
+		if (disc == null && curriculo == null && dataConclusao != null) {
+			LocalDate dataConclusaoFormatada = LocalDate.parse(this.dataConclusao,
+					DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 			candidato.setNome(this.nome);
 			candidato.setTelefone(this.telefone);
 			candidato.setFonteRecrutamento(this.fonteRecrutamento);
@@ -55,7 +55,47 @@ public class AtualizaCandidatoForm {
 			candidato.setEndereco(this.endereco);
 			candidato.setIndicacaoVaga(this.indicacaoVaga);
 
-		} else if (disc != null && curriculo == null) {
+		} else if (disc == null && curriculo == null && dataConclusao == null) {
+			candidato.setNome(this.nome);
+			candidato.setTelefone(this.telefone);
+			candidato.setFonteRecrutamento(this.fonteRecrutamento);
+			candidato.setDataAgendamento(data);
+			candidato.setObservacao(this.observacao);
+			candidato.setStatus(this.status);
+			candidato.setTesteLogico(this.testeLogico);
+			candidato.setProcessoSeletivo(processoSeletivoRepository.getById(idProcessoSeletivo));
+			candidato.setEmail(this.email);
+			candidato.setSemestreFaculdade(this.semestreFaculdade);
+			candidato.setPeriodoCurso(this.periodoCurso);
+			candidato.setDuracaoCurso(this.duracaoCurso);
+			candidato.setEndereco(this.endereco);
+			candidato.setIndicacaoVaga(this.indicacaoVaga);
+
+		}
+
+		else if (disc != null && curriculo == null && dataConclusao != null) {
+
+			LocalDate dataConclusaoFormatada = LocalDate.parse(this.dataConclusao,
+					DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+			candidato.setDisc(this.disc.getBytes());
+			candidato.setNome(this.nome);
+			candidato.setTelefone(this.telefone);
+			candidato.setFonteRecrutamento(this.fonteRecrutamento);
+			candidato.setDataAgendamento(data);
+			candidato.setObservacao(this.observacao);
+			candidato.setStatus(this.status);
+			candidato.setTesteLogico(this.testeLogico);
+			candidato.setEmail(this.email);
+			candidato.setSemestreFaculdade(this.semestreFaculdade);
+			candidato.setDataConclusao(dataConclusaoFormatada);
+			candidato.setPeriodoCurso(this.periodoCurso);
+			candidato.setDuracaoCurso(this.duracaoCurso);
+			candidato.setEndereco(this.endereco);
+			candidato.setIndicacaoVaga(this.indicacaoVaga);
+
+		} else if (disc != null && curriculo == null && dataConclusao == null) {
+
 			candidato.setDisc(this.disc.getBytes());
 			candidato.setNome(this.nome);
 			candidato.setTelefone(this.telefone);
@@ -67,12 +107,33 @@ public class AtualizaCandidatoForm {
 			candidato.setEmail(this.email);
 			candidato.setSemestreFaculdade(this.semestreFaculdade);
 			candidato.setPeriodoCurso(this.periodoCurso);
-			candidato.setDataConclusao(dataConclusaoFormatada);
 			candidato.setDuracaoCurso(this.duracaoCurso);
 			candidato.setEndereco(this.endereco);
 			candidato.setIndicacaoVaga(this.indicacaoVaga);
 
-		} else if (disc == null && curriculo != null) {
+		}
+
+		else if (disc == null && curriculo != null && dataConclusao != null) {
+			LocalDate dataConclusaoFormatada = LocalDate.parse(this.dataConclusao,
+					DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+			candidato.setNome(this.nome);
+			candidato.setTelefone(this.telefone);
+			candidato.setFonteRecrutamento(this.fonteRecrutamento);
+			candidato.setDataAgendamento(data);
+			candidato.setObservacao(this.observacao);
+			candidato.setStatus(this.status);
+			candidato.setTesteLogico(this.testeLogico);
+			candidato.setCurriculo(this.curriculo.getBytes());
+			candidato.setEmail(this.email);
+			candidato.setSemestreFaculdade(this.semestreFaculdade);
+			candidato.setDataConclusao(dataConclusaoFormatada);
+			candidato.setPeriodoCurso(this.periodoCurso);
+			candidato.setDuracaoCurso(this.duracaoCurso);
+			candidato.setEndereco(this.endereco);
+			candidato.setIndicacaoVaga(this.indicacaoVaga);
+
+		} else if (disc == null && curriculo != null && dataConclusao == null) {
 			candidato.setNome(this.nome);
 			candidato.setTelefone(this.telefone);
 			candidato.setFonteRecrutamento(this.fonteRecrutamento);
@@ -84,12 +145,14 @@ public class AtualizaCandidatoForm {
 			candidato.setEmail(this.email);
 			candidato.setSemestreFaculdade(this.semestreFaculdade);
 			candidato.setPeriodoCurso(this.periodoCurso);
-			candidato.setDataConclusao(dataConclusaoFormatada);
 			candidato.setDuracaoCurso(this.duracaoCurso);
 			candidato.setEndereco(this.endereco);
 			candidato.setIndicacaoVaga(this.indicacaoVaga);
 
-		} else if (disc != null && curriculo != null) {
+		} else if (disc != null && curriculo != null && dataConclusao != null) {
+			LocalDate dataConclusaoFormatada = LocalDate.parse(this.dataConclusao,
+					DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
 			candidato.setNome(this.nome);
 			candidato.setTelefone(this.telefone);
 			candidato.setFonteRecrutamento(this.fonteRecrutamento);
@@ -104,6 +167,26 @@ public class AtualizaCandidatoForm {
 			candidato.setSemestreFaculdade(this.semestreFaculdade);
 			candidato.setPeriodoCurso(this.periodoCurso);
 			candidato.setDataConclusao(dataConclusaoFormatada);
+			candidato.setDuracaoCurso(this.duracaoCurso);
+			candidato.setEndereco(this.endereco);
+			candidato.setIndicacaoVaga(this.indicacaoVaga);
+		}
+
+		else if (disc != null && curriculo != null && dataConclusao == null) {
+
+			candidato.setNome(this.nome);
+			candidato.setTelefone(this.telefone);
+			candidato.setFonteRecrutamento(this.fonteRecrutamento);
+			candidato.setDataAgendamento(data);
+			candidato.setObservacao(this.observacao);
+			candidato.setStatus(this.status);
+			candidato.setTesteLogico(this.testeLogico);
+			candidato.setProcessoSeletivo(processoSeletivoRepository.getById(idProcessoSeletivo));
+			candidato.setDisc(this.disc.getBytes());
+			candidato.setCurriculo(this.curriculo.getBytes());
+			candidato.setEmail(this.email);
+			candidato.setSemestreFaculdade(this.semestreFaculdade);
+			candidato.setPeriodoCurso(this.periodoCurso);
 			candidato.setDuracaoCurso(this.duracaoCurso);
 			candidato.setEndereco(this.endereco);
 			candidato.setIndicacaoVaga(this.indicacaoVaga);
