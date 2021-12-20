@@ -38,12 +38,13 @@ public class CandidatoForm {
         ProcessoSeletivo processoSeletivo = repository.getById(idProcessoSeletivo);
 
         LocalDate data = LocalDate.parse(this.dataAgendamento, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        if (this.semestreFaculdade.equals(null)) {
+        if (this.dataConclusao.equals("")) {
         	
 			return new Candidato(nome, telefone, data, testeLogico, status, observacao, curriculo.getBytes(), disc.getBytes(), fonteRecrutamento, processoSeletivo, email, endereco, indicacaoVaga);
-		}
-        LocalDate dataConclusao = LocalDate.parse(this.dataConclusao, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        return new Candidato(nome, telefone, data, testeLogico, status, observacao, curriculo.getBytes(), disc.getBytes(), fonteRecrutamento, processoSeletivo, email, semestreFaculdade, periodoCurso, dataConclusao, duracaoCurso, endereco, indicacaoVaga);
+		} else{
+            LocalDate dataConclusao = LocalDate.parse(this.dataConclusao, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            return new Candidato(nome, telefone, data, testeLogico, status, observacao, curriculo.getBytes(), disc.getBytes(), fonteRecrutamento, processoSeletivo, email, semestreFaculdade, periodoCurso, dataConclusao, duracaoCurso, endereco, indicacaoVaga);
+        }
     }
 
     public String getNome() {
