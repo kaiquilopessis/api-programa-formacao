@@ -1,6 +1,8 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,28 +25,12 @@ public class CadastroParticipanteForm {
 	private String dataEntrega;
 	private String dataInicio;
 
-	public CadastroParticipanteForm() {
-
-	}
-
 	public String getCpf() {
 		return cpf;
 	}
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
-	}
-
-	public CadastroParticipanteForm(String cpf, String instituicaoEnsino, String curso,
-			Long idRemuneracao, Long idCandidato, Long idPrograma, String email, MultipartFile tce) {
-		this.cpf = cpf;
-		this.instituicaoEnsino = instituicaoEnsino;
-		this.curso = curso;
-		this.idRemuneracao = idRemuneracao;
-		this.idCandidato = idCandidato;
-		this.idPrograma = idPrograma;
-		this.email = email;
-		this.tce = tce;
 	}
 
 	public String getInstituicaoEnsino() {
@@ -119,8 +105,10 @@ public class CadastroParticipanteForm {
 		this.dataInicio = dataInicio;
 	}
 
-	public static Participante converter(CadastroParticipanteForm cadastroParticipanteForm, Remuneracao remuneracao,
+	public Participante converter(CadastroParticipanteForm cadastroParticipanteForm, Remuneracao remuneracao,
 			Programa programa, Candidato candidato) throws IOException {
+
+		LocalDate dataEntregaFormatada = LocalDate.parse(this.dataEntrega, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		Participante participante = new Participante();
 
 		participante.setCpf(FormatterUtil.removerMascara(cadastroParticipanteForm.getCpf()));
@@ -133,6 +121,7 @@ public class CadastroParticipanteForm {
 		participante.setEmail(cadastroParticipanteForm.getEmail());
 		participante.setStatus(StatusAtivo.ATIVO);
 		participante.setTce(cadastroParticipanteForm.getTce().getBytes());
+		participante.setDataEntrega(dataEntregaFormatada);
 		return participante;
 	}
 }

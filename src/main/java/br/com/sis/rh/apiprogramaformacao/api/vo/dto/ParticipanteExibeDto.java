@@ -11,6 +11,7 @@ public class ParticipanteExibeDto {
 	private String cpf;
 	private String telefone;
 	private String fonteRecrutamento;
+	private String indicacao;
 	private BigDecimal testeLogico;
 	private String nmFaculdade;
 	private String curso;
@@ -49,7 +50,6 @@ public class ParticipanteExibeDto {
 		this.statusAtivo = participante.getStatus();
 		this.email = participante.getEmail();
 		this.dataEntrega = participante.getDataEntrega();
-		this.dataInicio = participante.getDataEntrega();
 	}
 
 	public String getNome() {
@@ -194,14 +194,6 @@ public class ParticipanteExibeDto {
 
 	public void setDataEntrega(LocalDate dataEntrega) {
 		this.dataEntrega = dataEntrega;
-	}
-
-	public LocalDate getDataInicio() {
-		return dataInicio;
-	}
-
-	public void setDataInicio(LocalDate dataInicio) {
-		this.dataInicio = dataInicio;
 	}
 
 }

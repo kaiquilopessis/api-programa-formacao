@@ -17,6 +17,7 @@ public class CandidatoCompletoDto {
 	private byte[] disc;
 	private byte[] curriculo;
 	private String fonteRecrutamento;
+	private String indicacao;
 	private ProcessoSeletivo processoSeletivo;
 	private LocalDate dataConclusao;
 
@@ -35,6 +36,7 @@ public class CandidatoCompletoDto {
 		this.disc = candidato.getDisc();
 		this.curriculo = candidato.getCurriculo();
 		this.fonteRecrutamento = candidato.getFonteRecrutamento();
+		this.indicacao = candidato.getIndicacaoVaga();
 		this.processoSeletivo = candidato.getProcessoSeletivo();
 		this.dataConclusao = candidato.getDataConclusao();
 	}
@@ -141,6 +143,14 @@ public class CandidatoCompletoDto {
 
 	public void setDataConclusao(LocalDate dataConclusao) {
 		this.dataConclusao = dataConclusao;
+	}
+
+	public String getIndicacao() {
+		return indicacao;
+	}
+
+	public void setIndicacao(String indicacao) {
+		this.indicacao = indicacao;
 	}
 
 }

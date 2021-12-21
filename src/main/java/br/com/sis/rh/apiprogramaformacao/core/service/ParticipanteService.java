@@ -112,7 +112,7 @@ public class ParticipanteService {
 		Remuneracao remuneracao = remuneracaoRepository.getById(cadastroParticipanteForm.getIdRemuneracao());
 		Programa programa = programaRepository.getById(cadastroParticipanteForm.getIdPrograma());
 
-		Participante participante = CadastroParticipanteForm.converter(cadastroParticipanteForm, remuneracao, programa,
+		Participante participante = cadastroParticipanteForm.converter(cadastroParticipanteForm, remuneracao, programa,
 				candidato);
 		repository.save(participante);
 	}

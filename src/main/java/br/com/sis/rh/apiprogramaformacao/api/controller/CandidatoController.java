@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CandidatoDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CargoModalDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaCandidatoDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeInstrutorDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeProgramaCandidatoDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeTurmaCandidatoDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TurmaModalDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaCandidatoForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.CandidatoForm;
 import br.com.sis.rh.apiprogramaformacao.core.service.CandidatoService;

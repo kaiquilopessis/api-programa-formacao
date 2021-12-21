@@ -62,9 +62,6 @@ public class Participante {
 	@Column(name = "data_entrega_documentos")
 	private LocalDate dataEntrega;
 
-	@Column(name = "data_inicio")
-	private LocalDate dataInicio;
-
 	public String getEmail() {
 		return email;
 	}
@@ -167,14 +164,6 @@ public class Participante {
 
 	public void setDataEntrega(LocalDate dataEntrega) {
 		this.dataEntrega = dataEntrega;
-	}
-
-	public LocalDate getDataInicio() {
-		return dataInicio;
-	}
-
-	public void setDataInicio(LocalDate dataInicio) {
-		this.dataInicio = dataInicio;
 	}
 
 	// public String getTce() {
