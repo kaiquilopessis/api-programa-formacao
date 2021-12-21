@@ -26,8 +26,7 @@ public class ParticipanteExibeDto {
 	private String email;
 	private StatusAtivo statusAtivo;
 	private LocalDate dataEntrega;
-	private LocalDate dataInicio;
-
+	
 	public ParticipanteExibeDto() {
 	}
 
@@ -50,6 +49,7 @@ public class ParticipanteExibeDto {
 		this.statusAtivo = participante.getStatus();
 		this.email = participante.getEmail();
 		this.dataEntrega = participante.getDataEntrega();
+		this.setIndicacao(participante.getCandidato().getIndicacaoVaga());
 	}
 
 	public String getNome() {
@@ -194,6 +194,14 @@ public class ParticipanteExibeDto {
 
 	public void setDataEntrega(LocalDate dataEntrega) {
 		this.dataEntrega = dataEntrega;
+	}
+
+	public String getIndicacao() {
+		return indicacao;
+	}
+
+	public void setIndicacao(String indicacao) {
+		this.indicacao = indicacao;
 	}
 
 }
