@@ -64,7 +64,6 @@ public class ProgramaController {
 	@PostMapping
 	@Transactional
 	public ResponseEntity cadastra(@RequestBody ProgramaCadastroForm programaCadastroForm){
-		System.out.println(programaCadastroForm.getInstrutor());
 		Instrutor instrutor = instrutorRepository.findInstrutorByNome(programaCadastroForm.getInstrutor());
 		ProcessoSeletivo processoSeletivo = processoSeletivoRepository.findByNome(programaCadastroForm.getNome());
 		try{

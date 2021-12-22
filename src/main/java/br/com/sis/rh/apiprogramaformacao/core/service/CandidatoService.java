@@ -121,7 +121,6 @@ public class CandidatoService {
 	}
 
 	public List<NomeTurmaCandidatoDto> buscarTurmas(String nomePrograma) {
-		System.out.println(nomePrograma);
 		List<Programa> programas = programaRepository.buscarTurmasPeloNomePrograma(nomePrograma);
 		return NomeTurmaCandidatoDto.converter(programas);
 	}

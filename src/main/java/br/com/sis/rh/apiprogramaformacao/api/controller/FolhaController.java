@@ -26,7 +26,6 @@ public class FolhaController {
 
     @PostMapping
     public void salvarInvestimentos(@RequestBody FolhaForm folhaForm){
-        System.out.println(folhaForm.getCpf());
         participanteService.cadastrar(folhaForm);
     }
 

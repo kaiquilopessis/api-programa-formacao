@@ -108,7 +108,6 @@ public class CandidatoController {
 
     @GetMapping("/mostrar-cargo/{id}")
     public CargoModalDto mostrarCargo(@PathVariable Long id) {
-        System.out.println();
         return candidatoService.mostrarCargoModal(id);
     }
 

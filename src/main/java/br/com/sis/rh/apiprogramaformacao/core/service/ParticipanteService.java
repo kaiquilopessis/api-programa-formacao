@@ -61,7 +61,6 @@ public class ParticipanteService {
 
 	public Participante participanteCpf(String cpf) {
 		Optional<Participante> optional = repository.findById(cpf);
-		System.out.println(optional.get().getCpf());
 
 		return optional.get();
 	}

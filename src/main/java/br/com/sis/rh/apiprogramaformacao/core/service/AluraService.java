@@ -91,8 +91,7 @@ public class AluraService {
 		List<Alura> relatorios = new ArrayList<Alura>();
 
 		String turmaFormatada = turma.replace("+", " ");
-		System.out.println(formacao + ", " + turmaFormatada);
-		
+
 		relatorios = aluraRepository.buscarRegistroHoras(turmaFormatada, formacao);
 		aluraVo = calcularMediaMaxMinHoras(relatorios);
 		aluraVo = buscarParticipantesComMaiorEMenorQtdHoras(aluraVo, turmaFormatada, formacao);

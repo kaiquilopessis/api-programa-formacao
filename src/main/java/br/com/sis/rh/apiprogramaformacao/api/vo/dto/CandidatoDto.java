@@ -45,7 +45,6 @@ public class CandidatoDto {
 			this.duracaoCurso = candidato.getDuracaoCurso();
 			this.endereco = candidato.getEndereco();
 			this.IndicacaoVaga = candidato.getIndicacaoVaga();
-			System.out.println("oi");
 	}
 	
 
