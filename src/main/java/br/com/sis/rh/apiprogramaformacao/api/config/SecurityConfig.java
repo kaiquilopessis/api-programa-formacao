@@ -13,6 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import br.com.sis.rh.apiprogramaformacao.core.repository.LoginADRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.UsuarioAcessoRepository;
 
 @EnableWebSecurity
@@ -27,6 +28,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UsuarioAcessoRepository usuarioAcessoRepository;
+    
+    @Autowired
+    private LoginADRepository loginADRepository;
 
     @Override
     @Bean
@@ -46,13 +50,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/auth").permitAll()
+                .antMatchers("/api/ad").permitAll()
+                .antMatchers("/api/ad/*").permitAll()
                 .antMatchers("/api/auth/*").permitAll()
                 .antMatchers("/api/feedback/download/*", "/api/ciclo/download/*", "/api/relatorio-alura/**", "/api/relatorio-avaliacao/**",
                 		"/api/conclusoes/**", "/api/investimentos/**","/api/participante/**","/api/candidato/**").permitAll()
                 .anyRequest().authenticated()
                 .and().cors().and().csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().addFilterBefore(new AutenticacaoTokenFilter(tokenService, usuarioAcessoRepository), UsernamePasswordAuthenticationFilter.class);
+                .and().addFilterBefore(new AutenticacaoTokenFilter(tokenService, loginADRepository), UsernamePasswordAuthenticationFilter.class);
     }
 
 }

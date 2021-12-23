@@ -1,6 +1,8 @@
 package br.com.sis.rh.apiprogramaformacao.api.config;
 
+import br.com.sis.rh.apiprogramaformacao.api.model.LoginAD;
 import br.com.sis.rh.apiprogramaformacao.api.model.UsuarioAcesso;
+import br.com.sis.rh.apiprogramaformacao.core.repository.LoginADRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.UsuarioAcessoRepository;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,10 +22,11 @@ public class AutenticacaoTokenFilter extends OncePerRequestFilter {
  // portanto, injetamos a classe Token Service e o UsuarioAcessoRepository por meio de construtor
  private TokenService tokenService;
  private UsuarioAcessoRepository usuarioAcessoRepository;
+ private LoginADRepository loginADRepository;
 
- public AutenticacaoTokenFilter(TokenService tokenService, UsuarioAcessoRepository usuarioAcessoRepository) {
+ public AutenticacaoTokenFilter(TokenService tokenService, LoginADRepository loginADRepository) {
      this.tokenService = tokenService;
-     this.usuarioAcessoRepository = usuarioAcessoRepository;
+     this.loginADRepository = loginADRepository;
  }
 
  // Esse método é o método principal desse filter
@@ -54,9 +57,9 @@ public class AutenticacaoTokenFilter extends OncePerRequestFilter {
  // Define que o usuário está autenticado
  private void autenticarUsuario(String token) {
      String idUsuario = tokenService.getIdUsuario(token);
-     Optional<UsuarioAcesso> optUsuario = usuarioAcessoRepository.findByUsuarioAd(idUsuario);
+     Optional<LoginAD> optUsuario = loginADRepository.findById(idUsuario);
 
-     UsuarioAcesso usuario = optUsuario.get();
+     LoginAD usuario = optUsuario.get();
 
      UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(usuario, null
              , usuario.getAuthorities());

@@ -12,10 +12,17 @@ import javax.naming.directory.InitialDirContext;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TokenVo;
+import br.com.sis.rh.apiprogramaformacao.core.service.AutenticacaoADService;
 
 @Component
 public class ConnectAD {
+	@Autowired
+	private AutenticacaoADService autenticacaoADService;
 	
 	private final String domain = System.getenv("USERDNSDOMAIN");
 	
@@ -26,8 +33,14 @@ public class ConnectAD {
 	};
 	
     public UsuarioAD getUser(String user, String securityToken) throws NamingException {
+    	//verificar o user na tabela
+    	
 		SearchResult sr = getSearchResult(user, securityToken, null);
-		return new UsuarioAD(sr.getAttributes());
+		UsuarioAD usuarioAD = new UsuarioAD(sr.getAttributes());
+		ResponseEntity<TokenVo> tokenLogin = autenticacaoADService.autenticacao(usuarioAD);
+		usuarioAD.setTipoToken(tokenLogin.getBody().getTipo());
+		usuarioAD.setToken(tokenLogin.getBody().getToken());
+		return usuarioAD;
     }
     
 	public boolean isAuthenticate(String user, String securityToken) {

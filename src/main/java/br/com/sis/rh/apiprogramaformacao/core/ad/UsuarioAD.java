@@ -5,7 +5,10 @@ import java.io.Serializable;
 import javax.naming.directory.Attribute;
 import javax.naming.directory.Attributes;
 
-import lombok.SneakyThrows;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import br.com.sis.rh.apiprogramaformacao.core.enums.BooleanEnum;
 
 public class UsuarioAD implements Serializable {
 
@@ -16,8 +19,9 @@ public class UsuarioAD implements Serializable {
 	private String matricula;
 	private String email;
 	private String telefone;
+	private String tipoToken;
+	private String token;
 
-	@SneakyThrows
 	public UsuarioAD(Attributes attributes) {
 		nome = getAttribute(attributes.get("givenname"));
 		sobrenome = getAttribute(attributes.get("sn"));
@@ -32,6 +36,10 @@ public class UsuarioAD implements Serializable {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+	
+	public UsernamePasswordAuthenticationToken converter() {
+		return new UsernamePasswordAuthenticationToken(matricula, BooleanEnum.ATIVO.getCodigo());
 	}
 
 	public String getNome() {
@@ -76,6 +84,22 @@ public class UsuarioAD implements Serializable {
 
 	public UsuarioAD() {
 
+	}
+
+	public String getTipoToken() {
+		return tipoToken;
+	}
+
+	public void setTipoToken(String tipoToken) {
+		this.tipoToken = tipoToken;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 }

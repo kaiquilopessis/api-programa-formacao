@@ -1,13 +1,15 @@
 package br.com.sis.rh.apiprogramaformacao.api.config;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.UsuarioAcesso;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-import java.util.Date;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.LoginAD;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 @Service
 public class TokenService {
@@ -22,7 +24,7 @@ public class TokenService {
 
     // Gera o token, utilizando a Autenticacao dos Dados de login
     public String gerarToken(Authentication auth){
-        UsuarioAcesso logado = (UsuarioAcesso) auth.getPrincipal();
+        LoginAD logado = (LoginAD) auth.getPrincipal();
         Date hoje = new Date();
         Date dataExpiracao = new Date(hoje.getTime() + Long.parseLong(expiration));
 
