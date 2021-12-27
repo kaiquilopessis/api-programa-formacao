@@ -14,7 +14,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import br.com.sis.rh.apiprogramaformacao.core.repository.LoginADRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.UsuarioAcessoRepository;
 
 @EnableWebSecurity
 @Configuration

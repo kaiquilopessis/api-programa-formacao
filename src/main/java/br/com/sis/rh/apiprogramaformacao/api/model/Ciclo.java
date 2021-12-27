@@ -13,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoCiclo;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCiclo;

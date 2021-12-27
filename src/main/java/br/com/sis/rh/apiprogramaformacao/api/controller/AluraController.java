@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.AluraDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ApiAluraDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AluraForm;
 import br.com.sis.rh.apiprogramaformacao.core.service.AluraService;
 
@@ -53,5 +54,10 @@ public class AluraController {
 	@DeleteMapping("/deletar/{id}")
 	public ResponseEntity<AluraDto> deletar(@PathVariable Long id) {
 		return aluraService.deletar(id);
+	}
+	
+	@GetMapping("/consulta")
+	public ResponseEntity<String> listarRegistrosApi(){
+		return aluraService.listaRegistrosApi();
 	}
 }

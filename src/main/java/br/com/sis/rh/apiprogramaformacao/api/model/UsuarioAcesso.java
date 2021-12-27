@@ -1,15 +1,11 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
 import java.time.LocalDate;
-import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name="TB_USUARIO_ACESSO")

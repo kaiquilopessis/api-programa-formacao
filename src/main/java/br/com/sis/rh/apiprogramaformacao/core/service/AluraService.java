@@ -3,17 +3,25 @@ package br.com.sis.rh.apiprogramaformacao.core.service;
 import java.net.URI;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Alura;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.AluraDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ApiAluraDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RelatorioAluraVo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AluraForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.AluraRepository;
@@ -31,6 +39,8 @@ public class AluraService {
 
 	@Autowired
 	private FormatadorDataUtil formatador;
+	
+	private static final String URI = "https://cursos.alura.com.br/corp/api/v1/conclusoes";
 
 	
 	/**
@@ -147,5 +157,20 @@ public class AluraService {
 		aluraVo.setCargoFuncionarioComMenorQuantidadeHoras(participanteMenorHora.getRemuneracao().getCargo());
 
 		return aluraVo;
+	}
+
+	public ResponseEntity<String> listaRegistrosApi() {
+		
+		RestTemplate restTemplate = new RestTemplate();
+		
+		UriComponents uri = UriComponentsBuilder.newInstance()
+				.scheme("https")
+				.host("cursos.alura.com.br")
+				.path("corp/api/v1/conclusoes")
+				.queryParam("token", "6afb14cb642b40e7915770094b8fbb8a")
+				.build();
+		
+		ResponseEntity<String> registros = restTemplate.getForEntity(uri.toUriString(), String.class);
+		return registros;
 	}
 }

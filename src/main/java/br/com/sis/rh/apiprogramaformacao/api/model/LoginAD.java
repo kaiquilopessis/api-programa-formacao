@@ -11,29 +11,29 @@ import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import br.com.sis.rh.apiprogramaformacao.core.enums.BooleanEnum;
-
 @Entity
 @Table(name = "TB_LOGIN_AD")
 public class LoginAD implements UserDetails{
-
+	
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	private String matricula;
 	private LocalDate dataPrimeiroAcesso;
 	@Column(name = "ativo")
 	private String ativo;
 
-//	public String getMatricula() {
-//		return matricula;
-//	}
-//
-//	public LocalDate getDataPrimeiroAcesso() {
-//		return dataPrimeiroAcesso;
-//	}
-//
-//	public BooleanEnum getAtivo() {
-//		return ativo;
-//	}
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public LocalDate getDataPrimeiroAcesso() {
+		return dataPrimeiroAcesso;
+	}
+
+	public String getAtivo() {
+		return ativo;
+	}
 
 
 	@Override
