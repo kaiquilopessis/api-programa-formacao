@@ -25,9 +25,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private TokenService tokenService;
-
-    @Autowired
-    private UsuarioAcessoRepository usuarioAcessoRepository;
     
     @Autowired
     private LoginADRepository loginADRepository;

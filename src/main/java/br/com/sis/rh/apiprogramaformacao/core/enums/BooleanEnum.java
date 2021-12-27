@@ -1,16 +1,16 @@
 package br.com.sis.rh.apiprogramaformacao.core.enums;
 
 public enum BooleanEnum {
-	ATIVO("S"),
-	INATIVO("N");
+	ATIVO(1),
+	INATIVO(0);
 	
-	private String codigo;
+	private Integer codigo;
 
-	private BooleanEnum(String codigo) {
+	private BooleanEnum(Integer codigo) {
 		this.codigo = codigo;
 	}
 
-	public String getCodigo() {
+	public Integer getCodigo() {
 		return codigo;
 	}
 
