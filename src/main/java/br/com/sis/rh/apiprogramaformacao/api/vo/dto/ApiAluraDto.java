@@ -1,14 +1,17 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ApiAluraDto {
 
+	@JsonProperty("email")
 	private String email;
+
+	@JsonProperty("idCurso")
 	private Integer idCurso;
+
+	@JsonProperty("cargaHoraria")
 	private Integer cargaHoraria;
-	private String token;
 
 	public String getEmail() {
 		return email;
@@ -34,12 +37,13 @@ public class ApiAluraDto {
 		this.cargaHoraria = cargaHoraria;
 	}
 
-	public String getToken() {
-		return token;
+	public ApiAluraDto() {
 	}
 
-	public void setToken(String token) {
-		this.token = token;
+	public ApiAluraDto(String email, Integer idCurso, Integer cargaHoraria) {
+		this.email = email;
+		this.idCurso = idCurso;
+		this.cargaHoraria = cargaHoraria;
 	}
 
 }

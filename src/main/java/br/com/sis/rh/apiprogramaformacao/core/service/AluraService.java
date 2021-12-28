@@ -3,7 +3,7 @@ package br.com.sis.rh.apiprogramaformacao.core.service;
 import java.net.URI;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -159,9 +159,13 @@ public class AluraService {
 		return aluraVo;
 	}
 
-	public ResponseEntity<String> listaRegistrosApi() {
-		
+	
+	public ApiAluraDto[] getAlura() {
 		RestTemplate restTemplate = new RestTemplate();
+		
+		HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        HttpEntity<String> entity = new HttpEntity<>(httpHeaders);
 		
 		UriComponents uri = UriComponentsBuilder.newInstance()
 				.scheme("https")
@@ -170,7 +174,6 @@ public class AluraService {
 				.queryParam("token", "6afb14cb642b40e7915770094b8fbb8a")
 				.build();
 		
-		ResponseEntity<String> registros = restTemplate.getForEntity(uri.toUriString(), String.class);
-		return registros;
+		return restTemplate.exchange(uri.toUriString(), HttpMethod.GET, entity, ApiAluraDto[].class).getBody();
 	}
 }

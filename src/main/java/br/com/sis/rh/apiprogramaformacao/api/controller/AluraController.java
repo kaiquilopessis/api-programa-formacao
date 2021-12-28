@@ -57,7 +57,7 @@ public class AluraController {
 	}
 	
 	@GetMapping("/consulta")
-	public ResponseEntity<String> listarRegistrosApi(){
-		return aluraService.listaRegistrosApi();
+	public ApiAluraDto[] listarRegistrosApi(){
+		return aluraService.getAlura();
 	}
 }
