@@ -57,7 +57,7 @@ public class AluraController {
 	}
 	
 	@GetMapping("/consulta")
-	public ApiAluraDto[] listarRegistrosApi(){
-		return aluraService.getAlura();
+	public void listarRegistrosApi(){
+		aluraService.AluraSchedule();
 	}
 }
