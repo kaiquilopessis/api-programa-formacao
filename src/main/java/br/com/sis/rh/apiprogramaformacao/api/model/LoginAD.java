@@ -2,12 +2,14 @@ package br.com.sis.rh.apiprogramaformacao.api.model;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.LoginADDto;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -22,6 +24,14 @@ public class LoginAD implements UserDetails{
 	private LocalDate dataPrimeiroAcesso;
 	@Column(name = "ativo")
 	private String ativo;
+	private Integer nivelAcesso;
+
+	public LoginAD() {}
+
+	public LoginAD(String matricula, Integer nivelAcesso) {
+		this.matricula = matricula;
+		this.nivelAcesso = nivelAcesso;
+	}
 
 	public String getMatricula() {
 		return matricula;
@@ -75,6 +85,15 @@ public class LoginAD implements UserDetails{
 		return true;
 	}
 
-	
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
 
+	public void setDataPrimeiroAcesso(LocalDate dataPrimeiroAcesso) {
+		this.dataPrimeiroAcesso = dataPrimeiroAcesso;
+	}
+
+	public void setAtivo(String ativo) {
+		this.ativo = ativo;
+	}
 }

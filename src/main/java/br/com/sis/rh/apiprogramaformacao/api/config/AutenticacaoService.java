@@ -29,6 +29,10 @@ public class AutenticacaoService implements UserDetailsService {
         Optional<LoginAD> optUsuario = loginADRepository.findById(username);
 
         if(optUsuario.isPresent()){
+            if(optUsuario.get().getDataPrimeiroAcesso() == null){
+                optUsuario.get().setDataPrimeiroAcesso(LocalDate.now());
+                loginADRepository.save(optUsuario.get());
+            }
             return optUsuario.get();
         }
 
