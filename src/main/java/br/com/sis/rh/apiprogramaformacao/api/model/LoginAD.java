@@ -1,13 +1,11 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.LoginADDto;
 import org.springframework.security.core.GrantedAuthority;
@@ -24,13 +22,13 @@ public class LoginAD implements UserDetails{
 	private LocalDate dataPrimeiroAcesso;
 	@Column(name = "ativo")
 	private String ativo;
-	private Integer nivelAcesso;
+	@ManyToMany
+	private List<Perfil> perfil = new ArrayList<>();
 
 	public LoginAD() {}
 
 	public LoginAD(String matricula, Integer nivelAcesso) {
 		this.matricula = matricula;
-		this.nivelAcesso = nivelAcesso;
 	}
 
 	public String getMatricula() {
@@ -47,6 +45,11 @@ public class LoginAD implements UserDetails{
 
 
 	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return this.perfil;
+	}
+
+	@Override
 	public String getPassword() {	
 		return this.ativo;
 	}
@@ -54,11 +57,6 @@ public class LoginAD implements UserDetails{
 	@Override
 	public String getUsername() {
 		return this.matricula;
-	}
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
 	}
 
 	@Override

@@ -33,4 +33,10 @@ public class MatriculaController {
         URI uri = uriBuilder.path("api/matricula/{matricula}").buildAndExpand(matricula.getMatricula()).toUri();
         return ResponseEntity.created(uri).body(new LoginADDto(matricula));
     }
+
+    @DeleteMapping("/{matricula}")
+    private ResponseEntity<LoginADDto> deletarMatricula(@PathVariable String matricula){
+
+        return matriculaService.deletaMatricula(matricula);
+    }
 }
