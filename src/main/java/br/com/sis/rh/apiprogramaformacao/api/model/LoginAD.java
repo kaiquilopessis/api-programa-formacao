@@ -1,31 +1,35 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.LoginADDto;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "TB_LOGIN_AD")
-public class LoginAD implements UserDetails{
-	
+public class LoginAD implements UserDetails {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	private String matricula;
 	private LocalDate dataPrimeiroAcesso;
 	@Column(name = "ativo")
 	private String ativo;
-	@ManyToMany
-	private List<Perfil> perfil = new ArrayList<>();
+	@ManyToOne
+	@JoinColumn(name = "fk_perfil")
+	private Perfil fk_perfil;
 
-	public LoginAD() {}
+	public LoginAD() {
+	}
 
 	public LoginAD(String matricula, Integer nivelAcesso) {
 		this.matricula = matricula;
@@ -43,14 +47,20 @@ public class LoginAD implements UserDetails{
 		return ativo;
 	}
 
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return this.perfil;
+	public void setDataPrimeiroAcesso(LocalDate dataPrimeiroAcesso) {
+		this.dataPrimeiroAcesso = dataPrimeiroAcesso;
+	}
+
+	public void setAtivo(String ativo) {
+		this.ativo = ativo;
 	}
 
 	@Override
-	public String getPassword() {	
+	public String getPassword() {
 		return this.ativo;
 	}
 
@@ -83,15 +93,18 @@ public class LoginAD implements UserDetails{
 		return true;
 	}
 
-	public void setMatricula(String matricula) {
-		this.matricula = matricula;
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public void setDataPrimeiroAcesso(LocalDate dataPrimeiroAcesso) {
-		this.dataPrimeiroAcesso = dataPrimeiroAcesso;
+	public Perfil getFk_perfil() {
+		return fk_perfil;
 	}
 
-	public void setAtivo(String ativo) {
-		this.ativo = ativo;
+	public void setFk_perfil(Perfil fk_perfil) {
+		this.fk_perfil = fk_perfil;
 	}
+
 }

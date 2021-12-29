@@ -4,6 +4,7 @@ import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.naming.Context;
@@ -16,13 +17,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import br.com.sis.rh.apiprogramaformacao.api.model.LoginAD;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TokenVo;
+import br.com.sis.rh.apiprogramaformacao.core.repository.LoginADRepository;
 import br.com.sis.rh.apiprogramaformacao.core.service.AutenticacaoADService;
 
 @Component
 public class ConnectAD {
 	@Autowired
 	private AutenticacaoADService autenticacaoADService;
+	
+	@Autowired
+	private LoginADRepository loginADRepository;
 	
 	private final String domain = System.getenv("USERDNSDOMAIN");
 	
@@ -37,9 +43,15 @@ public class ConnectAD {
     	
 		SearchResult sr = getSearchResult(user, securityToken, null);
 		UsuarioAD usuarioAD = new UsuarioAD(sr.getAttributes());
+		
 		ResponseEntity<TokenVo> tokenLogin = autenticacaoADService.autenticacao(usuarioAD);
 		usuarioAD.setTipoToken(tokenLogin.getBody().getTipo());
 		usuarioAD.setToken(tokenLogin.getBody().getToken());
+		
+		Optional<LoginAD> loginAd = loginADRepository.findById(usuarioAD.getMatricula());
+		if (loginAd.isPresent()) {
+			usuarioAD.setPerfil(loginAd.get().getFk_perfil().getAuthority());
+		}
 		return usuarioAD;
     }
     

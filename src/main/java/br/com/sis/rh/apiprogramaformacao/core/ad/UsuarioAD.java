@@ -21,6 +21,7 @@ public class UsuarioAD implements Serializable {
 	private String telefone;
 	private String tipoToken;
 	private String token;
+	private String perfil;
 
 	public UsuarioAD(Attributes attributes) {
 		nome = getAttribute(attributes.get("givenname"));
@@ -37,7 +38,7 @@ public class UsuarioAD implements Serializable {
 			return null;
 		}
 	}
-	
+
 	public UsernamePasswordAuthenticationToken converter() {
 		return new UsernamePasswordAuthenticationToken(matricula, BooleanEnum.ATIVO.getCodigo());
 	}
@@ -100,6 +101,14 @@ public class UsuarioAD implements Serializable {
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+	public String getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(String perfil) {
+		this.perfil = perfil;
 	}
 
 }
