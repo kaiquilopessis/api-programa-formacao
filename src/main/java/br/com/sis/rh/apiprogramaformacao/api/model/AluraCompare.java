@@ -61,7 +61,7 @@ public class AluraCompare {
 		this.idCurso = idCurso;
 	}
 	
-	public AluraCompare converter(ApiAluraDto apiAluraDto) {
+	public static AluraCompare converter(ApiAluraDto apiAluraDto) {
 		AluraCompare aluraCompare = new AluraCompare();
 		aluraCompare.setIdCurso(apiAluraDto.getIdCurso());
 		aluraCompare.setCargaHoraria(apiAluraDto.getCargaHoraria());
@@ -70,5 +70,13 @@ public class AluraCompare {
 		return aluraCompare;
 
 	}
+	
+//	@Override
+//	public boolean equals(Object obj) {
+//		
+//		return super.equals(obj);
+//	}
+	
+	
 
 }
