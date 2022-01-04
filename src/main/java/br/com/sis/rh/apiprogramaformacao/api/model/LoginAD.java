@@ -31,8 +31,9 @@ public class LoginAD implements UserDetails {
 	public LoginAD() {
 	}
 
-	public LoginAD(String matricula, Integer nivelAcesso) {
+	public LoginAD(String matricula, Perfil perfil) {
 		this.matricula = matricula;
+		this.fk_perfil = perfil;
 	}
 
 	public String getMatricula() {

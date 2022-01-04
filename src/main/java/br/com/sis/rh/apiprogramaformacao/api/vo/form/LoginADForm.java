@@ -1,12 +1,13 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.LoginAD;
+import br.com.sis.rh.apiprogramaformacao.api.model.Perfil;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class LoginADForm {
 
     private String matricula;
-    private Integer nivelAcesso;
+    private String perfil;
 
     public String getMatricula() {
         return matricula;
@@ -16,16 +17,16 @@ public class LoginADForm {
         this.matricula = matricula;
     }
 
-    public Integer getNivelAcesso() {
-        return nivelAcesso;
+    public String getPerfil() {
+        return perfil;
     }
 
-    public void setNivelAcesso(Integer nivelAcesso) {
-        this.nivelAcesso = nivelAcesso;
+    public void setPerfil(String perfil) {
+        this.perfil = perfil;
     }
 
-    public LoginAD converter() {
-        LoginAD loginAD = new LoginAD(matricula, nivelAcesso);
+    public LoginAD converter(Perfil perfil) {
+        LoginAD loginAD = new LoginAD(matricula, perfil);
         loginAD.setAtivo(new BCryptPasswordEncoder().encode("1"));
         return loginAD;
     }

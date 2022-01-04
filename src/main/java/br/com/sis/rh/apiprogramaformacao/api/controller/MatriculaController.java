@@ -1,16 +1,17 @@
 package br.com.sis.rh.apiprogramaformacao.api.controller;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.LoginAD;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CandidatoDto;
+import br.com.sis.rh.apiprogramaformacao.api.model.Perfil;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.LoginADDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.PerfilDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.LoginADForm;
 import br.com.sis.rh.apiprogramaformacao.core.service.MatriculaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.xml.ws.Response;
 import java.net.URI;
 import java.util.List;
 
@@ -22,12 +23,17 @@ public class MatriculaController {
     private MatriculaService matriculaService;
 
     @GetMapping
-    private List<LoginADDto> listaMatriculas(){
+    public List<LoginADDto> listaMatriculas(){
         return matriculaService.buscarTodos();
     }
 
+    @GetMapping("/perfis")
+    public List<PerfilDto> getPerfis (){
+        return matriculaService.getPerfis();
+    }
+
     @PostMapping
-    private ResponseEntity<LoginADDto> autorizaMatricula(@RequestBody LoginADForm form, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<LoginADDto> autorizaMatricula(@RequestBody LoginADForm form, UriComponentsBuilder uriBuilder){
         LoginAD matricula = matriculaService.criaMatricula(form);
 
         URI uri = uriBuilder.path("api/matricula/{matricula}").buildAndExpand(matricula.getMatricula()).toUri();
@@ -35,7 +41,7 @@ public class MatriculaController {
     }
 
     @DeleteMapping("/{matricula}")
-    private ResponseEntity<LoginADDto> deletarMatricula(@PathVariable String matricula){
+    public ResponseEntity<LoginADDto> deletarMatricula(@PathVariable String matricula){
 
         return matriculaService.deletaMatricula(matricula);
     }
