@@ -58,6 +58,6 @@ public class AluraController {
 	
 	@GetMapping("/consulta")
 	public void listarRegistrosApi(){
-		aluraService.adicionar();
+		aluraService.aluraSchedule();
 	}
 }

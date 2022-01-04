@@ -218,31 +218,31 @@ public class AluraService {
 	
 	
 	
-//	public void AluraSchedule() {
-//
-//		List<Participante> participantes = participanteRepository.findByStatus(StatusAtivo.ATIVO);
-//		Set<String> emailParticipantes = participantes.stream().map(Participante::getEmail)
-//		.collect(Collectors.toSet());
-//		ApiAluraDto[] registros = this.getAlura();
-//
-//		for (String email : emailParticipantes) {
-//			for (ApiAluraDto registro : registros) {
-//				if (email.compareTo(registro.getEmail()) == 0) {
-//					Set<AluraCompare> emailsAlura = aluraCompareRepository.findByEmail(registro.getEmail());
-//					if (!emailsAlura.isEmpty()) {
-//						for (AluraCompare emailAlura : emailsAlura) {
-//							if (emailAlura.getIdCurso().compareTo(registro.getIdCurso()) == 0) {
-//								break;
-//							}else {
-//								aluraCompareRepository.save(AluraCompare.converter(registro));
-//								break;
-//							}
-//						}
-//					}else {
-//						aluraCompareRepository.save(AluraCompare.converter(registro));
-//					}
-//				}
-//			}
-//		}
-//	}
+	public void aluraSchedule() {
+
+		List<Participante> participantes = participanteRepository.findByStatus(StatusAtivo.ATIVO);
+		List<String> emailParticipantes = participantes.stream().map(Participante::getEmail)
+		.collect(Collectors.toList());
+		ApiAluraDto[] registros = this.getAlura();
+
+		for (String email : emailParticipantes) {
+			for (ApiAluraDto registro : registros) {
+				if (email.compareTo(registro.getEmail()) == 0) {
+					List<AluraCompare> emailsAlura = aluraCompareRepository.findByEmail(registro.getEmail());
+					if (!emailsAlura.isEmpty()) {
+						for (AluraCompare emailAlura : emailsAlura) {
+							if (emailAlura.getIdCurso().compareTo(registro.getIdCurso()) == 0) {
+								break;
+							}else {
+								aluraCompareRepository.save(AluraCompare.converter(registro));
+								break;
+							}
+						}
+					}else {
+						aluraCompareRepository.save(AluraCompare.converter(registro));
+					}
+				}
+			}
+		}
+	}
 }
