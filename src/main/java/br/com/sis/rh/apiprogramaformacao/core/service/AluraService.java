@@ -230,8 +230,9 @@ public class AluraService {
 				if (email.compareTo(registro.getEmail()) == 0) {
 					List<AluraCompare> emailsAlura = aluraCompareRepository.findByEmail(registro.getEmail());
 					if (!emailsAlura.isEmpty()) {
+                        List<Integer> cursosParticipante = emailsAlura.stream().map(AluraCompare::getIdCurso).collect(Collectors.toList());
 						for (AluraCompare emailAlura : emailsAlura) {
-							if (emailAlura.getIdCurso().compareTo(registro.getIdCurso()) == 0) {
+							if (cursosParticipante.contains(emailAlura.getIdCurso())) {
 								break;
 							}else {
 								aluraCompareRepository.save(AluraCompare.converter(registro));
