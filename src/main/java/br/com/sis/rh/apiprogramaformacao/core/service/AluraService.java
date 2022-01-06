@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -76,18 +77,6 @@ public class AluraService {
 		return ResponseEntity.notFound().build();
 	}
 
-	/**
-	 * Deleta um registro com base no registro selecionado caso o participante
-	 * exista retorna código 200 caso o registro existir, se não retorna 404.
-	 */
-	public ResponseEntity<AluraDto> deletar(Long id) {
-		Optional<Alura> alura = aluraRepository.findById(id);
-		if (alura.isPresent()) {
-			aluraRepository.delete(alura.get());
-			return ResponseEntity.ok().build();
-		}
-		return ResponseEntity.notFound().build();
-	}
 
 	/**
 	 * Executa outros métodos para popular o Vo para levar as informações para o
@@ -198,28 +187,11 @@ public class AluraService {
 		return null;
 	}
 	
-	public void adicionar() {
-		ApiAluraDto registro = this.filtrar();
-		
-		List<AluraCompare> emailsAlura = aluraCompareRepository.findByEmail(registro.getEmail());
-		if (emailsAlura.isEmpty()) {
-			aluraCompareRepository.save(AluraCompare.converter(registro));
-		}
-		
-		for (AluraCompare aluraCompare : emailsAlura) {
-			if (registro.getEmail().compareTo(aluraCompare.getEmail()) != 0) {
-				aluraCompareRepository.save(AluraCompare.converter(registro));
-			}
-		}
-		
-		this.filtrar();
-	}
-	
-	
 	
 	
 	public void aluraSchedule() {
 
+		Integer horasSemana = 0;
 		List<Participante> participantes = participanteRepository.findByStatus(StatusAtivo.ATIVO);
 		List<String> emailParticipantes = participantes.stream().map(Participante::getEmail)
 		.collect(Collectors.toList());
@@ -231,19 +203,21 @@ public class AluraService {
 					List<AluraCompare> emailsAlura = aluraCompareRepository.findByEmail(registro.getEmail());
 					if (!emailsAlura.isEmpty()) {
                         List<Integer> cursosParticipante = emailsAlura.stream().map(AluraCompare::getIdCurso).collect(Collectors.toList());
-						for (AluraCompare emailAlura : emailsAlura) {
-							if (cursosParticipante.contains(emailAlura.getIdCurso())) {
-								break;
-							}else {
-								aluraCompareRepository.save(AluraCompare.converter(registro));
-								break;
-							}
+						if (!cursosParticipante.contains(registro.getIdCurso())) {
+							aluraCompareRepository.save(AluraCompare.converter(registro));
+							horasSemana += registro.getCargaHoraria();
 						}
 					}else {
 						aluraCompareRepository.save(AluraCompare.converter(registro));
+						horasSemana += registro.getCargaHoraria();
 					}
 				}
 			}
+			Participante participante = participanteRepository.findByEmail(email);
+			Alura alura = new Alura(participante, horasSemana, LocalDate.now(), 30);
+			aluraRepository.save(alura);
+			horasSemana = 0;
 		}
 	}
+
 }

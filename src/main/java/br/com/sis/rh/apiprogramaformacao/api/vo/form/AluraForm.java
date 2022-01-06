@@ -56,7 +56,7 @@ public class AluraForm {
 
 	public Alura converter(Participante participante) {
 		LocalDate data = LocalDate.parse(this.dataRegistro, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		return new Alura(participante, qtdHoras, mesAvaliado, semanaAvaliada, data, hrMinSemana);
+		return new Alura(participante, qtdHoras, data, hrMinSemana);
 	}
 
 }

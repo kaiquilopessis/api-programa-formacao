@@ -27,25 +27,16 @@ public class Alura {
 	@Column(name = "QTD_HORAS")
 	private Integer qtdHoras;
 
-	@Column(name = "MES_AVALIADO")
-	private Integer mesAvaliado;
-
-	@Column(name = "SEMANA_AVALIADA")
-	private Integer semanaAvaliada;
-
 	@Column(name = "DATA_REGISTRO")
 	private LocalDate dataRegistro;
 
 	@Column(name = "HR_MIN_SEMANA")
 	private Integer hrMinSemana;
 
-	public Alura( Participante participante, Integer qtdHoras, Integer mesAvaliado,
-			Integer semanaAvaliada, LocalDate dataRegistro, Integer hrMinSemana) {
+	public Alura( Participante participante, Integer qtdHoras, LocalDate dataRegistro, Integer hrMinSemana) {
 		
 		this.participante = participante;
 		this.qtdHoras = qtdHoras;
-		this.mesAvaliado = mesAvaliado;
-		this.semanaAvaliada = semanaAvaliada;
 		this.dataRegistro = dataRegistro;
 		this.hrMinSemana = hrMinSemana;
 	}
@@ -77,22 +68,6 @@ public class Alura {
 
 	public void setQtdHoras(Integer qtdHoras) {
 		this.qtdHoras = qtdHoras;
-	}
-
-	public Integer getMesAvaliado() {
-		return mesAvaliado;
-	}
-
-	public void setMesAvaliado(Integer mesAvaliado) {
-		this.mesAvaliado = mesAvaliado;
-	}
-
-	public Integer getSemanaAvaliada() {
-		return semanaAvaliada;
-	}
-
-	public void setSemanaAvaliada(Integer semanaAvaliada) {
-		this.semanaAvaliada = semanaAvaliada;
 	}
 
 	public LocalDate getDataRegistro() {

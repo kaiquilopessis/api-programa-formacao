@@ -11,8 +11,6 @@ public class AluraDto {
 
 	private Long codigoAlura;
 	private Integer qtdHoras;
-	private int mesAvaliado;
-	private int semanaAvaliada;
 	private LocalDate dataRegistro;
 	private int hrMinSemana;
 
@@ -21,8 +19,6 @@ public class AluraDto {
 	public AluraDto(Alura alura) {
 		this.codigoAlura = alura.getCodigoAlura();
 		this.qtdHoras = alura.getQtdHoras();
-		this.mesAvaliado = alura.getMesAvaliado();
-		this.semanaAvaliada = alura.getSemanaAvaliada();
 		this.dataRegistro = alura.getDataRegistro();
 		this.hrMinSemana = alura.getHrMinSemana();
 
@@ -38,18 +34,6 @@ public class AluraDto {
 	}
 	public void setQtdHoras(Integer qtdHoras) {
 		this.qtdHoras = qtdHoras;
-	}
-	public int getMesAvaliado() {
-		return mesAvaliado;
-	}
-	public void setMesAvaliado(int mesAvaliado) {
-		this.mesAvaliado = mesAvaliado;
-	}
-	public int getSemanaAvaliada() {
-		return semanaAvaliada;
-	}
-	public void setSemanaAvaliada(int semanaAvaliada) {
-		this.semanaAvaliada = semanaAvaliada;
 	}
 	public LocalDate getDataRegistro() {
 		return dataRegistro;
