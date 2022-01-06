@@ -39,9 +39,4 @@ public class AluraController {
 		return aluraService.listaRegistros(cpf);
 	}
 
-	@GetMapping("/consulta")
-	public void listarRegistrosApi(){
-		aluraService.aluraSchedule();
-	}
-
 }
