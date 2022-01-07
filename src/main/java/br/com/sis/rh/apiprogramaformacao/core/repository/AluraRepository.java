@@ -3,8 +3,6 @@ package br.com.sis.rh.apiprogramaformacao.core.repository;
 import java.util.List;
 import java.util.Optional;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import org.apache.poi.ss.formula.functions.T;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

@@ -39,8 +39,6 @@ public class ConnectAD {
 	};
 	
     public UsuarioAD getUser(String user, String securityToken) throws NamingException {
-    	//verificar o user na tabela
-    	
 		SearchResult sr = getSearchResult(user, securityToken, null);
 		UsuarioAD usuarioAD = new UsuarioAD(sr.getAttributes());
 		

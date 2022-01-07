@@ -1,12 +1,10 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
+import java.time.LocalDate;
+
 import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
-import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
-
-import java.time.LocalDate;
 
 public class AtualizaProcessoSeletivoForm {
 

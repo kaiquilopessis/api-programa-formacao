@@ -24,7 +24,6 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaCandidatoForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.CandidatoForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.CandidatoRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
@@ -32,89 +31,85 @@ import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
 @Service
 public class CandidatoService {
 
-    @Autowired
-    private CandidatoRepository candidatoRepository;
+	@Autowired
+	private CandidatoRepository candidatoRepository;
 
-    @Autowired
-    private ProcessoSeletivoRepository processoSeletivoRepository;
-    
-    @Autowired
-    private ProgramaRepository programaRepository;
+	@Autowired
+	private ProcessoSeletivoRepository processoSeletivoRepository;
 
-    @Autowired
-    private InstrutorRepository instrutorRepository;
+	@Autowired
+	private ProgramaRepository programaRepository;
 
-    @Autowired
-    private RemuneracaoRepository remuneracao;
-    
-    @Autowired
-    private ParticipanteRepository participanteRepository;
+	@Autowired
+	private InstrutorRepository instrutorRepository;
 
-    public Candidato buscaPorId(Long id){
-        Optional<Candidato> optionalCandidato = candidatoRepository.findById(id);
+	@Autowired
+	private RemuneracaoRepository remuneracao;
 
-        return optionalCandidato.get();
-    }
-    
-    public List<CandidatoDto> buscaCandidatoAprovado() {
-    	List<Candidato> candidatos = candidatoRepository.findCandidatoPorStatus();
-    	return CandidatoDto.converter(candidatos);
-    }
+	public Candidato buscaPorId(Long id) {
+		Optional<Candidato> optionalCandidato = candidatoRepository.findById(id);
 
-    public List<ListaCandidatoDto> listaTodosDeUmaVaga () {
-        List<Candidato> candidatos = candidatoRepository.findAll();
-        return ListaCandidatoDto.toListaCandidatoDto(candidatos);
-    }
+		return optionalCandidato.get();
+	}
 
-    public Candidato atualizaCandidato(Long id, AtualizaCandidatoForm form) throws IOException {
+	public List<CandidatoDto> buscaCandidatoAprovado() {
+		List<Candidato> candidatos = candidatoRepository.findCandidatoPorStatus();
+		return CandidatoDto.converter(candidatos);
+	}
 
-        Optional<Candidato> optional = candidatoRepository.findById(id);
-        if(optional.isPresent()){
-            Candidato candidato = form.atualizar(id, candidatoRepository, processoSeletivoRepository);
-            return candidato;
-        }
-        return null;
-    }
+	public List<ListaCandidatoDto> listaTodosDeUmaVaga() {
+		List<Candidato> candidatos = candidatoRepository.findAll();
+		return ListaCandidatoDto.toListaCandidatoDto(candidatos);
+	}
 
+	public Candidato atualizaCandidato(Long id, AtualizaCandidatoForm form) throws IOException {
 
-    public Candidato criaCandidato(CandidatoForm form) throws IOException {
+		Optional<Candidato> optional = candidatoRepository.findById(id);
+		if (optional.isPresent()) {
+			Candidato candidato = form.atualizar(id, candidatoRepository, processoSeletivoRepository);
+			return candidato;
+		}
+		return null;
+	}
 
-        Candidato candidato = form.converter(processoSeletivoRepository);
-        candidatoRepository.save(candidato);
+	public Candidato criaCandidato(CandidatoForm form) throws IOException {
 
-        return candidato;
-    }
+		Candidato candidato = form.converter(processoSeletivoRepository);
+		candidatoRepository.save(candidato);
 
-    public List<ListaCandidatoDto> buscaCandidadoPorFormacao(Long id) {
-        List<Candidato> candidatos = candidatoRepository.findCandidatosPorFormacao(id);
+		return candidato;
+	}
 
-        return ListaCandidatoDto.toListaCandidatoDto(candidatos);
-    }
+	public List<ListaCandidatoDto> buscaCandidadoPorFormacao(Long id) {
+		List<Candidato> candidatos = candidatoRepository.findCandidatosPorFormacao(id);
 
-    public ResponseEntity<ByteArrayResource> downloadCurriculo(Long id) {
-        Candidato curriculo = candidatoRepository.getById(id);
+		return ListaCandidatoDto.toListaCandidatoDto(candidatos);
+	}
 
-        return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType("application/pdf"))
-                .header("Content-Disposition", "attachment; filename=\"Currículo-" + curriculo.getNome() + "-.pdf\"")
-                .body(new ByteArrayResource(curriculo.getCurriculo()));
-    }
+	public ResponseEntity<ByteArrayResource> downloadCurriculo(Long id) {
+		Candidato curriculo = candidatoRepository.getById(id);
 
-    public ResponseEntity<ByteArrayResource> downloadDisc(Long id) {
-        Candidato disc = candidatoRepository.getById(id);
-        return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
-                .header("Content-Disposition", "attachment; filename=\"DISC-" + disc.getNome() + "-.xlsx\"")
-                .body(new ByteArrayResource(disc.getDisc()));
-    }
+		return ResponseEntity.ok().contentType(MediaType.parseMediaType("application/pdf"))
+				.header("Content-Disposition", "attachment; filename=\"Currículo-" + curriculo.getNome() + "-.pdf\"")
+				.body(new ByteArrayResource(curriculo.getCurriculo()));
+	}
 
-    public Candidato candidatoId(Long id) {
-        return candidatoRepository.getById(id);
-    }
+	public ResponseEntity<ByteArrayResource> downloadDisc(Long id) {
+		Candidato disc = candidatoRepository.getById(id);
+		return ResponseEntity.ok()
+				.contentType(
+						MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
+				.header("Content-Disposition", "attachment; filename=\"DISC-" + disc.getNome() + "-.xlsx\"")
+				.body(new ByteArrayResource(disc.getDisc()));
+	}
 
-    public ProcessoSeletivo buscarNomePrograma(Long id) {
-        return processoSeletivoRepository.findByIdCandidato(id);
-    }
+	public Candidato candidatoId(Long id) {
+		return candidatoRepository.getById(id);
+	}
+
+	public ProcessoSeletivo buscarNomePrograma(Long id) {
+		return processoSeletivoRepository.findByIdCandidato(id);
+	}
 
 	public NomeProgramaCandidatoDto buscarPrograma(Long id) {
 		return programaRepository.buscarProgramaPorCandidato(id);
@@ -125,18 +120,16 @@ public class CandidatoService {
 		return NomeTurmaCandidatoDto.converter(programas);
 	}
 
-    public List<NomeInstrutorDto> buscarInstrutoresAtivos() {
-        return instrutorRepository.listarInstrutoresAtivos();
-    }
+	public List<NomeInstrutorDto> buscarInstrutoresAtivos() {
+		return instrutorRepository.listarInstrutoresAtivos();
+	}
 
-    public CargoModalDto mostrarCargoModal(Long id) {
-        return remuneracao.buscarPeloId(id);
-    }
+	public CargoModalDto mostrarCargoModal(Long id) {
+		return remuneracao.buscarPeloId(id);
+	}
 
-    public TurmaModalDto mostrarTurmaModal(Long id) {
-        return programaRepository.buscarPeloId(id);
-    }
+	public TurmaModalDto mostrarTurmaModal(Long id) {
+		return programaRepository.buscarPeloId(id);
+	}
 
-
-	
 }

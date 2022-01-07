@@ -3,10 +3,6 @@ package br.com.sis.rh.apiprogramaformacao.api.controller;
 import javax.naming.NamingException;
 import javax.validation.Valid;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.LoginAD;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.LoginADDto;
-import br.com.sis.rh.apiprogramaformacao.core.repository.LoginADRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.input.LoginInput;
 import br.com.sis.rh.apiprogramaformacao.core.ad.ConnectAD;
 import br.com.sis.rh.apiprogramaformacao.core.ad.UsuarioAD;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/ad", produces = MediaType.APPLICATION_JSON_VALUE)

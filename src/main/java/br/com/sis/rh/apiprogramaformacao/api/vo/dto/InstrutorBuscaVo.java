@@ -1,11 +1,9 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
-import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
 
 public class InstrutorBuscaVo {
     private String cpf;

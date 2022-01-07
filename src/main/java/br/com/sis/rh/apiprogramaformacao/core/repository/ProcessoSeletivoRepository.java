@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeProgramaEmAndamentoDto;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusProcessoSeletivo;
 
 public interface ProcessoSeletivoRepository extends JpaRepository<ProcessoSeletivo, Long> {
 

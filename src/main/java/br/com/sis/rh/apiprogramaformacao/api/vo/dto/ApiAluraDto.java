@@ -2,8 +2,6 @@ package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.AluraCompare;
-
 public class ApiAluraDto {
 
 	@JsonProperty("email")

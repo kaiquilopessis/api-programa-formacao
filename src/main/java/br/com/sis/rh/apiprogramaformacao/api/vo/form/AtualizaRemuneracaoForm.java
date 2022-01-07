@@ -1,10 +1,9 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
-import br.com.sis.rh.apiprogramaformacao.core.repository.CandidatoRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
-
 import java.math.BigDecimal;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
+import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
 
 
 public class AtualizaRemuneracaoForm {

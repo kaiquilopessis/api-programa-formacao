@@ -1,10 +1,8 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.math.BigDecimal;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
 
 
 public class RemuneracaoForm {

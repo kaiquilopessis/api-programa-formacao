@@ -1,35 +1,16 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
-import java.net.URI;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponents;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Alura;
-import br.com.sis.rh.apiprogramaformacao.api.model.AluraCompare;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.AluraDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ApiAluraDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RelatorioAluraVo;
-import br.com.sis.rh.apiprogramaformacao.api.vo.form.AluraForm;
-import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
-import br.com.sis.rh.apiprogramaformacao.core.repository.AluraCompareRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.AluraRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 import br.com.sis.rh.apiprogramaformacao.core.util.FormatadorDataUtil;
@@ -44,12 +25,7 @@ public class AluraService {
 	private ParticipanteRepository participanteRepository;
 
 	@Autowired
-	private AluraCompareRepository aluraCompareRepository;
-
-	@Autowired
 	private FormatadorDataUtil formatador;
-
-	private static final String URI = "https://cursos.alura.com.br/corp/api/v1/conclusoes";
 
 	/**
 	 * Retorna uma lista de registros com base no participante selecionado.
@@ -59,24 +35,6 @@ public class AluraService {
 		List<Alura> alura = aluraRepository.findAllByParticipanteCpf(cpf);
 		return AluraDto.converter(alura);
 	}
-
-	/**
-	 * Cadastra um registro com base no participante selecionado. Retorna código 201
-	 * e um DTO com o objeto criado na resposta caso o participante exista, caso não
-	 * exista, é retornado erro 404.
-	 */
-	public ResponseEntity<AluraDto> cadastrar(String cpf, AluraForm aluraForm,
-			UriComponentsBuilder uriComponentsBuilder) {
-		Optional<Participante> participante = participanteRepository.findById(cpf);
-		if (participante.isPresent()) {
-			Alura alura = aluraForm.converter(participante.get());
-			aluraRepository.save(alura);
-			URI uri = uriComponentsBuilder.path("/alura/novo/{id}").buildAndExpand(alura.getCodigoAlura()).toUri();
-			return ResponseEntity.created(uri).body(new AluraDto(alura));
-		}
-		return ResponseEntity.notFound().build();
-	}
-
 
 	/**
 	 * Executa outros métodos para popular o Vo para levar as informações para o

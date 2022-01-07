@@ -6,7 +6,6 @@ import javax.naming.directory.Attribute;
 import javax.naming.directory.Attributes;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import br.com.sis.rh.apiprogramaformacao.core.enums.BooleanEnum;
 

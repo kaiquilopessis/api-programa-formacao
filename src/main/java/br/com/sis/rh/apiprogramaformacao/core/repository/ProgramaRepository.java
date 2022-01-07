@@ -3,14 +3,13 @@ package br.com.sis.rh.apiprogramaformacao.core.repository;
 import java.time.LocalDate;
 import java.util.List;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeProgramaCandidatoDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TurmaModalDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeProgramaCandidatoDto;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TurmaModalDto;
 
 @Repository
 public interface ProgramaRepository extends JpaRepository<Programa, Long> {
