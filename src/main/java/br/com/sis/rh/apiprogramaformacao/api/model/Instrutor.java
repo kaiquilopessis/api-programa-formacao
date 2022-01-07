@@ -1,8 +1,9 @@
 package br.com.sis.rh.apiprogramaformacao.api.model;
 
-import lombok.Data;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "TB_INSTRUTOR")

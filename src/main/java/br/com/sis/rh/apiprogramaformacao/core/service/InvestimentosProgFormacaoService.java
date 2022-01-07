@@ -9,12 +9,10 @@ import org.springframework.stereotype.Service;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.InvestimentoProgFormacaoVo;
-import br.com.sis.rh.apiprogramaformacao.core.repository.CicloRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InvestimentosRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoInstrutorRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
 
 /**
  * 
@@ -31,13 +29,10 @@ public class InvestimentosProgFormacaoService {
 	// injeções de dependências
 
 	@Autowired
-	private RemuneracaoRepository remuneracaoRepository;
-	@Autowired
 	private ProgramaRepository programaRepository;
 	@Autowired
 	private ParticipanteRepository participantesRepository;
-	@Autowired
-	private CicloRepository cicloRepository;
+
 	@Autowired
 	private RemuneracaoInstrutorRepository remuneracaoInstrutorRepository;
 
@@ -58,15 +53,16 @@ public class InvestimentosProgFormacaoService {
 	//
 	public InvestimentoProgFormacaoVo popularCardsSuperiores(String nomePrograma, String nomeTurma) {
 		String turmaFormatada = nomeTurma.replace("+", " ");
-		
+
 		InvestimentoProgFormacaoVo investimentoProgFormacaoVo = new InvestimentoProgFormacaoVo();
-		investimentoProgFormacaoVo = investimentosParticipantes(nomePrograma, turmaFormatada, investimentoProgFormacaoVo);
+		investimentoProgFormacaoVo = investimentosParticipantes(nomePrograma, turmaFormatada,
+				investimentoProgFormacaoVo);
 		investimentoProgFormacaoVo = investimentoInstrutores(nomePrograma, turmaFormatada, investimentoProgFormacaoVo);
 		investimentoProgFormacaoVo = investimentoTotal(investimentoProgFormacaoVo);
-		
+
 		investimentoProgFormacaoVo.setFormacao(nomePrograma);
 		investimentoProgFormacaoVo.setTurma(turmaFormatada);
-		
+
 		return investimentoProgFormacaoVo;
 	}
 
@@ -88,11 +84,11 @@ public class InvestimentosProgFormacaoService {
 		Programa programa = programaRepository.listarPrograma(nomePrograma, nomeTurma);
 		List<Participante> participantes = participantesRepository.listarParticipantes(programa.getId());
 		investParticipantes.setInvestParticipantes(BigDecimal.ZERO);
-		
-		participantes.forEach(participante ->{
+
+		participantes.forEach(participante -> {
 			Integer somaSalario = investimentosRepository.buscarSalarioPeloCpf(participante.getCpf());
-			investParticipantes.setInvestParticipantes(investParticipantes.getInvestParticipantes()
-			.add(new BigDecimal(somaSalario)));
+			investParticipantes.setInvestParticipantes(
+					investParticipantes.getInvestParticipantes().add(new BigDecimal(somaSalario)));
 		});
 		return investParticipantes;
 	}
@@ -115,7 +111,8 @@ public class InvestimentosProgFormacaoService {
 		investInstrutores.setInvestInstrutores(BigDecimal.ZERO);
 		cpfInstrutores.forEach(cpf -> {
 			Double salarioInstrutores = remuneracaoInstrutorRepository.calcularSalarioInstrutores(cpf);
-			investInstrutores.setInvestInstrutores(investInstrutores.getInvestInstrutores().add(new BigDecimal(salarioInstrutores)));
+			investInstrutores.setInvestInstrutores(
+					investInstrutores.getInvestInstrutores().add(new BigDecimal(salarioInstrutores)));
 		});
 		return investInstrutores;
 	}

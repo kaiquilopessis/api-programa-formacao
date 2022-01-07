@@ -75,4 +75,6 @@ public interface ParticipanteRepository extends JpaRepository<Participante, Stri
 				"ps ON ps.id = pr.processo_seletivo_fk WHERE c.nome LIKE %?1% and ps.nome = ?2 " +
 				"and pr.nome_turma = ?3", nativeQuery = true)
 		List<Participante> findByNomeProgramaTurma(String nome, String nomePrograma, String nomeTurma);
+
+	 	Participante findByEmail(String email);
 }

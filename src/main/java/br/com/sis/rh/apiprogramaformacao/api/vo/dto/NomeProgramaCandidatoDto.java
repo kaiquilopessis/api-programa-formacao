@@ -1,7 +1,5 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
-
 public class NomeProgramaCandidatoDto {
 
 	private String nome;

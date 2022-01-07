@@ -4,8 +4,6 @@ import java.time.LocalDate;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
-import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
 
 public class ProgramaAtualizaForm {
 	

@@ -6,7 +6,7 @@ public class TurmaModalDto {
 
     public TurmaModalDto(String turma, Long id) {
         this.turma = turma;
-        this.id = id;
+        this.setId(id);
     }
 
     public String getTurma() {
@@ -16,4 +16,12 @@ public class TurmaModalDto {
     public void setTurma(String turma) {
         this.turma = turma;
     }
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 }

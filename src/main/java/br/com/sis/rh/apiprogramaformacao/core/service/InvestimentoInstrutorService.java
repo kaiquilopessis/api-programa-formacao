@@ -1,13 +1,12 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemInstrutorDto;
-import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.InvestimentoInstrutorRepository;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.util.List;
+import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemInstrutorDto;
+import br.com.sis.rh.apiprogramaformacao.core.repository.InvestimentoInstrutorRepository;
 
 @Service
 public class InvestimentoInstrutorService {

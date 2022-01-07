@@ -27,7 +27,6 @@ public class LoginInput {
 	}
 
 	public LoginInput(@NotBlank String matricula, @NotBlank String senha) {
-		super();
 		this.matricula = matricula;
 		this.senha = senha;
 	}

@@ -3,7 +3,6 @@ package br.com.sis.rh.apiprogramaformacao.core.repository;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.poi.ss.formula.functions.T;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -57,4 +56,6 @@ public interface AluraRepository extends JpaRepository<Alura, Long> {
 			"AND t.nome_turma = ?1 AND tps.nome = ?2", nativeQuery = true)
 	String buscarCpfMenorHora(String nomeTurma, String nomePrograma);
 
+	@Query(value = "SELECT * FROM TB_ALURA WHERE codigo_participante_fk = ?1", nativeQuery = true)
+	List<Alura> findByUltimoRegistroParticipante(String cpf);
 }

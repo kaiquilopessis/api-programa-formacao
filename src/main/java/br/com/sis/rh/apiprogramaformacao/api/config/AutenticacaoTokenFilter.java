@@ -1,17 +1,19 @@
 package br.com.sis.rh.apiprogramaformacao.api.config;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.UsuarioAcesso;
-import br.com.sis.rh.apiprogramaformacao.core.repository.UsuarioAcessoRepository;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.filter.OncePerRequestFilter;
+import java.io.IOException;
+import java.util.Optional;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.Optional;
+
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.LoginAD;
+import br.com.sis.rh.apiprogramaformacao.core.repository.LoginADRepository;
 
 //Esse filter é o filtro que faz a verificação do Token enviado em todas as requisições para a API
 public class AutenticacaoTokenFilter extends OncePerRequestFilter {
@@ -19,11 +21,11 @@ public class AutenticacaoTokenFilter extends OncePerRequestFilter {
  // Por ser uma classe Filter, não tem como utilizar a anotação Autowired
  // portanto, injetamos a classe Token Service e o UsuarioAcessoRepository por meio de construtor
  private TokenService tokenService;
- private UsuarioAcessoRepository usuarioAcessoRepository;
+ private LoginADRepository loginADRepository;
 
- public AutenticacaoTokenFilter(TokenService tokenService, UsuarioAcessoRepository usuarioAcessoRepository) {
+ public AutenticacaoTokenFilter(TokenService tokenService, LoginADRepository loginADRepository) {
      this.tokenService = tokenService;
-     this.usuarioAcessoRepository = usuarioAcessoRepository;
+     this.loginADRepository = loginADRepository;
  }
 
  // Esse método é o método principal desse filter
@@ -54,9 +56,9 @@ public class AutenticacaoTokenFilter extends OncePerRequestFilter {
  // Define que o usuário está autenticado
  private void autenticarUsuario(String token) {
      String idUsuario = tokenService.getIdUsuario(token);
-     Optional<UsuarioAcesso> optUsuario = usuarioAcessoRepository.findByUsuarioAd(idUsuario);
+     Optional<LoginAD> optUsuario = loginADRepository.findById(idUsuario);
 
-     UsuarioAcesso usuario = optUsuario.get();
+     LoginAD usuario = optUsuario.get();
 
      UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(usuario, null
              , usuario.getAuthorities());

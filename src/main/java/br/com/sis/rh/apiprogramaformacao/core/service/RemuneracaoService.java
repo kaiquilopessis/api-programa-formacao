@@ -1,5 +1,11 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CargosDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaRemuneracaoDto;
@@ -7,12 +13,6 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RemuneracaoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaRemuneracaoForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.RemuneracaoForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import javax.swing.text.html.Option;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class RemuneracaoService {
