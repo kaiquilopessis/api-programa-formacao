@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
@@ -55,12 +56,14 @@ public class InstrutorService {
         return investimentoInstrutorRepository.findByNomeFormacaoTurmaHora(nomeFormacao, nomeTurmaFormatado);
     }
 
-    public void cadastrar(InvestimentoInstrutorForm investimentoInstrutorForm){
+    public ResponseEntity cadastrar(InvestimentoInstrutorForm investimentoInstrutorForm){
         Optional<Instrutor> optionalInstrutor = repository.findById(investimentoInstrutorForm.getCpf());
         if (optionalInstrutor.isPresent()){
             RemuneracaoInstrutor remuneracaoInstrutor = InvestimentoInstrutorForm.converter(investimentoInstrutorForm, optionalInstrutor.get());
             remuneracaoInstrutorRepository.save(remuneracaoInstrutor);
+            return ResponseEntity.ok().build();
         }
+        return ResponseEntity.notFound().build();
     }
 
     public List<CpfInstrutorNomeDto> listagemInstrutores(String nomeFormacao, String nomeTurma){
