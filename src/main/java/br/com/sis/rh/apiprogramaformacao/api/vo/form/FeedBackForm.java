@@ -4,14 +4,19 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.FeedBack;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 
+@ApiModel("Formulário para cadastrar um novo feedback")
 public class FeedBackForm {
 
+	@ApiModelProperty(value = "Data de inclusão do feedback", required = true, example = "15/02/2022")
 	private String data;
+	@ApiModelProperty(value = "Anotações sobre o feedback", required = true, example = "22/02/2022")
 	private String anotacoes;
 	private MultipartFile disc;
 

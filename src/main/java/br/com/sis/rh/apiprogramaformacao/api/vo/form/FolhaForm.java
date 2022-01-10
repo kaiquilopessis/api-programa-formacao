@@ -7,24 +7,33 @@ import java.time.format.DateTimeFormatter;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Investimentos;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import lombok.NoArgsConstructor;
 
 
 @NoArgsConstructor
+@ApiModel("Formulário para incluir um investimento")
 public class FolhaForm {
+	@ApiModelProperty(value = "Cpf do participante", required = true, example = "33092410840")
     private String cpf;
+	@ApiModelProperty(value = "Data de inclusão", required = true, example = "02/02/2022")
     private String mesAno;
+	@ApiModelProperty(value = "Remuneração", required = true, example = "1500")
     private String remuneracao;
+	@ApiModelProperty(value = "Encargos", required = true, example = "500")
     private String encargos;
+	@ApiModelProperty(value = "Beneficios", required = true, example = "450")
     private String beneficios;
+	@ApiModelProperty(value = "Descrição", required = true, example = "Descrição descrição")
     private String descricao;
 
     public static Investimentos converter(FolhaForm folhaForm, Participante participante){
-        DateTimeFormatter nome = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         BigDecimal remuneracaoFormatada = new BigDecimal(folhaForm.getRemuneracao());
         BigDecimal encargoFormatado = new BigDecimal(folhaForm.getEncargos());
         BigDecimal beneficiosFormatado = new BigDecimal(folhaForm.getBeneficios());
-        LocalDate dataFormatada = LocalDate.parse(folhaForm.getMesAno(), nome);
+        LocalDate dataFormatada = LocalDate.parse(folhaForm.getMesAno(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         return new Investimentos(participante, dataFormatada, remuneracaoFormatada, encargoFormatado, beneficiosFormatado, folhaForm.getDescricao());
     }
 

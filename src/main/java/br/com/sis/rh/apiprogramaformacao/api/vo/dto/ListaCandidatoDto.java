@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
+import io.swagger.annotations.ApiModel;
 
 public class ListaCandidatoDto {
 
