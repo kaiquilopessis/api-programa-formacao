@@ -6,37 +6,54 @@ import java.math.RoundingMode;
 import br.com.sis.rh.apiprogramaformacao.api.model.AvaliacaoDesempenho;
 import br.com.sis.rh.apiprogramaformacao.core.enums.Avaliacao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.Parecer;
-
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+@ApiModel("Formulário para cadastrar a avaliação de desempenho")
 public class AvaliacaoDesempenhoForm {
 
+	@ApiModelProperty(value = "Nota avaliação", required = true, example = "4")
 	private Avaliacao avaliacao;
 
+	@ApiModelProperty(value = "Nota parecer", required = true, example = "4")
 	private Parecer parecer;
 
+	@ApiModelProperty(value = "Nota adaptação", required = true, example = "4")
 	private BigDecimal adaptacao;
 
+	@ApiModelProperty(value = "Nota qualidade", required = true, example = "4")
 	private BigDecimal qualidade;
 
+	@ApiModelProperty(value = "Nota capacitação técnica", required = true, example = "4")
 	private BigDecimal capTecnica;
 
+	@ApiModelProperty(value = "Nota comunicabilidade", required = true, example = "4")
 	private BigDecimal comunicabilidade;
 
+	@ApiModelProperty(value = "Nota prática", required = true, example = "4")
 	private BigDecimal apPratica;
 
+	@ApiModelProperty(value = "Nota dedicação", required = true, example = "4")
 	private BigDecimal dedicacao;
 
+	@ApiModelProperty(value = "Nota cooperação", required = true, example = "4")
 	private BigDecimal cooperacao;
 
+	@ApiModelProperty(value = "Nota iniciativa", required = true, example = "4")
 	private BigDecimal iniciativa;
 
+	@ApiModelProperty(value = "Nota disciplina", required = true, example = "4")
 	private BigDecimal disciplina;
 
+	@ApiModelProperty(value = "Nota organização", required = true, example = "4")
 	private BigDecimal organizacao;
 
+	@ApiModelProperty(value = "Nota responsabilidade", required = true, example = "4")
 	private BigDecimal responsabilidade;
 
+	@ApiModelProperty(value = "Nota sociabilidade", required = true, example = "4")
 	private BigDecimal sociabilidade;
 
+	@ApiModelProperty(value = "Media das notas", required = false, hidden = true)
 	private BigDecimal media;
 
 	public Avaliacao getAvaliacao() {
