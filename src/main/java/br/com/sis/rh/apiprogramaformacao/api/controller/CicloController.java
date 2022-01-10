@@ -2,6 +2,7 @@ package br.com.sis.rh.apiprogramaformacao.api.controller;
 
 import java.util.List;
 
+import br.com.sis.rh.apiprogramaformacao.api.openApi.CicloControllerOpenApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ResponseEntity;
@@ -22,26 +23,31 @@ import br.com.sis.rh.apiprogramaformacao.core.service.CicloService;
 
 @RestController
 @RequestMapping("/api/ciclo")
-public class CicloController {
+public class CicloController implements CicloControllerOpenApi {
 
 	@Autowired
 	CicloService conclusaoService;
 
+	@Override
 	@GetMapping("/{cpf}")
 	public List<CicloDto> listaConclusoes (@PathVariable String cpf){
 		return conclusaoService.listarConclusoes(cpf);
 	}
 
+	@Override
 	@GetMapping
 	public List<RemuneracaoProgramaDto> listarRemuneracao() {
 		return conclusaoService.listarRemuneracao();
 	}
-	
+
+	@Override
 	@GetMapping("/download/{id}")
 	public ResponseEntity<ByteArrayResource> downloadComprovante(@PathVariable Long id) {
 		return conclusaoService.download(id);
 		
 	}
+
+	@Override
 	@PostMapping("/registrocicloprogressivo/{cpf}")
 	public ResponseEntity<CicloDto> registroProgressivo (@PathVariable String cpf ,
 			@ModelAttribute CicloProgressivoForm conclusaoProgressivaForm,
@@ -49,6 +55,7 @@ public class CicloController {
 		return conclusaoService.registrarCicloProgressivo(cpf, conclusaoProgressivaForm, uriComponentsBuilder);
 	}
 
+	@Override
 	@PostMapping("/registrociclofinal/{cpf}")
 	public ResponseEntity<CicloFinalDto> registroFinal(@PathVariable String cpf, @ModelAttribute CicloFinalForm conclusaoFinalForm,
 			UriComponentsBuilder uriComponentsBuilder){
