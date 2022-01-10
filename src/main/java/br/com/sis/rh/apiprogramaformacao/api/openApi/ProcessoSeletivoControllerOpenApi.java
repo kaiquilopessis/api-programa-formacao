@@ -19,7 +19,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Api(tags = "ProcessoSeletivoController")
+@Api(tags = "Processo Seletivo Controller")
 public interface ProcessoSeletivoControllerOpenApi {
 
 	// GET

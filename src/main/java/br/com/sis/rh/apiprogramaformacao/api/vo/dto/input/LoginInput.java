@@ -4,7 +4,7 @@ import javax.validation.constraints.NotBlank;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-@ApiModel("LoginAD")
+@ApiModel("Formulario para login")
 public class LoginInput {
 
 	@NotBlank

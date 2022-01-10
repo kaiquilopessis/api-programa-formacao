@@ -5,12 +5,8 @@ import java.text.ParseException;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-
 import com.lowagie.text.DocumentException;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.InstrutorVo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.InvestimentoProgFormacaoVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -18,10 +14,9 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Api(tags = "InvestimentosProgFormacaoController")
+@Api(tags = "Investimentos Prog. Formação Controller")
 public interface InvestimentosProgFormacaoControllerOpenApi {
 
-	// Get
 
 	@ApiOperation("Busca investimentos do Programa")
 	@ApiResponses({ @ApiResponse(code = 200, message = "OK", response = InvestimentoProgFormacaoVo.class) })
