@@ -5,15 +5,14 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 
 import org.dom4j.DocumentException;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.InstrutorVo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RelatorioAluraVo;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-
+@Api(tags = "Relatório Alura Controller")
 public interface RelatorioAluraControllerOpenApi {
 
 	// GET
