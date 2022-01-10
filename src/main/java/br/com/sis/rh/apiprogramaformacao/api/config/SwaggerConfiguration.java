@@ -22,7 +22,7 @@ public class SwaggerConfiguration {
 				.select()
 				.apis(RequestHandlerSelectors.basePackage("br.com.sis.rh.apiprogramaformacao"))
 				.paths(PathSelectors.ant("/**")).build()
-				.ignoredParameterTypes(LoginAD.class, UsuarioAD.class)
+				.ignoredParameterTypes(LoginAD.class)
 				.globalOperationParameters(Arrays.asList(
 							new ParameterBuilder()
 							.name("Authorization")
