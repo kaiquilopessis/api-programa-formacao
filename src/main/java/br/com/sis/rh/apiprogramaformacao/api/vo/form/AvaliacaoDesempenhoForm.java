@@ -11,10 +11,10 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel("Formulário para cadastrar a avaliação de desempenho")
 public class AvaliacaoDesempenhoForm {
 
-	@ApiModelProperty(value = "Nota avaliação", required = true, example = "4")
+	@ApiModelProperty(value = "Nota avaliação", required = true, example = "FORAM_SUPERADAS")
 	private Avaliacao avaliacao;
 
-	@ApiModelProperty(value = "Nota parecer", required = true, example = "4")
+	@ApiModelProperty(value = "Nota parecer", required = true, example = "APROVADO")
 	private Parecer parecer;
 
 	@ApiModelProperty(value = "Nota adaptação", required = true, example = "4")
