@@ -25,7 +25,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 //Get
-@Api(tags = "Alura Controller")
+@Api(tags = "Participante Controller")
 public interface ParticipanteControllerOpenApi {
 	@ApiOperation("Pega os participantes e converte para uma lista de participantes")
 	@ApiResponses({@ApiResponse(code = 200, message = "OK", response = ParticipanteBuscaDto.class)})
@@ -41,7 +41,7 @@ public interface ParticipanteControllerOpenApi {
 	
 	@ApiOperation("Filtra os participantes")
 	@ApiResponses({@ApiResponse(code = 200, message = "OK", response = ParticipanteBuscaDto.class)})
-	List<ParticipanteBuscaDto> filtrarParticipantes(@ApiParam(value = "Nome", example = "Julio Marcos", required = true) String cpf, @ApiParam(value = "Nome Programa", example = "Turma I", required = true) String NomePrograma, @ApiParam(value = "Java", example = "Turma I", required = true) String nomeTurma);
+	List<ParticipanteBuscaDto> filtrarParticipantes(@ApiParam(value = "Cpf do Participante", example = "45976389899", required = true) String cpf, @ApiParam(value = "Nome Programa", example = "Turma I", required = true) String NomePrograma, @ApiParam(value = "Java", example = "Turma I", required = true) String nomeTurma);
 
 	@ApiOperation("Exibe as informações do participante")
 	@ApiResponses({@ApiResponse(code = 200, message = "OK", response = ParticipanteExibeDto.class)})
@@ -49,18 +49,18 @@ public interface ParticipanteControllerOpenApi {
 
 	@ApiOperation("Exibe as informações do candidato")
 	@ApiResponses({@ApiResponse(code = 200, message = "OK", response = CandidatoCompletoDto.class)})
-	 CandidatoCompletoDto candidatoExibe(@ApiParam(value = "id", example = "Joao Pedro", required = true) Long id);
+	 CandidatoCompletoDto candidatoExibe(@ApiParam(value = "id", example = "1", required = true) Long id);
 
 	@ApiOperation("Exibe os processos seletivos")
 	@ApiResponses({@ApiResponse(code = 200, message = "OK", response = NomeProcessoSeletivoDto.class)})
-	NomeProcessoSeletivoDto exibeNomeProcesso(@ApiParam(value = "id", example = "Java", required = true) Long id);
+	NomeProcessoSeletivoDto exibeNomeProcesso(@ApiParam(value = "id", example = "1", required = true) Long id);
 	
 	//post
 	@ApiOperation("Cadastro para novos participantes")
 	@ApiResponses({@ApiResponse(code = 201, message = "CREATED", response = CadastroParticipanteForm.class)})
 	void cadastraParticipante(CadastroParticipanteForm cadastroParticipanteForm) throws IOException;
 	
-	@ApiOperation("Busca por candidatos")
+	@ApiOperation("Busca por candidatos para serem cadastrados como participantes")
 	@ApiResponses({@ApiResponse(code = 200, message = "OK", response = CandidatoDto.class)})
 	List<CandidatoDto> buscarCandidatosAprovados();
 	
@@ -74,11 +74,11 @@ public interface ParticipanteControllerOpenApi {
 
 	@ApiOperation("Download TCE")
 	@ApiResponses({@ApiResponse(code = 200, message = "OK", response = ByteArrayResource.class)})
-	 ResponseEntity<ByteArrayResource> downloadTceDoCandidato(@ApiParam(value = "id", example = "Tce", required = true) String id);
+	 ResponseEntity<ByteArrayResource> downloadTceDoCandidato(@ApiParam(value = "TCE", example = "1", required = true) String id);
 	
 	@ApiOperation("Download DISC candidato")
 	@ApiResponses({@ApiResponse(code = 200, message = "OK", response = ByteArrayResource.class)})
-	ResponseEntity<ByteArrayResource> downloadDiscDoCandidato(@ApiParam(value = "id", example = "Disc candidato", required = true) String id);
+	ResponseEntity<ByteArrayResource> downloadDiscDoCandidato(@ApiParam(value = "Disc candidato", example = "1", required = true) String id);
 }
 
 
