@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.sis.rh.apiprogramaformacao.api.openApi.RelatorioAvaliacaoControllerOpenApi;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RelatorioAvaliacoesVo;
 import br.com.sis.rh.apiprogramaformacao.core.service.AvaliacaoService;
 import br.com.sis.rh.apiprogramaformacao.core.service.ExcelServiceAvaliacao;
@@ -28,7 +29,7 @@ import br.com.sis.rh.apiprogramaformacao.core.service.PDFServiceAvaliacao;
 @RestController
 @RequestMapping("/api/relatorio-avaliacao")
 @CrossOrigin
-public class RelatorioAvaliacaoController {
+public class RelatorioAvaliacaoController implements RelatorioAvaliacaoControllerOpenApi {
 
 	@Autowired
 	private AvaliacaoService avaliacaoService;
@@ -46,6 +47,7 @@ public class RelatorioAvaliacaoController {
 	 * @return aluraVo com os campos populados
 	 */
 	
+	@Override
 	@GetMapping("/formacao={formacao}/turma={turma}/escopo={escopo}")
 	public RelatorioAvaliacoesVo informacoesGeraisDasAvaliacoes(@PathVariable String formacao, @PathVariable String turma, @PathVariable String escopo) {
 		return avaliacaoService.popularCards(formacao, turma);
@@ -93,4 +95,8 @@ public class RelatorioAvaliacaoController {
         PDFServiceAvaliacao exporter = new PDFServiceAvaliacao(avaliacoesVo);
         exporter.export(response);
     }
+	
+	
+
 }
+

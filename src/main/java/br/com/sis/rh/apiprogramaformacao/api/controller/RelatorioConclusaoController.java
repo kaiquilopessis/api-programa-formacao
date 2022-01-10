@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.sis.rh.apiprogramaformacao.api.openApi.RelatorioConclusaoControllerOpenApi;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RelatorioConclusaoVO;
 import br.com.sis.rh.apiprogramaformacao.core.service.ConclusaoService;
 import br.com.sis.rh.apiprogramaformacao.core.service.ExcelConclusaoService;
@@ -21,49 +22,50 @@ import br.com.sis.rh.apiprogramaformacao.core.service.PDFConclusaoService;
 //url criado para (/conclusões)
 @RestController
 @RequestMapping("/api/conclusoes")
-public class RelatorioConclusaoController {
-	
-	// Injetando a service de conclusão
-		@Autowired
-		private ConclusaoService conclusaoService;
-		
-		@Autowired
-		private ExcelConclusaoService excelConclusaoService;
+public class RelatorioConclusaoController implements RelatorioConclusaoControllerOpenApi {
 
-		// Buscando a url  com turma, formação e escopo para popular os cards
-		@GetMapping("/formacao={formacao}/turma={turma}/escopo={escopo}")
-		public RelatorioConclusaoVO listaParticipantesAtivo(@PathVariable String formacao, @PathVariable String turma,
-				@PathVariable String escopo) {
-			RelatorioConclusaoVO conclusao = conclusaoService.popularCards(formacao, turma);
-			
-			return conclusao;
-		}
-		
-		// Geração do pdf
-		@GetMapping("/formacao={formacao}/turma={turma}/pdf")
-		public void downloadPDF(HttpServletResponse response, @PathVariable String formacao, @PathVariable String turma)
-				throws DocumentException, IOException {
-	        response.setContentType("application/pdf");
-	         
-	        String headerKey = "Content-Disposition";
-	        String headerValue = "attachment; filename=RelatorioConclusão.pdf";
-	        response.setHeader(headerKey, headerValue);
-	         
-	        RelatorioConclusaoVO conclusaoVO = conclusaoService.popularCards(formacao, turma);
-	         
-	        PDFConclusaoService exporter = new PDFConclusaoService(conclusaoVO);
-	        exporter.export(response);
-		}
-		
-		// Geração do xlsx
-		@GetMapping("/formacao={formacao}/turma={turma}/xlsx")
-		public void downloadXLSX(HttpServletResponse response, @PathVariable String formacao, @PathVariable String turma)
-				throws IOException {
-			RelatorioConclusaoVO conclusaoVo = conclusaoService.popularCards(formacao, turma);
-			
-			response.setContentType("application/octet-stream");
-	        response.setHeader("Content-Disposition", "attachment; filename=RelatorioConclusão.xlsx");
-	        ByteArrayInputStream stream = excelConclusaoService.gerarExcelConclusao(conclusaoVo);
-	        IOUtils.copy(stream, response.getOutputStream());
-		}
+	// Injetando a service de conclusão
+	@Autowired
+	private ConclusaoService conclusaoService;
+
+	@Autowired
+	private ExcelConclusaoService excelConclusaoService;
+
+	// Buscando a url com turma, formação e escopo para popular os cards
+	@Override
+	@GetMapping("/formacao={formacao}/turma={turma}/escopo={escopo}")
+	public RelatorioConclusaoVO listaParticipantesAtivo(@PathVariable String formacao, @PathVariable String turma,
+			@PathVariable String escopo) {
+		RelatorioConclusaoVO conclusao = conclusaoService.popularCards(formacao, turma);
+
+		return conclusao;
+	}
+
+	// Geração do pdf
+	@GetMapping("/formacao={formacao}/turma={turma}/pdf")
+	public void downloadPDF(HttpServletResponse response, @PathVariable String formacao, @PathVariable String turma)
+			throws DocumentException, IOException {
+		response.setContentType("application/pdf");
+
+		String headerKey = "Content-Disposition";
+		String headerValue = "attachment; filename=RelatorioConclusão.pdf";
+		response.setHeader(headerKey, headerValue);
+
+		RelatorioConclusaoVO conclusaoVO = conclusaoService.popularCards(formacao, turma);
+
+		PDFConclusaoService exporter = new PDFConclusaoService(conclusaoVO);
+		exporter.export(response);
+	}
+
+	// Geração do xlsx
+	@GetMapping("/formacao={formacao}/turma={turma}/xlsx")
+	public void downloadXLSX(HttpServletResponse response, @PathVariable String formacao, @PathVariable String turma)
+			throws IOException {
+		RelatorioConclusaoVO conclusaoVo = conclusaoService.popularCards(formacao, turma);
+
+		response.setContentType("application/octet-stream");
+		response.setHeader("Content-Disposition", "attachment; filename=RelatorioConclusão.xlsx");
+		ByteArrayInputStream stream = excelConclusaoService.gerarExcelConclusao(conclusaoVo);
+		IOUtils.copy(stream, response.getOutputStream());
+	}
 }
