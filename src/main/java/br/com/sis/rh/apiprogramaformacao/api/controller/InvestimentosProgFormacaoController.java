@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.lowagie.text.DocumentException;
+
+import br.com.sis.rh.apiprogramaformacao.api.openApi.InvestimentosProgFormacaoControllerOpenApi;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.InvestimentoProgFormacaoVo;
 import br.com.sis.rh.apiprogramaformacao.core.service.ExcelServiceInvestimento;
 import br.com.sis.rh.apiprogramaformacao.core.service.InvestimentosProgFormacaoService;
@@ -31,7 +33,7 @@ import br.com.sis.rh.apiprogramaformacao.core.util.DataFormaterUtil;
 @RestController
 @RequestMapping("/api/investimentos")
 @CrossOrigin
-public class InvestimentosProgFormacaoController {
+public class InvestimentosProgFormacaoController implements InvestimentosProgFormacaoControllerOpenApi {
 
 	// Injeções de dependencias
 
@@ -55,6 +57,7 @@ public class InvestimentosProgFormacaoController {
 	 * @return retorna o total do investimento do programa de acordo com a seleceção
 	 *         da tela Relatórios
 	 */
+	@Override
 	@GetMapping("/investimentosPrograma/{nomePrograma}/{nomeTurma}")
 	public InvestimentoProgFormacaoVo investimentosPrograma(@PathVariable String nomePrograma,
 			@PathVariable String nomeTurma) {
@@ -78,7 +81,7 @@ public class InvestimentosProgFormacaoController {
 	 *         com a turma e o programa selecionado
 	 * @throws ParseException
 	 */
-
+	@Override
 	@GetMapping("/investimentoPeriodoSelecionado/{nomePrograma}/{nomeTurma}/{dataInicio}/{dataFim}")
 	public InvestimentoProgFormacaoVo investDoPeriodoPrograma(@PathVariable String nomePrograma, @PathVariable String nomeTurma, @PathVariable String dataInicio,
 			@PathVariable String dataFim) throws ParseException {
@@ -103,6 +106,7 @@ public class InvestimentosProgFormacaoController {
 	 * @throws IOException
 	 * @throws ParseException 
 	 */
+	@Override
 	@GetMapping("/{nomePrograma}/{nomeTurma}/{dataInicio}/{dataFim}/pdf")
 	public void downloadPDF(HttpServletResponse response, @PathVariable String nomePrograma, @PathVariable String nomeTurma, @PathVariable String dataInicio,
 			@PathVariable String dataFim) throws DocumentException, IOException, ParseException {
@@ -139,6 +143,7 @@ public class InvestimentosProgFormacaoController {
 	 * @throws IOException
 	 * @throws ParseException 
 	 */
+	@Override
 	@GetMapping("/{nomePrograma}/{nomeTurma}/{dataInicio}/{dataFim}/xlsx")
 	public void downloadXLSX(HttpServletResponse response, @PathVariable String nomePrograma, @PathVariable String nomeTurma, @PathVariable String dataInicio,
 			@PathVariable String dataFim) throws IOException, ParseException {

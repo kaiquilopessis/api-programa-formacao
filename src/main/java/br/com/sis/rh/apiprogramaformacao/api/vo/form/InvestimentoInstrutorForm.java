@@ -6,15 +6,22 @@ import java.time.format.DateTimeFormatter;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
 import br.com.sis.rh.apiprogramaformacao.api.model.RemuneracaoInstrutor;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-
+@ApiModel("Formulário de Investimento do instrutor")
 public class InvestimentoInstrutorForm {
 
+	@ApiModelProperty(value = "cpf do instrutor", required = true, example = "896.205.310-19")
 	private String cpf;
+	
+	@ApiModelProperty(value = "mes/ano do investimento", required = true, example = "02/2022")
 	private String mesAno;
+	@ApiModelProperty(value = "valor investido por hora", required = true, example = "1500")
 	private String valorHora;
+	@ApiModelProperty(value = "quantidade de horas trabalhadas", required = true, example = "8:00")
 	private String horasTrabalhadas;
 
 	public static RemuneracaoInstrutor converter(InvestimentoInstrutorForm investimentoInstrutorForm,
@@ -23,7 +30,7 @@ public class InvestimentoInstrutorForm {
 		BigDecimal valorHoraFormatado = new BigDecimal(investimentoInstrutorForm.getValorHora());
 		Integer horasTrabalhadasFormatada = Integer.parseInt(investimentoInstrutorForm.getHorasTrabalhadas());
 		LocalDate dataFormatada = LocalDate.parse(investimentoInstrutorForm.getMesAno(), nome);
-		return new RemuneracaoInstrutor(dataFormatada, valorHoraFormatado, horasTrabalhadasFormatada,instrutor);
+		return new RemuneracaoInstrutor(dataFormatada, valorHoraFormatado, horasTrabalhadasFormatada, instrutor);
 	}
 
 	public String getCpf() {
