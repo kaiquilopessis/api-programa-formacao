@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import br.com.sis.rh.apiprogramaformacao.api.openApi.ParticipanteControllerOpenApi;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CandidatoCompletoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CandidatoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeProcessoSeletivoDto;
@@ -30,14 +31,15 @@ import br.com.sis.rh.apiprogramaformacao.core.service.ParticipanteService;
 
 @RestController
 @RequestMapping("/api/participante")
-public class ParticipanteController {
+public class ParticipanteController  implements ParticipanteControllerOpenApi{
 
 	@Autowired
 	private ParticipanteService participanteService;
 	
 	@Autowired
 	private CandidatoService candidatoService;
-
+	
+	@Override
 	@GetMapping
 	public ResponseEntity<List<ParticipanteBuscaDto>> getPadrao() {
 		List<Participante> listaParticipante = participanteService.todosParticipantes();
@@ -48,16 +50,19 @@ public class ParticipanteController {
 
 	/* lista participantes na tabela - busca participantes */
 
+	@Override
 	@GetMapping("/ativos")
 	public List<ParticipanteBuscaDto> listarPart() {
 		return participanteService.buscaPorStatus();
 	}
-
+	
+	@Override
 	@GetMapping("/{cpf}")
 	public ResponseEntity<ParticipanteBuscaNomeDto> mostraNome(@PathVariable String cpf) {
 		return participanteService.buscaPorId(cpf);
 	}
 
+	@Override
 	@GetMapping("{nome}/{nomePrograma}/{nomeTurma}")
 	public List<ParticipanteBuscaDto> filtrarParticipantes(@PathVariable String nome,
 															@PathVariable String nomePrograma,
@@ -67,11 +72,13 @@ public class ParticipanteController {
 	}
 
 
+	@Override
 	@GetMapping("/completo/{cpf}")
 	public ParticipanteExibeDto participanteExibe(@PathVariable String cpf) {
 		return new ParticipanteExibeDto(participanteService.participanteCpf(cpf));
 	}
 
+	@Override
 	@GetMapping("/candidato/{id}")
 	public CandidatoCompletoDto candidatoExibe(@PathVariable Long id){
 		return new CandidatoCompletoDto(candidatoService.candidatoId(id));
