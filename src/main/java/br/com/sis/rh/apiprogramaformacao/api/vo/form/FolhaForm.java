@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class FolhaForm {
 	@ApiModelProperty(value = "Cpf do participante", required = true, example = "33092410840")
     private String cpf;
-	@ApiModelProperty(value = "Data de inclusão", required = true, example = "02/02/2022")
+	@ApiModelProperty(value = "Data de inclusão", required = true, example = "2022-02-21")
     private String mesAno;
 	@ApiModelProperty(value = "Remuneração", required = true, example = "1500")
     private String remuneracao;

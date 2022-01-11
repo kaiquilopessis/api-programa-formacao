@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @ApiModel("Formulário de alteração do instrutor")
 public class AttInstrutorForm {
 
-	@ApiModelProperty(value = "cpf do instrutor", required = true, example = "896.205.310-19")
+	@ApiModelProperty(value = "cpf do instrutor", required = true, example = "89620531019")
 	private String cpf;
 
 	@ApiModelProperty(value = "telefone do instrutor", required = true, example = "21999887766")

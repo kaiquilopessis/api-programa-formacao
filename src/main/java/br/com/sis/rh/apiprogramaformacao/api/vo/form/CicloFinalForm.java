@@ -17,9 +17,9 @@ import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCiclo;
 public class CicloFinalForm {
 	@ApiModelProperty(value = "Resultado do ciclo", required = true, example = "Final")
 	private ResultadoCiclo resultado;
-	@ApiModelProperty(value = "Data de alteração", required = true, example = "02/02/2022")
+	@ApiModelProperty(value = "Data de alteração", required = true, example = "2022-02-21")
 	private String dataAlteracao;
-	@ApiModelProperty(value = "Cargo do participante", required = true, example = "Estágiario")
+	@ApiModelProperty(value = "Cargo do participante", required = true, example = "Estagiario")
 	private String cargoEfetivado;
 	private MultipartFile comprovante;
 	@ApiModelProperty(value = "Observações sobre o ciclo", required = true, example = "Exemplo exemplo")

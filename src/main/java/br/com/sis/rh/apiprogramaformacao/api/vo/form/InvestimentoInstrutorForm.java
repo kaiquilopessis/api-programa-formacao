@@ -14,14 +14,14 @@ import lombok.NoArgsConstructor;
 @ApiModel("Formulário de Investimento do instrutor")
 public class InvestimentoInstrutorForm {
 
-	@ApiModelProperty(value = "cpf do instrutor", required = true, example = "896.205.310-19")
+	@ApiModelProperty(value = "cpf do instrutor", required = true, example = "89620531019")
 	private String cpf;
 	
-	@ApiModelProperty(value = "mes/ano do investimento", required = true, example = "02/2022")
+	@ApiModelProperty(value = "mes/ano do investimento", required = true, example = "2022-02-02")
 	private String mesAno;
-	@ApiModelProperty(value = "valor investido por hora", required = true, example = "1500")
+	@ApiModelProperty(value = "valor investido por hora", required = true, example = "1.500")
 	private String valorHora;
-	@ApiModelProperty(value = "quantidade de horas trabalhadas", required = true, example = "8:00")
+	@ApiModelProperty(value = "quantidade de horas trabalhadas", required = true, example = "8")
 	private String horasTrabalhadas;
 
 	public static RemuneracaoInstrutor converter(InvestimentoInstrutorForm investimentoInstrutorForm,
