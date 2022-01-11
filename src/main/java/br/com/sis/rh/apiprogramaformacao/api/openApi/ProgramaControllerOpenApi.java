@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Api(tags = "ProgramaController")
+@Api(tags = "Programa Controller")
 public interface ProgramaControllerOpenApi {
 
 	// GET

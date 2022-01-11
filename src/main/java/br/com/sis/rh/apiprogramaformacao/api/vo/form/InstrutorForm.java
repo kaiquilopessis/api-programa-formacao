@@ -13,7 +13,7 @@ public class InstrutorForm {
 
 	@NotNull
 	@NotEmpty
-	@ApiModelProperty(value = "cpf do instrutor", required = true, example = "896.205.310-19")
+	@ApiModelProperty(value = "cpf do instrutor", required = true, example = "89620531019")
 	private String cpf;
 
 	@NotNull

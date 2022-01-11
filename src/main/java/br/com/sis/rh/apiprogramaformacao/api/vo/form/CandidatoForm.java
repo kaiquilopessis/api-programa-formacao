@@ -18,21 +18,23 @@ public class CandidatoForm {
 
     @ApiModelProperty(value = "Nome do candidato", required = true, example = "João Silva")
     private String nome;
-    @ApiModelProperty(value = "Telefone do candidato", required = true, example = "")
+    @ApiModelProperty(value = "Telefone do candidato", required = true, example = "1433223705")
     private String telefone;
-    @ApiModelProperty(value = "Fonte de recrutamento", required = true, example = "")
+    @ApiModelProperty(value = "Fonte de recrutamento", required = true, example = "interna")
     private String fonteRecrutamento;
-    @ApiModelProperty(value = "Data de agendamento da entrevista", required = true, example = "")
+    @ApiModelProperty(value = "Data de agendamento da entrevista", required = true, example = "2022-02-21")
     private String dataAgendamento;
-    @ApiModelProperty(value = "Curso do candidato", required = true, example = "")
+    @ApiModelProperty(value = "Curso do candidato", required = true, example = "ADS")
     private String curso;
-    @ApiModelProperty(value = "Observação sobre o candidato", required = true, example = "")
+    @ApiModelProperty(value = "Observação sobre o candidato", required = true, example = "Nenhuma")
     private String observacao;
-    @ApiModelProperty(value = "Status do candidato", required = true, example = "APROVADO_2_FASE")
+    @ApiModelProperty(value = "Status do candidato", required = true, example = "APROVADO_1_FASE")
     private String status;
     @ApiModelProperty(value = "Resultado do teste lógico do Candidato", required = true, example = "10")
     private BigDecimal testeLogico;
+    @ApiModelProperty(value = "Currículo do Candidato", required = true, dataType = "MultipartFile")
     private MultipartFile curriculo;
+    @ApiModelProperty(value = "Resultado do DISC do Candidato", required = true, dataType = "MultipartFile")
     private MultipartFile disc;
     @ApiModelProperty(value = "Processo seletivo do candidato", required = true, example = "1")
     private Long idProcessoSeletivo;
@@ -42,7 +44,7 @@ public class CandidatoForm {
     private String semestreFaculdade;
     @ApiModelProperty(value = "Periodo do curso do candidato", required = true, example = "Noturno")
     private String periodoCurso;
-    @ApiModelProperty(value = "Data que o candidato irá concluir o curso", required = true, example = "15/02/2022")
+    @ApiModelProperty(value = "Data que o candidato irá concluir o curso", required = true, example = "2022-02-21")
     private String dataConclusao;
     @ApiModelProperty(value = "Duração que o curso terá", required = true, example = "8")
     private String duracaoCurso;

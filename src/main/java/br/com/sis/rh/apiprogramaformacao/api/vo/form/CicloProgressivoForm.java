@@ -18,12 +18,13 @@ import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
 @ApiModel("Formuário para criar um Ciclo Progressivo")
 public class CicloProgressivoForm {
 
-	@ApiModelProperty(value = "Resultado do ciclo", required = true, example = "Progressivo")
+	@ApiModelProperty(value = "Resultado do ciclo", required = true, example = "REAJUSTE_SALARIO")
 	private ResultadoCiclo resultado;
-	@ApiModelProperty(value = "Data de alteração", required = true, example = "02/02/2022")
+	@ApiModelProperty(value = "Data de alteração", required = true, example = "2022-02-02")
 	private String dataAlteracao;
-	@ApiModelProperty(value = "Cargo do participante", required = true, example = "Estágiario")
+	@ApiModelProperty(value = "Cargo do participante", required = true, example = "Estagiario")
 	private String cargo;
+	@ApiModelProperty(value = "Comprovante", required = true, dataType = "MultipartFile")
 	private MultipartFile comprovante;
 
 	public ResultadoCiclo getResultado() {
