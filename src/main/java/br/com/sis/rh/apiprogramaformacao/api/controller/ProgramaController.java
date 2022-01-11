@@ -85,6 +85,7 @@ public class ProgramaController implements ProgramaControllerOpenApi {
 		}
 	}
 
+	@Override
 	@PutMapping("/altera-status/{id}")
 	public ResponseEntity alteraStatus(@PathVariable Long id) {
 		try {
@@ -102,16 +103,19 @@ public class ProgramaController implements ProgramaControllerOpenApi {
 		}
 	}
 
+	@Override
 	@GetMapping("buscar-processo")
 	public List<ProcessoSeletivoVo> programasEmAndamento() {
 		return processoSeletivoService.buscaProgramas();
 	}
 
+	@Override
 	@GetMapping("/buscar-programas-por-processo/{id}")
 	public List<TurmaDto> buscarTurmasPeloProcesso(@PathVariable Long id) {
 		return programaService.buscarTurmasbyProcesso(id);
 	}
 
+	@Override
 	@GetMapping("/buscar-programas-por-nome/{nome}")
 	public List<TurmaDto> buscarProgramaPeloNome(@PathVariable String nome) {
 		return programaService.buscarTurmasbyNomeProcesso(nome);
