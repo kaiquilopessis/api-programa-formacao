@@ -13,6 +13,8 @@ import javax.naming.directory.InitialDirContext;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -24,6 +26,8 @@ import br.com.sis.rh.apiprogramaformacao.core.service.AutenticacaoADService;
 
 @Component
 public class ConnectAD {
+	private static final Logger LOGGER = LogManager.getLogger(ConnectAD.class);
+	
 	@Autowired
 	private AutenticacaoADService autenticacaoADService;
 	
@@ -49,6 +53,7 @@ public class ConnectAD {
 		Optional<LoginAD> loginAd = loginADRepository.findById(usuarioAD.getMatricula());
 		if (loginAd.isPresent()) {
 			usuarioAD.setPerfil(loginAd.get().getFk_perfil().getAuthority());
+			LOGGER.info(usuarioAD.getMatricula() + " foi logado");
 		}
 		return usuarioAD;
     }
