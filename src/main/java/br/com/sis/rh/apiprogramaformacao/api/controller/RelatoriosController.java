@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.sis.rh.apiprogramaformacao.api.openApi.RelatoriosControllerOpenApi;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeProgramaEmAndamentoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TurmaDto;
@@ -24,7 +25,7 @@ import br.com.sis.rh.apiprogramaformacao.core.service.FiltroRelatorio;
 @RestController
 @RequestMapping("/api/relatorios")
 @CrossOrigin
-public class RelatoriosController {
+public class RelatoriosController implements RelatoriosControllerOpenApi {
 	
 	@Autowired
 	private FiltroRelatorio filtroRelatorio;
@@ -36,28 +37,34 @@ public class RelatoriosController {
 	}
 	
 	@GetMapping("/participantesAtivos")
+	@Override
 	public List<ParticipanteProgramaDto> listaParticipantesAtivos() {
 		return filtroRelatorio.listaTotalParticipantesAtivos();
 	}
 
 	@GetMapping("/participantesEfetivados")
+	@Override
 	public List<ParticipanteProgramaDto> listaParticipantesEfetivados() {
 		return filtroRelatorio.listaTotalParticipantesEfetivados();
 	}
 
 	@GetMapping("/formacoesEmAndamento")
+	@Override
 	public List<NomeProgramaEmAndamentoDto> listaFormacoesEmAndamento() {
 		return filtroRelatorio.listaTotalFormacoesEmAndamento();
 	}
 
 	@GetMapping("/formacoes")
+	@Override
 	public List<NomeProgramaEmAndamentoDto> buscarTodasFormacoes(){
 		return filtroRelatorio.buscarTodasAsFormacoes();
 	}
 
 	@GetMapping("/turmas/{nomePrograma}")
+	@Override
 	public List<TurmaDto> buscarTodasTurmas(@PathVariable String nomePrograma){
 		return filtroRelatorio.buscarTodasAsTurmas(nomePrograma);
 	}
+
 	
 }

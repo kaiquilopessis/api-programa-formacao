@@ -2,21 +2,30 @@ package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel("Formulario para Atualizar participante")
 public class AtualizaParticipanteForm {
 
+	@ApiModelProperty(value = "Nome", required = true, example = "Carlos Alberto")
 	private String nome;
+	@ApiModelProperty(value = "Cpf do participante", required = true, example = "50749052813")
 	private String cpf;
+	@ApiModelProperty(value = "Telefone", required = true, example = "11976716444")
 	private String telefone;
+	@ApiModelProperty(value = "Fonte de recrutamento", required = true, example = "Palestra")
 	private String fonteRecrutamento;
+	@ApiModelProperty(value = "Nome Faculdade", required = true, example = "Fatec")
 	private String nmFaculdade;
+	@ApiModelProperty(value = "Nome do curso", required = true, example = "Engenharia da computação")
 	private String curso;
+	@ApiModelProperty(value = "Final da graduação", required = true, example = "2022-12-31")
 	private String dataFimGraduacao;
-	private String cargo;
-	private String turma;
+	@ApiModelProperty(value = "Cargo", required = true, example = "Estágiario")
 	private String observacao;
+	@ApiModelProperty(value = "email", required = true, example = "Sis@sisconsultoria.com.br")
 	private String email;
-	private String nomeTurma;
-	private String nomePrograma;
 	private MultipartFile tce;
 
 
@@ -76,21 +85,6 @@ public class AtualizaParticipanteForm {
 		this.dataFimGraduacao = dataFimGraduacao;
 	}
 
-	public String getCargo() {
-		return cargo;
-	}
-
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
-	}
-
-	public String getTurma() {
-		return turma;
-	}
-
-	public void setTurma(String turma) {
-		this.turma = turma;
-	}
 
 	public String getObservacao() {
 		return observacao;
@@ -108,9 +102,7 @@ public class AtualizaParticipanteForm {
 		this.email = email;
 	}
 
-	public String getNomeTurma() {
-		return nomeTurma;
-	}
+
 
 	public MultipartFile getTce() {
 		return tce;
@@ -118,18 +110,6 @@ public class AtualizaParticipanteForm {
 
 	public void setTce(MultipartFile tce) {
 		this.tce = tce;
-	}
-
-	public void setNomeTurma(String nomeTurma) {
-		this.nomeTurma = nomeTurma;
-	}
-
-	public String getNomePrograma() {
-		return nomePrograma;
-	}
-
-	public void setNomePrograma(String nomePrograma) {
-		this.nomePrograma = nomePrograma;
 	}
 
 }

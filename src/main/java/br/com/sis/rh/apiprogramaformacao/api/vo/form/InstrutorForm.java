@@ -5,60 +5,77 @@ import javax.validation.constraints.NotNull;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
 import br.com.sis.rh.apiprogramaformacao.core.util.FormatterUtil;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
+@ApiModel("Formulário de Cadastro de instrutor")
 public class InstrutorForm {
 
-    @NotNull @NotEmpty
-    private String cpf;
+	@NotNull
+	@NotEmpty
+	@ApiModelProperty(value = "cpf do instrutor", required = true, example = "89620531019")
+	private String cpf;
 
-    @NotNull @NotEmpty
-    private String telefone;
+	@NotNull
+	@NotEmpty
+	@ApiModelProperty(value = "telefone do instrutor", required = true, example = "21999887766")
+	private String telefone;
 
-    @NotNull @NotEmpty
-    private String status;
-    
-    @NotNull @NotEmpty
-    private String nome;
-    
-    @NotNull @NotEmpty
-    private String email;
+	@NotNull
+	@NotEmpty
+	@ApiModelProperty(value = "status do instrutor", required = true, example = "ATIVO")
+	private String status;
 
-    public InstrutorForm(String cpf, String telefone, String status, String nome, String email) {
-        this.cpf = cpf;
-        this.telefone = telefone;
-        this.status = status;
-        this.nome = nome;
-        this.email = email;
-    }
+	@NotNull
+	@NotEmpty
+	@ApiModelProperty(value = "nome do instrutor", required = true, example = "João da Silva")
+	private String nome;
 
-    public InstrutorForm() {}
+	@NotNull
+	@NotEmpty
+	@ApiModelProperty(value = "email do instrutor", required = true, example = "instrutor@sisconsultoria.com.br")
+	private String email;
 
-    public String getCpf() {
-        return cpf;
-    }
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
+	public InstrutorForm(String cpf, String telefone, String status, String nome, String email) {
+		this.cpf = cpf;
+		this.telefone = telefone;
+		this.status = status;
+		this.nome = nome;
+		this.email = email;
+	}
 
-    public String getTelefone() {
-        return telefone;
-    }
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
+	public InstrutorForm() {
+	}
 
-    public String getStatus() {
-        return status;
-    }
-    public void setStatus(String status) {
-        this.status = status;
-    }
-    
-    public String getNome() {
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getNome() {
 		return nome;
 	}
-    
-    public String getEmail() {
+
+	public String getEmail() {
 		return email;
 	}
 
@@ -70,8 +87,8 @@ public class InstrutorForm {
 		this.nome = nome;
 	}
 
-    public Instrutor converter(){
-        return new Instrutor(FormatterUtil.removerMascara(cpf), telefone,status,nome,email);
-    }
+	public Instrutor converter() {
+		return new Instrutor(FormatterUtil.removerMascara(cpf), telefone, status, nome, email);
+	}
 
 }

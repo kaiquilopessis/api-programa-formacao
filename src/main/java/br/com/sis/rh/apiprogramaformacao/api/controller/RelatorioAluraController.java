@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.sis.rh.apiprogramaformacao.api.openApi.RelatorioAluraControllerOpenApi;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RelatorioAluraVo;
 import br.com.sis.rh.apiprogramaformacao.core.service.AluraService;
 import br.com.sis.rh.apiprogramaformacao.core.service.ExcelServiceAlura;
@@ -27,7 +28,7 @@ import br.com.sis.rh.apiprogramaformacao.core.service.PDFServiceAlura;
 @RestController
 @RequestMapping("/api/relatorio-alura")
 @CrossOrigin
-public class RelatorioAluraController {
+public class RelatorioAluraController implements RelatorioAluraControllerOpenApi  {
 	
 	@Autowired
 	private AluraService aluraService;
@@ -45,6 +46,7 @@ public class RelatorioAluraController {
 	 * @return aluraVo com os campos populados
 	 */
 	
+	@Override
 	@GetMapping("/formacao={formacao}/turma={turma}/escopo={escopo}")
 	public RelatorioAluraVo popularCards(@PathVariable String formacao, @PathVariable String turma, @PathVariable String escopo) {
 		RelatorioAluraVo aluraVo = aluraService.popularCards(formacao, turma);
@@ -60,6 +62,7 @@ public class RelatorioAluraController {
 	 * @throws IOException
 	 */
 	
+	@Override
 	@GetMapping("/formacao={formacao}/turma={turma}/xlsx")
 	public void downloadXLSX(HttpServletResponse response, @PathVariable String formacao, @PathVariable String turma) throws IOException {
 		RelatorioAluraVo aluraVo = aluraService.popularCards(formacao, turma);
@@ -80,6 +83,7 @@ public class RelatorioAluraController {
 	 * @throws IOException
 	 */
 	
+	@Override
 	@GetMapping("/formacao={formacao}/turma={turma}/pdf")
     public void downloadPDF(HttpServletResponse response, @PathVariable String formacao, @PathVariable String turma) throws DocumentException, IOException {
         response.setContentType("application/pdf");

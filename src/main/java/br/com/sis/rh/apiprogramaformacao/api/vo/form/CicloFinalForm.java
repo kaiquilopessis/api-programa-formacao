@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Ciclo;
@@ -11,11 +13,16 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoCiclo;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCiclo;
 
+@ApiModel("Formuário para criar um Ciclo Final")
 public class CicloFinalForm {
+	@ApiModelProperty(value = "Resultado do ciclo", required = true, example = "Final")
 	private ResultadoCiclo resultado;
+	@ApiModelProperty(value = "Data de alteração", required = true, example = "2022-02-21")
 	private String dataAlteracao;
+	@ApiModelProperty(value = "Cargo do participante", required = true, example = "Estagiario")
 	private String cargoEfetivado;
 	private MultipartFile comprovante;
+	@ApiModelProperty(value = "Observações sobre o ciclo", required = true, example = "Exemplo exemplo")
 	private String campoObservacao;
 
 	

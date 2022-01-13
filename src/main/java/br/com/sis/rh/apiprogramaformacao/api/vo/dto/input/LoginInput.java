@@ -2,12 +2,17 @@ package br.com.sis.rh.apiprogramaformacao.api.vo.dto.input;
 
 import javax.validation.constraints.NotBlank;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+@ApiModel("Formulario para login")
 public class LoginInput {
 
 	@NotBlank
+	@ApiModelProperty(value = "matricula do usuário", required = true, example = "jsilva")
 	private String matricula;
 
 	@NotBlank
+	@ApiModelProperty(value = "senha da usuário", required = true, example = "1234")
 	private String senha;
 
 	public String getMatricula() {

@@ -2,64 +2,80 @@ package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Optional;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+@ApiModel("Formulário de alteração do instrutor")
 public class AttInstrutorForm {
 
-    private String nome;
-    private String status;
-    private String email;
-    private String telefone;
+	@ApiModelProperty(value = "cpf do instrutor", required = true, example = "89620531019")
+	private String cpf;
 
+	@ApiModelProperty(value = "telefone do instrutor", required = true, example = "21999887766")
+	private String telefone;
 
-    public String getNome() {
-        return nome;
-    }
+	@ApiModelProperty(value = "status do instrutor", required = true, example = "ATIVO")
+	private String status;
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	@ApiModelProperty(value = "nome do instrutor", required = true, example = "João da Silva")
+	private String nome;
 
-    public String getStatus() {
-        return status;
-    }
+	@ApiModelProperty(value = "email do instrutor", required = true, example = "instrutor@sisconsultoria.com.br")
+	private String email;
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getStatus() {
+		return status;
+	}
 
-    public String getTelefone() {
-        return telefone;
-    }
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public boolean atualizaInstrutor (InstrutorRepository repository, String cpf){
-        Optional<Instrutor> optionalInstrutor = repository.findById(cpf);
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-        if(optionalInstrutor.isPresent()){
-            Instrutor instrutor = optionalInstrutor.get();
+	public String getTelefone() {
+		return telefone;
+	}
 
-            instrutor.setStatus(this.status);
-            instrutor.setEmail(this.email);
-            instrutor.setTelefone(this.telefone);
-            instrutor.setNome(this.nome);
-            repository.save(instrutor);
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
 
-            return true;
-        }else{
-            return false;
-        }
-    }
+	public boolean atualizaInstrutor(InstrutorRepository repository, String cpf) {
+		Optional<Instrutor> optionalInstrutor = repository.findById(cpf);
+
+		if (optionalInstrutor.isPresent()) {
+			Instrutor instrutor = optionalInstrutor.get();
+
+			instrutor.setStatus(this.status);
+			instrutor.setEmail(this.email);
+			instrutor.setTelefone(this.telefone);
+			instrutor.setNome(this.nome);
+			repository.save(instrutor);
+
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

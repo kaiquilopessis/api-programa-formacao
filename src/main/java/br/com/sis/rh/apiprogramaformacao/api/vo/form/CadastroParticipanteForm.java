@@ -1,6 +1,7 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
 import java.io.IOException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -12,17 +13,29 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
 import br.com.sis.rh.apiprogramaformacao.core.util.FormatterUtil;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
+@ApiModel("Formulario para cadastro de participante")
 public class CadastroParticipanteForm {
+	@ApiModelProperty(value = "Cpf do participante", required = true, example = "50749052813")
 	private String cpf;
+	@ApiModelProperty(value = "Instituição de ensino", required = true, example = "Fatec")
 	private String instituicaoEnsino;
+	@ApiModelProperty(value = "Curso", required = true, example = "Engenharia da computaçõa")
 	private String curso;
+	@ApiModelProperty(value = "Remuneraçõa", required = true, example = "1")
 	private Long idRemuneracao;
+	@ApiModelProperty(value = "Candidato", required = true, example = "1")
 	private Long idCandidato;
+	@ApiModelProperty(value = "Programa", required = true, example = "1")
 	private Long idPrograma;
+	@ApiModelProperty(value = "Email", required = true, example = "Sis@sisconsultoria.com.br")
 	private String email;
 	private MultipartFile tce;
+	@ApiModelProperty(value = "Data da entrega", required = true, example = "2022-01-10")
 	private String dataEntrega;
+	@ApiModelProperty(value = "Data inicio", required = true, example = "2022-02-10")
 	private String dataInicio;
 
 	public String getCpf() {

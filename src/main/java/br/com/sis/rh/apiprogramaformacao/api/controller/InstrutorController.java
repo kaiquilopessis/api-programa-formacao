@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
+import br.com.sis.rh.apiprogramaformacao.api.openApi.InstrutorControllerOpenApi;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CpfInstrutorNomeDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemInstrutorDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.InstrutorVo;
@@ -24,15 +25,17 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.form.InstrutorForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.InvestimentoInstrutorForm;
 import br.com.sis.rh.apiprogramaformacao.core.service.InstrutorService;
 
+
 @RestController
 @RequestMapping("/api/instrutor")
-public class InstrutorController {
+public class InstrutorController implements InstrutorControllerOpenApi{
 
 	@Autowired
 	private InstrutorService instrutorService;
 
 	//Criado por Letícia Angulo
 	//Métodos utilizados pelas telas de CRUD de instrutor
+	@Override
     @GetMapping
     public ResponseEntity<List<InstrutorVo>> getPadrao(){
         List<Instrutor> listaInstrutores = instrutorService.todosInstrutores();
@@ -41,6 +44,7 @@ public class InstrutorController {
         return ResponseEntity.ok(listaVo);
     }
 
+	@Override
     @GetMapping("/{cpf}")
     public ResponseEntity<InstrutorVo> getByCpf(@PathVariable String cpf){
         Instrutor instrutor = instrutorService.buscaPorCpf(cpf);
@@ -48,7 +52,8 @@ public class InstrutorController {
         
         return ResponseEntity.ok(instrutorVo);
     }
-
+	
+	@Override
     @GetMapping("/status/{status}")
     public ResponseEntity<List<InstrutorVo>> getByStatus(@PathVariable String status){
         List<Instrutor> listaInstrutoresPorStatus = instrutorService.buscaPorStatus(status);
@@ -57,6 +62,7 @@ public class InstrutorController {
         return ResponseEntity.ok(listaInstrutoresPorStatusVo);
     }
 
+	@Override
     @PutMapping("/status/altera/{cpf}")
 	@Transactional
     public ResponseEntity alteraStatus(@PathVariable String cpf){
@@ -74,6 +80,7 @@ public class InstrutorController {
     	}
     }
 
+	@Override
 	@PutMapping("/altera/{cpf}")
 	@Transactional
 	public ResponseEntity alterarInstrutor(@PathVariable String cpf, @RequestBody AttInstrutorForm attInstrutorForm){
@@ -85,6 +92,7 @@ public class InstrutorController {
 		}
 	}
 
+	@Override
 	@PostMapping
 	@Transactional
 	public ResponseEntity cadastro(@RequestBody @Valid InstrutorForm form) {
@@ -102,16 +110,20 @@ public class InstrutorController {
 
 	//Criado por Marco Aguiar
 	//Referente as telas de Inserção de remuneração por mês
+	
+	@Override
 	@GetMapping("/buscar-instrutor/{nomePrograma}/{nomeTurma}")
 	public List<FiltragemInstrutorDto> mostrarDados(@PathVariable String nomePrograma, @PathVariable String nomeTurma){
 		return instrutorService.listagemFiltroInstrutor(nomePrograma, nomeTurma);
 	}
 
+	@Override
 	@PostMapping("/salvar-invest")
-	public void salvarInvestimentos(@RequestBody InvestimentoInstrutorForm investimentoInstrutorForm){
-		instrutorService.cadastrar(investimentoInstrutorForm);
+	public ResponseEntity salvarInvestimentos(@RequestBody InvestimentoInstrutorForm investimentoInstrutorForm){
+		return instrutorService.cadastrar(investimentoInstrutorForm);
 	}
-
+	
+	@Override
 	@GetMapping("/instrutores/{nomePrograma}/{nomeTurma}") //indicar que será um parametro dinamico (flexivel)
 	public List<CpfInstrutorNomeDto> mostrarInstrutores(@PathVariable String nomePrograma, @PathVariable String nomeTurma){
 		return instrutorService.listagemInstrutores(nomePrograma, nomeTurma);

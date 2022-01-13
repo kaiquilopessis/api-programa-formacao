@@ -5,33 +5,54 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
 import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
 
+@ApiModel("Formulário para cadastrar um candidato")
 public class CandidatoForm {
 
+    @ApiModelProperty(value = "Nome do candidato", required = true, example = "João Silva")
     private String nome;
+    @ApiModelProperty(value = "Telefone do candidato", required = true, example = "1433223705")
     private String telefone;
+    @ApiModelProperty(value = "Fonte de recrutamento", required = true, example = "interna")
     private String fonteRecrutamento;
+    @ApiModelProperty(value = "Data de agendamento da entrevista", required = true, example = "2022-02-21")
     private String dataAgendamento;
+    @ApiModelProperty(value = "Curso do candidato", required = true, example = "ADS")
     private String curso;
+    @ApiModelProperty(value = "Observação sobre o candidato", required = true, example = "Nenhuma")
     private String observacao;
+    @ApiModelProperty(value = "Status do candidato", required = true, example = "APROVADO_1_FASE")
     private String status;
+    @ApiModelProperty(value = "Resultado do teste lógico do Candidato", required = true, example = "10")
     private BigDecimal testeLogico;
+    @ApiModelProperty(value = "Currículo do Candidato", required = true, dataType = "MultipartFile")
     private MultipartFile curriculo;
+    @ApiModelProperty(value = "Resultado do DISC do Candidato", required = true, dataType = "MultipartFile")
     private MultipartFile disc;
+    @ApiModelProperty(value = "Processo seletivo do candidato", required = true, example = "1")
     private Long idProcessoSeletivo;
+    @ApiModelProperty(value = "Email pessoal do candidato", required = true, example = "email@email.com")
     private String email;
+    @ApiModelProperty(value = "Semestre da faculdade cursado pelo candidato", required = true, example = "1")
     private String semestreFaculdade;
+    @ApiModelProperty(value = "Periodo do curso do candidato", required = true, example = "Noturno")
     private String periodoCurso;
+    @ApiModelProperty(value = "Data que o candidato irá concluir o curso", required = true, example = "2022-02-21")
     private String dataConclusao;
+    @ApiModelProperty(value = "Duração que o curso terá", required = true, example = "8")
     private String duracaoCurso;
+    @ApiModelProperty(value = "Endereço do candidato", required = true, example = "Rua Dra Nilza Lemes de Oliveira")
     private String endereco;
+    @ApiModelProperty(value = "Quem indicou o candidato", required = true, example = "Kaiqui Lopes")
     private String indicacaoVaga;
-    
+
 
     public Candidato converter (ProcessoSeletivoRepository repository) throws IOException {
 

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Ciclo;
@@ -13,11 +15,16 @@ import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoCiclo;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCiclo;
 import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
 
+@ApiModel("Formuário para criar um Ciclo Progressivo")
 public class CicloProgressivoForm {
 
+	@ApiModelProperty(value = "Resultado do ciclo", required = true, example = "REAJUSTE_SALARIO")
 	private ResultadoCiclo resultado;
+	@ApiModelProperty(value = "Data de alteração", required = true, example = "2022-02-02")
 	private String dataAlteracao;
+	@ApiModelProperty(value = "Cargo do participante", required = true, example = "Estagiario")
 	private String cargo;
+	@ApiModelProperty(value = "Comprovante", required = true, dataType = "MultipartFile")
 	private MultipartFile comprovante;
 
 	public ResultadoCiclo getResultado() {

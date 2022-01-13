@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.LoginAD;
+import br.com.sis.rh.apiprogramaformacao.api.openApi.MatriculaControllerOpenApi;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.LoginADDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.PerfilDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.LoginADForm;
@@ -22,21 +23,24 @@ import br.com.sis.rh.apiprogramaformacao.core.service.MatriculaService;
 
 @RestController
 @RequestMapping(value = "/api/matricula")
-public class MatriculaController {
+public class MatriculaController implements MatriculaControllerOpenApi{
 
     @Autowired
     private MatriculaService matriculaService;
 
+    @Override
     @GetMapping
     public List<LoginADDto> listaMatriculas(){
         return matriculaService.buscarTodos();
     }
 
+    @Override
     @GetMapping("/perfis")
     public List<PerfilDto> getPerfis (){
         return matriculaService.getPerfis();
     }
 
+    @Override
     @PostMapping
     public ResponseEntity<LoginADDto> autorizaMatricula(@RequestBody LoginADForm form, UriComponentsBuilder uriBuilder){
         LoginAD matricula = matriculaService.criaMatricula(form);
@@ -45,6 +49,7 @@ public class MatriculaController {
         return ResponseEntity.created(uri).body(new LoginADDto(matricula));
     }
 
+    @Override
     @DeleteMapping("/{matricula}")
     public ResponseEntity<LoginADDto> deletarMatricula(@PathVariable String matricula){
 

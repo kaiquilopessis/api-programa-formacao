@@ -5,17 +5,25 @@ import java.math.BigDecimal;
 import br.com.sis.rh.apiprogramaformacao.api.model.AvaliacaoDesempenho;
 import br.com.sis.rh.apiprogramaformacao.api.model.Avaliacoes;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
+@ApiModel("Formulário para cadastrar a avaliação do participante")
 public class AvaliacoesForm {
 
+	@ApiModelProperty(value = "Nota técnica", required = true, example = "10")
 	private BigDecimal notaTecnica;
 
+	@ApiModelProperty(value = "Avaliacao de desempenho", required = true)
 	private AvaliacaoDesempenhoForm avaliacaoDesempenhoForm;
 
+	@ApiModelProperty(value = "Nota práticas ágeis", required = true, example = "10")
 	private BigDecimal notaPraticasAgeis;
 
+	@ApiModelProperty(value = "Nota liderança", required = true, example = "10")
 	private BigDecimal notaLideranca;
 
+	@ApiModelProperty(value = "Nota negócios", required = true, example = "10")
 	private BigDecimal notaNegocios;
 
 	public BigDecimal getNotaTecnica() {

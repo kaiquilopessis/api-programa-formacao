@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.sis.rh.apiprogramaformacao.api.openApi.AvaliacoesControllerOpenApi;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.AvaliacaoDesempenhoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.AvaliacoesDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AvaliacoesForm;
@@ -20,13 +21,14 @@ import br.com.sis.rh.apiprogramaformacao.core.service.AvaliacoesService;
 
 @RestController
 @RequestMapping("/api/avaliacao")
-public class AvaliacoesController {
+public class AvaliacoesController implements AvaliacoesControllerOpenApi {
 	
 	/** Injetando a service de Avaliações **/
 	@Autowired
 	private AvaliacoesService avaliacoesService;
 	
 	/** Busca a Url com o id do participante,   **/
+	@Override
 	@GetMapping("/{cpf}")
 	public List<AvaliacoesDto> listarNotas(@PathVariable String cpf) {
 		return avaliacoesService.listarNotas(cpf);
@@ -34,12 +36,14 @@ public class AvaliacoesController {
 	}
 	
 	/** Busca a url com o desempenho do participante a partir do id dele **/
+	@Override
 	@GetMapping("/desempenho/{id}")
 	public ResponseEntity<AvaliacaoDesempenhoDto> listarAvaliacaoDesempenho(@PathVariable Long id) {
 		return avaliacoesService.listarAvaliacaoDesempenho(id);
 	}
 	
 	/** Metodo para criar uma nova avaliação de um participante pegando o id **/
+	@Override
 	@PostMapping("/novo/{cpf}")
 	public ResponseEntity<AvaliacoesDto> cadastrar(@PathVariable String cpf, @RequestBody AvaliacoesForm avaliacoesForm,
 			UriComponentsBuilder uriComponentsBuilder) {
@@ -47,6 +51,7 @@ public class AvaliacoesController {
 	}
 	
 	/** Metodo para deletar participante pegando o id **/
+	@Override
 	@DeleteMapping("/deletar/{id}")
 	public ResponseEntity<AvaliacoesDto> deletar(@PathVariable Long id) {
 		return avaliacoesService.deletar(id);

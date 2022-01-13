@@ -5,16 +5,34 @@ import java.time.LocalDate;
 import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
+@ApiModel("AtualizaProcessoSeletivoForm")
 public class AtualizaProcessoSeletivoForm {
 
-    private String nome;
-    private String nomeInstrutor;
-    private LocalDate dataInicio;
-    private LocalDate dataFim;
-    private Integer qtdEstagiario;
-    private Integer qtdTrainees;
-    private Integer qtdAprendizes;
+	@ApiModelProperty(value = "nome do candidato", required = true, example = "João da Silva")
+	private String nome;
+
+	@ApiModelProperty(value = "nome do instrutor", required = true, example = "Marcos da Silva")
+	private String nomeInstrutor;
+
+	@ApiModelProperty(value = "data do início do processo", required = true, example = "2022-10-05")
+	private LocalDate dataInicio;
+
+	@ApiModelProperty(value = "data do término do processo", required = true, example = "2022-12-05")
+	private LocalDate dataFim;
+
+	@ApiModelProperty(value = "quantidade de estagiários no processo", required = true, example = "15")
+	private Integer qtdEstagiario;
+
+	@ApiModelProperty(value = "quantidade de trainees no processo", required = true, example = "15")
+	private Integer qtdTrainees;
+
+	@ApiModelProperty(value = "quantidade de aprendizes no processo", required = true, example = "15")
+	private Integer qtdAprendizes;
+	
+	@ApiModelProperty(value = "status do processo", required = true, example = "EM_ANDAMENTO")
     private String status;
 
     public ProcessoSeletivo atualiza(Long id , ProcessoSeletivoRepository repository, InstrutorRepository instrutorRepository){
