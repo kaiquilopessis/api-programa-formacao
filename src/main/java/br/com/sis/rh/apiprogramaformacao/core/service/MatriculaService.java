@@ -14,6 +14,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,7 +39,7 @@ public class MatriculaService {
     public LoginAD criaMatricula(LoginADForm form) {
         LoginAD matricula = form.converter(perfilRepository.findByNome(form.getPerfil()));
         loginADRepository.save(matricula);
-        LOGGER.info("foi adicionada a matrícula: " + matricula.getMatricula());
+        LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " adicionou a matrícula: " + matricula.getMatricula());
         return matricula;
         
     }
