@@ -4,7 +4,10 @@ package br.com.sis.rh.apiprogramaformacao.core.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
@@ -19,6 +22,8 @@ import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoReposit
 
 @Service
 public class ProcessoSeletivoService {
+
+    private static final Logger LOGGER = LogManager.getLogger(MatriculaService.class);
 
     @Autowired
     private ProcessoSeletivoRepository repository;
@@ -57,6 +62,8 @@ public class ProcessoSeletivoService {
         ProcessoSeletivo processoSeletivo = form.converter(instrutorRepository);
         repository.save(processoSeletivo);
 
+        LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " criou o novo processo seletivo: " + processoSeletivo.getId() + " - " + processoSeletivo.getNome());
+
         return processoSeletivo;
     }
 
@@ -65,6 +72,7 @@ public class ProcessoSeletivoService {
 
         if(optional.isPresent()){
             ProcessoSeletivo processoSeletivo = form.atualiza(id, repository, instrutorRepository);
+            LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " atualizou informações do processo seletivo: " + processoSeletivo.getId() + " - " + processoSeletivo.getNome());
             return processoSeletivo;
         }
         return null;

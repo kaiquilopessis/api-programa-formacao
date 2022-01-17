@@ -8,8 +8,12 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
 import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.*;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProgramaAtualizaForm;
+import br.com.sis.rh.apiprogramaformacao.core.service.MatriculaService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
@@ -23,6 +27,8 @@ import br.com.sis.rh.apiprogramaformacao.core.service.ProgramaService;
 @RestController
 @RequestMapping("/api/programa")
 public class ProgramaController implements ProgramaControllerOpenApi {
+
+	private static final Logger LOGGER = LogManager.getLogger(MatriculaService.class);
 
 	@Autowired
 	private ProgramaService programaService;
@@ -78,7 +84,7 @@ public class ProgramaController implements ProgramaControllerOpenApi {
 		try {
 			Programa programa = programaCadastroForm.converter(processoSeletivo, instrutor, programaCadastroForm);
 			programaService.salva(programa);
-
+			LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " cadastrou o programa: " + programa.getId() + " - " + programa.getNomeTurma());
 			return ResponseEntity.ok().body("Cadastro concluído com sucesso!");
 		} catch (Exception e) {
 			return ResponseEntity.badRequest().body(e);
@@ -92,8 +98,10 @@ public class ProgramaController implements ProgramaControllerOpenApi {
 			Programa programa = programaService.getProgramaPorId(id);
 			if (programa.getStatus().equals("EM_ANDAMENTO")) {
 				programa.setStatus("ENCERRADO");
+				LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " encerrou o programa: " + programa.getId() + " - " + programa.getNomeTurma());
 			} else {
 				programa.setStatus("EM_ANDAMENTO");
+				LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " habilitou o programa: " + programa.getId() + " - " + programa.getNomeTurma());
 			}
 
 			programaService.salva(programa);
