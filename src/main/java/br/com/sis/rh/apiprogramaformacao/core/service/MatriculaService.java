@@ -50,6 +50,7 @@ public class MatriculaService {
 
         if (optional.isPresent()){
             loginADRepository.delete(optional.get());
+            LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " deletou a matrícula: " + optional.get().getMatricula());
             return ResponseEntity.ok().build();
         }
 

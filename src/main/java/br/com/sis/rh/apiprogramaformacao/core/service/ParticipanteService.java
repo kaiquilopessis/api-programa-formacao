@@ -88,6 +88,8 @@ public class ParticipanteService {
 		Optional<Participante> optionalParticipante = repository.findById(folhaForm.getCpf());
 		if (optionalParticipante.isPresent()) {
 			Investimentos investimento = FolhaForm.converter(folhaForm, optionalParticipante.get());
+			LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " cadastrou o investimento: " + investimento.getId() + " para o participante: "
+			+ investimento.getParticipante().getCpf() + " - " + investimento.getParticipante().getCandidato().getNome());
 			investimentosRepository.save(investimento);
 		}
 

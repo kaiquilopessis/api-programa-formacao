@@ -4,8 +4,11 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -20,6 +23,7 @@ import br.com.sis.rh.apiprogramaformacao.core.repository.AvaliacaoRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 @Service
 public class AvaliacoesService {
+	private static final Logger LOGGER = LogManager.getLogger(MatriculaService.class);
 
 	/** injetando o repositorio de avaliação **/
 	@Autowired
@@ -51,6 +55,8 @@ public class AvaliacoesService {
 		if (participante.isPresent()) {
 			Avaliacoes avaliacoes = avaliacoesForm.converter(participante.get());
 			avaliacoesRepository.save(avaliacoes);
+			LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " criou a avaliação: "+ avaliacoes.getId()
+					+ " para o participante: " + avaliacoes.getParticipante().getCpf() + " - " + avaliacoes.getParticipante().getCandidato().getNome());
 			URI uri = uriComponentsBuilder.path("/avaliacoes/novo/{id}").buildAndExpand(avaliacoes.getId()).toUri();
 			return ResponseEntity.created(uri).body(new AvaliacoesDto(avaliacoes));
 		}
@@ -62,6 +68,8 @@ public class AvaliacoesService {
 		Optional<Avaliacoes> avaliacoes = avaliacoesRepository.findById(id);
 		if (avaliacoes.isPresent()) {
 			avaliacoesRepository.deleteById(id);
+			LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + "deletou a avaliação: " + avaliacoes.get().getId() + " do participante: "
+					+ avaliacoes.get().getParticipante().getCpf() + " - " + avaliacoes.get().getParticipante().getCandidato().getNome());
 			return ResponseEntity.ok().build();
 		}
 		return ResponseEntity.notFound().build();
