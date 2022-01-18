@@ -68,7 +68,7 @@ public class AvaliacoesService {
 		Optional<Avaliacoes> avaliacoes = avaliacoesRepository.findById(id);
 		if (avaliacoes.isPresent()) {
 			avaliacoesRepository.deleteById(id);
-			LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + "deletou a avaliação: " + avaliacoes.get().getId() + " do participante: "
+			LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " deletou a avaliação: " + avaliacoes.get().getId() + " do participante: "
 					+ avaliacoes.get().getParticipante().getCpf() + " - " + avaliacoes.get().getParticipante().getCandidato().getNome());
 			return ResponseEntity.ok().build();
 		}

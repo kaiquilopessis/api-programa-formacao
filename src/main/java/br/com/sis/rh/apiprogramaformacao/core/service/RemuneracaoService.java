@@ -54,6 +54,8 @@ public class RemuneracaoService {
         Optional<Remuneracao> optional = remuneracaoRepository.findById(id);
         if(optional.isPresent()){
             Remuneracao remuneracao = form.atualizar(id, remuneracaoRepository);
+            LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " alterou a remuneração: " + remuneracao.getCargo());
+
             return remuneracao;
         }
         return null;
