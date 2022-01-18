@@ -6,10 +6,13 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -30,6 +33,7 @@ import br.com.sis.rh.apiprogramaformacao.core.util.DataConfiguration;
 
 @Service
 public class CicloService {
+	private static final Logger LOGGER = LogManager.getLogger(MatriculaService.class);
 
 	@Autowired
 	private CicloRepository conclusaoRepository;
@@ -58,6 +62,8 @@ public class CicloService {
 			if (participante.isPresent()) {
 				Ciclo conclusaoFinal = conclusaoFinalForm.converter(participante.get());
 				conclusaoRepository.save(conclusaoFinal);
+				LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " cadastrou o ciclo final: " + conclusaoFinal.getId()
+				+ " para o participante: " + conclusaoFinal.getParticipante().getCpf() + " - " + conclusaoFinal.getParticipante().getCandidato().getNome());
 				URI uri = uriComponentsBuilder.path("/conclusoes/registrociclofinal/{id}")
 						.buildAndExpand(conclusaoFinal.getId()).toUri();
 				return ResponseEntity.created(uri).body(new CicloFinalDto(conclusaoFinal));
@@ -79,6 +85,8 @@ public class CicloService {
 				Ciclo conclusaoProgressiva = conclusaoProgressivaForm.converter(participante.get(),
 						remuneracaoRepository);
 				conclusaoRepository.save(conclusaoProgressiva);
+				LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " cadastrou um ciclo progressivo: " + conclusaoProgressiva.getId()
+				+ " para o participante: " + conclusaoProgressiva.getParticipante().getCpf() + " - " + conclusaoProgressiva.getParticipante().getCandidato().getNome());
 				URI uri = uriComponentsBuilder.path("/conclusoes/registrocicloprogressivo/{id}")
 						.buildAndExpand(conclusaoProgressiva.getId()).toUri();
 				return ResponseEntity.created(uri).body(new CicloDto(conclusaoProgressiva));

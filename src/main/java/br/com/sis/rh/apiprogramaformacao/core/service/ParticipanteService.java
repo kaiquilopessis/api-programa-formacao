@@ -7,10 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
@@ -36,6 +39,9 @@ import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
 
 @Service
 public class ParticipanteService {
+
+	private static final Logger LOGGER = LogManager.getLogger(MatriculaService.class);
+
 	@Autowired
 	private ParticipanteRepository repository;
 
@@ -83,6 +89,8 @@ public class ParticipanteService {
 		if (optionalParticipante.isPresent()) {
 			Investimentos investimento = FolhaForm.converter(folhaForm, optionalParticipante.get());
 			investimentosRepository.save(investimento);
+			LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " cadastrou o investimento: " + investimento.getId() + " para o participante: "
+					+ investimento.getParticipante().getCpf() + " - " + investimento.getParticipante().getCandidato().getNome());
 		}
 
 	}
@@ -113,12 +121,14 @@ public class ParticipanteService {
 		Participante participante = cadastroParticipanteForm.converter(cadastroParticipanteForm, remuneracao, programa,
 				candidato);
 		repository.save(participante);
+		LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " cadastrou o participando com o cpf: " + participante.getCpf() + " - " + participante.getCandidato().getNome());
 	}
 
 	public void atualizarStatus(AtualizaStatusParticipanteForm atualizaStatusParticipanteForm) {
 		Participante participante = repository.findByCpf(atualizaStatusParticipanteForm.getCpf());
 		participante.setStatus(atualizaStatusParticipanteForm.getStatusAtivo());
 		repository.save(participante);
+		LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " atualizou o status do participante com o cpf: " + participante.getCpf() + " - " + participante.getCandidato().getNome());
 	}
 
 	public List<ParticipanteBuscaDto> filtrarParticipantes(String nome, String nomePrograma, String nomeTurma) {
@@ -151,6 +161,7 @@ public class ParticipanteService {
 		participante.setTce(atualizaStatusParticipanteForm.getTce().getBytes());
 
 		repository.save(participante);
+		LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " atualizou o participante com o cpf: " + participante.getCpf() + " - " + participante.getCandidato().getNome());
 
 	}
 

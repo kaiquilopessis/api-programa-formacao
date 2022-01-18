@@ -4,10 +4,13 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
@@ -30,6 +33,8 @@ import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
 
 @Service
 public class CandidatoService {
+
+	private static final Logger LOGGER = LogManager.getLogger(MatriculaService.class);
 
 	@Autowired
 	private CandidatoRepository candidatoRepository;
@@ -67,6 +72,7 @@ public class CandidatoService {
 		Optional<Candidato> optional = candidatoRepository.findById(id);
 		if (optional.isPresent()) {
 			Candidato candidato = form.atualizar(id, candidatoRepository, processoSeletivoRepository);
+			LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " atualizou o candidato: " + candidato.getId()+ " - " + candidato.getNome());
 			return candidato;
 		}
 		return null;
@@ -76,6 +82,8 @@ public class CandidatoService {
 
 		Candidato candidato = form.converter(processoSeletivoRepository);
 		candidatoRepository.save(candidato);
+
+		LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " criou o candidato: " + candidato.getId()+ " - " + candidato.getNome());
 
 		return candidato;
 	}

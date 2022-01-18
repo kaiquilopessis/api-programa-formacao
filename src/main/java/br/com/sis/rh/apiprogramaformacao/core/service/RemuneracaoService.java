@@ -3,7 +3,10 @@ package br.com.sis.rh.apiprogramaformacao.core.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
@@ -16,6 +19,7 @@ import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
 
 @Service
 public class RemuneracaoService {
+    private static final Logger LOGGER = LogManager.getLogger(MatriculaService.class);
 
     @Autowired
     private RemuneracaoRepository remuneracaoRepository;
@@ -41,6 +45,7 @@ public class RemuneracaoService {
 
         Remuneracao remuneracao = form.converter();
         remuneracaoRepository.save(remuneracao);
+        LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " cadastrou a remuneração: " + remuneracao.getCargo());
 
         return remuneracao;
     }
@@ -49,6 +54,8 @@ public class RemuneracaoService {
         Optional<Remuneracao> optional = remuneracaoRepository.findById(id);
         if(optional.isPresent()){
             Remuneracao remuneracao = form.atualizar(id, remuneracaoRepository);
+            LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " alterou a remuneração: " + remuneracao.getCargo());
+
             return remuneracao;
         }
         return null;

@@ -3,8 +3,11 @@ package br.com.sis.rh.apiprogramaformacao.core.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
@@ -19,6 +22,8 @@ import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoInstrutorRep
 
 @Service
 public class InstrutorService {
+
+    private static final Logger LOGGER = LogManager.getLogger(MatriculaService.class);
 
     @Autowired
     private InstrutorRepository repository;
@@ -47,6 +52,7 @@ public class InstrutorService {
 
     public void salva(Instrutor instrutor){
         repository.save(instrutor);
+        LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " cadastrou o instrutor: " + instrutor.getNome());
     }
 
     //Métodos criados por Marco Aguiar
@@ -61,6 +67,7 @@ public class InstrutorService {
         if (optionalInstrutor.isPresent()){
             RemuneracaoInstrutor remuneracaoInstrutor = InvestimentoInstrutorForm.converter(investimentoInstrutorForm, optionalInstrutor.get());
             remuneracaoInstrutorRepository.save(remuneracaoInstrutor);
+            LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " cadastrou a remuneração do instrutor: " + optionalInstrutor.get().getNome());
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();

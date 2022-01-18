@@ -5,8 +5,12 @@ import java.util.List;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+import br.com.sis.rh.apiprogramaformacao.core.service.MatriculaService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,6 +33,8 @@ import br.com.sis.rh.apiprogramaformacao.core.service.InstrutorService;
 @RestController
 @RequestMapping("/api/instrutor")
 public class InstrutorController implements InstrutorControllerOpenApi{
+
+	private static final Logger LOGGER = LogManager.getLogger(MatriculaService.class);
 
 	@Autowired
 	private InstrutorService instrutorService;
@@ -70,11 +76,13 @@ public class InstrutorController implements InstrutorControllerOpenApi{
 	    	Instrutor instrutor = instrutorService.buscaPorCpf(cpf);
 	    	if (instrutor.getStatus().equals("ATIVO")) {
 	    		instrutor.setStatus("INATIVO");
-	    	}else {
+				LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " desabilitou o instrutor: " + instrutor.getNome());
+			}else {
 	    		instrutor.setStatus("ATIVO");
-	    	}
+				LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " habilitou o instrutor: " + instrutor.getNome());
+			}
 	    	instrutorService.salva(instrutor);
-	    	return ResponseEntity.ok().build();
+			return ResponseEntity.ok().build();
     	} catch (Exception e) {
     		return ResponseEntity.badRequest().build();
     	}
@@ -86,6 +94,7 @@ public class InstrutorController implements InstrutorControllerOpenApi{
 	public ResponseEntity alterarInstrutor(@PathVariable String cpf, @RequestBody AttInstrutorForm attInstrutorForm){
 		boolean altera = instrutorService.alteraInstrutor(attInstrutorForm, cpf);
 		if(altera == true){
+			LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " alterou o instrutor: " + attInstrutorForm.getNome());
 			return ResponseEntity.ok().build();
 		}else{
 			return ResponseEntity.badRequest().build();

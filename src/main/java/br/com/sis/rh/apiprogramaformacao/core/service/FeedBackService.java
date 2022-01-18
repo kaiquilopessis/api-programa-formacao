@@ -5,10 +5,13 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -22,6 +25,8 @@ import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
 
 @Service
 public class FeedBackService {
+	private static final Logger LOGGER = LogManager.getLogger(MatriculaService.class);
+
 	/**
 	 Injeção do feedBackRepository
 	 */
@@ -51,6 +56,8 @@ public class FeedBackService {
 			if (participante.isPresent()) {
 				FeedBack feedback = feedBackForm.converter(participante.get());
 				feedBackRepository.save(feedback);
+				LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " cadastrou o feedback: " + feedback.getId() + " para o participante: "
+				+ feedback.getParticipante().getCpf() + " - " + feedback.getParticipante().getCandidato().getNome());
 				URI uri = uriComponentsBuilder.path("feedback/novo/{id}").buildAndExpand(feedback.getId()).toUri();
 				return ResponseEntity.created(uri).body(new FeedBackDto(feedback));
 			}
@@ -69,6 +76,8 @@ public class FeedBackService {
 		Optional<FeedBack> feedBack = feedBackRepository.findById(id);
 		if (feedBack.isPresent()) {
 			feedBackRepository.deleteById(id);
+			LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " deletou o feedback: " + feedBack.get().getId() + " do participante: "
+			+ feedBack.get().getParticipante().getCpf() + " - " + feedBack.get().getParticipante().getCandidato().getNome());
 			return ResponseEntity.ok().build();
 		}
 		return ResponseEntity.notFound().build();
