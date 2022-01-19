@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.http.ResponseEntity;
+
 import br.com.sis.rh.apiprogramaformacao.api.model.Alura;
 
 public class AluraDto {
@@ -48,8 +50,8 @@ public class AluraDto {
 		this.hrMinSemana = hrMinSemana;
 	}
 
-	public static List<AluraDto> converter(List<Alura> alura) {
-		return alura.stream().map(AluraDto::new).collect(Collectors.toList());
+	public static ResponseEntity<List<AluraDto>> converter(List<Alura> alura) {
+		return (ResponseEntity<List<AluraDto>>) alura.stream().map(AluraDto::new).collect(Collectors.toList());
 	}
 
 }

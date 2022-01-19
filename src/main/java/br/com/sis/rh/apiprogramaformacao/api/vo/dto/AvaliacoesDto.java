@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.http.ResponseEntity;
+
 import br.com.sis.rh.apiprogramaformacao.api.model.AvaliacaoDesempenho;
 import br.com.sis.rh.apiprogramaformacao.api.model.Avaliacoes;
 
@@ -91,8 +93,8 @@ public class AvaliacoesDto {
 		this.idAvaliacaoDesempenho = idAvaliacaoDesempenho;
 	}
 
-	public static List<AvaliacoesDto> converter(List<Avaliacoes> avaliacoes) {
-		return avaliacoes.stream().map(AvaliacoesDto::new).collect(Collectors.toList());
+	public static ResponseEntity<List<AvaliacoesDto>> converter(List<Avaliacoes> avaliacoes) {
+		return (ResponseEntity<List<AvaliacoesDto>>) avaliacoes.stream().map(AvaliacoesDto::new).collect(Collectors.toList());
 	}
 
 }

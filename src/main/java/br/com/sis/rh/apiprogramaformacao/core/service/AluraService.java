@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Alura;
@@ -31,7 +32,7 @@ public class AluraService {
 	 * Retorna uma lista de registros com base no participante selecionado.
 	 */
 
-	public List<AluraDto> listaRegistros(String cpf) {
+	public ResponseEntity<List<AluraDto>> listaRegistros(String cpf) {
 		List<Alura> alura = aluraRepository.findAllByParticipanteCpf(cpf);
 		return AluraDto.converter(alura);
 	}

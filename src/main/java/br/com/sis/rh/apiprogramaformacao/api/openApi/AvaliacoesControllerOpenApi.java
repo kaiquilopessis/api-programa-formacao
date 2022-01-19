@@ -8,7 +8,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.AvaliacaoDesempenhoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.AvaliacoesDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AvaliacoesForm;
-import br.com.sis.rh.apiprogramaformacao.core.ad.UsuarioAD;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -20,7 +19,7 @@ public interface AvaliacoesControllerOpenApi {
 
 	@ApiOperation("Busca as notas do participante informado")
 	@ApiResponses({@ApiResponse(code = 200, message = "OK", response = AvaliacoesDto.class)})
-	List<AvaliacoesDto> listarNotas(
+	ResponseEntity<List<AvaliacoesDto>> listarNotas(
 			@ApiParam(value = "CPF do participante", example = "45976389899", required = true) String cpf);
 
 	@ApiOperation("Lista as avaliações de desempenho referente a Avaliação informada")
