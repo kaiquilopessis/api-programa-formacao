@@ -39,7 +39,7 @@ public class MatriculaService {
     public LoginAD criaMatricula(LoginADForm form) {
         LoginAD matricula = form.converter(perfilRepository.findByNome(form.getPerfil()));
         loginADRepository.save(matricula);
-        LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " adicionou a matrícula: " + matricula.getMatricula());
+//        LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " adicionou a matrícula: " + matricula.getMatricula());
         return matricula;
         
     }
@@ -50,7 +50,7 @@ public class MatriculaService {
 
         if (optional.isPresent()){
             loginADRepository.delete(optional.get());
-            LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " deletou a matrícula: " + optional.get().getMatricula());
+//            LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " deletou a matrícula: " + optional.get().getMatricula());
             return ResponseEntity.ok().build();
         }
 
