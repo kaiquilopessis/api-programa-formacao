@@ -2,9 +2,7 @@ package br.com.sis.rh.apiprogramaformacao.core.service;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.LoginAD;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.LoginADDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.input.LoginInput;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.LoginADForm;
-import br.com.sis.rh.apiprogramaformacao.core.ad.ConnectAD;
 import org.junit.jupiter.api.BeforeAll;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.junit.jupiter.api.Test;
@@ -25,10 +23,6 @@ public class MatriculaServiceTest {
     @Autowired
     private MatriculaService matriculaService;
 
-    private static LoginInput loginInput = new LoginInput("blisboa", "sis@123");
-
-    private static ConnectAD connectAD = new ConnectAD();
-
     private static LoginADForm loginADForm = new LoginADForm();
 
     @BeforeAll
@@ -36,14 +30,11 @@ public class MatriculaServiceTest {
         loginADForm.setMatricula("teste");
         loginADForm.setPerfil("ROLE_ADMINISTRADOR");
 
-//        connectAD.getUser(loginInput.getMatricula(), loginInput.getSenha());
     }
 
     @Test
     public void deveriaRetornarUmaListaComTodasAsMatriculas (){
-        List<LoginADDto> lista = matriculaService.buscarTodos();
-
-        assertNotNull(lista);
+        assertNotNull(matriculaService.buscarTodos());
     }
 
     @Test
