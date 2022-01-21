@@ -28,7 +28,7 @@ public class Participante {
 	@JoinColumn(name = "codigo_programa_fk", referencedColumnName = "id", nullable = false)
 	private Programa programa;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "codigo_candidato_fk", referencedColumnName = "id", nullable = false)
 	private Candidato candidato;
 
