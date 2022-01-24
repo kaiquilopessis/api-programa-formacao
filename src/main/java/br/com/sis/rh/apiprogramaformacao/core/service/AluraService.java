@@ -32,7 +32,7 @@ public class AluraService {
 	 * Retorna uma lista de registros com base no participante selecionado.
 	 */
 
-	public ResponseEntity<List<AluraDto>> listaRegistros(String cpf) {
+	public List<AluraDto> listaRegistros(String cpf) {
 		List<Alura> alura = aluraRepository.findAllByParticipanteCpf(cpf);
 		return AluraDto.converter(alura);
 	}
