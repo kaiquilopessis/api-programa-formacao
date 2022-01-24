@@ -19,7 +19,7 @@ public interface AvaliacoesControllerOpenApi {
 
 	@ApiOperation("Busca as notas do participante informado")
 	@ApiResponses({@ApiResponse(code = 200, message = "OK", response = AvaliacoesDto.class)})
-	ResponseEntity<List<AvaliacoesDto>> listarNotas(
+	List<AvaliacoesDto> listarNotas(
 			@ApiParam(value = "CPF do participante", example = "45976389899", required = true) String cpf);
 
 	@ApiOperation("Lista as avaliações de desempenho referente a Avaliação informada")

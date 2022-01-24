@@ -30,7 +30,7 @@ public class AvaliacoesController implements AvaliacoesControllerOpenApi {
 	/** Busca a Url com o id do participante,   **/
 	@Override
 	@GetMapping("/{cpf}")
-	public ResponseEntity<List<AvaliacoesDto>> listarNotas(@PathVariable String cpf) {
+	public List<AvaliacoesDto> listarNotas(@PathVariable String cpf) {
 		return avaliacoesService.listarNotas(cpf);
 
 	}
