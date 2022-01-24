@@ -17,6 +17,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
+/**
+ * Classe responsável pelos testes do Service MatriculaService.
+ *
+ * @author Gustavo Juliano
+ */
+
 @SpringBootTest
 public class MatriculaServiceTest {
 

@@ -93,8 +93,8 @@ public class AvaliacoesDto {
 		this.idAvaliacaoDesempenho = idAvaliacaoDesempenho;
 	}
 
-	public static ResponseEntity<List<AvaliacoesDto>> converter(List<Avaliacoes> avaliacoes) {
-		return (ResponseEntity<List<AvaliacoesDto>>) avaliacoes.stream().map(AvaliacoesDto::new).collect(Collectors.toList());
+	public static List<AvaliacoesDto> converter(List<Avaliacoes> avaliacoes) {
+		return avaliacoes.stream().map(AvaliacoesDto::new).collect(Collectors.toList());
 	}
 
 }

@@ -50,8 +50,8 @@ public class AluraDto {
 		this.hrMinSemana = hrMinSemana;
 	}
 
-	public static ResponseEntity<List<AluraDto>> converter(List<Alura> alura) {
-		return (ResponseEntity<List<AluraDto>>) alura.stream().map(AluraDto::new).collect(Collectors.toList());
+	public static List<AluraDto> converter(List<Alura> alura) {
+		return alura.stream().map(AluraDto::new).collect(Collectors.toList());
 	}
 
 }

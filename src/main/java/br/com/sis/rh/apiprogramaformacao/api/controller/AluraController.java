@@ -31,7 +31,7 @@ public class AluraController implements AluraControllerOpenApi{
 	 */
 	@Override
 	@GetMapping("/{cpf}")
-	public ResponseEntity<List<AluraDto>> listaRegistros(@PathVariable String cpf) {
+	public List<AluraDto> listaRegistros(@PathVariable String cpf) {
 		return aluraService.listaRegistros(cpf);
 	}
 
