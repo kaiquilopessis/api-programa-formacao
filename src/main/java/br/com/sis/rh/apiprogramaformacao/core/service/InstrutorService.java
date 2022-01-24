@@ -50,9 +50,10 @@ public class InstrutorService {
         return listInstrutor;
     }
 
-    public void salva(Instrutor instrutor){
+    public ResponseEntity salva(Instrutor instrutor){
         repository.save(instrutor);
         LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " cadastrou o instrutor: " + instrutor.getNome());
+        return ResponseEntity.ok().build();
     }
 
     //Métodos criados por Marco Aguiar
@@ -78,6 +79,7 @@ public class InstrutorService {
     }
 
     public boolean alteraInstrutor(AttInstrutorForm attInstrutorForm, String cpf) {
+        LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " alterou o instrutor: " + cpf + " - " + attInstrutorForm.getNome());
         return attInstrutorForm.atualizaInstrutor(repository, cpf);
     }
 }
