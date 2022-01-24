@@ -13,6 +13,12 @@ import org.springframework.security.test.context.support.WithMockUser;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Classe responsável pelos testes do Service InstrutorService.
+ *
+ * @author Gustavo Juliano
+ */
+
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class InstrutorServiceTest {

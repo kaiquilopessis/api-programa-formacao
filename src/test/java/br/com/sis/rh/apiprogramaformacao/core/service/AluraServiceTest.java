@@ -12,6 +12,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * Classe responsável pelos testes do Service AluraService.
+ *
+ * @author Gustavo Juliano
+ */
+
 @SpringBootTest
 public class AluraServiceTest {
 
