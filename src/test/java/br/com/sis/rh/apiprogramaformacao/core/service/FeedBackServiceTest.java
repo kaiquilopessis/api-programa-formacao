@@ -20,6 +20,12 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Classe responsável pelos testes do Service FeedBackService.
+ *
+ * @author Gustavo Juliano
+ */
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest
 public class FeedBackServiceTest {
