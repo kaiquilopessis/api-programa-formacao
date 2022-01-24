@@ -7,6 +7,8 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URI;
 
+import javax.transaction.Transactional;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.CicloFinalForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.CicloProgressivoForm;
 import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoCiclo;
+
+/**
+ * Classe responsável pelos testes do Service CicloService.
+ *
+ * @author Felipe Salmazo
+ */
 
 @SpringBootTest
 public class CicloServiceTest {
@@ -65,6 +73,17 @@ public class CicloServiceTest {
 		UriComponentsBuilder uri = UriComponentsBuilder.newInstance();
 		URI uriPath = uri.path("/conclusoes/registrociclofinal").buildAndExpand().toUri();
 		assertEquals(ResponseEntity.created(uriPath).build().getStatusCode(),cicloService.registrarCicloProgressivo(cpf, cicloProgressivoForm, uri).getStatusCode());
+	}
+	
+	@Test
+	public void deveriaRetornarListaRemuneracao() {
+		assertNotNull(cicloService.listarRemuneracao());
+	}
+	
+	@Test
+	@Transactional
+	public void deveriaFazerDownload() {
+		assertEquals(ResponseEntity.ok().build().getStatusCode(), cicloService.download(Long.valueOf("2")).getStatusCode());
 	}
 
 }

@@ -41,7 +41,7 @@ public class AvaliacoesService {
 	 *
 	 *@return dto que converte a lista em nota 
 	 **/
-	public ResponseEntity<List<AvaliacoesDto>> listarNotas(String cpf) {
+	public List<AvaliacoesDto> listarNotas(String cpf) {
 		List<Avaliacoes> listaNotas = avaliacoesRepository.findAllByParticipanteCpf(cpf);
 		return AvaliacoesDto.converter(listaNotas);
 
