@@ -78,7 +78,6 @@ public class ParticipanteService {
 //		}
 //		return null;
 //	}
-
 	public List<FiltragemFolhaDto> listagemFiltroFolha(String nomeFormacao, String nomeTurma) {
 		String nomeTurmaFormatado = nomeTurma.replace("+", " "); // pesquisa no banco
 		return folhaRepository.findByNomeFormacaoTurmaBolsa(nomeFormacao, nomeTurmaFormatado);
@@ -125,11 +124,16 @@ public class ParticipanteService {
 		LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " cadastrou o participando com o cpf: " + participante.getCpf() + " - " + participante.getCandidato().getNome());
 	}
 
-	public void atualizarStatus(AtualizaStatusParticipanteForm atualizaStatusParticipanteForm) {
-		Participante participante = repository.findByCpf(atualizaStatusParticipanteForm.getCpf());
-		participante.setStatus(atualizaStatusParticipanteForm.getStatusAtivo());
-		repository.save(participante);
-		LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " atualizou o status do participante com o cpf: " + participante.getCpf() + " - " + participante.getCandidato().getNome());
+	public ResponseEntity atualizarStatus(AtualizaStatusParticipanteForm atualizaStatusParticipanteForm) {
+		Optional<Participante> optionalParticipante = repository.findById(atualizaStatusParticipanteForm.getCpf());
+		if(optionalParticipante.isPresent()) {
+			Participante participante = optionalParticipante.get();
+			participante.setStatus(atualizaStatusParticipanteForm.getStatusAtivo());
+			repository.save(participante);
+			LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " atualizou o status do participante com o cpf: " + participante.getCpf() + " - " + participante.getCandidato().getNome());
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.notFound().build();
 	}
 
 	public List<ParticipanteBuscaDto> filtrarParticipantes(String nome, String nomePrograma, String nomeTurma) {
@@ -145,25 +149,29 @@ public class ParticipanteService {
 		return ParticipanteBuscaDto.converter(participante);
 	}
 
-	public void atualizarParticipante(AtualizaParticipanteForm atualizaStatusParticipanteForm) throws IOException {
+	public ResponseEntity atualizarParticipante(AtualizaParticipanteForm atualizaStatusParticipanteForm) throws IOException {
 
-		Participante participante = repository.findByCpf(atualizaStatusParticipanteForm.getCpf());
-		LocalDate dataFormatadaBanco =  LocalDate.parse(atualizaStatusParticipanteForm.getDataFimGraduacao(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		
-		participante.getCandidato().setNome(atualizaStatusParticipanteForm.getNome());
-		participante.setCpf(atualizaStatusParticipanteForm.getCpf());
-		participante.getCandidato().setTelefone(atualizaStatusParticipanteForm.getTelefone());
-		participante.getCandidato().setFonteRecrutamento(atualizaStatusParticipanteForm.getFonteRecrutamento());
-		participante.setFaculdade(atualizaStatusParticipanteForm.getNmFaculdade());
-		participante.setCurso(atualizaStatusParticipanteForm.getCurso());
-		participante.setDataFinal(dataFormatadaBanco);
-		participante.getCandidato().setObservacao(atualizaStatusParticipanteForm.getObservacao());
-		participante.setEmail(atualizaStatusParticipanteForm.getEmail());
-		participante.setTce(atualizaStatusParticipanteForm.getTce().getBytes());
+		Optional<Participante> optionalParticipante = repository.findById(atualizaStatusParticipanteForm.getCpf());
+		if(optionalParticipante.isPresent()) {
+			Participante participante = optionalParticipante.get();
+			LocalDate dataFormatadaBanco = LocalDate.parse(atualizaStatusParticipanteForm.getDataFimGraduacao(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-		repository.save(participante);
-		LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " atualizou o participante com o cpf: " + participante.getCpf() + " - " + participante.getCandidato().getNome());
+			participante.getCandidato().setNome(atualizaStatusParticipanteForm.getNome());
+			participante.setCpf(atualizaStatusParticipanteForm.getCpf());
+			participante.getCandidato().setTelefone(atualizaStatusParticipanteForm.getTelefone());
+			participante.getCandidato().setFonteRecrutamento(atualizaStatusParticipanteForm.getFonteRecrutamento());
+			participante.setFaculdade(atualizaStatusParticipanteForm.getNmFaculdade());
+			participante.setCurso(atualizaStatusParticipanteForm.getCurso());
+			participante.setDataFinal(dataFormatadaBanco);
+			participante.getCandidato().setObservacao(atualizaStatusParticipanteForm.getObservacao());
+			participante.setEmail(atualizaStatusParticipanteForm.getEmail());
+			participante.setTce(atualizaStatusParticipanteForm.getTce().getBytes());
 
+			repository.save(participante);
+			LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " atualizou o participante com o cpf: " + participante.getCpf() + " - " + participante.getCandidato().getNome());
+			return ResponseEntity.ok().build();
+		}
+		return  ResponseEntity.notFound().build();
 	}
 
 	public ResponseEntity<ByteArrayResource> downloadTce(String id) {
