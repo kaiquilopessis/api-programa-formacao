@@ -111,7 +111,6 @@ public class CandidatoServiceTest {
 		candidatoForm.setStatus("APROVADO_2_FASE");
 		candidatoForm.setTesteLogico(new BigDecimal(10));
 		candidatoForm.setCurriculo(new MockMultipartFile("file", new ByteArrayInputStream("TesteCurriculo".getBytes())));
-		candidatoForm.setDisc(new MockMultipartFile("file", new ByteArrayInputStream("TesteDisc".getBytes())));
 		candidatoForm.setIdProcessoSeletivo((long) 44);
 		candidatoForm.setEmail("emailDara@email.com");
 		candidatoForm.setSemestreFaculdade("8");

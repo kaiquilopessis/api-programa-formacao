@@ -42,7 +42,7 @@ public class ParticipanteExibeDto {
 		this.cargo = participante.getRemuneracaoPrograma().getCargo();
 		this.bolsa = participante.getRemuneracaoPrograma().getBolsa();
 		this.turma = participante.getPrograma().getNomeTurma();
-		this.nomeInstrutor = participante.getPrograma().getProcessoSeletivo().getNome();
+		this.nomeInstrutor = participante.getPrograma().getProcessoSeletivo().getInstrutor().getNome();
 		this.iniPrograma = participante.getPrograma().getDataInicio();
 		this.fimPrograma = participante.getPrograma().getDataFim();
 		this.observacao = participante.getCandidato().getObservacao();

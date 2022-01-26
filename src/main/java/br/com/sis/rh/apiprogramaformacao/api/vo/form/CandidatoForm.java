@@ -34,8 +34,6 @@ public class CandidatoForm {
     private BigDecimal testeLogico;
     @ApiModelProperty(value = "Currículo do Candidato", required = true, dataType = "MultipartFile")
     private MultipartFile curriculo;
-    @ApiModelProperty(value = "Resultado do DISC do Candidato", required = true, dataType = "MultipartFile")
-    private MultipartFile disc;
     @ApiModelProperty(value = "Processo seletivo do candidato", required = true, example = "1")
     private Long idProcessoSeletivo;
     @ApiModelProperty(value = "Email pessoal do candidato", required = true, example = "email@email.com")
@@ -61,10 +59,10 @@ public class CandidatoForm {
         LocalDate data = LocalDate.parse(this.dataAgendamento, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         if (this.dataConclusao.equals("")) {
         	
-			return new Candidato(nome, telefone, data, testeLogico, status, observacao, curriculo.getBytes(), disc.getBytes(), fonteRecrutamento, processoSeletivo, email, endereco, indicacaoVaga);
+			return new Candidato(nome, telefone, data, testeLogico, status, observacao, curriculo.getBytes(), fonteRecrutamento, processoSeletivo, email, endereco, indicacaoVaga);
 		} else{
             LocalDate dataConclusao = LocalDate.parse(this.dataConclusao, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            return new Candidato(nome, telefone, data, testeLogico, status, observacao, curriculo.getBytes(), disc.getBytes(), fonteRecrutamento, processoSeletivo, email, semestreFaculdade, periodoCurso, dataConclusao, duracaoCurso, endereco, indicacaoVaga);
+            return new Candidato(nome, telefone, data, testeLogico, status, observacao, curriculo.getBytes(), fonteRecrutamento, processoSeletivo, email, semestreFaculdade, periodoCurso, dataConclusao, duracaoCurso, endereco, indicacaoVaga);
         }
     }
 
@@ -138,14 +136,6 @@ public class CandidatoForm {
 
     public void setCurriculo(MultipartFile curriculo) {
         this.curriculo = curriculo;
-    }
-
-    public MultipartFile getDisc() {
-        return disc;
-    }
-
-    public void setDisc(MultipartFile disc) {
-        this.disc = disc;
     }
 
     public Long getIdProcessoSeletivo() {

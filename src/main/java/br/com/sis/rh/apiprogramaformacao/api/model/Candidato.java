@@ -68,7 +68,7 @@ public class Candidato {
 	private String indicacaoVaga;
 
 	public Candidato(String nome, String telefone, LocalDate dataAgendamento, BigDecimal testeLogico,
-			String status, String observacao, byte[] disc, byte[] curriculo, String fonteRecrutamento,
+			String status, String observacao, byte[] curriculo, String fonteRecrutamento,
 			ProcessoSeletivo processoSeletivo, String email, String semestreFaculdade, String periodoCurso,
 			LocalDate dataConclusao, String duracaoCurso, String endereco, String indicacaoVaga) {
 		this.nome = nome;
@@ -77,7 +77,6 @@ public class Candidato {
 		this.testeLogico = testeLogico;
 		this.status = status;
 		this.observacao = observacao;
-		this.disc = disc;
 		this.curriculo = curriculo;
 		this.fonteRecrutamento = fonteRecrutamento;
 		this.processoSeletivo = processoSeletivo;
@@ -91,7 +90,7 @@ public class Candidato {
 	}
 
 	public Candidato(String nome, String telefone, LocalDate dataAgendamento, BigDecimal testeLogico,
-			String status, String observacao, byte[] disc, byte[] curriculo, String fonteRecrutamento,
+			String status, String observacao, byte[] curriculo, String fonteRecrutamento,
 			ProcessoSeletivo processoSeletivo, String email, String endereco, String indicacaoVaga) {
 		this.nome = nome;
 		this.telefone = telefone;
@@ -99,7 +98,6 @@ public class Candidato {
 		this.testeLogico = testeLogico;
 		this.status = status;
 		this.observacao = observacao;
-		this.disc = disc;
 		this.curriculo = curriculo;
 		this.fonteRecrutamento = fonteRecrutamento;
 		this.processoSeletivo = processoSeletivo;
