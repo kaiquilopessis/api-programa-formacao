@@ -2,7 +2,6 @@ package br.com.sis.rh.apiprogramaformacao.core.service;
 
 import java.io.IOException;
 import java.net.URI;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,15 +20,12 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CicloDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CicloFinalDto;
-import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RelatorioConclusaoVO;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RemuneracaoProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.CicloFinalForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.CicloProgressivoForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.CicloRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ProgramaRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
-import br.com.sis.rh.apiprogramaformacao.core.util.DataConfiguration;
 
 @Service
 public class CicloService {
@@ -43,12 +39,6 @@ public class CicloService {
 
 	@Autowired
 	private RemuneracaoRepository remuneracaoRepository;
-	
-	@Autowired
-	private ProgramaRepository programaRepository;
-	
-	@Autowired
-	private DataConfiguration dataConfiguration;
 
 	public List<CicloDto> listarConclusoes(String cpf) {
 		List<Ciclo> conclusoes = conclusaoRepository.findAllByParticipanteCpf(cpf);
@@ -111,39 +101,4 @@ public class CicloService {
 				.header("Content-Disposition", "attachment; filename=\"Comprovante-" + comprovante.getParticipante().getCandidato().getNome() + "-"  + id + ".pdf\"")
 				.body(new ByteArrayResource(comprovante.getComprovanteRematricula()));
 	}
-	
-	public RelatorioConclusaoVO popularCards(String formacao, String turma) {
-		String turmaFormatada = turma.replace("+", " ");
-		
-		RelatorioConclusaoVO relatorioConclusaoVO = new RelatorioConclusaoVO();
-		relatorioConclusaoVO = partAtivos(formacao, turmaFormatada, relatorioConclusaoVO);
-		relatorioConclusaoVO = partEfetivados(formacao, turmaFormatada, relatorioConclusaoVO);
-		relatorioConclusaoVO = dataConclusao(formacao, turmaFormatada, relatorioConclusaoVO);
-		
-		relatorioConclusaoVO.setProgramadeformacao(formacao);
-		relatorioConclusaoVO.setTurma(turmaFormatada);
-		
-		return relatorioConclusaoVO;
-	}
-	
-	public RelatorioConclusaoVO partAtivos(String formacao, String turma, RelatorioConclusaoVO relatorio) {
-		Integer totalAtivos = participanteRepository.listaParticipantesAtivos(formacao, turma);
-		relatorio.setParticipantesAtivos(totalAtivos);
-		return relatorio;
-	}
-	
-	public RelatorioConclusaoVO partEfetivados(String formacao, String turma, RelatorioConclusaoVO relatorio) {
-		Integer totalEfetivados = participanteRepository.listaParticipantesEfetivados(formacao, turma);
-		relatorio.setParticipantesEfetivados(totalEfetivados);
-		return relatorio;
-	}
-	
-	public RelatorioConclusaoVO dataConclusao(String formacao, String turma, RelatorioConclusaoVO relatorio) {
-		LocalDate dataFim = programaRepository.dataConclusao(formacao, turma);
-		String data = dataConfiguration.dataFormatada(dataFim);
-		relatorio.setDataConclusao(data);
-		
-		return relatorio;
-	}
-
 }

@@ -8,7 +8,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.AvaliacaoDesempenhoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.AvaliacoesDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AvaliacoesForm;
-import br.com.sis.rh.apiprogramaformacao.core.ad.UsuarioAD;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

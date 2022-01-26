@@ -84,7 +84,7 @@ public class ParticipanteService {
 		return folhaRepository.findByNomeFormacaoTurmaBolsa(nomeFormacao, nomeTurmaFormatado);
 	}
 
-	public void cadastrar(FolhaForm folhaForm) {
+	public ResponseEntity cadastrar(FolhaForm folhaForm) {
 		Optional<Participante> optionalParticipante = repository.findById(folhaForm.getCpf());
 		if (optionalParticipante.isPresent()) {
 			Investimentos investimento = FolhaForm.converter(folhaForm, optionalParticipante.get());
@@ -92,6 +92,7 @@ public class ParticipanteService {
 			LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " cadastrou o investimento: " + investimento.getId() + " para o participante: "
 					+ investimento.getParticipante().getCpf() + " - " + investimento.getParticipante().getCandidato().getNome());
 		}
+		return ResponseEntity.ok().build();
 
 	}
 

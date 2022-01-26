@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -40,16 +41,19 @@ public class ProgramaService  {
 		return programa.get();
 	}
 
-	public void salva(Programa programa) {
-		repository.save(programa);
+	public ResponseEntity<Programa> salva(Programa programa) {
+		 repository.save(programa);
+		 return ResponseEntity.ok(programa);
 	}
 
-	public void atualizaPrograma(ProgramaAtualizaForm programaAtualizaForm) {
+	public ResponseEntity atualizaPrograma(ProgramaAtualizaForm programaAtualizaForm) {
 		Instrutor instrutor = instrutorRepository.findInstrutorByNome(programaAtualizaForm.getInstrutor());
 		Programa programa = repository.getById(programaAtualizaForm.getId());
 		programa = ProgramaAtualizaForm.atualizar(programa, instrutor, programaAtualizaForm);
 		repository.save(programa);
+		
 		LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " atualizou o programa: " + programa.getId() + " - " + programa.getNomeTurma());
+		return ResponseEntity.ok().build();
 	}
 
 	public List<TurmaDto> buscarTurmasbyProcesso(Long id) {

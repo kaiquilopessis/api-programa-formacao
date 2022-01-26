@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.http.ResponseEntity;
+
 import br.com.sis.rh.apiprogramaformacao.api.model.Alura;
 
 public class AluraDto {

@@ -2,6 +2,8 @@ package br.com.sis.rh.apiprogramaformacao.api.openApi;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.AluraDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

@@ -107,9 +107,7 @@ public class InstrutorController implements InstrutorControllerOpenApi{
 	public ResponseEntity cadastro(@RequestBody @Valid InstrutorForm form) {
 		try {
 			Instrutor instrutor = form.converter();
-			instrutorService.salva(instrutor);
-
-			return ResponseEntity.ok().build();
+			return instrutorService.salva(instrutor);
 		} catch (Exception e) {
 			return ResponseEntity.badRequest().body(e);
 		}

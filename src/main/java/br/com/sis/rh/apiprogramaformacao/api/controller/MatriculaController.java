@@ -3,8 +3,11 @@ package br.com.sis.rh.apiprogramaformacao.api.controller;
 import java.net.URI;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +28,7 @@ import br.com.sis.rh.apiprogramaformacao.core.service.MatriculaService;
 @RequestMapping(value = "/api/matricula")
 public class MatriculaController implements MatriculaControllerOpenApi{
 
+
     @Autowired
     private MatriculaService matriculaService;
 
@@ -44,7 +48,6 @@ public class MatriculaController implements MatriculaControllerOpenApi{
     @PostMapping
     public ResponseEntity<LoginADDto> autorizaMatricula(@RequestBody LoginADForm form, UriComponentsBuilder uriBuilder){
         LoginAD matricula = matriculaService.criaMatricula(form);
-
         URI uri = uriBuilder.path("api/matricula/{matricula}").buildAndExpand(matricula.getMatricula()).toUri();
         return ResponseEntity.created(uri).body(new LoginADDto(matricula));
     }
@@ -52,7 +55,6 @@ public class MatriculaController implements MatriculaControllerOpenApi{
     @Override
     @DeleteMapping("/{matricula}")
     public ResponseEntity<LoginADDto> deletarMatricula(@PathVariable String matricula){
-
         return matriculaService.deletaMatricula(matricula);
     }
 }
