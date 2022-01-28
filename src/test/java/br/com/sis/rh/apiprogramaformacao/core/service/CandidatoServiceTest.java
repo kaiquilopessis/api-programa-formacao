@@ -35,23 +35,6 @@ public class CandidatoServiceTest {
 	@Autowired
 	private CandidatoService candidatoService;
 
-	private static LoginInput loginInput = new LoginInput("blisboa", "sis@123");
-
-	private static ConnectAD connectAD = new ConnectAD();
-
-	private static LoginADForm loginADForm = new LoginADForm();
-
-	private static CandidatoForm candidatoForm = new CandidatoForm();
-
-	private static AtualizaCandidatoForm atualizaCandidatoForm = new AtualizaCandidatoForm();
-
-	@BeforeAll
-	public static void executaAntesDeTodosOsMetodos() throws NamingException {
-		loginADForm.setMatricula("teste");
-		loginADForm.setPerfil("ROLE_ADMINISTRADOR");
-
-	}
-
 	@Test
 	@WithMockUser("testeUnitarioJUnit")
 	public void deveriaBuscarCandidatoPorId() {
@@ -100,7 +83,7 @@ public class CandidatoServiceTest {
 
 	@Test
 	@WithMockUser("testeUnitarioJUnit")
-	public void criarUmCandidato() throws IOException  {
+	public void deveiraCriarUmCandidato() throws IOException  {
 		CandidatoForm candidatoForm = new CandidatoForm();
 
 		candidatoForm.setNome("Dara");
