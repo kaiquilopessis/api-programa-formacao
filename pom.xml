@@ -12,7 +12,7 @@
 
 	<groupId>br.com.sis.rh</groupId>
 	<artifactId>api-programa-formacao</artifactId>
-	<version>0.0.14</version>
+	<version>0.1.0</version>
 	<packaging>jar</packaging>
 	<name>api-programa-formacao</name>
 	<description>Demo project for Spring Boot</description>
