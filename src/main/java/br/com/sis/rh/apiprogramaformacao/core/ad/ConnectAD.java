@@ -43,19 +43,26 @@ public class ConnectAD {
 	};
 	
     public UsuarioAD getUser(String user, String securityToken) throws NamingException {
-		SearchResult sr = getSearchResult(user, securityToken, null);
-		UsuarioAD usuarioAD = new UsuarioAD(sr.getAttributes());
-		
-		ResponseEntity<TokenVo> tokenLogin = autenticacaoADService.autenticacao(usuarioAD);
-		usuarioAD.setTipoToken(tokenLogin.getBody().getTipo());
-		usuarioAD.setToken(tokenLogin.getBody().getToken());
-		
-		Optional<LoginAD> loginAd = loginADRepository.findById(usuarioAD.getMatricula());
-		if (loginAd.isPresent()) {
-			usuarioAD.setPerfil(loginAd.get().getFk_perfil().getAuthority());
-			LOGGER.info(usuarioAD.getMatricula() + " foi logado");
+
+		try {
+			SearchResult sr = getSearchResult(user, securityToken, null);
+			UsuarioAD usuarioAD = new UsuarioAD(sr.getAttributes());
+
+			ResponseEntity<TokenVo> tokenLogin = autenticacaoADService.autenticacao(usuarioAD);
+			usuarioAD.setTipoToken(tokenLogin.getBody().getTipo());
+			usuarioAD.setToken(tokenLogin.getBody().getToken());
+
+			Optional<LoginAD> loginAd = loginADRepository.findById(usuarioAD.getMatricula());
+			if (loginAd.isPresent()) {
+				usuarioAD.setPerfil(loginAd.get().getFk_perfil().getAuthority());
+				LOGGER.info(usuarioAD.getMatricula() + " foi logado");
+			}
+			return usuarioAD;
+		}catch (Exception e){
+			System.out.println(e.getMessage());
 		}
-		return usuarioAD;
+
+		return null;
     }
     
 	public boolean isAuthenticate(String user, String securityToken) {
