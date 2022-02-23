@@ -30,7 +30,7 @@ public class CicloController implements CicloControllerOpenApi {
 
 	@Override
 	@GetMapping("/{cpf}")
-	public List<CicloDto> listaConclusoes (@PathVariable String cpf){
+	public List<CicloDto> listaConclusoes(@PathVariable String cpf) {
 		return conclusaoService.listarConclusoes(cpf);
 	}
 
@@ -44,23 +44,20 @@ public class CicloController implements CicloControllerOpenApi {
 	@GetMapping("/download/{id}")
 	public ResponseEntity<ByteArrayResource> downloadComprovante(@PathVariable Long id) {
 		return conclusaoService.download(id);
-		
+
 	}
 
 	@Override
 	@PostMapping("/registrocicloprogressivo/{cpf}")
-	public ResponseEntity<CicloDto> registroProgressivo (@PathVariable String cpf ,
-			@ModelAttribute CicloProgressivoForm conclusaoProgressivaForm,
-			UriComponentsBuilder uriComponentsBuilder){
+	public ResponseEntity<CicloDto> registroProgressivo(@PathVariable String cpf,
+			@ModelAttribute CicloProgressivoForm conclusaoProgressivaForm, UriComponentsBuilder uriComponentsBuilder) {
 		return conclusaoService.registrarCicloProgressivo(cpf, conclusaoProgressivaForm, uriComponentsBuilder);
 	}
 
 	@Override
 	@PostMapping("/registrociclofinal/{cpf}")
-	public ResponseEntity<CicloFinalDto> registroFinal(@PathVariable String cpf, @ModelAttribute CicloFinalForm conclusaoFinalForm,
-			UriComponentsBuilder uriComponentsBuilder){
+	public ResponseEntity<CicloFinalDto> registroFinal(@PathVariable String cpf,
+			@ModelAttribute CicloFinalForm conclusaoFinalForm, UriComponentsBuilder uriComponentsBuilder) {
 		return conclusaoService.registrarCicloFinal(cpf, conclusaoFinalForm, uriComponentsBuilder);
 	}
 }
-
-
