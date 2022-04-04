@@ -48,7 +48,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/auth").permitAll().antMatchers("/api/ad")
 				.permitAll().antMatchers("/api/ad/*").permitAll().antMatchers("/api/auth/*").permitAll()
 				.antMatchers("/api/feedback/download/*", "/api/ciclo/download/*", "/api/relatorio-alura/**",
-						"/api/relatorio-avaliacao/**", "/api/conclusoes/**", "/api/investimentos/**")
+						"/api/relatorio-avaliacao/**", "/api/conclusoes/**", "/api/investimentos/**", "/api/candidato/download-disc/**",
+						"/api/candidato/download-curriculo/**", "/api/participante/downloadTce/**", "/api/participante/downloadDisc/**")
 				.permitAll().anyRequest().authenticated().and().cors().and().csrf().disable().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.addFilterBefore(new AutenticacaoTokenFilter(tokenService, loginADRepository),
