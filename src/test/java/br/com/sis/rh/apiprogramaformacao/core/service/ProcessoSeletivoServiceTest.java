@@ -17,6 +17,7 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProcessoSeletivoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProcessoSeletivoNomeDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaProcessoSeletivoForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProcessoSeletivoForm;
+import br.com.sis.rh.apiprogramaformacao.core.service.processoseletivo.ProcessoSeletivoService;
 @SpringBootTest
 class ProcessoSeletivoServiceTest {
 	

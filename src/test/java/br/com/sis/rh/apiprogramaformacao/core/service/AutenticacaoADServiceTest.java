@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 
 import br.com.sis.rh.apiprogramaformacao.core.ad.ConnectAD;
 import br.com.sis.rh.apiprogramaformacao.core.ad.UsuarioAD;
+import br.com.sis.rh.apiprogramaformacao.core.service.permissoes.AutenticacaoADService;
 
 /**
  * Classe responsável pelos testes do Service AutenticacaoADService.

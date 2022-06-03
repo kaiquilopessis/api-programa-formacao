@@ -34,10 +34,10 @@ public interface CicloControllerOpenApi {
     @ApiOperation("Método responsável por realizar a inserção de um registro")
     @ApiResponses({@ApiResponse(code = 201, message = "Created", response = CicloDto.class)})
     ResponseEntity<CicloDto> registroProgressivo (@ApiParam(value = "cpf", example = "33092410840", required = true) String cpf ,
-                                                  CicloProgressivoForm conclusaoProgressivaForm, UriComponentsBuilder uriComponentsBuilder);
+                                                  CicloProgressivoForm conclusaoProgressivaForm);
 
     @ApiOperation("Método responsável por realizar a inserção do registro final")
     @ApiResponses({@ApiResponse(code = 201, message = "Created", response = CicloFinalDto.class)})
     ResponseEntity<CicloFinalDto> registroFinal(@ApiParam(value = "cpf", example = "33092410840", required = true) String cpf,
-                                                CicloFinalForm conclusaoFinalForm, UriComponentsBuilder uriComponentsBuilder);
+                                                CicloFinalForm conclusaoFinalForm);
 }

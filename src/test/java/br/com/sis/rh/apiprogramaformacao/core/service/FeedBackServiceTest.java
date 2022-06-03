@@ -3,7 +3,9 @@ package br.com.sis.rh.apiprogramaformacao.core.service;
 import br.com.sis.rh.apiprogramaformacao.api.model.FeedBack;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FeedBackDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.FeedBackForm;
-import br.com.sis.rh.apiprogramaformacao.core.repository.FeedBackRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.acompanhamento.FeedBackRepository;
+import br.com.sis.rh.apiprogramaformacao.core.service.acompanhamento.FeedBackService;
+
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -53,7 +55,7 @@ public class FeedBackServiceTest {
     public void deveriaCadastrarNoBancoUmFeedBack () {
         UriComponentsBuilder uri = UriComponentsBuilder.newInstance();
         URI uriPath = uri.path("feedback/novo").buildAndExpand().toUri();
-        assertEquals(ResponseEntity.created(uriPath).build().getStatusCode(), feedBackService.cadastrar("33092410840", feedBackForm, uri).getStatusCode());
+        assertEquals(ResponseEntity.created(uriPath).build().getStatusCode(), feedBackService.cadastrar("33092410840", feedBackForm).getStatusCode());
     }
 
     @Order(2)

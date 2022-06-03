@@ -3,7 +3,7 @@ package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 import java.time.LocalDate;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
-import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.informacoesgerais.InstrutorRepository;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 

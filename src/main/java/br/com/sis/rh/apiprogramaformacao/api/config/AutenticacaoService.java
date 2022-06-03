@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.LoginAD;
-import br.com.sis.rh.apiprogramaformacao.core.repository.LoginADRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.permissoes.LoginADRepository;
 
 @Service
 public class AutenticacaoService implements UserDetailsService {

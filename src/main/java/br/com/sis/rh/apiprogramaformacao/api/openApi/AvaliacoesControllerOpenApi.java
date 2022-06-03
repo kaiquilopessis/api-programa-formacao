@@ -31,7 +31,7 @@ public interface AvaliacoesControllerOpenApi {
 	@ApiResponses({@ApiResponse(code = 201, message = "OK", response = AvaliacoesDto.class)})
 	ResponseEntity<AvaliacoesDto> cadastrar(
 			@ApiParam(value = "CPF do participante", example = "45976389899", required = true) String cpf,
-			AvaliacoesForm avaliacoesForm, UriComponentsBuilder uriComponentsBuilder);
+			AvaliacoesForm avaliacoesForm);
 
 	@ApiOperation("Deleta a avaliação e avaliação de desempenho")
 	@ApiResponses({@ApiResponse(code = 200, message = "OK", response = AvaliacoesDto.class)})

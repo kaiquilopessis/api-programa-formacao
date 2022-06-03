@@ -10,8 +10,6 @@ public class NomeTurmaCandidatoDto {
 	private String turmas;
 	private Long id;
 
-
-
 	public NomeTurmaCandidatoDto(Programa programa) {
 		this.turmas = programa.getNomeTurma();
 		this.id= programa.getId();
@@ -24,7 +22,6 @@ public class NomeTurmaCandidatoDto {
 	public void setTurmas(String turmas) {
 		this.turmas = turmas;
 	}
-	
 	
 	public static List<NomeTurmaCandidatoDto> converter (List<Programa> programas) {
 		return programas.stream().map(NomeTurmaCandidatoDto::new).collect(Collectors.toList());

@@ -13,7 +13,7 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoCiclo;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCiclo;
-import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.cargos.RemuneracaoRepository;
 
 @ApiModel("Formuário para criar um Ciclo Progressivo")
 public class CicloProgressivoForm {

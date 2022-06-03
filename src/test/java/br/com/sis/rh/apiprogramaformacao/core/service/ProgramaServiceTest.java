@@ -21,8 +21,9 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeTurmaCandidatoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TurmaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProgramaAtualizaForm;
-import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.informacoesgerais.InstrutorRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.processoseletivo.ProcessoSeletivoRepository;
+import br.com.sis.rh.apiprogramaformacao.core.service.informacoesgerais.ProgramaService;
 @SpringBootTest
 class ProgramaServiceTest {
 	
