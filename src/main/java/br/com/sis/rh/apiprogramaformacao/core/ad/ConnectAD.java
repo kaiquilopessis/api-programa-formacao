@@ -21,8 +21,8 @@ import org.springframework.stereotype.Component;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.LoginAD;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TokenVo;
-import br.com.sis.rh.apiprogramaformacao.core.repository.LoginADRepository;
-import br.com.sis.rh.apiprogramaformacao.core.service.AutenticacaoADService;
+import br.com.sis.rh.apiprogramaformacao.core.repository.permissoes.LoginADRepository;
+import br.com.sis.rh.apiprogramaformacao.core.service.permissoes.AutenticacaoADService;
 
 @Component
 public class ConnectAD {

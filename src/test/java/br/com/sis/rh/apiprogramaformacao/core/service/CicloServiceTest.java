@@ -23,6 +23,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.CicloFinalForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.CicloProgressivoForm;
 import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoCiclo;
+import br.com.sis.rh.apiprogramaformacao.core.service.acompanhamento.CicloService;
 
 /**
  * Classe responsável pelos testes do Service CicloService.
@@ -67,7 +68,7 @@ public class CicloServiceTest {
 	public void deveriaCadastrarCicloFinal() {
 		UriComponentsBuilder uri = UriComponentsBuilder.newInstance();
 		URI uriPath = uri.path("/conclusoes/registrocicloprogressivo").buildAndExpand().toUri();
-		assertEquals(ResponseEntity.created(uriPath).build().getStatusCode(),cicloService.registrarCicloFinal(cpf, cicloFinalForm, uri).getStatusCode());
+		assertEquals(ResponseEntity.created(uriPath).build().getStatusCode(),cicloService.registrarCicloFinal(cpf, cicloFinalForm).getStatusCode());
 	}
 
 	@Test
@@ -75,7 +76,7 @@ public class CicloServiceTest {
 	public void deveriaCadastrarCicloProgressivo() {
 		UriComponentsBuilder uri = UriComponentsBuilder.newInstance();
 		URI uriPath = uri.path("/conclusoes/registrociclofinal").buildAndExpand().toUri();
-		assertEquals(ResponseEntity.created(uriPath).build().getStatusCode(),cicloService.registrarCicloProgressivo(cpf, cicloProgressivoForm, uri).getStatusCode());
+		assertEquals(ResponseEntity.created(uriPath).build().getStatusCode(),cicloService.registrarCicloProgressivo(cpf, cicloProgressivoForm).getStatusCode());
 	}
 	
 	@Test

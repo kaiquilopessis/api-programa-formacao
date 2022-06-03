@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
 import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ProcessoSeletivoRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.processoseletivo.ProcessoSeletivoRepository;
 
 @ApiModel("Formulário para cadastrar um candidato")
 public class CandidatoForm {

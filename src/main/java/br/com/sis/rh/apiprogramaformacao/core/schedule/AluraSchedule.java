@@ -23,9 +23,9 @@ import br.com.sis.rh.apiprogramaformacao.api.model.AluraCompare;
 import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ApiAluraDto;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
-import br.com.sis.rh.apiprogramaformacao.core.repository.AluraCompareRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.AluraRepository;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.acompanhamento.AluraCompareRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.acompanhamento.AluraRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.informacoesgerais.ParticipanteRepository;
 
 @Component @EnableScheduling
 public class AluraSchedule {

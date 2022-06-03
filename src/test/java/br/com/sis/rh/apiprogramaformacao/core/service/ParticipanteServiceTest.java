@@ -8,7 +8,9 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaParticipanteForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaStatusParticipanteForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.CadastroParticipanteForm;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
-import br.com.sis.rh.apiprogramaformacao.core.repository.ParticipanteRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.informacoesgerais.ParticipanteRepository;
+import br.com.sis.rh.apiprogramaformacao.core.service.informacoesgerais.ParticipanteService;
+
 import org.aspectj.lang.annotation.Before;
 import org.assertj.core.api.Fail;
 import org.junit.jupiter.api.*;

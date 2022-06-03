@@ -28,6 +28,7 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaCandidatoForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.CandidatoForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.LoginADForm;
 import br.com.sis.rh.apiprogramaformacao.core.ad.ConnectAD;
+import br.com.sis.rh.apiprogramaformacao.core.service.processoseletivo.CandidatoService;
 
 @SpringBootTest
 public class CandidatoServiceTest {

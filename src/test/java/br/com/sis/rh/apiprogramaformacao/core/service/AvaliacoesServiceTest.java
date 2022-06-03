@@ -25,6 +25,7 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.form.AvaliacaoDesempenhoForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AvaliacoesForm;
 import br.com.sis.rh.apiprogramaformacao.core.enums.Avaliacao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.Parecer;
+import br.com.sis.rh.apiprogramaformacao.core.service.acompanhamento.AvaliacoesService;
 
 /**
  * Classe responsável pelos testes do Service AvaliacoesService.
@@ -78,7 +79,7 @@ public class AvaliacoesServiceTest {
 	public void deveriaSalvarAvaliacao() {
 		UriComponentsBuilder uri = UriComponentsBuilder.newInstance();
 		URI uriPath = uri.path("/avaliacoes/novo").buildAndExpand().toUri();
-		assertEquals(ResponseEntity.created(uriPath).build().getStatusCode(), avaliacoesService.cadastrar("33092410840", form, uri).getStatusCode());
+		assertEquals(ResponseEntity.created(uriPath).build().getStatusCode(), avaliacoesService.cadastrar("33092410840", form).getStatusCode());
 	}
 	
 	@Order(2)

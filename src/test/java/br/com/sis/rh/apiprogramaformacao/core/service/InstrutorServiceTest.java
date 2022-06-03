@@ -3,7 +3,9 @@ package br.com.sis.rh.apiprogramaformacao.core.service;
 import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AttInstrutorForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.InvestimentoInstrutorForm;
-import br.com.sis.rh.apiprogramaformacao.core.repository.InstrutorRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.informacoesgerais.InstrutorRepository;
+import br.com.sis.rh.apiprogramaformacao.core.service.informacoesgerais.InstrutorService;
+
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

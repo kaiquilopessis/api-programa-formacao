@@ -17,7 +17,8 @@ import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RemuneracaoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaRemuneracaoForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.RemuneracaoForm;
-import br.com.sis.rh.apiprogramaformacao.core.repository.RemuneracaoRepository;
+import br.com.sis.rh.apiprogramaformacao.core.repository.cargos.RemuneracaoRepository;
+import br.com.sis.rh.apiprogramaformacao.core.service.cargos.RemuneracaoService;
 
 @SpringBootTest
 class RemuneracaoServiceTest {
