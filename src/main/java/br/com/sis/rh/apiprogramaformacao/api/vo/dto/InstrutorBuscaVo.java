@@ -3,7 +3,7 @@ package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Instrutor;
 
 public class InstrutorBuscaVo {
     private String cpf;

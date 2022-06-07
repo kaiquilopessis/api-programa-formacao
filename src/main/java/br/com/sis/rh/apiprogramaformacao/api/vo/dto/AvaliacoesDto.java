@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.AvaliacaoDesempenho;
-import br.com.sis.rh.apiprogramaformacao.api.model.Avaliacoes;
+import br.com.sis.rh.apiprogramaformacao.api.model.acompanhamento.AvaliacaoDesempenho;
+import br.com.sis.rh.apiprogramaformacao.api.model.acompanhamento.Avaliacoes;
 
 public class AvaliacoesDto {
 

@@ -12,9 +12,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.AvaliacaoDesempenho;
-import br.com.sis.rh.apiprogramaformacao.api.model.Avaliacoes;
-import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import br.com.sis.rh.apiprogramaformacao.api.model.acompanhamento.AvaliacaoDesempenho;
+import br.com.sis.rh.apiprogramaformacao.api.model.acompanhamento.Avaliacoes;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.AvaliacaoDesempenhoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.AvaliacoesDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AvaliacoesForm;

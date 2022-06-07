@@ -8,7 +8,8 @@ import java.time.format.DateTimeFormatter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.web.multipart.MultipartFile;
-import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.Candidato;
 import br.com.sis.rh.apiprogramaformacao.core.repository.processoseletivo.CandidatoRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.processoseletivo.ProcessoSeletivoRepository;
 

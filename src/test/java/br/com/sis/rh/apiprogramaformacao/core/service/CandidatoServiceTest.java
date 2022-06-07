@@ -19,7 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.test.context.support.WithMockUser;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
+import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.Candidato;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaCandidatoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeInstrutorDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeTurmaCandidatoDto;

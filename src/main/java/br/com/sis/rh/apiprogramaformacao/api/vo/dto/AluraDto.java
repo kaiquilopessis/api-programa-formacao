@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Alura;
+import br.com.sis.rh.apiprogramaformacao.api.model.acompanhamento.Alura;
 
 public class AluraDto {
 

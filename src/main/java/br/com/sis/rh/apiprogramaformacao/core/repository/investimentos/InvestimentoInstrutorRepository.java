@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
-import br.com.sis.rh.apiprogramaformacao.api.model.RemuneracaoInstrutor;
+import br.com.sis.rh.apiprogramaformacao.api.model.cargos.RemuneracaoInstrutor;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Instrutor;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CpfInstrutorNomeDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemInstrutorDto;
 

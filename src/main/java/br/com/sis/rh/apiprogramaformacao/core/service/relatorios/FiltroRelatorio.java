@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
-import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Programa;
+import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeProgramaEmAndamentoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteProgramaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TurmaDto;

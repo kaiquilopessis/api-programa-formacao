@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Avaliacoes;
+import br.com.sis.rh.apiprogramaformacao.api.model.acompanhamento.Avaliacoes;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RelatorioAvaliacoesVo;
 import br.com.sis.rh.apiprogramaformacao.core.repository.relatorios.AvaliacaoRepository;
 import br.com.sis.rh.apiprogramaformacao.core.util.FormatadorDeNumeroDecimalUtil;

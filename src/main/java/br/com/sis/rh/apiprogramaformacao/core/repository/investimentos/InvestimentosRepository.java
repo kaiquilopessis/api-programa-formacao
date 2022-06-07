@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Investimentos;
+import br.com.sis.rh.apiprogramaformacao.api.model.investimentos.Investimentos;
 
 public interface InvestimentosRepository extends JpaRepository<Investimentos, Long> {
 	//Busca o salário total pelo CPF do participante

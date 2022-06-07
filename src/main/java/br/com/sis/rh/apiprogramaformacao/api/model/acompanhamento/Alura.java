@@ -1,4 +1,4 @@
-package br.com.sis.rh.apiprogramaformacao.api.model;
+package br.com.sis.rh.apiprogramaformacao.api.model.acompanhamento;
 
 import java.time.LocalDate;
 
@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Participante;
 
 
 @Entity

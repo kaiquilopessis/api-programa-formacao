@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
+import br.com.sis.rh.apiprogramaformacao.api.model.cargos.Remuneracao;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RemuneracaoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaRemuneracaoForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.RemuneracaoForm;

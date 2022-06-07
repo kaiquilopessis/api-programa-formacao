@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.FeedBack;
+import br.com.sis.rh.apiprogramaformacao.api.model.acompanhamento.FeedBack;
 
 public class FeedBackDto {
 

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Instrutor;
 import br.com.sis.rh.apiprogramaformacao.api.openApi.InstrutorControllerOpenApi;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CpfInstrutorNomeDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemInstrutorDto;

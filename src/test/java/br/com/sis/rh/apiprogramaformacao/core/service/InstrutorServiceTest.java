@@ -1,6 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Instrutor;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AttInstrutorForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.InvestimentoInstrutorForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.informacoesgerais.InstrutorRepository;

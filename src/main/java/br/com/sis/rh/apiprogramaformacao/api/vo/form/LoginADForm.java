@@ -1,11 +1,12 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.LoginAD;
-import br.com.sis.rh.apiprogramaformacao.api.model.Perfil;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.permissoes.LoginAD;
+import br.com.sis.rh.apiprogramaformacao.api.model.permissoes.Perfil;
 
 @ApiModel("Form de Login AD SiS")
 public class LoginADForm {

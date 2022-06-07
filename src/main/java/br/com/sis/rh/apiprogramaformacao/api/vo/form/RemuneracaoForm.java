@@ -2,7 +2,7 @@ package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
 import java.math.BigDecimal;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
+import br.com.sis.rh.apiprogramaformacao.api.model.cargos.Remuneracao;
 
 
 public class RemuneracaoForm {

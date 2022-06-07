@@ -4,8 +4,9 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
-import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Instrutor;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Programa;
+import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.*;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProgramaAtualizaForm;
 
@@ -16,7 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 import br.com.sis.rh.apiprogramaformacao.api.openApi.ProgramaControllerOpenApi;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProgramaCadastroForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.informacoesgerais.InstrutorRepository;

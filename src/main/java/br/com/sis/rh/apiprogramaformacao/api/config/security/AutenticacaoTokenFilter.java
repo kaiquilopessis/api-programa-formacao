@@ -1,4 +1,4 @@
-package br.com.sis.rh.apiprogramaformacao.api.config;
+package br.com.sis.rh.apiprogramaformacao.api.config.security;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -12,7 +12,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.LoginAD;
+import br.com.sis.rh.apiprogramaformacao.api.model.permissoes.LoginAD;
 import br.com.sis.rh.apiprogramaformacao.core.repository.permissoes.LoginADRepository;
 
 //Esse filter é o filtro que faz a verificação do Token enviado em todas as requisições para a API

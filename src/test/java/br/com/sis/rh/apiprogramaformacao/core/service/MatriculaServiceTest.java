@@ -1,6 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.LoginAD;
+import br.com.sis.rh.apiprogramaformacao.api.model.permissoes.LoginAD;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.LoginADDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.LoginADForm;
 import br.com.sis.rh.apiprogramaformacao.core.service.permissoes.MatriculaService;

@@ -10,8 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
-import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Instrutor;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Programa;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeTurmaCandidatoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaBuscaVo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TurmaDto;

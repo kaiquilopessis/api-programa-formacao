@@ -1,4 +1,4 @@
-package br.com.sis.rh.apiprogramaformacao.api.model;
+package br.com.sis.rh.apiprogramaformacao.api.model.investimentos;
 
 
 import java.math.BigDecimal;
@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Participante;
 import lombok.NoArgsConstructor;
 
 @Entity

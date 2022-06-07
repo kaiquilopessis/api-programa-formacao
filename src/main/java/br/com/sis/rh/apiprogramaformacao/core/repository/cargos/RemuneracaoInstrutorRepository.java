@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.RemuneracaoInstrutor;
+import br.com.sis.rh.apiprogramaformacao.api.model.cargos.RemuneracaoInstrutor;
 
 public interface RemuneracaoInstrutorRepository extends JpaRepository<RemuneracaoInstrutor, Integer> {
 	

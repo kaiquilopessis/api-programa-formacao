@@ -1,9 +1,9 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
-
 import java.util.List;
 import java.util.stream.Collectors;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.cargos.Remuneracao;
 
 public class CargosDto {
 

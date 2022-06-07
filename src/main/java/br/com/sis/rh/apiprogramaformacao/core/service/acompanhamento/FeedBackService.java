@@ -16,8 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.FeedBack;
-import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import br.com.sis.rh.apiprogramaformacao.api.model.acompanhamento.FeedBack;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FeedBackDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.FeedBackForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.acompanhamento.FeedBackRepository;

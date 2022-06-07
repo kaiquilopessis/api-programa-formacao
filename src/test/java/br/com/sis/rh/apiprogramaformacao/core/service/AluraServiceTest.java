@@ -2,7 +2,7 @@ package br.com.sis.rh.apiprogramaformacao.core.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Alura;
+import br.com.sis.rh.apiprogramaformacao.api.model.acompanhamento.Alura;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RelatorioAluraVo;
 import br.com.sis.rh.apiprogramaformacao.core.repository.acompanhamento.AluraRepository;
 import br.com.sis.rh.apiprogramaformacao.core.service.acompanhamento.AluraService;

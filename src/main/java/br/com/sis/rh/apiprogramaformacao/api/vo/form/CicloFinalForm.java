@@ -8,8 +8,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Ciclo;
-import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import br.com.sis.rh.apiprogramaformacao.api.model.acompanhamento.Ciclo;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Participante;
 import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoCiclo;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCiclo;
 

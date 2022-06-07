@@ -1,4 +1,4 @@
-package br.com.sis.rh.apiprogramaformacao.api.model;
+package br.com.sis.rh.apiprogramaformacao.api.model.acompanhamento;
 
 import java.math.BigDecimal;
 
@@ -14,6 +14,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Participante;
 
 @Entity
 @Table(name = "TB_NOTAS_AVALIACOES")

@@ -1,6 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Instrutor;
 import br.com.sis.rh.apiprogramaformacao.core.repository.informacoesgerais.InstrutorRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;

@@ -1,12 +1,13 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Programa;
 
 /*
  * Referenciar com a chamada de todos os atributos que vierem da url 'busca';

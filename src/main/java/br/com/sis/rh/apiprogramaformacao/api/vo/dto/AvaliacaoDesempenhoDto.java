@@ -2,7 +2,7 @@ package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
 import java.math.BigDecimal;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.AvaliacaoDesempenho;
+import br.com.sis.rh.apiprogramaformacao.api.model.acompanhamento.AvaliacaoDesempenho;
 import br.com.sis.rh.apiprogramaformacao.core.enums.Avaliacao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.Parecer;
 

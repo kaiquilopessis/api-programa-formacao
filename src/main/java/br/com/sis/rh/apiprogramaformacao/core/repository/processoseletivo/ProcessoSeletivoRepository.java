@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
+import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeProgramaEmAndamentoDto;
 
 public interface ProcessoSeletivoRepository extends JpaRepository<ProcessoSeletivo, Long> {

@@ -1,9 +1,10 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
-import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.Candidato;
+import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.ProcessoSeletivo;
 
 public class CandidatoCompletoDto {
 	private long id;

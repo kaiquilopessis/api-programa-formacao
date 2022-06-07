@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
+import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.openApi.ProcessoSeletivoControllerOpenApi;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaDeProcessoSeletivoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProcessoSeletivoDto;

@@ -1,6 +1,9 @@
-package br.com.sis.rh.apiprogramaformacao.api.model;
+package br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo;
 
 import javax.persistence.*;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Instrutor;
+
 import java.time.LocalDate;
 
 @Entity

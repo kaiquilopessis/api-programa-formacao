@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.Candidato;
 import br.com.sis.rh.apiprogramaformacao.api.openApi.CandidatoControllerOpenApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CandidatoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CargoModalDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaCandidatoDto;

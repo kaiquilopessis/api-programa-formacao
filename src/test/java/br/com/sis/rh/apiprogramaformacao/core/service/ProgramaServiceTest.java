@@ -15,9 +15,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.test.context.support.WithMockUser;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
-import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
-import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Instrutor;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Programa;
+import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeTurmaCandidatoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TurmaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProgramaAtualizaForm;

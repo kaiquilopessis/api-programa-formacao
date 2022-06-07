@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
+import br.com.sis.rh.apiprogramaformacao.api.model.cargos.Remuneracao;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CargosDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaRemuneracaoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RemuneracaoDto;

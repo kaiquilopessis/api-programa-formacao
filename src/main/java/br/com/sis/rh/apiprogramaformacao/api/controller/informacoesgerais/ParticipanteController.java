@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.openApi.ParticipanteControllerOpenApi;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CandidatoCompletoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CandidatoDto;

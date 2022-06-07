@@ -1,4 +1,4 @@
-package br.com.sis.rh.apiprogramaformacao.api.config;
+package br.com.sis.rh.apiprogramaformacao.api.config.swagger;
 
 import java.util.Arrays;
 import java.util.Collections;

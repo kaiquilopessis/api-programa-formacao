@@ -2,8 +2,8 @@ package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
 import java.time.LocalDate;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
-import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Instrutor;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Programa;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 

@@ -1,7 +1,7 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
 
-import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
+import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.ProcessoSeletivo;
 
 public class ProcessoSeletivoNomeDto {
 

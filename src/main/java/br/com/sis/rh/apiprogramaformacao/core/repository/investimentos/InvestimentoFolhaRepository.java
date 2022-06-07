@@ -1,6 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.core.repository.investimentos;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CpfParticipanteNomeDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemFolhaDto;
 import org.springframework.data.jpa.repository.JpaRepository;

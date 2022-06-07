@@ -1,10 +1,10 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.LoginAD;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.permissoes.LoginAD;
 
 public class LoginADDto {
     private String matricula;
