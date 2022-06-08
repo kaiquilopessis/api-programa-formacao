@@ -82,6 +82,11 @@ public class ProgramaController implements ProgramaControllerOpenApi {
 	public ResponseEntity cadastra(@RequestBody ProgramaCadastroForm programaCadastroForm) {
 		Instrutor instrutor = instrutorRepository.findInstrutorByNome(programaCadastroForm.getInstrutor());
 		ProcessoSeletivo processoSeletivo = processoSeletivoRepository.findByNome(programaCadastroForm.getNome());
+		
+		if(processoSeletivo.isVinculadoPrograma()==true) {
+			return ResponseEntity.badRequest().build();
+		}
+		
 		try {
 			Programa programa = programaCadastroForm.converter(processoSeletivo, instrutor, programaCadastroForm);
 			programaService.salva(programa);

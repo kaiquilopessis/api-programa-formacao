@@ -76,12 +76,7 @@ public class CandidatoController implements CandidatoControllerOpenApi {
     @PostMapping
     @Transactional
     public ResponseEntity<CandidatoDto> inserirCandidato(@ModelAttribute CandidatoForm form, UriComponentsBuilder uriBuilder) throws IOException {
-
-        Candidato candidato = candidatoService.criaCandidato(form);
-
-        URI uri = uriBuilder.path("/api/candidato/{id}").buildAndExpand(candidato.getId()).toUri();
-
-        return ResponseEntity.created(uri).body(new CandidatoDto(candidato));
+    	return candidatoService.criaCandidato(form);
     }
 
     //Faz o download  do curriculo de um usuario registrado no banco de dados

@@ -2,6 +2,7 @@ package br.com.sis.rh.apiprogramaformacao.core.repository.informacoesgerais;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -64,4 +65,5 @@ public interface ProgramaRepository extends JpaRepository<Programa, Long> {
 	@Query(value = "select p.* from TB_PROGRAMA p JOIN TB_PROCESSO_SELETIVO TPS on " +
 			"TPS.id = p.processo_seletivo_fk where TPS.nome = ?1", nativeQuery = true)
 	List<Programa> findByNomeProcesso(String nome);
+	
 }

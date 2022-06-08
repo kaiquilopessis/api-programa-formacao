@@ -57,13 +57,8 @@ public class ProcessoSeletivoController implements ProcessoSeletivoControllerOpe
 	@Override
 	@PostMapping
 	@Transactional
-	public ResponseEntity<ProcessoSeletivoDto> criaNovoProcessoSeletivo(@RequestBody ProcessoSeletivoForm form,
-			UriComponentsBuilder uriBuilder) {
-		ProcessoSeletivo processoSeletivo = processoSeletivoService.criaNovoProcessoSeletivo(form);
-
-		URI uri = uriBuilder.path("/api/processo-seletivo/{id}").buildAndExpand(processoSeletivo.getId()).toUri();
-
-		return ResponseEntity.created(uri).body(new ProcessoSeletivoDto(processoSeletivo));
+	public ResponseEntity<ProcessoSeletivoDto> criaNovoProcessoSeletivo(@RequestBody ProcessoSeletivoForm form, UriComponentsBuilder uriBuilder) {
+		return processoSeletivoService.criaNovoProcessoSeletivo(form);
 	}
 
 	// Edita um processo seletivo que já existe

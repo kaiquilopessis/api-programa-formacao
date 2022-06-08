@@ -30,6 +30,8 @@ public class ProcessoSeletivo {
     private LocalDate dataInicio;
     @Column(name = "data_fim")
     private LocalDate dataFim;
+    @Column (name = "vinculado_programa")
+    private boolean vinculadoPrograma;
 
     public Long getId() {
         return id;
@@ -102,4 +104,13 @@ public class ProcessoSeletivo {
     public void setDataFim(LocalDate dataFim) {
         this.dataFim = dataFim;
     }
+
+	public boolean isVinculadoPrograma() {
+		return vinculadoPrograma;
+	}
+
+	public void setVinculadoPrograma(boolean vinculadoPrograma) {
+		this.vinculadoPrograma = vinculadoPrograma;
+	}
+    
 }

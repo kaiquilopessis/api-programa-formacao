@@ -41,6 +41,7 @@ public class ProcessoSeletivoForm {
 		processoSeletivo.setQtdEstagiario(this.qtdEstagiario);
 		processoSeletivo.setQtdTrainee(this.qtdTrainees);
 		processoSeletivo.setInstrutor(instrutorRepository.findInstrutorByNome(this.nomeInstrutor));
+		processoSeletivo.setVinculadoPrograma(false);
 
 		return processoSeletivo;
 	}

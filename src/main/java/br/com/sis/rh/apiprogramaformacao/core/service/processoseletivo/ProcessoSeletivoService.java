@@ -1,14 +1,17 @@
 package br.com.sis.rh.apiprogramaformacao.core.service.processoseletivo;
 
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaDeProcessoSeletivoDto;
@@ -39,7 +42,7 @@ public class ProcessoSeletivoService {
     }
 
     public List<ProcessoSeletivoVo> listarProcesso(){
-        List<ProcessoSeletivo> lista = repository.findAllByStatus("FINALIZADA");
+        List<ProcessoSeletivo> lista = repository.findAllByStatusAndVinculadoPrograma("FINALIZADA", false);
         return ProcessoSeletivoVo.converter(lista);
     }
 
@@ -59,13 +62,21 @@ public class ProcessoSeletivoService {
         }
         return null;
     }
-    public ProcessoSeletivo criaNovoProcessoSeletivo(ProcessoSeletivoForm form) {
+    public ResponseEntity<ProcessoSeletivoDto> criaNovoProcessoSeletivo(ProcessoSeletivoForm form) {
+    	
+    	ProcessoSeletivo processoSeletivoCriado = repository.findByNome(form.getNome());
+    	if(processoSeletivoCriado.getNome().equals(form.getNome())==true) {
+    		return ResponseEntity.badRequest().build();
+    	}
+    	
         ProcessoSeletivo processoSeletivo = form.converter(instrutorRepository);
         repository.save(processoSeletivo);
 
         LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " criou o novo processo seletivo: " + processoSeletivo.getId() + " - " + processoSeletivo.getNome());
-
-        return processoSeletivo;
+        
+        URI uri = UriComponentsBuilder.newInstance().path("/api/processo-seletivo/{id}").buildAndExpand(processoSeletivo.getId()).toUri();
+        
+        return ResponseEntity.created(uri).body(new ProcessoSeletivoDto(processoSeletivo));
     }
 
     public ProcessoSeletivo atualizaProcessoExistente(AtualizaProcessoSeletivoForm form, Long id) {
