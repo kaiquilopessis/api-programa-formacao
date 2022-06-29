@@ -42,7 +42,7 @@ public class ProcessoSeletivoService {
     }
 
     public List<ProcessoSeletivoVo> listarProcesso(){
-        List<ProcessoSeletivo> lista = repository.findAllByStatusAndVinculadoPrograma("FINALIZADA", false);
+        List<ProcessoSeletivo> lista = repository.findAllByStatusAndProcessoVinculado("FINALIZADA", 0);
         return ProcessoSeletivoVo.converter(lista);
     }
 
@@ -65,7 +65,7 @@ public class ProcessoSeletivoService {
     public ResponseEntity<ProcessoSeletivoDto> criaNovoProcessoSeletivo(ProcessoSeletivoForm form) {
     	
     	ProcessoSeletivo processoSeletivoCriado = repository.findByNome(form.getNome());
-    	if(processoSeletivoCriado.getNome().equals(form.getNome())==true) {
+    	if(processoSeletivoCriado != null) {
     		return ResponseEntity.badRequest().build();
     	}
     	

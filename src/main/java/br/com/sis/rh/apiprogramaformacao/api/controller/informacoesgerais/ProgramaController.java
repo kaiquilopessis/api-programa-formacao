@@ -83,7 +83,7 @@ public class ProgramaController implements ProgramaControllerOpenApi {
 		Instrutor instrutor = instrutorRepository.findInstrutorByNome(programaCadastroForm.getInstrutor());
 		ProcessoSeletivo processoSeletivo = processoSeletivoRepository.findByNome(programaCadastroForm.getNome());
 		
-		if(processoSeletivo.isVinculadoPrograma()==true) {
+		if(processoSeletivo.getProcessoVinculado().equals(1)) {
 			return ResponseEntity.badRequest().build();
 		}
 		

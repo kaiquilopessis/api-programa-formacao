@@ -3,6 +3,7 @@ package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 import java.time.LocalDate;
 
 import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.ProcessoSeletivo;
+import br.com.sis.rh.apiprogramaformacao.core.enums.ProcessoVinculado;
 import br.com.sis.rh.apiprogramaformacao.core.repository.informacoesgerais.InstrutorRepository;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -41,7 +42,7 @@ public class ProcessoSeletivoForm {
 		processoSeletivo.setQtdEstagiario(this.qtdEstagiario);
 		processoSeletivo.setQtdTrainee(this.qtdTrainees);
 		processoSeletivo.setInstrutor(instrutorRepository.findInstrutorByNome(this.nomeInstrutor));
-		processoSeletivo.setVinculadoPrograma(false);
+		processoSeletivo.setProcessoVinculado(ProcessoVinculado.NAO.getCodigo());
 
 		return processoSeletivo;
 	}

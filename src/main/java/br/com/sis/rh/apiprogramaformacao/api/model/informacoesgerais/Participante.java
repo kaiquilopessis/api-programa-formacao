@@ -20,7 +20,7 @@ import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivado;
 
 @Entity
 @Table(name = "TB_PARTICIPANTE")
-public class Participante {
+public class Participante implements Comparable<Participante> {
 
 	@Id
 	@Column(name = "cpf_participante", length = 12)
@@ -175,5 +175,10 @@ public class Participante {
 	// public void setTce(String tce) {
 	// this.tce = tce;
 	// }
+
+	@Override
+	public int compareTo(Participante o) {
+		return this.candidato.getNome().compareTo(o.candidato.getNome());
+	}
 
 }

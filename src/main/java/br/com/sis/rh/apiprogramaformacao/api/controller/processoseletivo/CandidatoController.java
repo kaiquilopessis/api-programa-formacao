@@ -75,7 +75,7 @@ public class CandidatoController implements CandidatoControllerOpenApi {
     @Override
     @PostMapping
     @Transactional
-    public ResponseEntity<CandidatoDto> inserirCandidato(@ModelAttribute CandidatoForm form, UriComponentsBuilder uriBuilder) throws IOException {
+    public ResponseEntity<CandidatoDto> inserirCandidato(@ModelAttribute CandidatoForm form) throws IOException {
     	return candidatoService.criaCandidato(form);
     }
 

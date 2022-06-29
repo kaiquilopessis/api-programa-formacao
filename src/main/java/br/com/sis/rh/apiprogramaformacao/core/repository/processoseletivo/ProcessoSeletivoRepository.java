@@ -11,7 +11,7 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeProgramaEmAndamentoDto;
 
 public interface ProcessoSeletivoRepository extends JpaRepository<ProcessoSeletivo, Long> {
 
-	List<ProcessoSeletivo> findAllByStatusAndVinculadoPrograma(String status, boolean vinculado);
+	List<ProcessoSeletivo> findAllByStatusAndProcessoVinculado(String status, Integer vinculado);
 	
 	List<ProcessoSeletivo> findAllByStatus(String status);
 
