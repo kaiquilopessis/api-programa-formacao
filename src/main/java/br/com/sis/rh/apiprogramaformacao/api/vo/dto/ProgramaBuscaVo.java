@@ -14,7 +14,7 @@ public class ProgramaBuscaVo {
     public ProgramaBuscaVo(Programa programa){
         this.id = programa.getId();
         this.nome = programa.getProcessoSeletivo().getNome();
-        this.turma = programa.getNomeTurma();
+        this.turma = programa.getProcessoSeletivo().getNomeTurma();
         this.status = String.valueOf(programa.getStatus());
     }
 

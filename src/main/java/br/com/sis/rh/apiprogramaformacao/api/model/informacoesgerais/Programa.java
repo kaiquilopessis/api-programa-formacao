@@ -31,7 +31,7 @@ public class Programa {
 	@Column(name = "data_fim", nullable = false)
 	private LocalDate dataFim;
 	
-	@Column(name = "nome_turma", nullable = false, length = 50)
+	@Column(name = "nome_turma", nullable = true, length = 50)
 	private String nomeTurma;
 	
 	@Column(name = "status", nullable = false)

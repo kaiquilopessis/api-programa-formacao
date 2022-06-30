@@ -22,14 +22,14 @@ public class ProgramaAtualizaForm {
 	@ApiModelProperty(value = "nome do instrutor", required = true, example = "Marcos da Silva")
 	private String instrutor;
 	
-	@ApiModelProperty(value = "nome da turma", required = true, example = "turma 1")
-	private String turma;
+	@ApiModelProperty(value = "nome da turma", required = true, example = "02-2022")
+	private String nomeTurma;
 	
-	public static Programa atualizar(Programa programa, Instrutor instrutor, ProgramaAtualizaForm programaAtualizaForm) {
-		programa.setNomeTurma(programaAtualizaForm.getTurma());
-		programa.setDataInicio(programaAtualizaForm.getDataInicio());
-		programa.setDataFim(programaAtualizaForm.getDataFim());
+	public Programa atualizar(Programa programa, Instrutor instrutor) {
+		programa.setDataInicio(this.dataInicio);
+		programa.setDataFim(this.dataFim);
 		programa.getProcessoSeletivo().setInstrutor(instrutor);
+		programa.getProcessoSeletivo().setNomeTurma(this.nomeTurma);
 		return programa;
 	}
 
@@ -61,15 +61,5 @@ public class ProgramaAtualizaForm {
 	public void setInstrutor(String instrutor) {
 		this.instrutor = instrutor;
 	}
-
-	public String getTurma() {
-		return turma;
-	}
-	public void setTurma(String turma) {
-		this.turma = turma;
-	}
-	
-	
-	
 
 }

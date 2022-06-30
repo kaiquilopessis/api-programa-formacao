@@ -65,10 +65,8 @@ public class ProcessoSeletivoController implements ProcessoSeletivoControllerOpe
 	@Override
 	@PutMapping("/{id}")
 	@Transactional
-	public ResponseEntity<ProcessoSeletivoDto> atualizaProcessoEspecifico(
-			@RequestBody AtualizaProcessoSeletivoForm form, @PathVariable Long id) {
-		ProcessoSeletivo processoSeletivo = processoSeletivoService.atualizaProcessoExistente(form, id);
+	public ResponseEntity<ProcessoSeletivoDto> atualizaProcessoEspecifico(@RequestBody AtualizaProcessoSeletivoForm form, @PathVariable Long id) {
+		return processoSeletivoService.atualizaProcessoExistente(form, id);
 
-		return ResponseEntity.ok().body(new ProcessoSeletivoDto(processoSeletivo));
 	}
 }

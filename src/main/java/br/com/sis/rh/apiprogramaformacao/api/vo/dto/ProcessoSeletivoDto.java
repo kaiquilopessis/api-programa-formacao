@@ -16,6 +16,7 @@ public class ProcessoSeletivoDto {
     private LocalDate dataInicio;
     private LocalDate dataFim;
     private String nomeInstrutor;
+    private String nomeTurma;
 
     public ProcessoSeletivoDto(ProcessoSeletivo processoSeletivo){
         this.id = processoSeletivo.getId();
@@ -27,6 +28,7 @@ public class ProcessoSeletivoDto {
         this.dataFim = processoSeletivo.getDataFim();
         this.dataInicio = processoSeletivo.getDataInicio();
         this.nomeInstrutor = processoSeletivo.getInstrutor().getNome();
+        this.nomeTurma = processoSeletivo.getNomeTurma();
     }
 
     public String getNome() {
@@ -100,4 +102,10 @@ public class ProcessoSeletivoDto {
     public void setId(Long id) {
         this.id = id;
     }
+
+	public String getNomeTurma() {
+		return nomeTurma;
+	}
+    
+    
 }

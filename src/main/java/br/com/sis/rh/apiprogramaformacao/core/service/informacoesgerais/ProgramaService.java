@@ -50,7 +50,7 @@ public class ProgramaService  {
 	public ResponseEntity atualizaPrograma(ProgramaAtualizaForm programaAtualizaForm) {
 		Instrutor instrutor = instrutorRepository.findInstrutorByNome(programaAtualizaForm.getInstrutor());
 		Programa programa = repository.getById(programaAtualizaForm.getId());
-		programa = ProgramaAtualizaForm.atualizar(programa, instrutor, programaAtualizaForm);
+		programa = programaAtualizaForm.atualizar(programa, instrutor);
 		repository.save(programa);
 		
 		LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " atualizou o programa: " + programa.getId() + " - " + programa.getNomeTurma());

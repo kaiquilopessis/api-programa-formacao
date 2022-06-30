@@ -31,6 +31,9 @@ public class ProcessoSeletivoForm {
 
 	@ApiModelProperty(value = "quantidade de aprendizes no processo", required = true, example = "15")
 	private Integer qtdAprendizes;
+	
+	@ApiModelProperty(value = "nome da turma", required = true, example = "01-2022")
+	private String nomeTurma;
 
 	public ProcessoSeletivo converter(InstrutorRepository instrutorRepository) {
 		ProcessoSeletivo processoSeletivo = new ProcessoSeletivo();
@@ -43,6 +46,7 @@ public class ProcessoSeletivoForm {
 		processoSeletivo.setQtdTrainee(this.qtdTrainees);
 		processoSeletivo.setInstrutor(instrutorRepository.findInstrutorByNome(this.nomeInstrutor));
 		processoSeletivo.setProcessoVinculado(ProcessoVinculado.NAO.getCodigo());
+		processoSeletivo.setNomeTurma(this.nomeTurma);
 
 		return processoSeletivo;
 	}
@@ -102,4 +106,10 @@ public class ProcessoSeletivoForm {
 	public void setQtdAprendizes(Integer qtdAprendizes) {
 		this.qtdAprendizes = qtdAprendizes;
 	}
+
+	public String getNomeTurma() {
+		return nomeTurma;
+	}
+	
+	
 }

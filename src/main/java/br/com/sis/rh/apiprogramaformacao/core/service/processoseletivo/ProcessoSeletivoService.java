@@ -79,15 +79,15 @@ public class ProcessoSeletivoService {
         return ResponseEntity.created(uri).body(new ProcessoSeletivoDto(processoSeletivo));
     }
 
-    public ProcessoSeletivo atualizaProcessoExistente(AtualizaProcessoSeletivoForm form, Long id) {
-        Optional<ProcessoSeletivo> optional = repository.findById(id);
+    public ResponseEntity<ProcessoSeletivoDto> atualizaProcessoExistente(AtualizaProcessoSeletivoForm form, Long id) {
+        Optional<ProcessoSeletivo> optionalProcessoSeletivo = repository.findById(id);
 
-        if(optional.isPresent()){
-            ProcessoSeletivo processoSeletivo = form.atualiza(id, repository, instrutorRepository);
+        if(optionalProcessoSeletivo.isPresent()){
+            ProcessoSeletivo processoSeletivo = form.atualiza(optionalProcessoSeletivo.get(), repository, instrutorRepository);
             LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " atualizou informações do processo seletivo: " + processoSeletivo.getId() + " - " + processoSeletivo.getNome());
-            return processoSeletivo;
+            return ResponseEntity.ok().build();
         }
-        return null;
+        return ResponseEntity.notFound().build();
     }
 
     public List<ProcessoSeletivoVo> buscaProgramas() {

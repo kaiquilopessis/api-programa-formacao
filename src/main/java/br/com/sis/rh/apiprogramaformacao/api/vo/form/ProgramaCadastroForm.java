@@ -23,9 +23,6 @@ public class ProgramaCadastroForm {
 	
 	@ApiModelProperty(value = "nome do instrutor", required = true, example = "Pablo Oliveira")
 	private String instrutor;
-	
-	@ApiModelProperty(value = "nome da turma", required = true, example = "Turma 2")
-	private String turma;
 
 	public String getNome() {
 		return nome;
@@ -59,26 +56,15 @@ public class ProgramaCadastroForm {
 		this.instrutor = instrutor;
 	}
 
-	public String getTurma() {
-		return turma;
-	}
-
-	public void setTurma(String turma) {
-		this.turma = turma;
-	}
-
-	public Programa converter(ProcessoSeletivo processoSeletivo, Instrutor instrutor,
-			ProgramaCadastroForm programaCadastroForm) {
+	public Programa converter(ProcessoSeletivo processoSeletivo) {
 		Programa programa = new Programa();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		LocalDate dataInicio = LocalDate.parse((CharSequence) programaCadastroForm.getInicio(), formatter);
-		LocalDate dataFim = LocalDate.parse((CharSequence) programaCadastroForm.getTermino(), formatter);
+		LocalDate dataInicio = LocalDate.parse((CharSequence) this.getInicio(), formatter);
+		LocalDate dataFim = LocalDate.parse((CharSequence) this.getTermino(), formatter);
 
 		programa.setProcessoSeletivo(processoSeletivo);
 		programa.setDataInicio(dataInicio);
 		programa.setDataFim(dataFim);
-		programa.getProcessoSeletivo().setInstrutor(instrutor);
-		programa.setNomeTurma(programaCadastroForm.getTurma());
 		programa.setStatus("EM_ANDAMENTO");
 
 		return programa;

@@ -11,7 +11,7 @@ public class TurmaDto {
     private String nomeTurma;
 
     public TurmaDto(Programa programa) {
-        this.nomeTurma = programa.getNomeTurma();
+        this.nomeTurma = programa.getProcessoSeletivo().getNomeTurma();
     }
 
     public static List<TurmaDto> converter (List<Programa> programas){

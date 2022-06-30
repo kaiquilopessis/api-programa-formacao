@@ -80,7 +80,6 @@ public class ProgramaController implements ProgramaControllerOpenApi {
 	@PostMapping
 	@Transactional
 	public ResponseEntity cadastra(@RequestBody ProgramaCadastroForm programaCadastroForm) {
-		Instrutor instrutor = instrutorRepository.findInstrutorByNome(programaCadastroForm.getInstrutor());
 		ProcessoSeletivo processoSeletivo = processoSeletivoRepository.findByNome(programaCadastroForm.getNome());
 		
 		if(processoSeletivo.getProcessoVinculado().equals(1)) {
@@ -88,7 +87,7 @@ public class ProgramaController implements ProgramaControllerOpenApi {
 		}
 		
 		try {
-			Programa programa = programaCadastroForm.converter(processoSeletivo, instrutor, programaCadastroForm);
+			Programa programa = programaCadastroForm.converter(processoSeletivo);
 			programaService.salva(programa);
 			LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " cadastrou o programa: " + programa.getId() + " - " + programa.getNomeTurma());
 			return ResponseEntity.ok().body("Cadastro concluído com sucesso!");

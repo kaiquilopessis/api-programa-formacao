@@ -71,7 +71,6 @@ class ProgramaServiceTest {
 		programaAtualizado.setDataFim(LocalDate.now());
 		programaAtualizado.setDataInicio(LocalDate.now());
 		programaAtualizado.setInstrutor("Kaiqui Lopes");
-		programaAtualizado.setTurma("Formaçãoteste");
 		programaAtualizado.setId(Long.valueOf(55));
 
 		assertEquals(ResponseEntity.ok().build().getStatusCode(), programaService.atualizaPrograma(programaAtualizado).getStatusCode());

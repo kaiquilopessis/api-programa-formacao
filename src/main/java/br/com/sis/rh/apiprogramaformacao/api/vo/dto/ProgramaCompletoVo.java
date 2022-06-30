@@ -17,7 +17,7 @@ public class ProgramaCompletoVo {
     public ProgramaCompletoVo(Programa programa){
         this.id = programa.getId();
         this.nome = programa.getProcessoSeletivo().getNome();
-        this.turma = programa.getNomeTurma();
+        this.turma = programa.getProcessoSeletivo().getNomeTurma();
         this.status = programa.getStatus();
         this.inicio = programa.getDataInicio();
         this.termino = programa.getDataFim();
