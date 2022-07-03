@@ -69,4 +69,9 @@ public class ProcessoSeletivoController implements ProcessoSeletivoControllerOpe
 		return processoSeletivoService.atualizaProcessoExistente(form, id);
 
 	}
+	
+	@PutMapping("/excluir/{id}")
+	public ResponseEntity excluiProcessoSeletivo(@PathVariable Long id) {
+		return processoSeletivoService.excluiProcessoSeletivo(id);
+	}
 }

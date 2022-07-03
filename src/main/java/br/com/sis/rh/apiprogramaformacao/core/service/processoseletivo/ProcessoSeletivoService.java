@@ -20,6 +20,7 @@ import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProcessoSeletivoNomeDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProcessoSeletivoVo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.AtualizaProcessoSeletivoForm;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProcessoSeletivoForm;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.core.repository.informacoesgerais.InstrutorRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.processoseletivo.ProcessoSeletivoRepository;
 import br.com.sis.rh.apiprogramaformacao.core.service.permissoes.MatriculaService;
@@ -36,7 +37,7 @@ public class ProcessoSeletivoService {
     private InstrutorRepository instrutorRepository;
 
     public List<ListaDeProcessoSeletivoDto> getExibeListaDeProcessos() {
-        List<ProcessoSeletivo> listaDeProcessos = repository.findTodosEmAndamento();
+        List<ProcessoSeletivo> listaDeProcessos = repository.findTodosEmAndamento("EM_ANDAMENTO");
 
         return ListaDeProcessoSeletivoDto.gerarLista(listaDeProcessos);
     }
@@ -95,4 +96,11 @@ public class ProcessoSeletivoService {
         List<ProcessoSeletivo> processosFinalizados =  repository.findAllByStatus("FINALIZADA");
         return ProcessoSeletivoVo.converter(processosFinalizados);
     }
+
+	public ResponseEntity excluiProcessoSeletivo(Long id) {
+		ProcessoSeletivo processoSeletivo = repository.getById(id);
+		processoSeletivo.setStatus(String.valueOf(StatusProcessoSeletivo.EXCLUIDO));
+		repository.save(processoSeletivo);
+		return ResponseEntity.ok().build();
+	}
 }

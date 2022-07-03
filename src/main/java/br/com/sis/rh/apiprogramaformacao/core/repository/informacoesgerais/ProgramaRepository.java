@@ -54,6 +54,8 @@ public interface ProgramaRepository extends JpaRepository<Programa, Long> {
 			"FROM Candidato c INNER JOIN ProcessoSeletivo ps "
 			+ "ON c.processoSeletivo = ps where c.id = ?1")
 	NomeProgramaCandidatoDto buscarProgramaPorCandidato(Long id);
+	
+	List<Programa> findAllByStatus(String status);
 
     @Query(value = "SELECT NEW br.com.sis.rh.apiprogramaformacao.api.vo.dto.TurmaModalDto(p.nomeTurma, p.id)" +
 			" FROM Programa p where p.id = ?1")
@@ -61,6 +63,8 @@ public interface ProgramaRepository extends JpaRepository<Programa, Long> {
 
 	@Query(value = "select p.* from TB_PROGRAMA p where p.processo_seletivo_fk = ?1", nativeQuery = true)
 	List<Programa> findByIdProcesso(Long id);
+	
+	Programa findByProcessoSeletivoId (Long id);
 
 	@Query(value = "select p.* from TB_PROGRAMA p JOIN TB_PROCESSO_SELETIVO TPS on " +
 			"TPS.id = p.processo_seletivo_fk where TPS.nome = ?1", nativeQuery = true)

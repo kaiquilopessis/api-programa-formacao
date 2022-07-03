@@ -18,8 +18,8 @@ public interface ProcessoSeletivoRepository extends JpaRepository<ProcessoSeleti
 	@Query(value = "SELECT * FROM TB_PROCESSO_SELETIVO AS p WHERE p.nome = :nome", nativeQuery = true)
 	ProcessoSeletivo findByNome(@Param("nome") String nome);
 
-	@Query(value = "SELECT * FROM TB_PROCESSO_SELETIVO ", nativeQuery = true)
-	List<ProcessoSeletivo> findTodosEmAndamento();
+	@Query(value = "SELECT * FROM TB_PROCESSO_SELETIVO AS p WHERE p.status = :status", nativeQuery = true)
+	List<ProcessoSeletivo> findTodosEmAndamento(@Param("status") String status);
 
 	@Query(value = "select new br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeProgramaEmAndamentoDto(ps.nome, p.nomeTurma)"
 			+ " from Programa p join ProcessoSeletivo as ps on ps = p.processoSeletivo" 

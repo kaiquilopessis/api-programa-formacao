@@ -22,14 +22,11 @@ public class ProgramaAtualizaForm {
 	@ApiModelProperty(value = "nome do instrutor", required = true, example = "Marcos da Silva")
 	private String instrutor;
 	
-	@ApiModelProperty(value = "nome da turma", required = true, example = "02-2022")
-	private String nomeTurma;
 	
 	public Programa atualizar(Programa programa, Instrutor instrutor) {
 		programa.setDataInicio(this.dataInicio);
 		programa.setDataFim(this.dataFim);
 		programa.getProcessoSeletivo().setInstrutor(instrutor);
-		programa.getProcessoSeletivo().setNomeTurma(this.nomeTurma);
 		return programa;
 	}
 

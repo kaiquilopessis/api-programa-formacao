@@ -1,6 +1,7 @@
 package br.com.sis.rh.apiprogramaformacao.api.controller.informacoesgerais;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -80,20 +81,26 @@ public class ProgramaController implements ProgramaControllerOpenApi {
 	@PostMapping
 	@Transactional
 	public ResponseEntity cadastra(@RequestBody ProgramaCadastroForm programaCadastroForm) {
-		ProcessoSeletivo processoSeletivo = processoSeletivoRepository.findByNome(programaCadastroForm.getNome());
+		Optional<ProcessoSeletivo> optionalProcessoSeletivo = processoSeletivoRepository.findById(programaCadastroForm.getIdProcesso());
 		
-		if(processoSeletivo.getProcessoVinculado().equals(1)) {
-			return ResponseEntity.badRequest().build();
-		}
+		if(optionalProcessoSeletivo.isPresent()) {
+			ProcessoSeletivo processoSeletivo = optionalProcessoSeletivo.get();
 		
-		try {
-			Programa programa = programaCadastroForm.converter(processoSeletivo);
-			programaService.salva(programa);
-			LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " cadastrou o programa: " + programa.getId() + " - " + programa.getNomeTurma());
-			return ResponseEntity.ok().body("Cadastro concluído com sucesso!");
-		} catch (Exception e) {
-			return ResponseEntity.badRequest().body(e);
+			if(processoSeletivo.getProcessoVinculado().equals(1)) {
+				return ResponseEntity.badRequest().build();
+			}
+		
+			try {
+				Programa programa = programaCadastroForm.converter(processoSeletivo);
+				programaService.salva(programa);
+				processoSeletivoRepository.save(processoSeletivo);
+				LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " cadastrou o programa: " + programa.getId() + " - " + programa.getProcessoSeletivo().getNomeTurma());
+				return ResponseEntity.ok().body("Cadastro concluído com sucesso!");
+			} catch (Exception e) {
+				return ResponseEntity.badRequest().body(e);
+			}
 		}
+		return ResponseEntity.notFound().build();
 	}
 
 	@Override
@@ -133,5 +140,16 @@ public class ProgramaController implements ProgramaControllerOpenApi {
 	public List<TurmaDto> buscarProgramaPeloNome(@PathVariable String nome) {
 		return programaService.buscarTurmasbyNomeProcesso(nome);
 	}
+	
+	@GetMapping("buscar-programas-por-id/{id}")
+	public ProgramaBuscaVo getNomePrograma(@PathVariable Long id) {
+		return programaService.getNomePrograma(id);
+	}
+	
+	@PutMapping("/excluir/{id}")
+	public ResponseEntity excluiPrograma (@PathVariable Long id) {
+		return programaService.excluiPrograma(id);
+	}
+	
 
 }
