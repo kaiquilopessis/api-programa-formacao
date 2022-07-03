@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
+import br.com.sis.rh.apiprogramaformacao.api.model.cargos.Remuneracao;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CargosDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaRemuneracaoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.RelatorioAvaliacoesVo;

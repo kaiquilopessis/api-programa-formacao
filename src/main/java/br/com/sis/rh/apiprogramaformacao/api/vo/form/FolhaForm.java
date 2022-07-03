@@ -5,8 +5,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Investimentos;
-import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Participante;
+import br.com.sis.rh.apiprogramaformacao.api.model.investimentos.Investimentos;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;

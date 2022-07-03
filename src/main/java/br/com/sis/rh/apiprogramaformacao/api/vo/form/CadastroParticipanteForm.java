@@ -7,10 +7,10 @@ import java.time.format.DateTimeFormatter;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
-import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
-import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
+import br.com.sis.rh.apiprogramaformacao.api.model.cargos.Remuneracao;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Participante;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Programa;
+import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.Candidato;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
 import br.com.sis.rh.apiprogramaformacao.core.util.FormatterUtil;
 import io.swagger.annotations.ApiModel;

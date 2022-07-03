@@ -2,7 +2,7 @@ package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
 import java.time.LocalDate;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
+import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.core.repository.informacoesgerais.InstrutorRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.processoseletivo.ProcessoSeletivoRepository;
 import io.swagger.annotations.ApiModel;
@@ -34,10 +34,11 @@ public class AtualizaProcessoSeletivoForm {
 	
 	@ApiModelProperty(value = "status do processo", required = true, example = "EM_ANDAMENTO")
     private String status;
+	
+	@ApiModelProperty(value = "Nome da turma", required = true, example = "01-2022")
+    private String nomeTurma;
 
-    public ProcessoSeletivo atualiza(Long id , ProcessoSeletivoRepository repository, InstrutorRepository instrutorRepository){
-        ProcessoSeletivo processoSeletivo = repository.getById(id);
-
+    public ProcessoSeletivo atualiza(ProcessoSeletivo processoSeletivo, ProcessoSeletivoRepository repository, InstrutorRepository instrutorRepository){
         processoSeletivo.setInstrutor(instrutorRepository.findInstrutorByNome(this.nomeInstrutor));
         processoSeletivo.setQtdTrainee(this.qtdTrainees);
         processoSeletivo.setQtdAprendiz(this.qtdAprendizes);
@@ -46,6 +47,7 @@ public class AtualizaProcessoSeletivoForm {
         processoSeletivo.setDataFim(this.dataFim);
         processoSeletivo.setStatus(this.status);
         processoSeletivo.setNome(this.nome);
+        processoSeletivo.setNomeTurma(this.nomeTurma);
         return processoSeletivo;
     }
 
@@ -112,4 +114,10 @@ public class AtualizaProcessoSeletivoForm {
     public void setQtdAprendizes(Integer qtdAprendizes) {
         this.qtdAprendizes = qtdAprendizes;
     }
+
+	public String getNomeTurma() {
+		return nomeTurma;
+	}
+    
+    
 }

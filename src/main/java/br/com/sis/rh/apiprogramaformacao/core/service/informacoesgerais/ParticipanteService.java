@@ -16,11 +16,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
-import br.com.sis.rh.apiprogramaformacao.api.model.Investimentos;
-import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
-import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
-import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
+import br.com.sis.rh.apiprogramaformacao.api.model.cargos.Remuneracao;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Participante;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Programa;
+import br.com.sis.rh.apiprogramaformacao.api.model.investimentos.Investimentos;
+import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.Candidato;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CpfParticipanteNomeDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FiltragemFolhaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteBuscaDto;

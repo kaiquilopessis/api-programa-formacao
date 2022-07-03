@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Programa;
 
 
 public class ProgramaDto {
@@ -19,12 +19,13 @@ public class ProgramaDto {
     private long participantesTotais;
 
     public ProgramaDto(Programa programa) {
-        this.nomeTurma = programa.getNomeTurma();
+        this.nomeTurma = programa.getProcessoSeletivo().getNomeTurma();
         this.dataInicio = programa.getDataInicio();
         this.dataFim = programa.getDataFim();
         this.qtdAprendiz = programa.getProcessoSeletivo().getQtdAprendiz();
         this.qtdEstagiario = programa.getProcessoSeletivo().getQtdEstagiario();
         this.qtdTrainee = programa.getProcessoSeletivo().getQtdTrainee();
+        this.nomeInstrutor = programa.getProcessoSeletivo().getInstrutor().getNome();
 
         // Participantes se referem a soma dos colaboradores
         this.participantesTotais = (programa.getProcessoSeletivo().getQtdAprendiz() + programa.getProcessoSeletivo().getQtdEstagiario() + programa.getProcessoSeletivo().getQtdTrainee());

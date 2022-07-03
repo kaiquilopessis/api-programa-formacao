@@ -1,6 +1,9 @@
-package br.com.sis.rh.apiprogramaformacao.api.model;
+package br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo;
 
 import javax.persistence.*;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Instrutor;
+
 import java.time.LocalDate;
 
 @Entity
@@ -27,6 +30,10 @@ public class ProcessoSeletivo {
     private LocalDate dataInicio;
     @Column(name = "data_fim")
     private LocalDate dataFim;
+    @Column (name = "processo_vinculado")
+    private Integer processoVinculado;
+    @Column (name = "nome_turma")
+    private String nomeTurma;
 
     public Long getId() {
         return id;
@@ -99,4 +106,21 @@ public class ProcessoSeletivo {
     public void setDataFim(LocalDate dataFim) {
         this.dataFim = dataFim;
     }
+
+	public Integer getProcessoVinculado() {
+		return processoVinculado;
+	}
+
+	public void setProcessoVinculado(Integer processoVinculado) {
+		this.processoVinculado = processoVinculado;
+	}
+
+	public String getNomeTurma() {
+		return nomeTurma;
+	}
+
+	public void setNomeTurma(String nomeTurma) {
+		this.nomeTurma = nomeTurma;
+	}
+    
 }

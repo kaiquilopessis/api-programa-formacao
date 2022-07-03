@@ -10,8 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.LoginAD;
-import br.com.sis.rh.apiprogramaformacao.api.model.Perfil;
+import br.com.sis.rh.apiprogramaformacao.api.model.permissoes.LoginAD;
+import br.com.sis.rh.apiprogramaformacao.api.model.permissoes.Perfil;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.LoginADDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.PerfilDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.LoginADForm;

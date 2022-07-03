@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
+import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.Candidato;
 
 public class CandidatoDto {
 	private Long id;

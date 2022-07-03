@@ -3,7 +3,7 @@ package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Participante;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
 
 public class ParticipanteExibeDto {

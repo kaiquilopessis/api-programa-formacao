@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
+import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.openApi.ProcessoSeletivoControllerOpenApi;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaDeProcessoSeletivoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProcessoSeletivoDto;
@@ -57,23 +57,21 @@ public class ProcessoSeletivoController implements ProcessoSeletivoControllerOpe
 	@Override
 	@PostMapping
 	@Transactional
-	public ResponseEntity<ProcessoSeletivoDto> criaNovoProcessoSeletivo(@RequestBody ProcessoSeletivoForm form,
-			UriComponentsBuilder uriBuilder) {
-		ProcessoSeletivo processoSeletivo = processoSeletivoService.criaNovoProcessoSeletivo(form);
-
-		URI uri = uriBuilder.path("/api/processo-seletivo/{id}").buildAndExpand(processoSeletivo.getId()).toUri();
-
-		return ResponseEntity.created(uri).body(new ProcessoSeletivoDto(processoSeletivo));
+	public ResponseEntity<ProcessoSeletivoDto> criaNovoProcessoSeletivo(@RequestBody ProcessoSeletivoForm form, UriComponentsBuilder uriBuilder) {
+		return processoSeletivoService.criaNovoProcessoSeletivo(form);
 	}
 
 	// Edita um processo seletivo que já existe
 	@Override
 	@PutMapping("/{id}")
 	@Transactional
-	public ResponseEntity<ProcessoSeletivoDto> atualizaProcessoEspecifico(
-			@RequestBody AtualizaProcessoSeletivoForm form, @PathVariable Long id) {
-		ProcessoSeletivo processoSeletivo = processoSeletivoService.atualizaProcessoExistente(form, id);
+	public ResponseEntity<ProcessoSeletivoDto> atualizaProcessoEspecifico(@RequestBody AtualizaProcessoSeletivoForm form, @PathVariable Long id) {
+		return processoSeletivoService.atualizaProcessoExistente(form, id);
 
-		return ResponseEntity.ok().body(new ProcessoSeletivoDto(processoSeletivo));
+	}
+	
+	@PutMapping("/excluir/{id}")
+	public ResponseEntity excluiProcessoSeletivo(@PathVariable Long id) {
+		return processoSeletivoService.excluiProcessoSeletivo(id);
 	}
 }

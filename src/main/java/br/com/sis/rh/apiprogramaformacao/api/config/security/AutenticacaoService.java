@@ -1,4 +1,4 @@
-package br.com.sis.rh.apiprogramaformacao.api.config;
+package br.com.sis.rh.apiprogramaformacao.api.config.security;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.LoginAD;
+import br.com.sis.rh.apiprogramaformacao.api.model.permissoes.LoginAD;
 import br.com.sis.rh.apiprogramaformacao.core.repository.permissoes.LoginADRepository;
 
 @Service

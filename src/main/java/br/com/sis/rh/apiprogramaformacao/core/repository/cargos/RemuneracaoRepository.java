@@ -1,6 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.core.repository.cargos;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
+import br.com.sis.rh.apiprogramaformacao.api.model.cargos.Remuneracao;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CargoModalDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

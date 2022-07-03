@@ -3,7 +3,7 @@ package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.AvaliacaoDesempenho;
+import br.com.sis.rh.apiprogramaformacao.api.model.acompanhamento.AvaliacaoDesempenho;
 import br.com.sis.rh.apiprogramaformacao.core.enums.Avaliacao;
 import br.com.sis.rh.apiprogramaformacao.core.enums.Parecer;
 import io.swagger.annotations.ApiModel;

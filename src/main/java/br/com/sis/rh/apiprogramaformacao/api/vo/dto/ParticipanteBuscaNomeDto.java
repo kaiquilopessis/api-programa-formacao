@@ -1,6 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Participante;
 
 public class ParticipanteBuscaNomeDto {
 

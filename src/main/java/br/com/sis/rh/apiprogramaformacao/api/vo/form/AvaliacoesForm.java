@@ -2,9 +2,9 @@ package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
 import java.math.BigDecimal;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.AvaliacaoDesempenho;
-import br.com.sis.rh.apiprogramaformacao.api.model.Avaliacoes;
-import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import br.com.sis.rh.apiprogramaformacao.api.model.acompanhamento.AvaliacaoDesempenho;
+import br.com.sis.rh.apiprogramaformacao.api.model.acompanhamento.Avaliacoes;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Participante;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 

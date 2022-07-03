@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Remuneracao;
+import br.com.sis.rh.apiprogramaformacao.api.model.cargos.Remuneracao;
 import br.com.sis.rh.apiprogramaformacao.api.openApi.RemuneracaoControllerOpenApi;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CargosDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaRemuneracaoDto;

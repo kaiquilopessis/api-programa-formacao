@@ -1,11 +1,13 @@
 package br.com.sis.rh.apiprogramaformacao.api.controller.informacoesgerais;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
-import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Instrutor;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Programa;
+import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.*;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProgramaAtualizaForm;
 
@@ -16,7 +18,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
 import br.com.sis.rh.apiprogramaformacao.api.openApi.ProgramaControllerOpenApi;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProgramaCadastroForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.informacoesgerais.InstrutorRepository;
@@ -80,16 +81,26 @@ public class ProgramaController implements ProgramaControllerOpenApi {
 	@PostMapping
 	@Transactional
 	public ResponseEntity cadastra(@RequestBody ProgramaCadastroForm programaCadastroForm) {
-		Instrutor instrutor = instrutorRepository.findInstrutorByNome(programaCadastroForm.getInstrutor());
-		ProcessoSeletivo processoSeletivo = processoSeletivoRepository.findByNome(programaCadastroForm.getNome());
-		try {
-			Programa programa = programaCadastroForm.converter(processoSeletivo, instrutor, programaCadastroForm);
-			programaService.salva(programa);
-			LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " cadastrou o programa: " + programa.getId() + " - " + programa.getNomeTurma());
-			return ResponseEntity.ok().body("Cadastro concluído com sucesso!");
-		} catch (Exception e) {
-			return ResponseEntity.badRequest().body(e);
+		Optional<ProcessoSeletivo> optionalProcessoSeletivo = processoSeletivoRepository.findById(programaCadastroForm.getIdProcesso());
+		
+		if(optionalProcessoSeletivo.isPresent()) {
+			ProcessoSeletivo processoSeletivo = optionalProcessoSeletivo.get();
+		
+			if(processoSeletivo.getProcessoVinculado().equals(1)) {
+				return ResponseEntity.badRequest().build();
+			}
+		
+			try {
+				Programa programa = programaCadastroForm.converter(processoSeletivo);
+				programaService.salva(programa);
+				processoSeletivoRepository.save(processoSeletivo);
+				LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " cadastrou o programa: " + programa.getId() + " - " + programa.getProcessoSeletivo().getNomeTurma());
+				return ResponseEntity.ok().body("Cadastro concluído com sucesso!");
+			} catch (Exception e) {
+				return ResponseEntity.badRequest().body(e);
+			}
 		}
+		return ResponseEntity.notFound().build();
 	}
 
 	@Override
@@ -129,5 +140,16 @@ public class ProgramaController implements ProgramaControllerOpenApi {
 	public List<TurmaDto> buscarProgramaPeloNome(@PathVariable String nome) {
 		return programaService.buscarTurmasbyNomeProcesso(nome);
 	}
+	
+	@GetMapping("buscar-programas-por-id/{id}")
+	public ProgramaBuscaVo getNomePrograma(@PathVariable Long id) {
+		return programaService.getNomePrograma(id);
+	}
+	
+	@PutMapping("/excluir/{id}")
+	public ResponseEntity excluiPrograma (@PathVariable Long id) {
+		return programaService.excluiPrograma(id);
+	}
+	
 
 }

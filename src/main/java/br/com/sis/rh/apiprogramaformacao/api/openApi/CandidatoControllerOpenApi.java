@@ -34,7 +34,7 @@ public interface CandidatoControllerOpenApi {
 
     @ApiOperation("Cria um candidato")
     @ApiResponses({@ApiResponse(code = 201, message = "Created", response = CandidatoDto.class)})
-    ResponseEntity<CandidatoDto> inserirCandidato(CandidatoForm form, UriComponentsBuilder uriBuilder) throws IOException;
+    ResponseEntity<CandidatoDto> inserirCandidato(CandidatoForm form) throws IOException;
 
     @ApiOperation("Método responsável por fazer o download do curriculo do candidato selecionado por id")
     @ApiResponses({@ApiResponse(code = 200, message = "OK", response = ByteArrayResource.class)})

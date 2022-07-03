@@ -8,7 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
 
-import br.com.sis.rh.apiprogramaformacao.api.config.TokenService;
+import br.com.sis.rh.apiprogramaformacao.api.config.security.TokenService;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TokenVo;
 import br.com.sis.rh.apiprogramaformacao.core.ad.UsuarioAD;
 

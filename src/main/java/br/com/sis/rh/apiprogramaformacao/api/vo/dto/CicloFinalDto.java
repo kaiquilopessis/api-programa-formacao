@@ -2,7 +2,7 @@ package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
 import java.time.LocalDate;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Ciclo;
+import br.com.sis.rh.apiprogramaformacao.api.model.acompanhamento.Ciclo;
 import br.com.sis.rh.apiprogramaformacao.core.enums.ResultadoCiclo;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusCiclo;
 

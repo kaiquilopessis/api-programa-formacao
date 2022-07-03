@@ -49,6 +49,10 @@ public interface ProgramaControllerOpenApi {
 	@ApiResponses({ @ApiResponse(code = 200, message = "OK", response = TurmaDto.class) })
 	List<TurmaDto> buscarProgramaPeloNome(@ApiParam(value = "Nome do programa", example = "Turma II", required = true) String nome);
 	
+	@ApiOperation("Busca Programas por id")
+	@ApiResponses({ @ApiResponse(code = 200, message = "OK", response = ProgramaBuscaVo.class) })
+	public ProgramaBuscaVo getNomePrograma(@ApiParam(value = "Id do programa", example = "1", required = true) Long id);
+	
 	// PUT
 	
 	@ApiOperation("Atualiza o programa")
@@ -64,4 +68,5 @@ public interface ProgramaControllerOpenApi {
 	@ApiOperation("Cadastra um novo programa")
 	@ApiResponses({ @ApiResponse(code = 201, message = "CREATED", response = ResponseEntity.class) })
 	ResponseEntity cadastra(@RequestBody ProgramaCadastroForm programaCadastroForm);
+	
 }

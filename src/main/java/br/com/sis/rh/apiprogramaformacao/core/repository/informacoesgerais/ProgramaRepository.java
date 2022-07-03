@@ -2,12 +2,13 @@ package br.com.sis.rh.apiprogramaformacao.core.repository.informacoesgerais;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Programa;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeProgramaCandidatoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TurmaModalDto;
 
@@ -53,6 +54,8 @@ public interface ProgramaRepository extends JpaRepository<Programa, Long> {
 			"FROM Candidato c INNER JOIN ProcessoSeletivo ps "
 			+ "ON c.processoSeletivo = ps where c.id = ?1")
 	NomeProgramaCandidatoDto buscarProgramaPorCandidato(Long id);
+	
+	List<Programa> findAllByStatus(String status);
 
     @Query(value = "SELECT NEW br.com.sis.rh.apiprogramaformacao.api.vo.dto.TurmaModalDto(p.nomeTurma, p.id)" +
 			" FROM Programa p where p.id = ?1")
@@ -60,8 +63,11 @@ public interface ProgramaRepository extends JpaRepository<Programa, Long> {
 
 	@Query(value = "select p.* from TB_PROGRAMA p where p.processo_seletivo_fk = ?1", nativeQuery = true)
 	List<Programa> findByIdProcesso(Long id);
+	
+	Programa findByProcessoSeletivoId (Long id);
 
 	@Query(value = "select p.* from TB_PROGRAMA p JOIN TB_PROCESSO_SELETIVO TPS on " +
 			"TPS.id = p.processo_seletivo_fk where TPS.nome = ?1", nativeQuery = true)
 	List<Programa> findByNomeProcesso(String nome);
+	
 }

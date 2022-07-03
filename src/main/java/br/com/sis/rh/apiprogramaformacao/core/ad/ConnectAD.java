@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.LoginAD;
+import br.com.sis.rh.apiprogramaformacao.api.model.permissoes.LoginAD;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TokenVo;
 import br.com.sis.rh.apiprogramaformacao.core.repository.permissoes.LoginADRepository;
 import br.com.sis.rh.apiprogramaformacao.core.service.permissoes.AutenticacaoADService;

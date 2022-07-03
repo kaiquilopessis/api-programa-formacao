@@ -1,9 +1,11 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Participante;
+
 import java.util.List;
 import java.util.stream.Collectors;
 

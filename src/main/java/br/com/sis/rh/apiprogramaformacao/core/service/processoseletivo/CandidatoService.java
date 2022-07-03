@@ -1,6 +1,8 @@
 package br.com.sis.rh.apiprogramaformacao.core.service.processoseletivo;
 
 import java.io.IOException;
+import java.net.URI;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,10 +14,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
-import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
-import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Programa;
+import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.Candidato;
+import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.ProcessoSeletivo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CandidatoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CargoModalDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaCandidatoDto;
@@ -79,19 +82,25 @@ public class CandidatoService {
 		return null;
 	}
 
-	public Candidato criaCandidato(CandidatoForm form) throws IOException {
+	public ResponseEntity<CandidatoDto> criaCandidato(CandidatoForm form) throws IOException {
+		
+		if(candidatoRepository.findByEmail(form.getEmail()).isPresent()) {
+			return ResponseEntity.badRequest().build();
+		}
 
 		Candidato candidato = form.converter(processoSeletivoRepository);
 		candidatoRepository.save(candidato);
 
 		LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " criou o candidato: " + candidato.getId()+ " - " + candidato.getNome());
-
-		return candidato;
+		
+		URI uri = UriComponentsBuilder.newInstance().path("/api/candidato/{id}").buildAndExpand(candidato.getId()).toUri();
+		
+		return ResponseEntity.created(uri).body(new CandidatoDto(candidato));
 	}
 
 	public List<ListaCandidatoDto> buscaCandidadoPorFormacao(Long id) {
 		List<Candidato> candidatos = candidatoRepository.findCandidatosPorFormacao(id);
-
+		Collections.sort(candidatos);
 		return ListaCandidatoDto.toListaCandidatoDto(candidatos);
 	}
 

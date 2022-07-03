@@ -20,7 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.test.context.support.WithMockUser;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ParticipanteBuscaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.FolhaForm;
 import org.springframework.util.Assert;

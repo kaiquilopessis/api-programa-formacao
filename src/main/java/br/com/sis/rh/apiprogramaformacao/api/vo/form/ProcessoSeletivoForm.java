@@ -2,7 +2,8 @@ package br.com.sis.rh.apiprogramaformacao.api.vo.form;
 
 import java.time.LocalDate;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
+import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.ProcessoSeletivo;
+import br.com.sis.rh.apiprogramaformacao.core.enums.ProcessoVinculado;
 import br.com.sis.rh.apiprogramaformacao.core.repository.informacoesgerais.InstrutorRepository;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -30,6 +31,9 @@ public class ProcessoSeletivoForm {
 
 	@ApiModelProperty(value = "quantidade de aprendizes no processo", required = true, example = "15")
 	private Integer qtdAprendizes;
+	
+	@ApiModelProperty(value = "nome da turma", required = true, example = "01-2022")
+	private String nomeTurma;
 
 	public ProcessoSeletivo converter(InstrutorRepository instrutorRepository) {
 		ProcessoSeletivo processoSeletivo = new ProcessoSeletivo();
@@ -41,6 +45,8 @@ public class ProcessoSeletivoForm {
 		processoSeletivo.setQtdEstagiario(this.qtdEstagiario);
 		processoSeletivo.setQtdTrainee(this.qtdTrainees);
 		processoSeletivo.setInstrutor(instrutorRepository.findInstrutorByNome(this.nomeInstrutor));
+		processoSeletivo.setProcessoVinculado(ProcessoVinculado.NAO.getCodigo());
+		processoSeletivo.setNomeTurma(this.nomeTurma);
 
 		return processoSeletivo;
 	}
@@ -100,4 +106,10 @@ public class ProcessoSeletivoForm {
 	public void setQtdAprendizes(Integer qtdAprendizes) {
 		this.qtdAprendizes = qtdAprendizes;
 	}
+
+	public String getNomeTurma() {
+		return nomeTurma;
+	}
+	
+	
 }

@@ -1,4 +1,4 @@
-package br.com.sis.rh.apiprogramaformacao.api.model;
+package br.com.sis.rh.apiprogramaformacao.api.model.permissoes;
 
 
 import org.springframework.security.core.GrantedAuthority;

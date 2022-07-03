@@ -18,9 +18,9 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Alura;
-import br.com.sis.rh.apiprogramaformacao.api.model.AluraCompare;
-import br.com.sis.rh.apiprogramaformacao.api.model.Participante;
+import br.com.sis.rh.apiprogramaformacao.api.model.acompanhamento.Alura;
+import br.com.sis.rh.apiprogramaformacao.api.model.acompanhamento.AluraCompare;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Participante;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ApiAluraDto;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
 import br.com.sis.rh.apiprogramaformacao.core.repository.acompanhamento.AluraCompareRepository;

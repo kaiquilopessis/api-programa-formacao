@@ -1,10 +1,13 @@
-package br.com.sis.rh.apiprogramaformacao.api.model;
+package br.com.sis.rh.apiprogramaformacao.api.model.investimentos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Participante;
+
 import java.time.LocalDate;
 
 @Entity

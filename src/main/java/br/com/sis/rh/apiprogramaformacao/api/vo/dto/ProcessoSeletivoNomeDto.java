@@ -1,17 +1,19 @@
 package br.com.sis.rh.apiprogramaformacao.api.vo.dto;
 
 
-import br.com.sis.rh.apiprogramaformacao.api.model.ProcessoSeletivo;
+import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.ProcessoSeletivo;
 
 public class ProcessoSeletivoNomeDto {
 
     private Long id;
     private String nome;
+    private String nomeTurma;
   
 
     public ProcessoSeletivoNomeDto(ProcessoSeletivo processoSeletivo){
         this.id = processoSeletivo.getId();
         this.nome = processoSeletivo.getNome();
+        this.nomeTurma = processoSeletivo.getNomeTurma();
       
     }
 
@@ -31,4 +33,10 @@ public class ProcessoSeletivoNomeDto {
     public void setId(Long id) {
         this.id = id;
     }
+
+	public String getNomeTurma() {
+		return nomeTurma;
+	}
+    
+    
 }

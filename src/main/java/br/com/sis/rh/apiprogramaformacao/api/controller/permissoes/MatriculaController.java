@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.LoginAD;
+import br.com.sis.rh.apiprogramaformacao.api.model.permissoes.LoginAD;
 import br.com.sis.rh.apiprogramaformacao.api.openApi.MatriculaControllerOpenApi;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.LoginADDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.PerfilDto;

@@ -1,6 +1,6 @@
 package br.com.sis.rh.apiprogramaformacao.core.service;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.FeedBack;
+import br.com.sis.rh.apiprogramaformacao.api.model.acompanhamento.FeedBack;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.FeedBackDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.FeedBackForm;
 import br.com.sis.rh.apiprogramaformacao.core.repository.acompanhamento.FeedBackRepository;

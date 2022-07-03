@@ -1,4 +1,4 @@
-package br.com.sis.rh.apiprogramaformacao.api.model;
+package br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais;
 
 import java.time.LocalDate;
 
@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.ProcessoSeletivo;
 
 
 @Entity
@@ -29,7 +31,7 @@ public class Programa {
 	@Column(name = "data_fim", nullable = false)
 	private LocalDate dataFim;
 	
-	@Column(name = "nome_turma", nullable = false, length = 50)
+	@Column(name = "nome_turma", nullable = true, length = 50)
 	private String nomeTurma;
 	
 	@Column(name = "status", nullable = false)

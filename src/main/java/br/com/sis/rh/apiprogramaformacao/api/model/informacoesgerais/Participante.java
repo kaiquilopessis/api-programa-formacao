@@ -1,4 +1,4 @@
-package br.com.sis.rh.apiprogramaformacao.api.model;
+package br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais;
 
 import java.time.LocalDate;
 
@@ -13,12 +13,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import br.com.sis.rh.apiprogramaformacao.api.model.cargos.Remuneracao;
+import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.Candidato;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusAtivo;
 import br.com.sis.rh.apiprogramaformacao.core.enums.StatusEfetivado;
 
 @Entity
 @Table(name = "TB_PARTICIPANTE")
-public class Participante {
+public class Participante implements Comparable<Participante> {
 
 	@Id
 	@Column(name = "cpf_participante", length = 12)
@@ -173,5 +175,10 @@ public class Participante {
 	// public void setTce(String tce) {
 	// this.tce = tce;
 	// }
+
+	@Override
+	public int compareTo(Participante o) {
+		return this.candidato.getNome().compareTo(o.candidato.getNome());
+	}
 
 }

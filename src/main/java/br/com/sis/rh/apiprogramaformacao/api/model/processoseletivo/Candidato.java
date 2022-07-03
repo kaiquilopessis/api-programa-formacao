@@ -1,4 +1,4 @@
-package br.com.sis.rh.apiprogramaformacao.api.model;
+package br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "TB_CANDIDATO")
-public class Candidato {
+public class Candidato implements Comparable<Candidato> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -251,6 +251,11 @@ public class Candidato {
 
 	public void setIndicacaoVaga(String indicacaoVaga) {
 		this.indicacaoVaga = indicacaoVaga;
+	}
+
+	@Override
+	public int compareTo(Candidato o) {
+		return this.nome.compareTo(o.getNome());
 	}
 
 }

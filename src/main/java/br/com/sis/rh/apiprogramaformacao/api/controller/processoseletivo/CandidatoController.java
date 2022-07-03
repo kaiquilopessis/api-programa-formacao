@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import br.com.sis.rh.apiprogramaformacao.api.model.processoseletivo.Candidato;
 import br.com.sis.rh.apiprogramaformacao.api.openApi.CandidatoControllerOpenApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Candidato;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CandidatoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.CargoModalDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ListaCandidatoDto;
@@ -75,13 +75,8 @@ public class CandidatoController implements CandidatoControllerOpenApi {
     @Override
     @PostMapping
     @Transactional
-    public ResponseEntity<CandidatoDto> inserirCandidato(@ModelAttribute CandidatoForm form, UriComponentsBuilder uriBuilder) throws IOException {
-
-        Candidato candidato = candidatoService.criaCandidato(form);
-
-        URI uri = uriBuilder.path("/api/candidato/{id}").buildAndExpand(candidato.getId()).toUri();
-
-        return ResponseEntity.created(uri).body(new CandidatoDto(candidato));
+    public ResponseEntity<CandidatoDto> inserirCandidato(@ModelAttribute CandidatoForm form) throws IOException {
+    	return candidatoService.criaCandidato(form);
     }
 
     //Faz o download  do curriculo de um usuario registrado no banco de dados

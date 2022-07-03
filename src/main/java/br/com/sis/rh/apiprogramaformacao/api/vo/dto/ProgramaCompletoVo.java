@@ -3,7 +3,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Programa;
 
 public class ProgramaCompletoVo {
     private Long id;
@@ -17,7 +17,7 @@ public class ProgramaCompletoVo {
     public ProgramaCompletoVo(Programa programa){
         this.id = programa.getId();
         this.nome = programa.getProcessoSeletivo().getNome();
-        this.turma = programa.getNomeTurma();
+        this.turma = programa.getProcessoSeletivo().getNomeTurma();
         this.status = programa.getStatus();
         this.inicio = programa.getDataInicio();
         this.termino = programa.getDataFim();

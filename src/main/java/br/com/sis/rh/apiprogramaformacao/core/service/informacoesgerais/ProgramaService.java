@@ -10,12 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import br.com.sis.rh.apiprogramaformacao.api.model.Instrutor;
-import br.com.sis.rh.apiprogramaformacao.api.model.Programa;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Instrutor;
+import br.com.sis.rh.apiprogramaformacao.api.model.informacoesgerais.Programa;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.NomeTurmaCandidatoDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.ProgramaBuscaVo;
 import br.com.sis.rh.apiprogramaformacao.api.vo.dto.TurmaDto;
 import br.com.sis.rh.apiprogramaformacao.api.vo.form.ProgramaAtualizaForm;
+import br.com.sis.rh.apiprogramaformacao.core.enums.StatusFormacao;
 import br.com.sis.rh.apiprogramaformacao.core.repository.informacoesgerais.InstrutorRepository;
 import br.com.sis.rh.apiprogramaformacao.core.repository.informacoesgerais.ProgramaRepository;
 import br.com.sis.rh.apiprogramaformacao.core.service.permissoes.MatriculaService;
@@ -32,7 +33,7 @@ public class ProgramaService  {
 	InstrutorRepository instrutorRepository;
 
 	public List<ProgramaBuscaVo> getProgramaList(){
-		List<ProgramaBuscaVo> programaBuscaVos = ProgramaBuscaVo.converterParaLista(repository.findAll());
+		List<ProgramaBuscaVo> programaBuscaVos = ProgramaBuscaVo.converterParaLista(repository.findAllByStatus("EM_ANDAMENTO"));
 		return programaBuscaVos ;
 	}
 	
@@ -50,7 +51,7 @@ public class ProgramaService  {
 	public ResponseEntity atualizaPrograma(ProgramaAtualizaForm programaAtualizaForm) {
 		Instrutor instrutor = instrutorRepository.findInstrutorByNome(programaAtualizaForm.getInstrutor());
 		Programa programa = repository.getById(programaAtualizaForm.getId());
-		programa = ProgramaAtualizaForm.atualizar(programa, instrutor, programaAtualizaForm);
+		programa = programaAtualizaForm.atualizar(programa, instrutor);
 		repository.save(programa);
 		
 		LOGGER.info(SecurityContextHolder.getContext().getAuthentication().getName() + " atualizou o programa: " + programa.getId() + " - " + programa.getNomeTurma());
@@ -70,5 +71,18 @@ public class ProgramaService  {
 	public NomeTurmaCandidatoDto getTurmaPorId(Long id) {
 		Programa programa = repository.getById(id);
 		return new NomeTurmaCandidatoDto(programa);
+	}
+	
+	public ProgramaBuscaVo getNomePrograma (Long id) {
+		Programa programa = repository.getById(id);
+		return new ProgramaBuscaVo(programa);
+	}
+
+
+	public ResponseEntity excluiPrograma(Long id) {
+		Programa programa = repository.getById(id);
+		programa.setStatus(String.valueOf(StatusFormacao.EXCLUIDO));
+		repository.save(programa);
+		return ResponseEntity.ok().build();
 	}
 }
